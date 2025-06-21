@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="EU-Zukunft und Karrierechancen für Vietnamesen - Interaktive Deutschstunde">
+    <title>EU-Zukunft und Chancen für Vietnamesen - Deutsch Campus</title>
+    <style>
+        /* DEUTSCH CAMPUS CORE STYLING */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* LESSON CONTAINER */
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* HEADER */
+        .lesson-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .lesson-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><rect width="100" height="20" fill="url(%23a)"/></svg>') repeat;
+            opacity: 0.1;
+        }
+
+        .lesson-title {
+            position: relative;
+            z-index: 1;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .lesson-subtitle {
+            position: relative;
+            z-index: 1;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .lesson-duration {
+            position: relative;
+            z-index: 1;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        /* NAVIGATION TABS */
+        .lesson-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 3px solid #dee2e6;
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            flex: 1;
+            min-width: 120px;
+            padding: 1rem;
+            border: none;
+            background: #f8f9fa;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            color: #6c757d;
+        }
+
+        .tab-button:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .tab-button.active {
+            background: white;
+            color: #007bff;
+            border-bottom-color: #007bff;
+        }
+
+        /* LESSON CONTENT */
+        .lesson-content {
+            padding: 2rem;
+        }
+
+        .lesson-panel {
+            display: none;
+        }
+
+        .lesson-panel.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* COLOR-CODED SECTIONS */
+        .grammar-section {
+            border-left: 6px solid #28a745;
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.1) 0%, rgba(40, 167, 69, 0.05) 100%);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(40, 167, 69, 0.1);
+        }
+
+        .vocabulary-section {
+            border-left: 6px solid #007bff;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0.05) 100%);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.1);
+        }
+
+        .production-section {
+            border-left: 6px solid #fd7e14;
+            background: linear-gradient(135deg, rgba(253, 126, 20, 0.1) 0%, rgba(253, 126, 20, 0.05) 100%);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(253, 126, 20, 0.1);
+        }
+
+        /* SECTION HEADERS */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .section-header::before {
+            content: '';
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .grammar-section .section-header::before {
+            background: #28a745;
+        }
+
+        .vocabulary-section .section-header::before {
+            background: #007bff;
+        }
+
+        .production-section .section-header::before {
+            background: #fd7e14;
+        }
+
+        .vietnamese {
+            color: #6c757d;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        /* INTERACTIVE ELEMENTS */
+        .interactive-element {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .interactive-element:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        /* FORM ELEMENTS */
+        input, textarea, select {
+            font-size: 16px;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            width: 100%;
+            margin: 0.5rem 0;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* BUTTONS */
+        .btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+        }
+
+        .btn-success:hover {
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #fd7e14 0%, #e8590c 100%);
+        }
+
+        .btn-warning:hover {
+            box-shadow: 0 4px 12px rgba(253, 126, 20, 0.3);
+        }
+
+        /* VOCABULARY GRID */
+        .vocabulary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .vocab-item {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .vocab-item:hover {
+            border-color: #007bff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .german-word {
+            display: block;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-bottom: 0.2rem;
+        }
+
+        .ipa {
+            display: block;
+            color: #007bff;
+            font-size: 0.95em;
+            font-style: italic;
+            margin-bottom: 0.2em;
+        }
+
+        .vietnamese-translation {
+            display: block;
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .example {
+            display: block;
+            font-size: 0.9rem;
+            color: #495057;
+            background: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        /* PROGRESS INDICATOR */
+        .progress-indicator {
+            background: #e9ecef;
+            height: 6px;
+            border-radius: 3px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #007bff, #28a745);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        /* AUTO-SAVE INDICATOR */
+        .auto-save-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .auto-save-indicator.show {
+            opacity: 1;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            .lesson-container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+
+            .lesson-content {
+                padding: 1rem;
+            }
+
+            .lesson-title {
+                font-size: 1.8rem;
+            }
+
+            .tab-button {
+                min-width: 100px;
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .vocabulary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            * {
+                background: white !important;
+                color: black !important;
+                box-shadow: none !important;
+            }
+
+            .lesson-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+            }
+
+            .lesson-tabs {
+                display: none !important;
+            }
+
+            .lesson-panel {
+                display: block !important;
+                page-break-before: always;
+            }
+
+            .lesson-panel:first-child {
+                page-break-before: avoid;
+            }
+
+            .grammar-section {
+                border: 2px solid black !important;
+                border-left: 8px solid black !important;
+            }
+
+            .vocabulary-section {
+                border: 2px solid black !important;
+                border-left: 8px solid black !important;
+            }
+
+            .production-section {
+                border: 2px solid black !important;
+                border-left: 8px solid black !important;
+            }
+        }
+
+        /* ANIMATIONS */
+        .vocab-item.clicked {
+            animation: pulse 0.6s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .feedback-positive {
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.1) 0%, rgba(40, 167, 69, 0.05) 100%);
+            border: 2px solid #28a745;
+        }
+
+        .feedback-encourage {
+            background: linear-gradient(135deg, rgba(253, 126, 20, 0.1) 0%, rgba(253, 126, 20, 0.05) 100%);
+            border: 2px solid #fd7e14;
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <!-- HEADER -->
+        <div class="lesson-header">
+            <h1 class="lesson-title">EU-Zukunft und Chancen für Vietnamesen</h1>
+            <p class="lesson-subtitle">Tương lai EU và cơ hội cho người Việt</p>
+            <div class="lesson-duration">⏱️ 2,5 Stunden - 2,5 giờ</div>
+        </div>
+
+        <!-- NAVIGATION TABS -->
+        <nav class="lesson-tabs">
+            <button class="tab-button active" onclick="showLesson(1)">
+                🎯 Lernziele<br><small>Mục tiêu</small>
+            </button>
+            <button class="tab-button" onclick="showLesson(2)">
+                📚 Wortschatz<br><small>Từ vựng</small>
+            </button>
+            <button class="tab-button" onclick="showLesson(3)">
+                📖 Lesen & Schreiben<br><small>Đọc & Viết</small>
+            </button>
+            <button class="tab-button" onclick="showLesson(4)">
+                🎧 Hören & Sprechen<br><small>Nghe & Nói</small>
+            </button>
+            <button class="tab-button" onclick="showLesson(5)">
+                🏢 EU-Unternehmen<br><small>Công ty EU</small>
+            </button>
+            <button class="tab-button" onclick="showLesson(6)">
+                🌟 Vision 2030<br><small>Tầm nhìn</small>
+            </button>
+            <button class="tab-button" onclick="showLesson(7)">
+                📝 Hausaufgaben<br><small>Bài tập về nhà</small>
+            </button>
+        </nav>
+
+        <!-- LESSON CONTENT -->
+        <div class="lesson-content">
+            <!-- AUTO-SAVE INDICATOR -->
+            <div class="auto-save-indicator" id="autoSaveIndicator">
+                💾 Automatisch gespeichert - Đã tự động lưu
+            </div>
+
+            <!-- LESSON 1: LERNZIELE -->
+            <div id="lesson1" class="lesson-panel active complete-content">
+                <h2>🎯 Lernziele - <em>Mục tiêu bài học</em></h2>
+                
+                <div class="interactive-element">
+                    <h3>Nach dieser Stunde können Sie: - <em>Sau tiết học này các bạn có thể:</em></h3>
+                    <ul style="font-size: 1.1rem; line-height: 1.8;">
+                        <li>✅ EU-Karriereinformationen verstehen - <em>Hiểu thông tin về nghề nghiệp EU</em></li>
+                        <li>✅ Zukunftspläne und Motivationsbriefe schreiben - <em>Viết kế hoạch tương lai và thư động lực</em></li>
+                        <li>✅ Berufsziele diskutieren - <em>Thảo luận về mục tiêu nghề nghiệp</em></li>
+                        <li>✅ Erfolgsgeschichten verstehen - <em>Hiểu các câu chuyện thành công</em></li>
+                    </ul>
+                </div>
+
+                <div class="grammar-section">
+                    <div class="section-header">
+                        Grammatik-Fokus - <span class="vietnamese">Ngữ pháp trọng tâm</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h4>1. Futur I - Pläne ausdrücken - <em>Diễn đạt kế hoạch</em></h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                            <div>
+                                <strong>Deutsch:</strong><br>
+                                Ich <strong>werde</strong> in Deutschland studieren.<br>
+                                Du <strong>wirst</strong> ein Praktikum machen.<br>
+                                Sie <strong>wird</strong> Deutsch perfekt sprechen.
+                            </div>
+                            <div>
+                                <strong>Tiếng Việt:</strong><br>
+                                <em>Tôi sẽ học ở Đức.</em><br>
+                                <em>Bạn sẽ làm thực tập.</em><br>
+                                <em>Cô ấy sẽ nói tiếng Đức hoàn hảo.</em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-element">
+                        <h4>2. Konjunktiv II - Träume und Wünsche - <em> Tương lai hoàn thành </em></h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                            <div>
+                                <strong>Deutsch:</strong><br>
+                                Bis 2030 <strong>werde ich </strong>mein Studium beendet haben.<br>
+                                In fünf Jahren <strong>wird sie </strong>nach Europa gezogen sein.<br>
+                                Bis dann <strong>werden wir </strong>viele Erfahrungen gesammelt haben.
+                            </div>
+                            <div>
+                                <strong>Tiếng Việt:</strong><br>
+                                <em>Tôi sẽ học xong năm 2030.</em><br>
+                                <em>Trong năm năm nữa, cô ấy sẽ chuyển đến Châu Âu.</em><br>
+                                <em>Đến lúc đó, chúng tôi sẽ có được rất nhiều kinh nghiệm.</em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-element">
+                        <h4>3. Konjunktiv II - Träume und Wünsche - <em>Ước mơ và mong muốn</em></h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                            <div>
+                                <strong>Deutsch:</strong><br>
+                                Ich <strong>würde gerne</strong> in der EU arbeiten.<br>
+                                Es <strong>wäre toll</strong>, wenn das klappen würde.<br>
+                                <strong>Wenn ich könnte</strong>, würde ich sofort anfangen.
+                            </div>
+                            <div>
+                                <strong>Tiếng Việt:</strong><br>
+                                <em>Tôi muốn làm việc ở EU.</em><br>
+                                <em>Điều đó thành công thì sẽ thật tuyệt vời.</em><br>
+                                <em>Nếu có thể, tôi sẽ bắt đầu ngay.</em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-element">
+                        <h4>4. Relativsätze - Erweitert - <em>Mệnh đề quan hệ - Nâng cao</em></h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                            <div>
+                                <strong>Deutsch:</strong><br>
+                                Das ist das Unternehmen, bei <strong>dem </strong> ich arbeiten möchte.<br>
+                                Die Stadt, in <strong>der </strong> ich leben will, ist sehr international.<br>
+                            </div>
+                            <div>
+                                <strong>Tiếng Việt:</strong><br>
+                                <em>Tôi muốn làm việc ở công ty này.</em><br>
+                                <em>Thành phố tôi muốn sống rất quốc tế.</em><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-element">
+                        <h4>🎯 Übung: Ergänzen Sie die Sätze! - <em>Hoàn thành các câu!</em></h4>
+                        <div id="grammarExercise1">
+                            <p>1. In 5 Jahren <input type="text" id="grammar1" placeholder="werde" style="width: 100px;"> ich mein Studium beendet haben.</p>
+                            <p>2. Ich <input type="text" id="grammar2" placeholder="würde" style="width: 100px;"> gerne bei SAP arbeiten.</p>
+                            <p>3. Bis 2030 <input type="text" id="grammar3" placeholder="wird" style="width: 100px;"> sie nach Deutschland gezogen sein.</p>
+                            <button class="btn btn-success" onclick="checkGrammar()">Antworten überprüfen - <em>Kiểm tra đáp án</em></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="production-section">
+                    <div class="section-header">
+                        Redemittel - <span class="vietnamese">Câu mẫu giao tiếp</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                            <div>
+                                <h4>Über Zukunft sprechen:</h4>
+                                <ul>
+                                    <li>In ___ Jahren werde ich...</li>
+                                    <li>Bis 2030 werde ich ... haben</li>
+                                    <li>Mein Ziel ist es, zu...</li>
+                                    <li>Ich plane, ... zu...</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Nói về tương lai:</h4>
+                                <ul style="color: #6c757d; font-style: italic;">
+                                    <li>Trong ___ năm tôi sẽ...</li>
+                                    <li>Đến 2030 tôi sẽ có...</li>
+                                    <li>Mục tiêu của tôi là...</li>
+                                    <li>Tôi dự định...</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LESSON 2: WORTSCHATZ -->
+            <div id="lesson2" class="lesson-panel complete-content">
+                <h2>📚 Wortschatz - <em>Từ vựng</em></h2>
+
+                <div class="vocabulary-section">
+                    <div class="section-header">
+                        Zukunfts-Wörter - <span class="vietnamese">Từ về tương lai</span>
+                    </div>
+                    
+                    <div class="vocabulary-grid">
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=die+Zukunft" target="_blank" title="Google Bilder: die Zukunft">die Zukunft</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('die Zukunft')">🔊</span></span>
+                            <span class="ipa">[ˈtsuːkʊnft]</span>
+                            <span class="vietnamese-translation">tương lai</span>
+                            <span class="example">Die Zukunft Europas ist wichtig für uns.</span>
+                        </div>
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=der+Plan+die+Pläne" target="_blank" title="Google Bilder: der Plan / die Pläne">der Plan / die Pläne</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('der Plan')">🔊</span></span>
+                            <span class="ipa">[plaːn] / [ˈplɛːnə]</span>
+                            <span class="vietnamese-translation">kế hoạch</span>
+                            <span class="example">Mein Plan ist, in Deutschland zu studieren.</span>
+                        </div>
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=das+Ziel+die+Ziele" target="_blank" title="Google Bilder: das Ziel / die Ziele">das Ziel / die Ziele</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('das Ziel')">🔊</span></span>
+                            <span class="ipa">[tsiːl] / [ˈtsiːlə]</span>
+                            <span class="vietnamese-translation">mục tiêu</span>
+                            <span class="example">Mein Ziel ist eine Karriere in der EU.</span>
+                        </div>
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=die+Chance+die+Chancen" target="_blank" title="Google Bilder: die Chance / die Chancen">die Chance / die Chancen</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('die Chance')">🔊</span></span>
+                            <span class="ipa">[ˈʃãːsə] / [ˈʃãːsn̩]</span>
+                            <span class="vietnamese-translation">cơ hội</span>
+                            <span class="example">Vietnam hat viele Chancen in Europa.</span>
+                        </div>
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=die+Möglichkeit" target="_blank" title="Google Bilder: die Möglichkeit">die Möglichkeit</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('die Möglichkeit')">🔊</span></span>
+                            <span class="ipa">[ˈmøːklɪçkaɪt]</span>
+                            <span class="vietnamese-translation">khả năng</span>
+                            <span class="example">Es gibt viele Möglichkeiten zu studieren.</span>
+                        </div>
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=erfolgreich" target="_blank" title="Google Bilder: erfolgreich">erfolgreich</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('erfolgreich')">🔊</span></span>
+                            <span class="ipa">[ɛɐ̯ˈfɔlɡʁaɪç]</span>
+                            <span class="vietnamese-translation">thành công</span>
+                            <span class="example">Sie ist sehr erfolgreich in ihrem Beruf.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vocabulary-section">
+                    <div class="section-header">
+                        Bildung & Karriere - <span class="vietnamese">Giáo dục & Nghề nghiệp</span>
+                    </div>
+                    
+                    <div class="vocabulary-grid">
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=das+Studium" target="_blank" title="Google Bilder: das Studium">das Studium</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('das Studium')">🔊</span></span>
+                            <span class="ipa">[ˈʃtuːdiʊm]</span>
+                            <span class="vietnamese-translation">việc học đại học</span>
+                            <span class="example">Das Studium in Deutschland dauert 3 Jahre.</span>
+                        </div>
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=der+Abschluss" target="_blank" title="Google Bilder: der Abschluss">der Abschluss</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('der Abschluss')">🔊</span></span>
+                            <span class="ipa">[ˈapʃlʊs]</span>
+                            <span class="vietnamese-translation">tốt nghiệp</span>
+                            <span class="example">Nach dem Abschluss will ich arbeiten.</span>
+                        </div>
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=das+Praktikum" target="_blank" title="Google Bilder: das Praktikum">das Praktikum</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('das Praktikum')">🔊</span></span>
+                            <span class="ipa">[ˈpʁaktikuːm]</span>
+                            <span class="vietnamese-translation">thực tập</span>
+                            <span class="example">Ein Praktikum hilft bei der Karriere.</span>
+                        </div>
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=das+Stipendium" target="_blank" title="Google Bilder: das Stipendium">das Stipendium</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('das Stipendium')">🔊</span></span>
+                            <span class="ipa">[ʃtɪˈpɛndi̯ʊm]</span>
+                            <span class="vietnamese-translation">học bổng</span>
+                            <span class="example">DAAD bietet Stipendien für Vietnamese.</span>
+                        </div>
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=die+Bewerbung" target="_blank" title="Google Bilder: die Bewerbung">die Bewerbung</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('die Bewerbung')">🔊</span></span>
+                            <span class="ipa">[bəˈvɛʁbʊŋ]</span>
+                            <span class="vietnamese-translation">đơn xin</span>
+                            <span class="example">Die Bewerbung muss perfekt sein.</span>
+                        </div>
+                        <div class="vocab-item" onclick="playVocab(this)">
+                            <span class="german-word"><a href="https://www.google.com/search?tbm=isch&q=der+Arbeitsplatz" target="_blank" title="Google Bilder: der Arbeitsplatz">der Arbeitsplatz</a> <span class="audio-icon" onclick="event.stopPropagation(); playAudio('der Arbeitsplatz')">🔊</span></span>
+                            <span class="ipa">[ˈaʁbaɪtsˌplats]</span>
+                            <span class="vietnamese-translation">nơi làm việc</span>
+                            <span class="example">Ein guter Arbeitsplatz ist wichtig.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="production-section">
+                    <div class="section-header">
+                        Interaktive Übung - <span class="vietnamese">Bài tập tương tác</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h4>🎯 Wortschatz-Memory: Finden Sie die Paare! - <em>Tìm các cặp từ!</em></h4>
+                        <div id="memoryGame" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 1rem 0;">
+                            <!-- Memory cards will be generated by JavaScript -->
+                        </div>
+                        <button class="btn btn-warning" onclick="initMemoryGame()">Neues Spiel starten - <em>Bắt đầu trò chơi mới</em></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LESSON 3: LESEN & SCHREIBEN -->
+            <div id="lesson3" class="lesson-panel complete-content">
+                <h2>📖 Lesen & Schreiben - <em>Đọc & Viết</em></h2>
+
+                <div class="production-section">
+                    <div class="section-header">
+                        Erfolgsgeschichte lesen - <span class="vietnamese">Đọc câu chuyện thành công</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h3>📰 VON SAIGON NACH BRÜSSEL: LINHS ERFOLGSGESCHICHTE</h3>
+                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; line-height: 1.8;">
+                            <p><strong>Linh Nguyen</strong> war 18, als sie 2018 Vietnam verließ. Heute, mit 24, arbeitet sie als EU-Vietnam Trade Spezialistin in Brüssel und verdient 4.500 Euro pro Monat.</p>
+                            
+                            <p><em>"Am Anfang war alles schwer"</em>, erzählt Linh. <em>"Mein Deutsch war nur B1-Niveau, und ich verstand die deutsche Universitätskultur nicht. Aber ich hatte einen klaren Plan."</em></p>
+                            
+                            <h4 style="color: #007bff; margin: 1.5rem 0 1rem 0;">📅 LINHS 6-JAHRES-PLAN (2018-2024):</h4>
+                            <ul style="margin-left: 1rem;">
+                                <li><strong>2018-2019:</strong> Deutschkurs in Berlin (von B1 auf C1)</li>
+                                <li><strong>2020-2023:</strong> BWL-Studium an der Humboldt-Universität</li>
+                                <li><strong>2023:</strong> 6-Monate Praktikum bei der EU-Kommission</li>
+                                <li><strong>2024:</strong> Vollzeit-Job als Trade Specialist</li>
+                            </ul>
+                            
+                            <p><em>"Das Geheimnis war Networking"</em>, erklärt Linh. <em>"Ich ging zu jeder Vietnam-Deutschland Veranstaltung. Ich fand Mentoren auf LinkedIn. Ich machte 3 Praktika statt nur einem."</em></p>
+                            
+                            <h4 style="color: #28a745; margin: 1.5rem 0 1rem 0;">💰 FINANZIERUNG:</h4>
+                            <ul style="margin-left: 1rem;">
+                                <li>DAAD-Stipendium: 850€/Monat</li>
+                                <li>Nebenjob in vietnamesischem Restaurant: 400€/Monat</li>
+                                <li>Unterstützung von Familie: 200€/Monat</li>
+                                <li><strong>Gesamt: 1.450€/Monat</strong> (ausreichend für Berlin)</li>
+                            </ul>
+                            
+                            <p><strong>HEUTE:</strong> Linh hilft deutschen Unternehmen beim Vietnam-Export und vietnamesischen Firmen beim EU-Markteintritt. <em>"Ich verdiene gut, aber wichtiger ist: Ich baue Brücken zwischen meinen beiden Heimaten."</em></p>
+                        </div>
+                    </div>
+
+                    <div class="interactive-element">
+                        <h4>🤔 Verständnisfragen - <em>Câu hỏi hiểu bài</em></h4>
+                        <div id="readingQuestions">
+                            <div style="margin: 1rem 0;">
+                                <p><strong>1. Wie lange dauerte Linhs Vorbereitung?</strong> <em>Linh chuẩn bị bao lâu?</em></p>
+                                <input type="text" id="q1" placeholder="Ihre Antwort hier..." style="width: 100%;">
+                            </div>
+                            <div style="margin: 1rem 0;">
+                                <p><strong>2. Wie viel verdient sie heute?</strong> <em>Thu nhập của cô ấy bây giờ là bao nhiêu?</em></p>
+                                <input type="text" id="q2" placeholder="Ihre Antwort hier..." style="width: 100%;">
+                            </div>
+                            <div style="margin: 1rem 0;">
+                                <p><strong>3. Was war ihr Geheimnis für den Erfolg?</strong> <em>Bí quyết thành công của cô ấy là gì?</em></p>
+                                <input type="text" id="q3" placeholder="Ihre Antwort hier..." style="width: 100%;">
+                            </div>
+                            <button class="btn btn-success" onclick="checkReadingAnswers()">Antworten überprüfen - <em>Kiểm tra đáp án</em></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="production-section">
+                    <div class="section-header">
+                        Persönlicher Karriereplan schreiben - <span class="vietnamese">Viết kế hoạch nghề nghiệp cá nhân</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h4>✍️ Schreiben Sie Ihren eigenen 6-Jahres-Plan (150-180 Wörter)</h4>
+                        <p><em>Viết kế hoạch 6 năm của bạn (150-180 từ)</em></p>
+                        
+                        <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid #ffc107;">
+                            <strong>💡 Template-Hilfe:</strong> <em>Mẫu hỗ trợ:</em><br>
+                            AUSGANGSSITUATION → JAHRESPLAN → FINANZIERUNG → HERAUSFORDERUNGEN → ERFOLGSMESSUNG
+                        </div>
+                        
+                        <textarea id="careerPlan" placeholder="MEIN EU-KARRIEREPLAN 2024-2030&#10;&#10;AUSGANGSSITUATION (2024):&#10;Ich bin ___ Jahre alt und lerne Deutsch (Niveau: ___).&#10;Meine Stärken: ___&#10;Mein Traumberuf: ___&#10;&#10;JAHRESPLAN:&#10;2024-2025: ___&#10;2025-2026: ___&#10;...&#10;&#10;Schreiben Sie hier Ihren Plan..." style="min-height: 300px;"></textarea>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                            <div id="wordCount" style="color: #6c757d; font-size: 0.9rem;">Wörter: 0/180</div>
+                            <button class="btn btn-warning" onclick="saveCareerPlan()">💾 Plan speichern - <em>Lưu kế hoạch</em></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LESSON 4: HÖREN & SPRECHEN -->
+            <div id="lesson4" class="lesson-panel complete-content">
+                <h2>🎧 Hören & Sprechen - <em>Nghe & Nói</em></h2>
+
+                <div class="production-section">
+                    <div class="section-header">
+                        Erasmus+ Informationen - <span class="vietnamese">Thông tin về Erasmus+</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h3>🎓 ERASMUS+ FÜR VIETNAMESISCHE STUDENTEN</h3>
+                        <div style="background: #e7f3ff; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                            <p><strong>Erasmus+</strong> ist das größte Bildungsprogramm der Welt. Jedes Jahr studieren 350.000 Studenten in anderen EU-Ländern. Für Vietnamese ist das Programm seit 2020 geöffnet.</p>
+                            
+                            <h4 style="color: #007bff; margin: 1.5rem 0 1rem 0;">✅ VORAUSSETZUNGEN:</h4>
+                            <ul>
+                                <li>Mindestens 2 Jahre Universitätsstudium in Vietnam</li>
+                                <li>Deutschkenntnisse B2 oder Englisch C1</li>
+                                <li>Notendurchschnitt mindestens 3,0 (vietnamesisches System: 7,0/10)</li>
+                                <li>Motivationsschreiben auf Deutsch oder Englisch</li>
+                            </ul>
+                            
+                            <h4 style="color: #28a745; margin: 1.5rem 0 1rem 0;">💰 FINANZIELLE UNTERSTÜTZUNG:</h4>
+                            <ul>
+                                <li>Lebenshaltungsstipendium: 300-600€ pro Monat (je nach Land)</li>
+                                <li>Studiengebühren: komplett bezahlt</li>
+                                <li>Reisekosten: bis zu 1.500€ einmalig</li>
+                                <li>Sprachkurs: kostenlos vor Abreise</li>
+                            </ul>
+                            
+                            <h4 style="color: #fd7e14; margin: 1.5rem 0 1rem 0;">🌍 BELIEBTESTE LÄNDER:</h4>
+                            <ol>
+                                <li><strong>Deutschland</strong> (technische Fächer)</li>
+                                <li><strong>Niederlande</strong> (Business, IT)</li>
+                                <li><strong>Österreich</strong> (Musik, Kunst)</li>
+                                <li><strong>Frankreich</strong> (Mode, Kulinarik)</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="interactive-element">
+                        <h4>🎤 Sprechen: Erasmus-Beratungsgespräch</h4>
+                        <p><em>Nói: Cuộc tư vấn Erasmus</em></p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0;">
+                            <div>
+                                <h5>🙋‍♀️ Fragen für Interessenten:</h5>
+                                <ul>
+                                    <li>Welche Universität ist am besten für mein Fach?</li>
+                                    <li>Reicht mein Deutschniveau aus?</li>
+                                    <li>Wie teuer ist das Leben in Deutschland?</li>
+                                    <li>Kann ich nebenbei arbeiten?</li>
+                                    <li>Wie finde ich eine Wohnung?</li>
+                                    <li>Was passiert nach dem Erasmus-Jahr?</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5>📋 Informationen für Berater:</h5>
+                                <ul style="font-size: 0.9rem;">
+                                    <li><strong>Technik:</strong> TU München, RWTH Aachen</li>
+                                    <li><strong>Business:</strong> Mannheim, Frankfurt</li>
+                                    <li><strong>Deutschniveau:</strong> B2 minimum, C1 besser</li>
+                                    <li><strong>Lebenskosten:</strong> 800-1.200€/Monat</li>
+                                    <li><strong>Nebenjobs:</strong> 20 Stunden/Woche erlaubt</li>
+                                    <li><strong>Wohnung:</strong> Studentenwohnheim oder WG</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-success" onclick="startRolePlay()">🎭 Rollenspiel starten - <em>Bắt đầu nhập vai</em></button>
+                    </div>
+                </div>
+
+                <div class="production-section">
+                    <div class="section-header">
+                        Bridge-Projekt Idee entwickeln - <span class="vietnamese">Phát triển ý tưởng dự án cầu nối</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h4>🌉 Entwickeln Sie ein EU-Vietnam Kooperationsprojekt</h4>
+                        <p><em>Phát triển một dự án hợp tác EU-Việt Nam</em></p>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Projekt-Kategorie wählen:</strong> <em>Chọn danh mục dự án:</em></label>
+                            <select id="projectCategory" style="width: 100%; margin: 0.5rem 0;">
+                                <option value="">-- Wählen Sie eine Kategorie --</option>
+                                <option value="tech">🔬 Technologie: Deutsche Technik für vietnamesische Probleme</option>
+                                <option value="education">🎓 Bildung: Austauschprogramme zwischen Schulen/Unis</option>
+                                <option value="environment">🌱 Umwelt: Nachhaltige Lösungen für beide Länder</option>
+                                <option value="culture">🎨 Kultur: Kunst-, Musik- oder Literaturprojekte</option>
+                                <option value="business">💼 Business: Handel zwischen EU und Vietnam vereinfachen</option>
+                            </select>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Projektname:</strong> <em>Tên dự án:</em></label>
+                            <input type="text" id="projectName" placeholder="Mein Projekt heißt..." style="width: 100%;">
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Problem/Lösung:</strong> <em>Vấn đề/Giải pháp:</em></label>
+                            <textarea id="projectProblem" placeholder="Welches Problem löst Ihr Projekt? Was bringt EU mit? Was bringt Vietnam mit?" style="min-height: 100px;"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Geschäftsmodell:</strong> <em>Mô hình kinh doanh:</em></label>
+                            <textarea id="projectBusiness" placeholder="Wie verdienen Sie Geld? Wer sind Ihre Kunden? Wie groß ist der Markt?" style="min-height: 80px;"></textarea>
+                        </div>
+                        
+                        <button class="btn btn-warning" onclick="saveProject()">💾 Projekt speichern - <em>Lưu dự án</em></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LESSON 5: EU-UNTERNEHMEN -->
+            <div id="lesson5" class="lesson-panel complete-content">
+                <h2>🏢 EU-Unternehmen Research - <em>Nghiên cứu công ty EU</em></h2>
+
+                <div class="vocabulary-section">
+                    <div class="section-header">
+                        Firmenprofile analysieren - <span class="vietnamese">Phân tích hồ sơ công ty</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h3>💼 SAP - Deutschlands größtes Software-Unternehmen</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; background: #f8f9fa; padding: 1.5rem; border-radius: 10px;">
+                            <div>
+                                <h4 style="color: #007bff;">📊 Firmendaten:</h4>
+                                <ul>
+                                    <li><strong>Hauptsitz:</strong> Walldorf, Deutschland</li>
+                                    <li><strong>Mitarbeiter weltweit:</strong> 107.000</li>
+                                    <li><strong>Umsatz:</strong> 31 Milliarden Euro</li>
+                                    <li><strong>SAP Vietnam:</strong> 2.000 Mitarbeiter in Ho Chi Minh Stadt</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 style="color: #28a745;">🎯 Für Vietnamese interessant:</h4>
+                                <ul>
+                                    <li><strong>Trainee-Programme</strong> für EU-Absolventen</li>
+                                    <li><strong>Einstiegsgehalt:</strong> 55.000€/Jahr</li>
+                                    <li><strong>Arbeitssprache:</strong> Englisch (Deutsch ein Plus)</li>
+                                    <li><strong>Karriereweg:</strong> 
+Entwicklerin → 
+Leitender entwickler → Teamleiter → Produktmanager</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-element">
+                        <h3>⚡ Siemens - Globaler Technologiekonzern</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; background: #f0f8f0; padding: 1.5rem; border-radius: 10px;">
+                            <div>
+                                <h4 style="color: #007bff;">📊 Firmendaten:</h4>
+                                <ul>
+                                    <li><strong>Hauptsitz:</strong> München, Deutschland</li>
+                                    <li><strong>Mitarbeiter weltweit:</strong> 300.000</li>
+                                    <li><strong>Umsatz:</strong> 72 Milliarden Euro</li>
+                                    <li><strong>Vietnam-Investment:</strong> 500 Millionen € bis 2025</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 style="color: #28a745;">🎯 Für Vietnamese interessant:</h4>
+                                <ul>
+                                    <li><strong>Graduate Programs</strong> in München und Berlin</li>
+                                    <li><strong>Einstiegsgehalt:</strong> 50.000-65.000€/Jahr</li>
+                                    <li><strong>Deutschkenntnisse:</strong> B2 minimum erforderlich</li>
+                                    <li><strong>Projekte in Vietnam:</strong> intelligente Stadt, Windenergie, Industrie 4.0</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-element">
+                        <h4>🤔 Firmen-Vergleich: Welche Firma ist interessanter für Sie?</h4>
+                        <p><em>So sánh công ty: Công ty nào thú vị hơn đối với bạn?</em></p>
+                        
+                        <div id="companyComparison">
+                            <div style="margin: 1rem 0;">
+                                <label><strong>Mein bevorzugtes Unternehmen:</strong> <em>Công ty tôi ưa thích:</em></label>
+                                <select id="preferredCompany" style="width: 100%; margin: 0.5rem 0;">
+                                    <option value="">-- Wählen Sie ein Unternehmen --</option>
+                                    <option value="sap">💻 SAP - Software & Innovation</option>
+                                    <option value="siemens">⚡ Siemens - Technologie & Engineering</option>
+                                </select>
+                            </div>
+                            
+                            <div style="margin: 1rem 0;">
+                                <label><strong>Begründung (3-4 Sätze):</strong> <em>Lý do (3-4 câu):</em></label>
+                                <textarea id="companyReason" placeholder="Ich bevorzuge [Firma], weil... Die Vorteile sind... Besonders interessant finde ich... Für meine Karriere bedeutet das..." style="min-height: 100px;"></textarea>
+                            </div>
+                            
+                            <button class="btn btn-success" onclick="saveCompanyChoice()">💾 Auswahl speichern - <em>Lưu lựa chọn</em></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="production-section">
+                    <div class="section-header">
+                        Bewerbungsbrief schreiben - <span class="vietnamese">Viết thư xin việc</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h4>✍️ Schreiben Sie einen Bewerbungsbrief für ein Praktikum (180-200 Wörter)</h4>
+                        <p><em>Viết thư xin thực tập (180-200 từ)</em></p>
+                        
+                        <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid #ffc107;">
+                            <strong>📝 Struktur-Hilfe:</strong> <em>Hỗ trợ cấu trúc:</em><br>
+                            Anrede → Warum Ihr Unternehmen → Meine Qualifikationen → Meine Motivation → Verfügbarkeit → Schluss
+                        </div>
+                        
+                        <textarea id="applicationLetter" placeholder="Bewerbung um ein Praktikumsplatz bei [Firma]&#10;&#10;Sehr geehrte Damen und Herren,&#10;&#10;ich bin [Name], 18 Jahre alt und komme aus Vietnam. Zurzeit lerne ich Deutsch (Niveau B1) und plane, ab 2025 in Deutschland zu studieren.&#10;&#10;WARUM IHR UNTERNEHMEN:&#10;Ihr Unternehmen interessiert mich, weil...&#10;&#10;Schreiben Sie hier Ihren Bewerbungsbrief..." style="min-height: 350px;"></textarea>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                            <div id="applicationWordCount" style="color: #6c757d; font-size: 0.9rem;">Wörter: 0/200</div>
+                            <button class="btn btn-warning" onclick="saveApplication()">💾 Bewerbung speichern - <em>Lưu đơn xin việc</em></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LESSON 6: VISION 2030 -->
+            <div id="lesson6" class="lesson-panel complete-content">
+                <h2>🌟 Vision 2030 - <em>Tầm nhìn 2030</em></h2>
+
+                <div class="production-section">
+                    <div class="section-header">
+                        Zukunftsvision erstellen - <span class="vietnamese">Tạo tầm nhìn tương lai</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h3>🔮 Meine EU-Vision 2030</h3>
+                        <p><em>Tầm nhìn EU của tôi 2030</em></p>
+                        
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 2rem; border-radius: 15px; margin: 1rem 0; text-align: center;">
+                            <h4 style="margin-bottom: 1rem;">✨ In 6 Jahren werde ich...</h4>
+                            <p style="font-size: 1.1rem; line-height: 1.6;">
+                                ...ein erfolgreicher Profi sein, der Brücken zwischen Vietnam und der EU baut. 
+                                Ich werde nicht nur persönlich erfolgreich sein, sondern auch anderen Vietnamese helfen, 
+                                ihre Träume in Europa zu verwirklichen.
+                            </p>
+                        </div>
+                        
+                        <div style="margin: 2rem 0;">
+                            <h4>📝 Schreiben Sie Ihre detaillierte Zukunftsvision (120-150 Wörter)</h4>
+                            <p><em>Viết tầm nhìn tương lai chi tiết của bạn (120-150 từ)</em></p>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                                <div>
+                                    <h5>💼 Beruflich:</h5>
+                                    <input type="text" id="vision_job" placeholder="In 6 Jahren werde ich... sein/arbeiten" style="width: 100%; margin: 0.25rem 0;">
+                                    <input type="text" id="vision_salary" placeholder="Ich werde... Euro pro Monat verdienen" style="width: 100%; margin: 0.25rem 0;">
+                                    <input type="text" id="vision_location" placeholder="Mein Arbeitsort wird... sein" style="width: 100%; margin: 0.25rem 0;">
+                                </div>
+                                <div>
+                                    <h5>🏠 Persönlich:</h5>
+                                    <input type="text" id="vision_living" placeholder="Ich werde in... leben" style="width: 100%; margin: 0.25rem 0;">
+                                    <input type="text" id="vision_german" placeholder="Meine deutschen Sprachkenntnisse:..." style="width: 100%; margin: 0.25rem 0;">
+                                    <input type="text" id="vision_family" placeholder="Meine Familie wird..." style="width: 100%; margin: 0.25rem 0;">
+                                </div>
+                            </div>
+                            
+                            <div style="margin: 1.5rem 0;">
+                                <h5>🌍 Gesellschaftlich:</h5>
+                                <textarea id="vision_contribution" placeholder="Ich werde der EU-Vietnam Beziehung helfen durch...&#10;Mein Beitrag für andere Vietnamese:...&#10;Ein Projekt, das ich starten will:..." style="min-height: 80px;"></textarea>
+                            </div>
+                            
+                            <div style="margin: 1.5rem 0;">
+                                <h5>🎯 Rückblick 2030:</h5>
+                                <textarea id="vision_reflection" placeholder="Wenn ich 2030 auf heute zurückblicke, werde ich stolz sein auf...&#10;Der wichtigste Schritt war...&#10;Mein Rat an 16-jährige Vietnamese heute:..." style="min-height: 80px;"></textarea>
+                            </div>
+                            
+                            <div style="margin: 1.5rem 0;">
+                                <h5>📅 Konkrete nächste Schritte:</h5>
+                                <input type="text" id="vision_week" placeholder="Diese Woche werde ich..." style="width: 100%; margin: 0.25rem 0;">
+                                <input type="text" id="vision_month" placeholder="Diesen Monat..." style="width: 100%; margin: 0.25rem 0;">
+                                <input type="text" id="vision_year" placeholder="Dieses Jahr..." style="width: 100%; margin: 0.25rem 0;">
+                            </div>
+                            
+                            <button class="btn btn-success" onclick="generateVision()">✨ Vision generieren - <em>Tạo tầm nhìn</em></button>
+                        </div>
+                        
+                        <div id="generatedVision" style="display: none; background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                            <h4>🌟 Ihre persönliche Vision 2030:</h4>
+                            <div id="visionText" style="line-height: 1.8; font-size: 1.1rem;"></div>
+                            <button class="btn btn-warning" onclick="saveVision()">💾 Vision speichern - <em>Lưu tầm nhìn</em></button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="vocabulary-section">
+                    <div class="section-header">
+                        Lernfortschritt & Zusammenfassung - <span class="vietnamese">Tiến độ học tập & Tóm tắt</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h4>📊 Ihr Lernfortschritt heute:</h4>
+                        <div id="progressSummary">
+                            <div class="progress-indicator">
+                                <div class="progress-bar" id="mainProgressBar" style="width: 0%;"></div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                                <div style="text-align: center; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                                    <div style="font-size: 2rem; color: #28a745;">📚</div>
+                                    <div><strong>Wortschatz</strong></div>
+                                    <div id="vocabProgress" style="color: #6c757d;">0/30 Wörter</div>
+                                </div>
+                                <div style="text-align: center; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                                    <div style="font-size: 2rem; color: #007bff;">✍️</div>
+                                    <div><strong>Schreiben</strong></div>
+                                    <div id="writingProgress" style="color: #6c757d;">0/3 Texte</div>
+                                </div>
+                                <div style="text-align: center; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                                    <div style="font-size: 2rem; color: #fd7e14;">🎯</div>
+                                    <div><strong>Übungen</strong></div>
+                                    <div id="exerciseProgress" style="color: #6c757d;">0/8 Übungen</div>
+                                </div>
+                                <div style="text-align: center; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                                    <div style="font-size: 2rem; color: #6f42c1;">🏆</div>
+                                    <div><strong>Gesamt</strong></div>
+                                    <div id="totalProgress" style="color: #6c757d;">0% abgeschlossen</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; text-align: center;">
+                            <h4>🎉 Herzlichen Glückwunsch!</h4>
+                            <p><em>Chúc mừng bạn!</em></p>
+                            <p>Sie haben wichtige Schritte für Ihre EU-Karriere gemacht. Bleiben Sie motiviert und verfolgen Sie Ihre Träume!</p>
+                            <p><em>Bạn đã thực hiện những bước quan trọng cho sự nghiệp EU của mình. Hãy tiếp tục động lực và theo đuổi ước mơ!</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LESSON 7: HAUSAUFGABEN -->
+            <div id="lesson7" class="lesson-panel complete-content">
+                <h2>📝 Hausaufgaben - <em>Bài tập về nhà</em></h2>
+                <div class="production-section">
+                    <div class="section-header">
+                        Hausaufgaben - <span class="vietnamese">Bài tập về nhà</span>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h4>📚 Ihre Aufgaben für zu Hause:</h4>
+                        <div style="background: #e7f3ff; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                            <h5>1. 🔍 EU-Karriere Research (60 Minuten)</h5>
+                            <p>Recherchieren Sie online 3 deutsche/EU-Unternehmen in Ihrem Interessensbereich. Für jedes Unternehmen finden Sie heraus:</p>
+                            <ul>
+                                <li>Firmengröße und Standorte</li>
+                                <li>Karrierechancen für Vietnamese</li>
+                                <li>Einstiegsgehälter</li>
+                                <li>Praktikumsmöglichkeiten</li>
+                                <li>Deutschkenntnisse erforderlich?</li>
+                            </ul>
+                            
+                            <h5 style="margin-top: 1.5rem;">2. 📄 Formeller Lebenslauf (90 Minuten)</h5>
+                            <p>Erstellen Sie einen deutschen Lebenslauf (Europass-Format) mit:</p>
+                            <ul>
+                                <li>Persönliche Angaben</li>
+                                <li>Bildungsweg</li>
+                                <li>Sprachkenntnisse</li>
+                                <li>Computerkenntnisse</li>
+                                <li>Interessen und Hobbys</li>
+                                <li>Zukunftsziele</li>
+                            </ul>
+                            
+                            <h5 style="margin-top: 1.5rem;">3. 🎤 Familie-Präsentation vorbereiten</h5>
+                            <p>Bereiten Sie eine 5-Minuten Präsentation für Ihre Familie vor:</p>
+                            <ul>
+                                <li>Was haben Sie über EU-Karrieren gelernt?</li>
+                                <li>Welche konkreten Pläne haben Sie?</li>
+                                <li>Wie können sie Sie unterstützen?</li>
+                                <li>Was sind Ihre Sorgen und Hoffnungen?</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: #d4edda; padding: 1rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid #28a745;">
+                            <strong>💡 Erfolgs-Tipp:</strong> <em>Mẹo thành công:</em><br>
+                            Beginnen Sie HEUTE mit kleinen Schritten. Jeder große Erfolg beginnt mit dem ersten Schritt. 
+                            Sie haben bereits den wichtigsten Schritt gemacht: Sie lernen Deutsch und denken über Ihre Zukunft nach!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // AUTO-SAVE AND INTERACTION FUNCTIONALITY
+        
+        // Progress tracking
+        let progressData = {
+            vocabClicked: 0,
+            writingCompleted: 0,
+            exercisesCompleted: 0,
+            totalItems: 41
+        };
+
+        // Load saved progress on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllProgress();
+            updateProgressDisplay();
+            setupAutoSave();
+            
+            // Load saved lesson
+            try {
+                const savedLesson = localStorage.getItem('deutschCampusCurrentLesson');
+                if (savedLesson) {
+                    const lessonNum = parseInt(savedLesson);
+                    if (lessonNum >= 1 && lessonNum <= 7) {
+                        showLesson(lessonNum);
+                    }
+                }
+            } catch (e) {
+                console.log('No saved lesson found');
+            }
+        });
+
+        // Navigation function
+        function showLesson(lessonNumber) {
+            // Hide all panels
+            document.querySelectorAll('.lesson-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected lesson
+            const targetLesson = document.getElementById(`lesson${lessonNumber}`);
+            if (targetLesson) {
+                targetLesson.classList.add('active');
+            }
+            
+            // Update button state
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                // For programmatic calls
+                const targetButton = document.querySelectorAll('.tab-button')[lessonNumber - 1];
+                if (targetButton) {
+                    targetButton.classList.add('active');
+                }
+            }
+            
+            // Save progress
+            try {
+                localStorage.setItem('deutschCampusCurrentLesson', lessonNumber);
+            } catch (e) {
+                sessionStorage.setItem('deutschCampusCurrentLesson', lessonNumber);
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Auto-save functionality
+        function setupAutoSave() {
+            // Auto-save for all text inputs and textareas
+            const saveableElements = ['careerPlan', 'applicationLetter', 'projectName', 'projectProblem', 'projectBusiness', 'companyReason'];
+            
+            saveableElements.forEach(elementId => {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.addEventListener('input', function() {
+                        debounce(() => autoSave(elementId, element.value), 1000)();
+                        updateWordCount(elementId);
+                    });
+                    
+                    // Load saved content
+                    const saved = getSavedContent(elementId);
+                    if (saved) {
+                        element.value = saved;
+                        updateWordCount(elementId);
+                    }
+                }
+            });
+
+            // Auto-save for vision fields
+            const visionFields = ['vision_job', 'vision_salary', 'vision_location', 'vision_living', 'vision_german', 'vision_family', 'vision_contribution', 'vision_reflection', 'vision_week', 'vision_month', 'vision_year'];
+            
+            visionFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('input', function() {
+                        debounce(() => autoSave(fieldId, field.value), 1000)();
+                    });
+                    
+                    const saved = getSavedContent(fieldId);
+                    if (saved) {
+                        field.value = saved;
+                    }
+                }
+            });
+        }
+
+        // Debounce function for auto-save
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = function() {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Auto-save function
+        function autoSave(key, value) {
+            try {
+                localStorage.setItem(`deutschCampus_${key}`, value);
+                showAutoSaveIndicator();
+            } catch (e) {
+                sessionStorage.setItem(`deutschCampus_${key}`, value);
+                showAutoSaveIndicator();
+            }
+        }
+
+        // Get saved content
+        function getSavedContent(key) {
+            try {
+                return localStorage.getItem(`deutschCampus_${key}`) || sessionStorage.getItem(`deutschCampus_${key}`);
+            } catch (e) {
+                return null;
+            }
+        }
+
+        // Show auto-save indicator
+        function showAutoSaveIndicator() {
+            const indicator = document.getElementById('autoSaveIndicator');
+            indicator.classList.add('show');
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        // Word count functionality
+        function updateWordCount(elementId) {
+            const element = document.getElementById(elementId);
+            const countElement = document.getElementById(getWordCountId(elementId));
+            
+            if (element && countElement) {
+                const words = element.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+                const target = getWordTarget(elementId);
+                countElement.textContent = `Wörter: ${words}/${target}`;
+                
+                if (words >= target * 0.8) {
+                    countElement.style.color = '#28a745';
+                } else if (words >= target * 0.5) {
+                    countElement.style.color = '#fd7e14';
+                } else {
+                    countElement.style.color = '#6c757d';
+                }
+            }
+        }
+
+        function getWordCountId(elementId) {
+            const mapping = {
+                'careerPlan': 'wordCount',
+                'applicationLetter': 'applicationWordCount'
+            };
+            return mapping[elementId] || 'wordCount';
+        }
+
+        function getWordTarget(elementId) {
+            const targets = {
+                'careerPlan': 180,
+                'applicationLetter': 200
+            };
+            return targets[elementId] || 150;
+        }
+
+        // Vocabulary interaction
+        function playVocab(element) {
+            element.classList.add('clicked');
+            setTimeout(() => element.classList.remove('clicked'), 600);
+            
+            progressData.vocabClicked++;
+            updateProgressDisplay();
+            
+            // Simple pronunciation guide (visual feedback)
+            const germanWord = element.querySelector('.german-word').textContent;
+            element.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // Grammar exercise checking
+        function checkGrammar() {
+            const answers = {
+                'grammar1': 'werde',
+                'grammar2': 'würde',
+                'grammar3': 'wird'
+            };
+            
+            let correct = 0;
+            Object.keys(answers).forEach(id => {
+                const input = document.getElementById(id);
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = answers[id].toLowerCase();
+                
+                if (userAnswer === correctAnswer) {
+                    input.classList.add('feedback-positive');
+                    input.classList.remove('feedback-encourage');
+                    correct++;
+                } else {
+                    input.classList.add('feedback-encourage');
+                    input.classList.remove('feedback-positive');
+                }
+            });
+            
+            if (correct === 3) {
+                alert('🎉 Ausgezeichnet! Alle Antworten sind richtig! - Xuất sắc! Tất cả đáp án đều đúng!');
+                progressData.exercisesCompleted++;
+            } else {
+                alert(`✅ ${correct}/3 richtig. Versuchen Sie es noch einmal! - ${correct}/3 đúng. Hãy thử lại!`);
+            }
+            
+            updateProgressDisplay();
+        }
+
+        // Reading comprehension checking
+        function checkReadingAnswers() {
+            const sampleAnswers = {
+                'q1': ['6 jahre', 'sechs jahre', '2018-2024'],
+                'q2': ['4500', '4.500', 'viertausendfünfhundert'],
+                'q3': ['networking', 'netzwerk', 'kontakte']
+            };
+            
+            let feedback = [];
+            Object.keys(sampleAnswers).forEach(id => {
+                const input = document.getElementById(id);
+                const userAnswer = input.value.trim().toLowerCase();
+                
+                if (sampleAnswers[id].some(answer => userAnswer.includes(answer))) {
+                    input.classList.add('feedback-positive');
+                    feedback.push('✅');
+                } else {
+                    input.classList.add('feedback-encourage');
+                    feedback.push('💭');
+                }
+            });
+            
+            alert(`Ihre Antworten: ${feedback.join(' ')} - Gut gemacht! - Câu trả lời của bạn: Làm tốt!`);
+            progressData.exercisesCompleted++;
+            updateProgressDisplay();
+        }
+
+        // Memory game functionality
+        function initMemoryGame() {
+            const pairs = [
+                {german: 'die Zukunft', vietnamese: 'tương lai'},
+                {german: 'der Plan', vietnamese: 'kế hoạch'},
+                {german: 'das Ziel', vietnamese: 'mục tiêu'},
+                {german: 'die Chance', vietnamese: 'cơ hội'},
+                {german: 'erfolgreich', vietnamese: 'thành công'},
+                {german: 'das Studium', vietnamese: 'việc học đại học'}
+            ];
+            
+            const gameContainer = document.getElementById('memoryGame');
+            const cards = [];
+            
+            // Create card pairs
+            pairs.forEach(pair => {
+                cards.push({type: 'german', text: pair.german, match: pair.vietnamese});
+                cards.push({type: 'vietnamese', text: pair.vietnamese, match: pair.german});
+            });
+            
+            // Shuffle cards
+            cards.sort(() => Math.random() - 0.5);
+            
+            // Clear container
+            gameContainer.innerHTML = '';
+            
+            // Create card elements
+            cards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.style.cssText = `
+                    background: #007bff;
+                    color: white;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    text-align: center;
+                    font-weight: bold;
+                    transition: all 0.3s ease;
+                    min-height: 60px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                `;
+                cardElement.textContent = '?';
+                cardElement.dataset.index = index;
+                cardElement.dataset.text = card.text;
+                cardElement.dataset.match = card.match;
+                cardElement.dataset.type = card.type;
+                
+                cardElement.addEventListener('click', handleCardClick);
+                gameContainer.appendChild(cardElement);
+            });
+        }
+
+        let flippedCards = [];
+        function handleCardClick(event) {
+            const card = event.target;
+            
+            if (card.classList.contains('flipped') || flippedCards.length >= 2) return;
+            
+            // Flip card
+            card.textContent = card.dataset.text;
+            card.classList.add('flipped');
+            card.style.background = card.dataset.type === 'german' ? '#28a745' : '#fd7e14';
+            flippedCards.push(card);
+            
+            if (flippedCards.length === 2) {
+                setTimeout(() => {
+                    const [card1, card2] = flippedCards;
+                    
+                    if (card1.dataset.text === card2.dataset.match || card2.dataset.text === card1.dataset.match) {
+                        // Match found
+                        card1.style.background = '#6f42c1';
+                        card2.style.background = '#6f42c1';
+                        card1.style.opacity = '0.7';
+                        card2.style.opacity = '0.7';
+                    } else {
+                        // No match
+                        card1.textContent = '?';
+                        card2.textContent = '?';
+                        card1.style.background = '#007bff';
+                        card2.style.background = '#007bff';
+                        card1.classList.remove('flipped');
+                        card2.classList.remove('flipped');
+                    }
+                    
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        // Role play functionality
+        function startRolePlay() {
+            alert('🎭 Rollenspiel gestartet! - Bắt đầu nhập vai!\n\nBilden Sie Gruppen:\n- 2 Schüler = Erasmus-Berater\n- Andere = Interessenten\n\nTauschen Sie alle 5 Minuten die Rollen!\nĐổi vai mỗi 5 phút!');
+            progressData.exercisesCompleted++;
+            updateProgressDisplay();
+        }
+
+        // Save functions
+        function saveCareerPlan() {
+            const plan = document.getElementById('careerPlan').value;
+            if (plan.trim().length < 50) {
+                alert('📝 Bitte schreiben Sie mehr Details in Ihren Plan! - Vui lòng viết chi tiết hơn trong kế hoạch của bạn!');
+                return;
+            }
+            
+            autoSave('careerPlan', plan);
+            alert('💾 Karriereplan gespeichert! - Kế hoạch nghề nghiệp đã được lưu!');
+            progressData.writingCompleted++;
+            updateProgressDisplay();
+        }
+
+        function saveProject() {
+            const name = document.getElementById('projectName').value;
+            const problem = document.getElementById('projectProblem').value;
+            const business = document.getElementById('projectBusiness').value;
+            
+            if (!name || !problem || !business) {
+                alert('📝 Bitte füllen Sie alle Felder aus! - Vui lòng điền đầy đủ tất cả các trường!');
+                return;
+            }
+            
+            const projectData = {name, problem, business, category: document.getElementById('projectCategory').value};
+            autoSave('bridgeProject', JSON.stringify(projectData));
+            alert('💾 Projekt gespeichert! - Dự án đã được lưu!');
+            progressData.exercisesCompleted++;
+            updateProgressDisplay();
+        }
+
+        function saveCompanyChoice() {
+            const company = document.getElementById('preferredCompany').value;
+            const reason = document.getElementById('companyReason').value;
+            
+            if (!company || reason.trim().length < 30) {
+                alert('📝 Bitte wählen Sie ein Unternehmen und schreiben Sie eine ausführliche Begründung! - Vui lòng chọn công ty và viết lý do chi tiết!');
+                return;
+            }
+            
+            autoSave('companyChoice', JSON.stringify({company, reason}));
+            alert('💾 Firmenauswahl gespeichert! - Lựa chọn công ty đã được lưu!');
+            progressData.exercisesCompleted++;
+            updateProgressDisplay();
+        }
+
+        function saveApplication() {
+            const letter = document.getElementById('applicationLetter').value;
+            if (letter.trim().length < 100) {
+                alert('📝 Bitte schreiben Sie einen längeren Bewerbungsbrief! - Vui lòng viết thư xin việc dài hơn!');
+                return;
+            }
+            
+            autoSave('applicationLetter', letter);
+            alert('💾 Bewerbungsbrief gespeichert! - Thư xin việc đã được lưu!');
+            progressData.writingCompleted++;
+            updateProgressDisplay();
+        }
+
+        function generateVision() {
+            const fields = ['vision_job', 'vision_salary', 'vision_location', 'vision_living', 'vision_german', 'vision_family', 'vision_contribution', 'vision_reflection', 'vision_week', 'vision_month', 'vision_year'];
+            
+            let allFilled = true;
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    allFilled = false;
+                }
+            });
+            
+            if (!allFilled) {
+                alert('📝 Bitte füllen Sie alle Felder aus! - Vui lòng điền đầy đủ tất cả các trường!');
+                return;
+            }
+            
+            // Generate vision text
+            const visionText = `
+                <h5>💼 BERUFLICH:</h5>
+                <p>In 6 Jahren werde ich ${document.getElementById('vision_job').value}. Ich werde ${document.getElementById('vision_salary').value}. Mein Arbeitsort wird ${document.getElementById('vision_location').value}.</p>
+                
+                <h5>🏠 PERSÖNLICH:</h5>
+                <p>Ich werde in ${document.getElementById('vision_living').value}. Meine deutschen Sprachkenntnisse: ${document.getElementById('vision_german').value}. Meine Familie wird ${document.getElementById('vision_family').value}.</p>
+                
+                <h5>🌍 GESELLSCHAFTLICH:</h5>
+                <p>${document.getElementById('vision_contribution').value}</p>
+                
+                <h5>🎯 RÜCKBLICK 2030:</h5>
+                <p>${document.getElementById('vision_reflection').value}</p>
+                
+                <h5>📅 NÄCHSTE SCHRITTE:</h5>
+                <p><strong>Diese Woche:</strong> ${document.getElementById('vision_week').value}</p>
+                <p><strong>Diesen Monat:</strong> ${document.getElementById('vision_month').value}</p>
+                <p><strong>Dieses Jahr:</strong> ${document.getElementById('vision_year').value}</p>
+            `;
+            
+            document.getElementById('visionText').innerHTML = visionText;
+            document.getElementById('generatedVision').style.display = 'block';
+            progressData.exercisesCompleted++;
+            updateProgressDisplay();
+        }
+
+        function saveVision() {
+            const visionText = document.getElementById('visionText').innerHTML;
+            autoSave('personalVision', visionText);
+            alert('💾 Vision gespeichert! - Tầm nhìn đã được lưu!');
+            progressData.writingCompleted++;
+            updateProgressDisplay();
+        }
+
+        // Progress tracking
+        function updateProgressDisplay() {
+            const total = progressData.vocabClicked + progressData.writingCompleted + progressData.exercisesCompleted;
+            const percentage = Math.round((total / progressData.totalItems) * 100);
+            
+            // Update progress bar
+            document.getElementById('mainProgressBar').style.width = percentage + '%';
+            
+            // Update individual counters
+            document.getElementById('vocabProgress').textContent = `${progressData.vocabClicked}/12 Wörter`;
+            document.getElementById('writingProgress').textContent = `${progressData.writingCompleted}/3 Texte`;
+            document.getElementById('exerciseProgress').textContent = `${progressData.exercisesCompleted}/8 Übungen`;
+            document.getElementById('totalProgress').textContent = `${percentage}% abgeschlossen`;
+            
+            // Save progress
+            autoSave('progressData', JSON.stringify(progressData));
+        }
+
+        function loadAllProgress() {
+            try {
+                const saved = getSavedContent('progressData');
+                if (saved) {
+                    progressData = {...progressData, ...JSON.parse(saved)};
+                }
+            } catch (e) {
+                console.log('No saved progress data');
+            }
+        }
+
+        // Initialize memory game on page load
+        window.addEventListener('load', function() {
+            setTimeout(initMemoryGame, 1000);
+        });
+
+        // Print-friendly fallbacks
+        window.addEventListener('beforeprint', function() {
+            document.querySelectorAll('.lesson-panel').forEach(panel => {
+                panel.style.display = 'block';
+                panel.style.pageBreakBefore = 'always';
+            });
+            
+            document.querySelectorAll('.lesson-panel:first-child').forEach(panel => {
+                panel.style.pageBreakBefore = 'avoid';
+            });
+        });
+
+        window.addEventListener('afterprint', function() {
+            document.querySelectorAll('.lesson-panel').forEach((panel, index) => {
+                if (index === 0) {
+                    panel.style.display = 'block';
+                } else {
+                    panel.style.display = 'none';
+                }
+            });
+            
+            // Restore active lesson
+            const activeLesson = document.querySelector('.tab-button.active');
+            if (activeLesson) {
+                const lessonNumber = Array.from(document.querySelectorAll('.tab-button')).indexOf(activeLesson) + 1;
+                showLesson(lessonNumber);
+            }
+        });
+
+        function playAudio(word) {
+            if (!window.speechSynthesis) {
+                alert('Sprachausgabe wird von Ihrem Browser nicht unterstützt.');
+                return;
+            }
+            const utter = new SpeechSynthesisUtterance(word);
+            utter.lang = 'de-DE';
+            utter.rate = 0.9;
+            window.speechSynthesis.speak(utter);
+        }
+    </script>
+</body>
+</html>
+                

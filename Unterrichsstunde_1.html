@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="EU Grundlagen - L&auml;nder und Kulturen - Interaktive deutsche Lektion f&uuml;r vietnamesische Sch&uuml;ler">
+    <title>EU Grundlagen - L&auml;nder und Kulturen - Deutsch Campus</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        .lesson-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .lesson-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .lesson-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* Navigation Tabs */
+        .lesson-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 3px solid #e9ecef;
+            overflow-x: auto;
+            padding: 0 1rem;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6c757d;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: 120px;
+        }
+
+        .tab-button:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .tab-button.active {
+            color: #495057;
+            border-bottom-color: #007bff;
+            background: white;
+        }
+
+        /* Content Sections */
+        .lesson-content {
+            padding: 2rem;
+        }
+
+        .lesson-panel {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .lesson-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin: 2rem 0 1rem 0;
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .section-header .icon {
+            margin-right: 1rem;
+            font-size: 1.8rem;
+        }
+
+        /* Color Coding System */
+        .grammar-section {
+            border-left: 5px solid #28a745;
+            background: #f8fff9;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .grammar-section .section-header {
+            background: #28a745;
+            color: white;
+        }
+
+        .vocabulary-section {
+            border-left: 5px solid #007bff;
+            background: #f8fcff;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .vocabulary-section .section-header {
+            background: #007bff;
+            color: white;
+        }
+
+        .production-section {
+            border-left: 5px solid #fd7e14;
+            background: #fff9f5;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .production-section .section-header {
+            background: #fd7e14;
+            color: white;
+        }
+
+        /* Content Styling */
+        .german {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .vietnamese {
+            font-style: italic;
+            color: #4A4A4A;
+            margin-left: 0.5rem;
+        }
+
+        .vocabulary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .vocab-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .vocab-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .vocab-item .vocab-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            gap: 0.75rem;
+        }
+
+        .german-word-link {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .german-word-link:hover {
+            text-decoration: underline;
+            color: #007bff;
+        }
+        
+        .pronounce-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #6c757d;
+            padding: 0;
+            margin-left: auto; /* Pushes button to the right */
+            line-height: 1;
+        }
+
+        .pronounce-btn:hover {
+            color: #007bff;
+        }
+
+        .ipa {
+            font-family: 'Courier New', Courier, monospace;
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        .vocab-item .vietnamese-translation {
+            display: block;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .german-word {
+            display: block;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .vietnamese-translation {
+            display: block;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .example {
+            display: block;
+            font-size: 0.9rem;
+            color: #6c757d;
+            background: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Interactive Elements */
+        .interactive-area {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 2px dashed #dee2e6;
+        }
+
+        .exercise-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            transition: border-color 0.3s ease;
+        }
+
+        .exercise-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+        }
+
+        .exercise-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 0.75rem;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            margin: 0.5rem 0;
+        }
+
+        .exercise-textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #1e7e34;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        /* Auto-save indicator */
+        .save-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .save-indicator.show {
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .lesson-container {
+                margin: 0;
+            }
+
+            .lesson-content {
+                padding: 1rem;
+            }
+
+            .lesson-header {
+                padding: 1rem;
+            }
+
+            .lesson-header h1 {
+                font-size: 2rem;
+            }
+
+            .tab-button {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+                min-width: 100px;
+            }
+
+            .vocabulary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            * {
+                background: white !important;
+                color: black !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
+
+            body {
+                background: white !important;
+                font-size: 12pt !important;
+                line-height: 1.4 !important;
+            }
+
+            .lesson-container {
+                box-shadow: none !important;
+                background: white !important;
+            }
+
+            .lesson-tabs {
+                display: none !important;
+            }
+
+            .lesson-panel {
+                display: block !important;
+                page-break-before: always;
+            }
+
+            .lesson-panel:first-child {
+                page-break-before: avoid;
+            }
+
+            .grammar-section {
+                border: 2px solid black !important;
+                border-left: 8px solid black !important;
+                background: white !important;
+                color: black !important;
+            }
+
+            .vocabulary-section {
+                border: 2px solid black !important;
+                border-left: 8px solid black !important;
+                background: white !important;
+                color: black !important;
+            }
+
+            .production-section {
+                border: 2px solid black !important;
+                border-left: 8px solid black !important;
+                background: white !important;
+                color: black !important;
+            }
+
+            .section-header {
+                background: white !important;
+                color: black !important;
+                border-bottom: 2px solid black !important;
+            }
+
+            .btn {
+                display: none !important;
+            }
+
+            .save-indicator {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <div class="lesson-header">
+            <h1>EU Grundlagen - L&auml;nder und Kulturen</h1>
+            <div class="subtitle">Cơ bản về EU - C&aacute;c nước v&agrave; Văn h&oacute;a</div>
+        </div>
+
+        <nav class="lesson-tabs">
+            <button class="tab-button active" onclick="showLesson('lernziele')">Lernziele</button>
+            <button class="tab-button" onclick="showLesson('wortschatz')">Wortschatz</button>
+            <button class="tab-button" onclick="showLesson('grammatik')">Grammatik</button>
+            <button class="tab-button" onclick="showLesson('redemittel')">Redemittel</button>
+            <button class="tab-button" onclick="showLesson('aktivitaet1')">Aktivit&auml;t 1</button>
+            <button class="tab-button" onclick="showLesson('aktivitaet2')">Aktivit&auml;t 2</button>
+            <button class="tab-button" onclick="showLesson('aktivitaet3')">Aktivit&auml;t 3</button>
+            <button class="tab-button" onclick="showLesson('aktivitaet4')">Aktivit&auml;t 4</button>
+            <button class="tab-button" onclick="showLesson('aktivitaet5')">Aktivit&auml;t 5</button>
+
+        </nav>
+
+        <div class="lesson-content">
+            <!-- Lernziele -->
+            <div id="lernziele" class="lesson-panel active">
+                <div class="production-section">
+                    <div class="section-header">
+                        <span class="icon">🎯</span>
+                        <div>
+                            <span class="german">Lernziele</span>
+                            <span class="vietnamese">- Mục ti&ecirc;u b&agrave;i học</span>
+                        </div>
+                    </div>
+                    <p><strong class="german">Sch&uuml;ler k&ouml;nnen:</strong> <span class="vietnamese">Học sinh c&oacute; thể:</span></p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li><span class="german">Einfache EU-Artikel verstehen</span> <span class="vietnamese">- Đọc hiểu b&agrave;i b&aacute;o đơn giản về EU</span></li>
+                        <li><span class="german">Kulturvergleiche schriftlich machen</span> <span class="vietnamese">- Viết đoạn văn so s&aacute;nh văn h&oacute;a</span></li>
+                        <li><span class="german">15 EU-L&auml;nder nennen und beschreiben</span> <span class="vietnamese">- N&oacute;i t&ecirc;n 15 nước EU v&agrave; m&ocirc; tả</span></li>
+                        <li><span class="german">L&auml;nderinformationen verstehen</span> <span class="vietnamese">- Nghe hiểu th&ocirc;ng tin về c&aacute;c nước</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Wortschatz -->
+            <div id="wortschatz" class="lesson-panel">
+                <div class="vocabulary-section">
+                    <div class="section-header">
+                        <span class="icon">📚</span>
+                        <div>
+                            <span class="german">Hauptwortschatz</span>
+                            <span class="vietnamese">- Từ vựng ch&iacute;nh</span>
+                        </div>
+                    </div>
+
+                    <div class="vocabulary-grid">
+                        <div class="vocab-item">
+                            <div class="vocab-header">
+                                <a href="https://www.google.com/search?tbm=isch&q=Urlaub" target="_blank" class="german-word-link">Urlaub</a>
+                                <span class="ipa">[ˈuːɐ̯laʊ̯p]</span>
+                                <button class="pronounce-btn" onclick="pronounceWord('Urlaub')">🔊</button>
+                            </div>
+                            <span class="vietnamese-translation">kỳ nghỉ</span>
+                        </div>
+                        <div class="vocab-item">
+                            <div class="vocab-header">
+                                <a href="https://www.google.com/search?tbm=isch&q=Verkehr" target="_blank" class="german-word-link">Verkehr</a>
+                                <span class="ipa">[fɛɐ̯ˈkeːɐ̯]</span>
+                                <button class="pronounce-btn" onclick="pronounceWord('Verkehr')">🔊</button>
+                            </div>
+                            <span class="vietnamese-translation">giao thông</span>
+                        </div>
+                        <div class="vocab-item">
+                            <div class="vocab-header">
+                                <a href="https://www.google.com/search?tbm=isch&q=Vorteile" target="_blank" class="german-word-link">Vorteile</a>
+                                <span class="ipa">[ˈfɔʁˌtaɪ̯lə]</span>
+                                <button class="pronounce-btn" onclick="pronounceWord('Vorteile')">🔊</button>
+                            </div>
+                            <span class="vietnamese-translation">những ưu điểm</span>
+                        </div>
+                        <div class="vocab-item">
+                            <div class="vocab-header">
+                                <a href="https://www.google.com/search?tbm=isch&q=selbstständig" target="_blank" class="german-word-link">selbstständig</a>
+                                <span class="ipa">[ˈzɛlpʃtɛndɪç]</span>
+                                <button class="pronounce-btn" onclick="pronounceWord('selbstständig')">🔊</button>
+                            </div>
+                            <span class="vietnamese-translation">tự lập, độc lập</span>
+                        </div>
+                        <div class="vocab-item">
+                            <div class="vocab-header">
+                                <a href="https://www.google.com/search?tbm=isch&q=Qualität" target="_blank" class="german-word-link">Qualität</a>
+                                <span class="ipa">[kvaliˈtɛːt]</span>
+                                <button class="pronounce-btn" onclick="pronounceWord('Qualität')">🔊</button>
+                            </div>
+                            <span class="vietnamese-translation">chất lượng</span>
+                        </div>
+                        <div class="vocab-item">
+                            <div class="vocab-header">
+                                <a href="https://www.google.com/search?tbm=isch&q=berühmt" target="_blank" class="german-word-link">berühmt</a>
+                                <span class="ipa">[bəˈʁyːmt]</span>
+                                <button class="pronounce-btn" onclick="pronounceWord('berühmt')">🔊</button>
+                            </div>
+                            <span class="vietnamese-translation">nổi tiếng</span>
+                        </div>
+                        <div class="vocab-item">
+                            <div class="vocab-header">
+                                <a href="https://www.google.com/search?tbm=isch&q=hilfsbereit" target="_blank" class="german-word-link">hilfsbereit</a>
+                                <span class="ipa">[ˈhɪlfsbəˌʁaɪ̯t]</span>
+                                <button class="pronounce-btn" onclick="pronounceWord('hilfsbereit')">🔊</button>
+                            </div>
+                            <span class="vietnamese-translation">hay giúp đỡ</span>
+                        </div>
+                        <div class="vocab-item">
+                            <div class="vocab-header">
+                                <a href="https://www.google.com/search?tbm=isch&q=Einwohner" target="_blank" class="german-word-link">Einwohner</a>
+                                <span class="ipa">[ˈaɪ̯nˌvoːnɐ]</span>
+                                <button class="pronounce-btn" onclick="pronounceWord('Einwohner')">🔊</button>
+                            </div>
+                            <span class="vietnamese-translation">cư dân</span>
+                        </div>
+                        <div class="vocab-item">
+                            <div class="vocab-header">
+                                <a href="https://www.google.com/search?tbm=isch&q=teuer" target="_blank" class="german-word-link">teuer</a>
+                                <span class="ipa">[ˈtɔʏ̯ɐ]</span>
+                                <button class="pronounce-btn" onclick="pronounceWord('teuer')">🔊</button>
+                            </div>
+                            <span class="vietnamese-translation">đắt đỏ</span>
+                        </div>
+                        <div class="vocab-item">
+                            <div class="vocab-header">
+                                <a href="https://www.google.com/search?tbm=isch&q=Verbindungen" target="_blank" class="german-word-link">Verbindungen</a>
+                                <span class="ipa">[fɛɐ̯ˈbɪndʊŋən]</span>
+                                <button class="pronounce-btn" onclick="pronounceWord('Verbindungen')">🔊</button>
+                            </div>
+                            <span class="vietnamese-translation">các mối liên kết</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grammatik -->
+            <div id="grammatik" class="lesson-panel">
+                <div class="grammar-section">
+                    <div class="section-header">
+                        <span class="icon">📖</span>
+                        <div>
+                            <span class="german">Grammatik</span>
+                            <span class="vietnamese">- Ngữ ph&aacute;p</span>
+                        </div>
+                    </div>
+
+                    <h3><span class="german">1. L&auml;nder mit und ohne Artikel</span> <span class="vietnamese">- Nước c&oacute; v&agrave; kh&ocirc;ng c&oacute; mạo từ</span></h3>
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin: 1rem 0;">
+                        <p><strong class="german">Ohne Artikel (Kh&ocirc;ng mạo từ):</strong></p>
+                        <ul style="margin: 0.5rem 0; padding-left: 2rem;">
+                            <li>Deutschland ist gro&szlig;.</li>
+                            <li>Frankreich ist sch&ouml;n.</li>
+                            <li>Vietnam ist weit weg.</li>
+                        </ul>
+                        
+                        <p><strong class="german">Mit Artikel (C&oacute; mạo từ):</strong></p>
+                        <ul style="margin: 0.5rem 0; padding-left: 2rem;">
+                            <li><strong>DIE</strong> Niederlande sind klein.</li>
+                            <li><strong>DIE</strong> Schweiz ist reich.</li>
+                        </ul>
+                    </div>
+
+                    <h3><span class="german">2. Komparativ und Superlativ</span> <span class="vietnamese">- So s&aacute;nh hơn v&agrave; nhất</span></h3>
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin: 1rem 0;">
+                        <p><strong class="german">Komparativ (So s&aacute;nh hơn):</strong></p>
+                        <ul style="margin: 0.5rem 0; padding-left: 2rem;">
+                            <li>Deutschland ist gr&ouml;&szlig;er <strong>als</strong> &Ouml;sterreich.</li>
+                            <li>Italien ist w&auml;rmer <strong>als</strong> Deutschland.</li>
+                        </ul>
+                        
+                        <p><strong class="german">Superlativ (So s&aacute;nh nhất):</strong></p>
+                        <ul style="margin: 0.5rem 0; padding-left: 2rem;">
+                            <li>Die Niederlande sind <strong>am kleinsten</strong>.</li>
+                            <li>Frankreich hat <strong>das beste</strong> Essen.</li>
+                        </ul>
+                    </div>
+
+                    <h3><span class="german">3. Lokale Pr&auml;positionen</span> <span class="vietnamese">- Giới từ chỉ nơi chốn</span></h3>
+                    <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin: 1rem 0;">
+                        <ul style="margin: 0.5rem 0; padding-left: 2rem;">
+                            <li>Deutschland liegt <strong>in der Mitte von</strong> Europa.</li>
+                            <li>Polen ist <strong>&ouml;stlich von</strong> Deutschland.</li>
+                            <li>Spanien liegt <strong>s&uuml;dlich von</strong> Frankreich.</li>
+                        </ul>
+                    </div>
+
+                    <div class="interactive-area">
+                        <h4><span class="german">&Uuml;bung: Erg&auml;nzen Sie die S&auml;tze</span> <span class="vietnamese">- B&agrave;i tập: Ho&agrave;n th&agrave;nh c&aacute;c c&acirc;u</span></h4>
+                        <div style="margin: 1rem 0;">
+                            <p>1. Frankreich ist _________ als &Ouml;sterreich. (gro&szlig;)</p>
+                            <input type="text" class="exercise-input" data-exercise="grammar1" placeholder="Ihre Antwort hier...">
+                            
+                            <p>2. _____ Schweiz ist sehr reich.</p>
+                            <input type="text" class="exercise-input" data-exercise="grammar2" placeholder="Ihre Antwort hier...">
+                            
+                            <p>3. Italien liegt _________ von Deutschland. (s&uuml;dlich)</p>
+                            <input type="text" class="exercise-input" data-exercise="grammar3" placeholder="Ihre Antwort hier...">
+                        </div>
+                        <button class="btn btn-success" onclick="checkGrammarAnswers()">Antworten &uuml;berpr&uuml;fen</button>
+                        <div id="grammarFeedback" style="margin-top: 1rem;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aktivität 1 -->
+            <div id="aktivitaet1" class="lesson-panel">
+                <div class="production-section">
+                    <div class="section-header">
+                        <span class="icon">🎯</span>
+                        <div>
+                            <span class="german">Aktivit&auml;t 1: EU-L&auml;nder entdecken</span>
+                            <span class="vietnamese">- Hoạt động 1: Kh&aacute;m ph&aacute; c&aacute;c nước EU</span>
+                        </div>
+                    </div>
+
+                    <h3><span class="german">A) Lesen + Verstehen: L&auml;nder-Texte</span> <span class="vietnamese">- Đọc + Hiểu: Thông tin quốc gia</span></h3>
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                        <h4><span class="german">Text &uuml;ber Deutschland:</span></h4>
+                        <p style="line-height: 1.8; margin: 1rem 0;">
+                            Deutschland hat 83 Millionen Einwohner. Die Hauptstadt ist Berlin. Deutschland liegt in der Mitte von Europa. Das Land ist ber&uuml;hmt f&uuml;r Autos, Bier und Oktoberfest. Die Menschen arbeiten viel, aber sie haben auch 30 Tage Urlaub pro Jahr.
+                        </p>
+                        
+                        <h4><span class="german">Text &uuml;ber Frankreich:</span></h4>
+                        <p style="line-height: 1.8; margin: 1rem 0;">
+                            Frankreich ist gr&ouml;&szlig;er als Deutschland. Paris ist die Hauptstadt und hat den Eiffelturm. Frankreich ist ber&uuml;hmt f&uuml;r gutes Essen, Wein und Mode. Die Franzosen sprechen sehr schnell, aber sie sind hilfsbereit zu Touristen.
+                        </p>
+                    </div>
+
+                    <div class="interactive-area">
+                        <h4><span class="german">Verst&auml;ndnisfragen:</span> <span class="vietnamese">- C&acirc;u hỏi hiểu b&agrave;i:</span></h4>
+                        <div style="margin: 1rem 0;">
+                            <p><strong>1. Wie viele Einwohner hat Deutschland?</strong></p>
+                            <input type="text" class="exercise-input" data-exercise="reading1" placeholder="Ihre Antwort hier...">
+                            
+                            <p><strong>2. Wof&uuml;r ist Frankreich ber&uuml;hmt?</strong></p>
+                            <input type="text" class="exercise-input" data-exercise="reading2" placeholder="Ihre Antwort hier...">
+                            
+                            <p><strong>3. Welches Land liegt in der Mitte von Europa?</strong></p>
+                            <input type="text" class="exercise-input" data-exercise="reading3" placeholder="Ihre Antwort hier...">
+                        </div>
+                        <button class="btn btn-success" onclick="checkReadingAnswers()">Antworten &uuml;berpr&uuml;fen</button>
+                        <div id="readingFeedback" style="margin-top: 1rem;"></div>
+                    </div>
+
+                    <h3><span class="german">B) Schreiben: L&auml;nder-Steckbrief</span> <span class="vietnamese">- Viết: Hồ sơ từng nước</span></h3>
+                    <div class="interactive-area">
+                        <p><strong class="german">Schreiben Sie einen kurzen Steckbrief &uuml;ber ein EU-Land:</strong></p>
+                        <p><em class="vietnamese">Viết một số thông tin sơ lược về một nước EU:</em></p>
+                        
+                        <div style="margin: 1rem 0;">
+                            <p><strong>Land:</strong></p>
+                            <input type="text" class="exercise-input" data-exercise="profile1" placeholder="Name des Landes...">
+                            
+                            <p><strong>Einwohner:</strong></p>
+                            <input type="text" class="exercise-input" data-exercise="profile2" placeholder="Anzahl der Einwohner...">
+                            
+                            <p><strong>Hauptstadt:</strong></p>
+                            <input type="text" class="exercise-input" data-exercise="profile3" placeholder="Name der Hauptstadt...">
+                            
+                            <p><strong>Ber&uuml;hmt f&uuml;r:</strong></p>
+                            <input type="text" class="exercise-input" data-exercise="profile4" placeholder="Wof&uuml;r ist das Land bekannt...">
+                            
+                            <p><strong>Besonderheit:</strong></p>
+                            <input type="text" class="exercise-input" data-exercise="profile5" placeholder="Was ist besonders...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aktivität 2 -->
+            <div id="aktivitaet2" class="lesson-panel">
+                <div class="production-section">
+                    <div class="section-header">
+                        <span class="icon">🌍</span>
+                        <div>
+                            <span class="german">Aktivit&auml;t 2: Kulturvergleich Lesen und Schreiben</span>
+                            <span class="vietnamese">- Hoạt động 2: Đọc v&agrave; viết so s&aacute;nh văn h&oacute;a</span>
+                        </div>
+                    </div>
+
+                    <h3><span class="german">A) Lesen: EU-Vietnam Kulturartikel</span> <span class="vietnamese">- Đọc: B&agrave;i viết văn h&oacute;a EU-Việt Nam</span></h3>
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1rem 0; line-height: 1.8;">
+                        <h4 style="text-align: center; margin-bottom: 1rem;"><strong>LEBEN IN EUROPA VS. VIETNAM</strong></h4>
+                        
+                        <p><strong>Familie:</strong> In Deutschland leben junge Menschen oft allein, wenn sie 18 sind. In Vietnam bleiben Kinder l&auml;nger bei den Eltern. Beide Kulturen haben Vorteile: Deutsche werden fr&uuml;h selbstst&auml;ndig, Vietnamese haben starke Familienverbindungen.</p>
+                        
+                        <p><strong>Essen:</strong> Deutsche essen viel Brot, Wurst und Kartoffeln. Vietnamese essen Reis, Gem&uuml;se und Suppen. In der EU wird das Essen teurer, aber die Qualit&auml;t ist hoch. In Vietnam ist Essen billiger und frischer.</p>
+                        
+                        <p><strong>Arbeit:</strong> In Deutschland arbeiten Menschen 8 Stunden am Tag und haben lange Pausen. In Vietnam arbeiten viele Menschen l&auml;nger, aber flexibler. Deutsche haben mehr Urlaub (30 Tage), Vietnamese haben weniger (12 Tage).</p>
+                        
+                        <p><strong>Verkehr:</strong> In deutschen St&auml;dten fahren viele Menschen mit dem Fahrrad oder der Bahn. In Vietnam fahren die meisten Menschen Motorrad. Beide Systeme funktionieren, aber Europa ist umweltfreundlicher.</p>
+                    </div>
+
+                    <div class="interactive-area">
+                        <h4><span class="german">Lesen-Aufgaben:</span> <span class="vietnamese">- Nhi&ecirc;̣m vụ đọc:</span></h4>
+                        <div style="margin: 1rem 0;">
+                            <p><strong>1. Finden Sie 5 Unterschiede zwischen EU und Vietnam:</strong></p>
+                            <textarea class="exercise-textarea" data-exercise="cultural1" placeholder="Schreiben Sie hier die Unterschiede..."></textarea>
+                            
+                            <p><strong>2. Notieren Sie neue W&ouml;rter mit vietnamesischer &Uuml;bersetzung:</strong></p>
+                            <textarea class="exercise-textarea" data-exercise="cultural2" placeholder="Neue W&ouml;rter - Từ mới..."></textarea>
+                        </div>
+                    </div>
+
+                    <h3><span class="german">B) Schreiben: Pers&ouml;nlicher Kulturvergleich</span> <span class="vietnamese">- Viết: So s&aacute;nh văn h&oacute;a c&aacute; nh&acirc;n</span></h3>
+                    <div class="interactive-area">
+                        <p><strong class="german">Schreibaufgabe (100-120 W&ouml;rter):</strong></p>
+                        <p><strong class="german">Thema:</strong> "Meine Familie in Deutschland vs. Vietnam"</p>
+                        <p><em class="vietnamese">Chủ đề: "Gia đ&igrave;nh t&ocirc;i ở Đức so với Việt Nam"</em></p>
+                        
+                        <div style="background: #e9ecef; padding: 1rem; border-radius: 6px; margin: 1rem 0;">
+                            <p><strong class="german">Hilfe-Fragen:</strong> <em class="vietnamese">C&acirc;u hỏi gợi &yacute;:</em></p>
+                            <ul style="padding-left: 2rem;">
+                                <li>Wie lebt deine Familie in Vietnam?</li>
+                                <li>Wie w&uuml;rde deine Familie in Deutschland leben?</li>
+                                <li>Was w&auml;re anders?</li>
+                                <li>Was w&auml;re gleich?</li>
+                                <li>Was findest du besser?</li>
+                            </ul>
+                            
+                            <p><strong class="german">Satzanf&auml;nge:</strong> <em class="vietnamese">Mở đầu c&acirc;u:</em></p>
+                            <ul style="padding-left: 2rem;">
+                                <li>In Vietnam lebt meine Familie...</li>
+                                <li>In Deutschland w&uuml;rde meine Familie...</li>
+                                <li>Der Unterschied ist...</li>
+                                <li>Gleich ist...</li>
+                                <li>Ich finde... besser, weil...</li>
+                            </ul>
+                        </div>
+                        
+                        <textarea class="exercise-textarea" data-exercise="cultural3" style="min-height: 200px;" placeholder="Schreiben Sie hier Ihren Kulturvergleich..."></textarea>
+                        <div style="font-size: 0.9rem; color: #6c757d; margin-top: 0.5rem;">
+                            W&ouml;rter: <span id="wordCount">0</span>/120
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aktivität 3 -->
+            <div id="aktivitaet3" class="lesson-panel">
+                <div class="production-section">
+                    <div class="section-header">
+                        <span class="icon">🎤</span>
+                        <div>
+                            <span class="german">Aktivit&auml;t 3: H&ouml;ren und Sprechen - EU-L&auml;nder Pr&auml;sentationen</span>
+                            <span class="vietnamese">- Hoạt động 3: Nghe v&agrave; n&oacute;i - Thuyết tr&igrave;nh về c&aacute;c nước EU</span>
+                        </div>
+                    </div>
+
+                    <h3><span class="german">A) H&ouml;ren: L&auml;nder-Audio-R&auml;tsel</span> <span class="vietnamese">- Nghe: Đoán c&acirc;u đố về nước</span></h3>
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                        <p class="german"><strong>Lesen Sie die Beschreibungen und raten Sie das Land:</strong></p>
+                        <p class="vietnamese"><em>Đọc m&ocirc; tả v&agrave; đo&aacute;n nước:</em></p>
+                        
+                        <div style="margin: 1.5rem 0; padding: 1rem; background: white; border-radius: 6px; border-left: 4px solid #007bff;">
+                            <p><strong>R&auml;tsel 1:</strong> "Dieses Land ist ber&uuml;hmt f&uuml;r Pizza und Pasta. Die Hauptstadt hat viele alte Geb&auml;ude. Im Sommer ist es sehr warm. Viele Touristen kommen hierher."</p>
+                            <input type="text" class="exercise-input" data-exercise="listening1" placeholder="Welches Land ist das?">
+                        </div>
+                        
+                        <div style="margin: 1.5rem 0; padding: 1rem; background: white; border-radius: 6px; border-left: 4px solid #007bff;">
+                            <p><strong>R&auml;tsel 2:</strong> "Hier sprechen die Menschen Franz&ouml;sisch. Das Land ist ber&uuml;hmt f&uuml;r Mode und Parf&uuml;m. In der Hauptstadt steht ein sehr hoher Turm."</p>
+                            <input type="text" class="exercise-input" data-exercise="listening2" placeholder="Welches Land ist das?">
+                        </div>
+                        
+                        <div style="margin: 1.5rem 0; padding: 1rem; background: white; border-radius: 6px; border-left: 4px solid #007bff;">
+                            <p><strong>R&auml;tsel 3:</strong> "Dieses Land ist sehr klein, aber sehr reich. Die Menschen sprechen Deutsch. Hier gibt es viele Banken und Uhren."</p>
+                            <input type="text" class="exercise-input" data-exercise="listening3" placeholder="Welches Land ist das?">
+                        </div>
+                        
+                        <button class="btn btn-success" onclick="checkListeningAnswers()">Antworten &uuml;berpr&uuml;fen</button>
+                        <div id="listeningFeedback" style="margin-top: 1rem;"></div>
+                    </div>
+
+                    <h3><span class="german">B) Sprechen: Mein EU-Traumland</span> <span class="vietnamese">- N&oacute;i: Nước EU mơ ước của t&ocirc;i</span></h3>
+                    <div class="interactive-area">
+                        <p><strong class="german">Bereiten Sie eine 2-Minuten Pr&auml;sentation vor:</strong></p>
+                        <p><em class="vietnamese">Chuẩn bị một b&agrave;i thuyết tr&igrave;nh 2 ph&uacute;t:</em></p>
+                        
+                        <div style="background: #e9ecef; padding: 1rem; border-radius: 6px; margin: 1rem 0;">
+                            <p><strong class="german">Pr&auml;sentations-Template:</strong> <em class="vietnamese">Mẫu thuyết tr&igrave;nh:</em></p>
+                            <ul style="padding-left: 2rem; line-height: 1.8;">
+                                <li>Mein EU-Traumland ist _____________.</li>
+                                <li>Es liegt _____________ von Europa.</li>
+                                <li>Die Hauptstadt ist _____________.</li>
+                                <li>Es ist ber&uuml;hmt f&uuml;r _____________.</li>
+                                <li>Die Menschen sind _____________.</li>
+                                <li>Das Wetter ist _____________.</li>
+                                <li>Ich m&ouml;chte dort leben, weil _____________.</li>
+                                <li>Am liebsten w&uuml;rde ich dort _____________ machen.</li>
+                            </ul>
+                        </div>
+                        
+                        <textarea class="exercise-textarea" data-exercise="presentation" style="min-height: 150px;" placeholder="Schreiben Sie hier Ihre Pr&auml;sentation..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aktivität 4 -->
+            <div id="aktivitaet4" class="lesson-panel">
+                <div class="production-section">
+                    <div class="section-header">
+                        <span class="icon">📝</span>
+                        <div>
+                            <span class="german">Aktivit&auml;t 4: Schreiben und Lesen - EU-Reisetagebuch</span>
+                            <span class="vietnamese">- Hoạt động 4: Viết v&agrave; đọc - Nhật k&yacute; du lịch EU</span>
+                        </div>
+                    </div>
+
+                    <h3><span class="german">A) Schreiben: Traumreise-Tagebuch</span> <span class="vietnamese">- Viết: Nhật k&yacute; chuyến du lịch mơ ước</span></h3>
+                    <div class="interactive-area">
+                        <p><strong class="german">Aufgabe: Schreiben Sie Tagebucheintr&auml;ge f&uuml;r eine 5-Tage EU-Reise</strong></p>
+                        <p><em class="vietnamese">Nhi&ecirc;̣m vụ: Viết c&aacute;c mục nhật k&yacute; cho chuyến du lịch EU 5 ng&agrave;y</em></p>
+                        
+                        <div style="margin: 1.5rem 0;">
+                            <h4><span class="german">Tag 1 - Ankunft in Deutschland:</span> <span class="vietnamese">Ng&agrave;y 1 - Đến Đức:</span></h4>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin: 1rem 0; font-style: italic;">
+                                Liebes Tagebuch,<br>
+                                heute bin ich in Deutschland angekommen. Am Flughafen war alles sehr organisiert. Die Menschen sprechen langsam mit mir, weil ich Vietnamese bin. Das Hotel ist teuer (80€ pro Nacht!), aber sauber. Heute Abend werde ich deutsches Bier probieren.
+                            </div>
+                            <textarea class="exercise-textarea" data-exercise="diary1" placeholder="Erg&auml;nzen Sie Tag 1..."></textarea>
+                            
+                            <h4><span class="german">Tag 2 - Frankreich:</span> <span class="vietnamese">Ng&agrave;y 2 - Ph&aacute;p:</span></h4>
+                            <textarea class="exercise-textarea" data-exercise="diary2" placeholder="Schreiben Sie &uuml;ber Tag 2 in Frankreich..."></textarea>
+                            
+                            <h4><span class="german">Tag 3 - Italien:</span> <span class="vietnamese">Ng&agrave;y 3 - &Yacute;:</span></h4>
+                            <textarea class="exercise-textarea" data-exercise="diary3" placeholder="Schreiben Sie &uuml;ber Tag 3 in Italien..."></textarea>
+                            
+                            <h4><span class="german">Tag 4 - Spanien:</span> <span class="vietnamese">Ng&agrave;y 4 - T&acirc;y Ban Nha:</span></h4>
+                            <textarea class="exercise-textarea" data-exercise="diary4" placeholder="Schreiben Sie &uuml;ber Tag 4 in Spanien..."></textarea>
+                            
+                            <h4><span class="german">Tag 5 - R&uuml;ckkehr:</span> <span class="vietnamese">Ng&agrave;y 5 - Trở về:</span></h4>
+                            <textarea class="exercise-textarea" data-exercise="diary5" placeholder="Schreiben Sie &uuml;ber die R&uuml;ckkehr..."></textarea>
+                        </div>
+                    </div>
+
+                    <h3><span class="german">B) Reflexion: Was haben Sie gelernt?</span> <span class="vietnamese">- Suy ngẫm: Bạn đ&atilde; học được g&igrave;?</span></h3>
+                    <div class="interactive-area">
+                        <p><strong class="german">Denken Sie &uuml;ber Ihre EU-Reise nach:</strong></p>
+                        <p><em class="vietnamese">H&atilde;y suy ngẫm về chuyến du lịch EU của bạn:</em></p>
+                        
+                        <div style="margin: 1rem 0;">
+                            <p><strong>1. Was war am interessantesten?</strong></p>
+                            <textarea class="exercise-textarea" data-exercise="reflection1" placeholder="Schreiben Sie hier..."></textarea>
+                            
+                            <p><strong>2. Welche kulturellen Unterschiede haben Sie bemerkt?</strong></p>
+                            <textarea class="exercise-textarea" data-exercise="reflection2" placeholder="Schreiben Sie hier..."></textarea>
+                            
+                            <p><strong>3. Welches Land m&ouml;chten Sie nochmal besuchen? Warum?</strong></p>
+                            <textarea class="exercise-textarea" data-exercise="reflection3" placeholder="Schreiben Sie hier..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aktivität 5 -->
+            <div id="aktivitaet5" class="lesson-panel">
+                <div class="production-section">
+                    <div class="section-header">
+                        <span class="icon">🧩</span>
+                        <div>
+                            <span class="german">Aktivit&auml;t 5: Alle Fertigkeiten - EU-Quiz Station</span>
+                            <span class="vietnamese">- Hoạt động 5: Tất cả kỹ năng - Trạm quiz EU</span>
+                        </div>
+                    </div>
+
+                    <h3><span class="german">Station 1: Lesen + Schreiben</span> <span class="vietnamese">- Trạm 1: Đọc + Viết</span></h3>
+                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                        <h4><span class="german">Lesen Sie EU-Fakten:</span> <span class="vietnamese">Đọc c&aacute;c sự thật về EU:</span></h4>
+                        <p style="line-height: 1.8; margin: 1rem 0; background: white; padding: 1rem; border-radius: 6px;">
+                            Die EU hat 27 Mitgliedsl&auml;nder und 24 Amtssprachen. Der Euro wird in 19 L&auml;ndern verwendet. Die EU-Flagge hat 12 Sterne, aber nicht weil es 12 L&auml;nder gibt - 12 ist eine Gl&uuml;ckszahl.
+                        </p>
+                        
+                        <div style="margin: 1rem 0;">
+                            <p><strong>1. Wie viele L&auml;nder sind in der EU?</strong></p>
+                            <input type="text" class="exercise-input" data-exercise="quiz1" placeholder="Ihre Antwort...">
+                            
+                            <p><strong>2. Warum hat die EU-Flagge 12 Sterne?</strong></p>
+                            <input type="text" class="exercise-input" data-exercise="quiz2" placeholder="Ihre Antwort...">
+                            
+                            <p><strong>3. In wie vielen L&auml;ndern bezahlt man mit Euro?</strong></p>
+                            <input type="text" class="exercise-input" data-exercise="quiz3" placeholder="Ihre Antwort...">
+                        </div>
+                        <button class="btn btn-success" onclick="checkQuizAnswers()">Antworten &uuml;berpr&uuml;fen</button>
+                        <div id="quizFeedback" style="margin-top: 1rem;"></div>
+                    </div>
+
+                    <h3><span class="german">Station 2: Sprechen + Diskutieren</span> <span class="vietnamese">- Trạm 2: N&oacute;i + Thảo luận</span></h3>
+                    <div class="interactive-area">
+                        <p><strong class="german">Diskussionsthema:</strong> <em class="vietnamese">Chủ đề thảo luận:</em></p>
+                        <p>"Welche 3 EU-L&auml;nder m&ouml;chten Sie zusammen besuchen? Warum?"</p>
+                        <p><em>"Bạn muốn gh&eacute; thăm 3 nước EU n&agrave;o c&ugrave;ng nhau? Tại sao?"</em></p>
+                        
+                        <textarea class="exercise-textarea" data-exercise="discussion" style="min-height: 120px;" placeholder="Schreiben Sie Ihre Gedanken und Argumente hier..."></textarea>
+                        
+                        <div style="background: #e9ecef; padding: 1rem; border-radius: 6px; margin: 1rem 0;">
+                            <p><strong class="german">Hilfe-Phrasen f&uuml;r die Diskussion:</strong> <em class="vietnamese">C&aacute;c cụm từ hỗ trợ thảo luận:</em></p>
+                            <ul style="padding-left: 2rem;">
+                                <li>Ich m&ouml;chte... besuchen, weil...</li>
+                                <li>Das ist interessant, weil...</li>
+                                <li>Meiner Meinung nach...</li>
+                                <li>Ich denke, dass...</li>
+                                <li>Au&szlig;erdem...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Redemittel -->
+            <div id="redemittel" class="lesson-panel">
+                <div class="vocabulary-section">
+                    <div class="section-header">
+                        <span class="icon">💬</span>
+                        <div>
+                            <span class="german">Redemittel</span>
+                            <span class="vietnamese">- C&acirc;u mẫu giao tiếp</span>
+                        </div>
+                    </div>
+
+                    <h3><span class="german">Nach Informationen fragen</span> <span class="vietnamese">- Hỏi th&ocirc;ng tin</span></h3>
+                    <div class="vocabulary-grid">
+                        <div class="vocab-item">
+                            <span class="german-word">Wo liegt das?</span>
+                            <span class="vietnamese-translation">Ở đ&acirc;u vậy?</span>
+                            <span class="example">Wo liegt Italien? - Italien liegt in S&uuml;deuropa.</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="german-word">Wie ist es dort?</span>
+                            <span class="vietnamese-translation">Ở đ&oacute; như thế n&agrave;o?</span>
+                            <span class="example">Wie ist es in Spanien? - Es ist warm und sonnig.</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="german-word">Was kann man dort machen?</span>
+                            <span class="vietnamese-translation">Ở đ&oacute; c&oacute; thể l&agrave;m g&igrave;?</span>
+                            <span class="example">Was kann man in Paris machen? - Man kann Museen besuchen.</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="german-word">Wie sind die Menschen?</span>
+                            <span class="vietnamese-translation">Con người ở đ&oacute; như thế n&agrave;o?</span>
+                            <span class="example">Wie sind die Deutschen? - Sie sind p&uuml;nktlich und freundlich.</span>
+                        </div>
+                    </div>
+
+                    <h3><span class="german">Vergleiche machen</span> <span class="vietnamese">- So s&aacute;nh</span></h3>
+                    <div class="vocabulary-grid">
+                        <div class="vocab-item">
+                            <span class="german-word">In Vietnam ist es anders als...</span>
+                            <span class="vietnamese-translation">Ở Việt Nam kh&aacute;c với...</span>
+                            <span class="example">In Vietnam ist es anders als in Deutschland.</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="german-word">Genau wie in Vietnam...</span>
+                            <span class="vietnamese-translation">Giống như ở Việt Nam...</span>
+                            <span class="example">Genau wie in Vietnam essen die Menschen gern zusammen.</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="german-word">Der Unterschied zu Vietnam ist...</span>
+                            <span class="vietnamese-translation">Kh&aacute;c biệt với Việt Nam l&agrave;...</span>
+                            <span class="example">Der Unterschied zu Vietnam ist das Wetter.</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="german-word">Im Vergleich zu...</span>
+                            <span class="vietnamese-translation">So với...</span>
+                            <span class="example">Im Vergleich zu Vietnam ist Deutschland k&auml;lter.</span>
+                        </div>
+                    </div>
+
+                    <h3><span class="german">Meinungen &auml;u&szlig;ern</span> <span class="vietnamese">- B&agrave;y tỏ &yacute; kiến</span></h3>
+                    <div class="vocabulary-grid">
+                        <div class="vocab-item">
+                            <span class="german-word">Ich finde... interessant</span>
+                            <span class="vietnamese-translation">T&ocirc;i thấy... th&uacute; vị</span>
+                            <span class="example">Ich finde die deutsche Kultur interessant.</span>
+                        </div>
+                        <div class="vocab-item">
+                            <span class="german-word">Meiner Meinung nach...</span>
+                            <span class="vietnamese-translation">Theo &yacute; kiến của t&ocirc;i...</span>
+                            <span class="example">Meiner Meinung nach ist Frankreich sehr sch&ouml;n.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="save-indicator">Gespeichert!</div>
+    </div>
+
+    <script>
+        // Function to pronounce words using Web Speech API
+        function pronounceWord(word, lang = 'de-DE') {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = lang;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Sorry, your browser does not support text-to-speech.');
+            }
+        }
+
+        // Function to switch between lesson tabs
+        function showLesson(lessonId) {
+            // Hide all lesson panels
+            const panels = document.querySelectorAll('.lesson-panel');
+            panels.forEach(panel => {
+                panel.classList.remove('active');
+            });
+
+            // Show the selected lesson panel
+            const activePanel = document.getElementById(lessonId);
+            if (activePanel) {
+                activePanel.classList.add('active');
+            }
+
+            // Update active state of tab buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Find the clicked button and add active class
+            // This is a bit indirect, but avoids passing 'this' in the onclick
+            const activeTabButton = Array.from(buttons).find(btn => btn.getAttribute('onclick') === `showLesson('${lessonId}')`);
+            if(activeTabButton) {
+                activeTabButton.classList.add('active');
+            }
+        }
+
+        // Function to check grammar exercise answers
+        function checkGrammarAnswers() {
+            const answers = {
+                grammar1: 'größer',
+                grammar2: 'Die',
+                grammar3: 'südlich von'
+            };
+            const feedbackEl = document.getElementById('grammarFeedback');
+            let feedbackHTML = '<h4>Feedback:</h4><ul>';
+
+            for (const [exercise, correctAnswer] of Object.entries(answers)) {
+                const input = document.querySelector(`input[data-exercise="${exercise}"]`);
+                const userAnswer = input.value.trim();
+                if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                    feedbackHTML += `<li>Frage ${exercise.slice(-1)}: Richtig! <span style="color: green;">✓</span></li>`;
+                    input.style.border = '2px solid #28a745';
+                } else {
+                    feedbackHTML += `<li>Frage ${exercise.slice(-1)}: Falsch. Richtige Antwort: "<strong>${correctAnswer}</strong>". <span style="color: red;">✗</span></li>`;
+                    input.style.border = '2px solid #dc3545';
+                }
+            }
+            feedbackHTML += '</ul>';
+            feedbackEl.innerHTML = feedbackHTML;
+        }
+
+        // Function to check reading comprehension answers
+        function checkReadingAnswers() {
+            const answers = {
+                reading1: ['83 millionen', '83 millionen einwohner'],
+                reading2: ['gutes essen, wein und mode', 'essen, wein und mode', 'für gutes essen, wein und mode'],
+                reading3: ['deutschland']
+            };
+            const feedbackEl = document.getElementById('readingFeedback');
+            let feedbackHTML = '<h4>Feedback:</h4><ul>';
+
+            for (const [exercise, correctAnswers] of Object.entries(answers)) {
+                const input = document.querySelector(`input[data-exercise="${exercise}"]`);
+                const userAnswer = input.value.trim().toLowerCase();
+                // A simple check if any of the correct answers is included in the user's answer
+                if (correctAnswers.some(ans => userAnswer.includes(ans))) {
+                    feedbackHTML += `<li>Frage ${exercise.slice(-1)}: Richtig! <span style="color: green;">✓</span></li>`;
+                    input.style.border = '2px solid #28a745';
+                } else {
+                    feedbackHTML += `<li>Frage ${exercise.slice(-1)}: Falsch. Bitte sehen Sie im Text nach und versuchen Sie es erneut. <span style="color: red;">✗</span></li>`;
+                    input.style.border = '2px solid #dc3545';
+                }
+            }
+            feedbackHTML += '</ul>';
+            feedbackEl.innerHTML = feedbackHTML;
+        }
+
+        // Function to check listening puzzle answers
+        function checkListeningAnswers() {
+            const answers = {
+                listening1: ['italien'],
+                listening2: ['frankreich'],
+                listening3: ['die schweiz', 'schweiz']
+            };
+            const feedbackEl = document.getElementById('listeningFeedback');
+            let feedbackHTML = '<h4>Feedback:</h4><ul>';
+
+            for (const [exercise, correctAnswers] of Object.entries(answers)) {
+                const input = document.querySelector(`input[data-exercise="${exercise}"]`);
+                const userAnswer = input.value.trim().toLowerCase();
+                if (correctAnswers.includes(userAnswer)) {
+                    feedbackHTML += `<li>Rätsel ${exercise.slice(-1)}: Richtig! <span style="color: green;">✓</span></li>`;
+                    input.style.border = '2px solid #28a745';
+                } else {
+                    feedbackHTML += `<li>Rätsel ${exercise.slice(-1)}: Falsch. Das war <strong>${correctAnswers[0].charAt(0).toUpperCase() + correctAnswers[0].slice(1)}</strong>. <span style="color: red;">✗</span></li>`;
+                    input.style.border = '2px solid #dc3545';
+                }
+            }
+            feedbackHTML += '</ul>';
+            feedbackEl.innerHTML = feedbackHTML;
+        }
+
+        // Function to check quiz answers
+        function checkQuizAnswers() {
+            const answers = {
+                quiz1: '27',
+                quiz2: '12 ist eine glückszahl',
+                quiz3: '19'
+            };
+            const feedbackEl = document.getElementById('quizFeedback');
+            let feedbackHTML = '<h4>Feedback:</h4><ul>';
+
+            for (const [exercise, correctAnswer] of Object.entries(answers)) {
+                const input = document.querySelector(`input[data-exercise="${exercise}"]`);
+                const userAnswer = input.value.trim().toLowerCase();
+                if (userAnswer.includes(correctAnswer.toLowerCase())) {
+                    feedbackHTML += `<li>Frage ${exercise.slice(-1)}: Richtig! <span style="color: green;">✓</span></li>`;
+                    input.style.border = '2px solid #28a745';
+                } else {
+                    feedbackHTML += `<li>Frage ${exercise.slice(-1)}: Falsch. Die richtige Antwort ist: "<strong>${correctAnswer}</strong>". <span style="color: red;">✗</span></li>`;
+                    input.style.border = '2px solid #dc3545';
+                }
+            }
+            feedbackHTML += '</ul>';
+            feedbackEl.innerHTML = feedbackHTML;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Word count functionality
+            const culturalTextarea = document.querySelector('textarea[data-exercise="cultural3"]');
+            const wordCountSpan = document.getElementById('wordCount');
+
+            if (culturalTextarea && wordCountSpan) {
+                culturalTextarea.addEventListener('input', () => {
+                    const text = culturalTextarea.value.trim();
+                    const words = text ? text.split(/\s+/).filter(word => word.length > 0) : [];
+                    wordCountSpan.textContent = words.length;
+                });
+            }
+
+            // Auto-save functionality
+            const inputs = document.querySelectorAll('.exercise-input, .exercise-textarea');
+            const saveIndicator = document.querySelector('.save-indicator');
+            let saveTimeout;
+
+            // Load saved data
+            inputs.forEach(input => {
+                const savedValue = localStorage.getItem(input.dataset.exercise);
+                if (savedValue) {
+                    input.value = savedValue;
+                    // Trigger word count update on load for the specific textarea
+                    if (input.dataset.exercise === 'cultural3') {
+                        culturalTextarea.dispatchEvent(new Event('input'));
+                    }
+                }
+            });
+
+            // Save data on input
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    localStorage.setItem(input.dataset.exercise, input.value);
+                    
+                    // Show save indicator
+                    if (saveIndicator) {
+                        saveIndicator.classList.add('show');
+                        clearTimeout(saveTimeout);
+                        saveTimeout = setTimeout(() => {
+                            saveIndicator.classList.remove('show');
+                        }, 1500);
+                    }
+                });
+            });
+
+            // Set initial active tab and panel on page load
+            const firstTab = document.querySelector('.tab-button');
+            const firstPanel = document.querySelector('.lesson-panel');
+            if (firstTab && firstPanel) {
+                // Remove active class from all tabs and panels first to be safe
+                document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.lesson-panel').forEach(p => p.classList.remove('active'));
+
+                // Set the first tab and panel as active
+                firstTab.classList.add('active');
+                firstPanel.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

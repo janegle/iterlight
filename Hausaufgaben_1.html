@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="EU-Quiz und Kulturentdeckung für vietnamesische Deutschlerner">
+    <meta name="author" content="Deutsch Campus">
+    <title>EU-Quiz und Kulturentdeckung - Deutsch Campus</title>
+    <style>
+        /* Deutsch Campus Styling with Color Coding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Color Coding System */
+        .grammar-section {
+            background: #28a745;
+            color: #222;
+            border-left: 8px solid #1e7e34;
+        }
+
+        .production-section {
+            background: #fd7e14;
+            color: #2d2d2d;
+            border-left: 8px solid #dc6002;
+        }
+
+        .vocabulary-section {
+            background: #007bff;
+            color: #1a1a1a;
+            border-left: 8px solid #0056b3;
+        }
+
+        .section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: #222;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #007bff, #28a745);
+            color: #222;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .header h1, .header .subtitle {
+            color: #222;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .time-indicator {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-top: 1rem;
+            color: #222;
+        }
+
+        .objectives {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 2px solid #e9ecef;
+            color: #222;
+        }
+
+        .objectives ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .objectives li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f1f3f4;
+            display: flex;
+            align-items: center;
+        }
+
+        .objectives li:before {
+            content: "🎯";
+            margin-right: 0.5rem;
+        }
+
+        .text-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid #dee2e6;
+            color: #222;
+        }
+
+        .text-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        .interactive-element {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .vocab-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .german-word {
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+            color: #222;
+        }
+
+        .vietnamese-translation {
+            font-style: italic;
+            opacity: 0.9;
+            display: block;
+            margin-top: 0.25rem;
+            color: #222;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+        }
+
+        .button {
+            background: #007bff;
+            color: #222;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            margin: 0.5rem 0.25rem;
+        }
+
+        .button:hover {
+            background: #0056b3;
+        }
+
+        .button.success {
+            background: #28a745;
+        }
+
+        .button.success:hover {
+            background: #1e7e34;
+        }
+
+        .quiz-container {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .quiz-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .progress-indicator {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .progress-bar {
+            background: #28a745;
+            height: 8px;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .saved-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: #222;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .saved-indicator.show {
+            opacity: 1;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                font-size: 12pt !important;
+                line-height: 1.5 !important;
+                color: black !important;
+                background: white !important;
+            }
+
+            .grammar-section {
+                border: 2px solid black !important;
+                border-left: 8px solid black !important;
+                background: white !important;
+                color: black !important;
+            }
+
+            .production-section {
+                border: 2px solid black !important;
+                border-left: 8px solid black !important;
+                background: white !important;
+                color: black !important;
+            }
+
+            .vocabulary-section {
+                border: 2px solid black !important;
+                border-left: 8px solid black !important;
+                background: white !important;
+                color: black !important;
+            }
+
+            .section {
+                page-break-inside: avoid;
+                margin: 1rem 0;
+            }
+
+            .saved-indicator {
+                display: none !important;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 0.5rem;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .vocab-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            height: 1px; width: 1px;
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <noscript>
+        <div style="background: #ffdddd; color: #a00; padding: 1em; text-align: center; font-weight: bold;">
+            Achtung: Diese Seite benötigt JavaScript für volle Funktionalität. Bitte aktivieren Sie JavaScript in Ihrem Browser.
+        </div>
+    </noscript>
+    <header>
+        <div class="header">
+            <h1 id="main-title">🎮 EU-THÁM HIỂM!</h1>
+            <div class="subtitle">
+                <strong>Willkommen zur EU-Entdeckung!</strong><br>
+                <em>Chào mừng đến với EU-Thám hiểm!</em>
+            </div>
+            <div class="time-indicator">⏰ 2,5 Stunden / 2,5 giờ</div>
+        </div>
+    </header>
+    <main role="main" aria-labelledby="main-title">
+        <section class="objectives" role="region" aria-labelledby="objectives-title">
+            <h2 id="objectives-title">Heute werden wir: <em>Hôm nay chúng ta sẽ:</em></h2>
+            <ul>
+                <li>Interessante EU-Artikel lesen <em>(Đọc các bài viết thú vị về EU)</em> - 40 Ph&uuml;t</li>
+                <li>Europ&auml;isches Reisetagebuch schreiben <em>(Viết nhật ký du lịch châu Âu)</em> - 50 Ph&uuml;t</li>
+                <li>Spa&szlig;ige EU-Quiz spielen <em>(Chơi quiz thú vị về EU)</em> - 45 Ph&uuml;t</li>
+                <li>Kreative Projekte erstellen <em>(Tạo dự án sáng tạo)</em> - 35 Ph&uuml;t</li>
+            </ul>
+        </section>
+        <section class="section vocabulary-section" role="region" aria-labelledby="teil1-title">
+            <h2 id="teil1-title">📖 TEIL 1: LESEN - EU-KULTUR ENTDECKEN (40 Ph&uuml;t)</h2>
+            <p><strong>Wortschatz: EU-Kultur</strong> <em>Từ vựng: Văn hóa EU</em></p>
+
+            <h3>A) Lese-Challenge: 3 kurze EU-Texte (25 Ph&uuml;t)</h3>
+            <p><strong>Aufgabe:</strong> <em>Nhiệm vụ:</em> Lesen Sie die drei Texte und markieren Sie neue W&ouml;rter.</p>
+
+            <!-- Text 1 -->
+            <div class="text-content">
+                <div class="text-title">Text 1: Deutsche Esskultur</div>
+                <h4>BROT, BIER UND BRATWURST - TYPISCH DEUTSCH?</h4>
+                <p>Viele Menschen denken: Deutsche essen nur Wurst und trinken Bier. Aber das stimmt nicht ganz! Deutschland hat &uuml;ber 300 Brotsorten - mehr als jedes andere Land der Welt. Zum Fr&uuml;hst&uuml;ck essen Deutsche oft Br&ouml;tchen mit Marmelade oder K&auml;se.</p>
+                
+                <p>Mittags gibt es warmes Essen: Fleisch, Kartoffeln und Gem&uuml;se. Abends essen viele Deutsche kalt: Brot mit Wurst oder K&auml;se. Das hei&szlig;t "Abendbrot".</p>
+                
+                <p>Ja, Deutsche trinken gerne Bier. Aber sie trinken auch viel Kaffee - durchschnittlich 4 Tassen pro Tag! Und immer mehr Deutsche essen vegetarisch oder vegan.</p>
+                
+                <p>&Uuml;brigens: Das ber&uuml;hmte Oktoberfest in M&uuml;nchen dauert 16 Tage und 6 Millionen Menschen besuchen es jedes Jahr.</p>
+
+                <div class="interactive-element">
+                    <h4>Wortschatz sammeln: <em>Thu thập từ vựng:</em></h4>
+                    <p><strong>Markieren Sie 5 neue W&ouml;rter und &uuml;bersetzen Sie ins Vietnamesische:</strong></p>
+                    <div class="vocab-grid">
+                        <div class="vocab-item">
+                            <input type="text" placeholder="Deutsches Wort..." lang="de">
+                            <input type="text" placeholder="Vietnamesische &Uuml;bersetzung..." lang="vi">
+                        </div>
+                        <div class="vocab-item">
+                            <input type="text" placeholder="Deutsches Wort..." lang="de">
+                            <input type="text" placeholder="Vietnamesische &Uuml;bersetzung..." lang="vi">
+                        </div>
+                        <div class="vocab-item">
+                            <input type="text" placeholder="Deutsches Wort..." lang="de">
+                            <input type="text" placeholder="Vietnamesische &Uuml;bersetzung..." lang="vi">
+                        </div>
+                        <div class="vocab-item">
+                            <input type="text" placeholder="Deutsches Wort..." lang="de">
+                            <input type="text" placeholder="Vietnamesische &Uuml;bersetzung..." lang="vi">
+                        </div>
+                        <div class="vocab-item">
+                            <input type="text" placeholder="Deutsches Wort..." lang="de">
+                            <input type="text" placeholder="Vietnamesische &Uuml;bersetzung..." lang="vi">
+                        </div>
+                    </div>
+                    <button class="button success" onclick="saveVocabulary('text1')">Wortschatz speichern</button>
+                </div>
+            </div>
+
+            <!-- Text 2 -->
+            <div class="text-content">
+                <div class="text-title">Text 2: Franz&ouml;sische Lebensart</div>
+                <h4>SAVOIR-VIVRE - DIE FRANZ&Ouml;SISCHE LEBENSKUNST</h4>
+                <p>Franzosen sind ber&uuml;hmt f&uuml;r ihre "Art de vivre" - ihre Lebenskunst. Was bedeutet das? Es bedeutet: Das Leben genie&szlig;en!</p>
+                
+                <p>Ein typischer franz&ouml;sischer Tag beginnt mit einem Croissant und Caf&eacute; au lait. Franzosen nehmen sich Zeit f&uuml;rs Essen. Das Mittagessen dauert mindestens eine Stunde. Abends kochen Familien zusammen und reden viel.</p>
+                
+                <p>Mode ist sehr wichtig. Selbst f&uuml;r den Supermarkt ziehen sich Franzosen sch&ouml;n an. "Eleganz ist eine Haltung", sagen sie.</p>
+                
+                <p>Arbeit ist wichtig, aber nicht alles. Franzosen haben 5 Wochen Urlaub pro Jahr und viele machen im August einen ganzen Monat Pause. Dann sind viele Gesch&auml;fte in Paris geschlossen!</p>
+                
+                <p>H&ouml;flichkeit ist extrem wichtig. Man sagt immer "Bonjour" und "Au revoir". Ohne Gru&szlig; kauft kein Franzose ein Baguette!</p>
+
+                <div class="interactive-element">
+                    <h4>Kulturvergleich: <em>So sánh văn hóa:</em></h4>
+                    <p><strong>3 &Auml;hnlichkeiten zu Vietnam:</strong> <em>3 điểm tương đồng với Việt Nam:</em></p>
+                    <textarea rows="3" placeholder="Schreiben Sie hier..." lang="de"></textarea>
+                    <p><strong>3 Unterschiede zu Vietnam:</strong> <em>3 điểm khác biệt với Việt Nam:</em></p>
+                    <textarea rows="3" placeholder="Schreiben Sie hier..." lang="vi"></textarea>
+                    <button class="button success" onclick="saveComparison('text2')">Vergleich speichern</button>
+                </div>
+            </div>
+
+            <!-- Text 3 -->
+            <div class="text-content">
+                <div class="text-title">Text 3: Italienische Familientradition</div>
+                <h4>LA FAMIGLIA - FAMILIE AUF ITALIENISCH</h4>
+                <p>In Italien ist Familie das Wichtigste im Leben. Viele junge Italiener leben bis 30 bei den Eltern - nicht aus finanziellen Gr&uuml;nden, sondern weil sie die Familie lieben!</p>
+                
+                <p>Sonntags trifft sich die ganze Familie zum gro&szlig;en Essen. Oma kocht, alle helfen. Das Essen dauert 3-4 Stunden mit vielen G&auml;ngen: Antipasti, Pasta, Fleisch, Nachtisch, Espresso.</p>
+                
+                <p>Italiener sprechen laut und gestikulieren viel. Das ist nicht aggressiv - sie sind einfach temperamentvoll! "Wer nicht mit den H&auml;nden spricht, spricht nicht richtig", sagen sie.</p>
+                
+                <p>Kinder sind &uuml;berall willkommen. In Restaurants bekommen kleine Kinder oft kostenloses Eis. &Auml;ltere Menschen werden sehr respektiert. Viele Familien haben drei Generationen unter einem Dach.</p>
+                
+                <p>Diese Familienkultur macht Italien besonders. Trotz wirtschaftlicher Probleme sind Italiener oft gl&uuml;cklicher als andere Europ&auml;er.</p>
+
+                <div class="interactive-element">
+                    <h4>Lieblings-Fakten: <em>Sự kiện yêu thích:</em></h4>
+                    <p><strong>Der interessanteste Fakt aus jedem Text:</strong> <em>Sự kiện thú vị nhất từ mỗi bài:</em></p>
+                    <div>
+                        <p><strong>Deutschland:</strong></p>
+                        <input type="text" placeholder="Ihr interessanter Fakt..." lang="de">
+                    </div>
+                    <div>
+                        <p><strong>Frankreich:</strong></p>
+                        <input type="text" placeholder="Ihr interessanter Fakt..." lang="fr">
+                    </div>
+                    <div>
+                        <p><strong>Italien:</strong></p>
+                        <input type="text" placeholder="Ihr interessanter Fakt..." lang="it">
+                    </div>
+                    <button class="button success" onclick="saveFacts()">Fakten speichern</button>
+                </div>
+            </div>
+        </section>
+        <section class="section grammar-section" role="region" aria-labelledby="quiz-title">
+            <h2 id="quiz-title">📝 B) Lese-Verst&auml;ndnis Quiz (15 Ph&uuml;t)</h2>
+            <p><strong>Grammatik: Fragen und Antworten</strong> <em>Ngữ pháp: Câu hỏi và câu trả lời</em></p>
+            
+            <div class="interactive-element">
+                <h3>Beantworten Sie die Fragen schriftlich: <em>Hãy viết lại các câu trả lời:</em></h3>
+                
+                <div class="quiz-container">
+                    <div class="quiz-item">
+                        <p><strong>1. Wie viele Brotsorten gibt es in Deutschland?</strong></p>
+                        <input type="text" id="q1" placeholder="Ihre Antwort..." lang="de" required>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <p><strong>2. Was trinken Deutsche mehr: Bier oder Kaffee?</strong></p>
+                        <input type="text" id="q2" placeholder="Ihre Antwort..." lang="de" required>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <p><strong>3. Wie lange dauert das Oktoberfest?</strong></p>
+                        <input type="text" id="q3" placeholder="Ihre Antwort..." lang="de" required>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <p><strong>4. Wie lange dauert ein franz&ouml;sisches Mittagessen?</strong></p>
+                        <input type="text" id="q4" placeholder="Ihre Antwort..." lang="fr" required>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <p><strong>5. Wann machen viele Franzosen Urlaub?</strong></p>
+                        <input type="text" id="q5" placeholder="Ihre Antwort..." lang="fr" required>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <p><strong>6. Was muss man sagen, bevor man Brot kauft?</strong></p>
+                        <input type="text" id="q6" placeholder="Ihre Antwort..." lang="de" required>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <p><strong>7. Bis zu welchem Alter leben viele Italiener bei den Eltern?</strong></p>
+                        <input type="text" id="q7" placeholder="Ihre Antwort..." lang="it" required>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <p><strong>8. Wie lange dauert ein italienisches Familienessen?</strong></p>
+                        <input type="text" id="q8" placeholder="Ihre Antwort..." lang="it" required>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <p><strong>9. Warum gestikulieren Italiener viel?</strong></p>
+                        <input type="text" id="q9" placeholder="Ihre Antwort..." lang="it" required>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <p><strong>10. Welches EU-Land ist Vietnam am &auml;hnlichsten? Begr&uuml;nden Sie Ihre Antwort (3 S&auml;tze).</strong></p>
+                        <textarea id="q10" rows="4" placeholder="Ihre begr&uuml;ndete Antwort..." lang="de" required></textarea>
+                    </div>
+                </div>
+                
+                <button class="button success" onclick="saveQuizAnswers()">Antworten speichern</button>
+                <div class="progress-indicator">
+                    <div class="progress-bar" id="quiz-progress" style="width: 0%"></div>
+                </div>
+            </div>
+        </section>
+        <section class="section production-section" role="region" aria-labelledby="teil2-title">
+            <h2 id="teil2-title">✍️ TEIL 2: SCHREIBEN - MEIN EU-REISETAGEBUCH (50 Ph&uuml;t)</h2>
+            <p><strong>Produktion: Kreatives Schreiben</strong> <em>Bài tập viết sáng tạo</em></p>
+
+            <h3>A) Kreatives Schreiben: 5-Tage EU-Reise (35 Ph&uuml;t)</h3>
+            <p><strong>Aufgabe:</strong> <em>Nhiệm vụ:</em> Schreiben Sie ein Reisetagebuch f&uuml;r eine Traumreise durch Europa (200-250 W&ouml;rter total)</p>
+
+            <div class="interactive-element">
+                <h4>TAG 1 - BERLIN, DEUTSCHLAND</h4>
+                <p><strong>Template:</strong> 40-50 W&ouml;rter pro Tag</p>
+                <textarea id="day1" rows="6" placeholder="Liebes Tagebuch, heute bin ich in Berlin angekommen! Am Flughafen war alles sehr ___. Die Menschen sprechen ___ und sind ___. Mein Hotel kostet ___ Euro pro Nacht..." lang="de" required>Liebes Tagebuch,
+
+heute bin ich in Berlin angekommen! Am Flughafen war alles sehr ___.
+
+Die Menschen sprechen ___ und sind ___.
+
+Mein Hotel kostet ___ Euro pro Nacht.
+
+Heute habe ich ___ besucht und ___ gegessen.
+
+Das Wetter ist ___, aber das macht nichts.
+
+Morgen will ich ___.</textarea>
+                <button class="button" onclick="saveDay(1)">Tag 1 speichern</button>
+            </div>
+
+            <div class="interactive-element">
+                <h4>TAG 2 - PARIS, FRANKREICH</h4>
+                <textarea id="day2" rows="6" placeholder="Bon jour, Tagebuch! Paris ist so ___! Der Eiffelturm ist ___ als auf Fotos..." lang="fr" required>Bon jour, Tagebuch!
+
+Paris ist so ___! Der Eiffelturm ist ___ als auf Fotos.
+
+In einem Caf&eacute; habe ich ___ getrunken und ___ gegessen.
+
+Die Franzosen sind sehr ___, aber auch ___.
+
+Lustig war: ___
+
+Ein Problem war: ___
+
+Abends war ich ___.</textarea>
+                <button class="button" onclick="saveDay(2)">Tag 2 speichern</button>
+            </div>
+
+            <div class="interactive-element">
+                <h4>TAG 3 - ROM, ITALIEN</h4>
+                <textarea id="day3" rows="6" placeholder="Ciao, Tagebuch! Rom ist voller ___! Das Kolosseum ist ___..." lang="it" required>Ciao, Tagebuch!
+
+Rom ist voller ___! Das Kolosseum ist ___.
+
+Eine italienische Familie hat mich zum ___ eingeladen.
+
+Wir haben ___ Stunden gegessen und &uuml;ber ___ gesprochen.
+
+Die Italiener sind so ___ und ___.
+
+Das beste Eis der Welt gibt es hier: ___</textarea>
+                <button class="button" onclick="saveDay(3)">Tag 3 speichern</button>
+            </div>
+
+            <div class="interactive-element">
+                <h4>TAG 4 - AMSTERDAM, NIEDERLANDE</h4>
+                <textarea id="day4" rows="6" placeholder="Hallo Tagebuch, Amsterdam ist ganz anders als ___. Überall gibt es ___..." lang="nl" required>Hallo Tagebuch,
+
+Amsterdam ist ganz anders als ___. &Uuml;berall gibt es ___.
+
+Ich bin mit dem ___ durch die Stadt gefahren.
+
+Die Niederl&auml;nder sprechen perfektes ___, das war hilfreich.
+
+Heute habe ich gelernt: ___
+
+&Uuml;berrascht war ich von: ___</textarea>
+                <button class="button" onclick="saveDay(4)">Tag 4 speichern</button>
+            </div>
+
+            <div class="interactive-element">
+                <h4>TAG 5 - MADRID, SPANIEN</h4>
+                <textarea id="day5" rows="6" placeholder="¡Hola Tagebuch! Mein letzter Tag in Europa. Madrid ist ___ und ___..." lang="es" required>¡Hola Tagebuch!
+
+Mein letzter Tag in Europa. Madrid ist ___ und ___.
+
+Die Spanier essen sehr ___ (um 22 Uhr!).
+
+Heute habe ich ___ getanzt und ___ gelernt.
+
+Das Sch&ouml;nste an Europa war: ___
+
+Ich komme wieder, weil: ___</textarea>
+                <button class="button" onclick="saveDay(5)">Tag 5 speichern</button>
+            </div>
+
+            <h3>B) Reflexions-Essay: Europa vs. Vietnam (15 Ph&uuml;t)</h3>
+            <div class="interactive-element">
+                <p><strong>Thema:</strong> "Was w&uuml;rde ich aus Europa nach Vietnam bringen?"</p>
+                <p><strong>Schreiben Sie einen kurzen Essay (100-120 W&ouml;rter):</strong></p>
+                
+                <p><strong>Hilfe-Fragen:</strong> <em>Câu hỏi gợi ý:</em></p>
+                <ul>
+                    <li>Welche europ&auml;ischen Traditionen gefallen euch?</li>
+                    <li>Was k&ouml;nnten Vietnamese von Europ&auml;ern lernen?</li>
+                    <li>Was ist in Vietnam besser als in Europa?</li>
+                    <li>Wie k&ouml;nnte eine perfekte Mischung aussehen?</li>
+                </ul>
+                
+                <textarea id="reflection-essay" rows="8" placeholder="Von Deutschland würde ich ___ nach Vietnam bringen... Die französische Art zu ___ finde ich... Italienische Familien zeigen, dass... In Vietnam ist ___ besser, aber europäische ___ ist auch gut... Eine Mischung aus beiden Kulturen wäre..." lang="de" required></textarea>
+                <button class="button success" onclick="saveEssay()">Essay speichern</button>
+            </div>
+        </section>
+        <section class="section vocabulary-section" role="region" aria-labelledby="teil3-title">
+            <h2 id="teil3-title">🎲 TEIL 3: SPASS-AKTIVIT&Auml;TEN - EU-GAMES (45 Ph&uuml;t)</h2>
+            <p><strong>Wortschatz: EU-L&auml;nder und Kultur</strong> <em>Từ vựng: Các nước EU và văn hóa</em></p>
+
+            <h3>A) EU-Memory und R&auml;tsel (20 Ph&uuml;t)</h3>
+            
+            <div class="interactive-element">
+                <h4>Spiel 1: EU-Hauptstadt-Memory</h4>
+                <p><strong>Verbinden Sie Land und Hauptstadt - ohne zu googeln!</strong> <em>Nối quốc gia và thủ đô - không được google!</em></p>
+                
+                <div class="vocab-grid">
+                    <div class="vocab-item">
+                        <strong>Deutschland</strong><br>
+                        <input type="text" placeholder="Hauptstadt..." lang="de" required>
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Frankreich</strong><br>
+                        <input type="text" placeholder="Hauptstadt..." lang="fr" required>
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Italien</strong><br>
+                        <input type="text" placeholder="Hauptstadt..." lang="it" required>
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Spanien</strong><br>
+                        <input type="text" placeholder="Hauptstadt..." lang="es" required>
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Polen</strong><br>
+                        <input type="text" placeholder="Hauptstadt..." lang="pl" required>
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Niederlande</strong><br>
+                        <input type="text" placeholder="Hauptstadt..." lang="nl" required>
+                    </div>
+                    <div class="vocab-item">
+                        <strong>&Ouml;sterreich</strong><br>
+                        <input type="text" placeholder="Hauptstadt..." lang="de" required>
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Belgien</strong><br>
+                        <input type="text" placeholder="Hauptstadt..." lang="nl" required>
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Tschechien</strong><br>
+                        <input type="text" placeholder="Hauptstadt..." lang="cs" required>
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Ungarn</strong><br>
+                        <input type="text" placeholder="Hauptstadt..." lang="hu" required>
+                    </div>
+                </div>
+                <button class="button success" onclick="checkCapitals()">Antworten &uuml;berpr&uuml;fen</button>
+            </div>
+
+            <div class="interactive-element">
+                <h4>Spiel 2: EU-Food-Detective</h4>
+                <p><strong>Erraten Sie das Land anhand des Essens:</strong> <em>Đoán quốc gia dựa vào đồ ăn:</em></p>
+                
+                <div class="quiz-container">
+                    <div class="quiz-item">
+                        <p>🍕 + 🍝 = ?</p>
+                        <input type="text" placeholder="Welches Land?" lang="de" required>
+                    </div>
+                    <div class="quiz-item">
+                        <p>🧀 + 🍷 = ?</p>
+                        <input type="text" placeholder="Welches Land?" lang="fr" required>
+                    </div>
+                    <div class="quiz-item">
+                        <p>🥨 + 🍺 = ?</p>
+                        <input type="text" placeholder="Welches Land?" lang="de" required>
+                    </div>
+                    <div class="quiz-item">
+                        <p>🥘 + 🐙 = ?</p>
+                        <input type="text" placeholder="Welches Land?" lang="es" required>
+                    </div>
+                    <div class="quiz-item">
+                        <p>🧇 + 🍫 = ?</p>
+                        <input type="text" placeholder="Welches Land?" lang="nl" required>
+                    </div>
+                </div>
+                <button class="button success" onclick="checkFoodDetective()">Antworten &uuml;berpr&uuml;fen</button>
+            </div>
+
+            <h3>B) Kreative Sprach-Challenges (25 Ph&uuml;t)</h3>
+            
+            <div class="interactive-element">
+                <h4>Challenge 1: EU-Sprachen-Bingo (10 Ph&uuml;t)</h4>
+                <p><strong>Lernen Sie "Hallo" und "Danke" in 5 EU-Sprachen:</strong> <em>Học "Xin chào" và "Cảm ơn" bằng 5 ngôn ngữ EU:</em></p>
+                
+                <div class="vocab-grid">
+                    <div class="vocab-item">
+                        <div class="german-word">Deutsch</div>
+                        <div class="vietnamese-translation">Hallo / Danke</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="german-word">Franz&ouml;sisch</div>
+                        <div class="vietnamese-translation">Bonjour / Merci</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="german-word">Italienisch</div>
+                        <div class="vietnamese-translation">Ciao / Grazie</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="german-word">Spanisch</div>
+                        <div class="vietnamese-translation">Hola / Gracias</div>
+                    </div>
+                    <div class="vocab-item">
+                        <div class="german-word">Polnisch</div>
+                        <div class="vietnamese-translation">Cze&sacute;ć / Dziękuję</div>
+                    </div>
+                </div>
+                
+                <p><strong>Aufgabe:</strong> <em>Nhiệm vụ:</em> Begr&uuml;&szlig;en Sie jemanden zu Hause in allen 5 Sprachen!</p>
+                <textarea rows="3" placeholder="Notieren Sie Ihre Erfahrungen..." lang="de" required></textarea>
+            </div>
+
+            <div class="interactive-element">
+                <h4>Challenge 2: EU-Song komponieren (15 Ph&uuml;t)</h4>
+                <p><strong>Schreiben Sie einen kleinen Rap oder Song &uuml;ber Europa:</strong> <em>Viết một bài rap hoặc bài hát về châu Âu:</em></p>
+                
+                <div class="text-content">
+                    <p><strong>Template:</strong></p>
+                    <p>🎵 Europa-Rap<br>
+                    Von Deutschland bis nach Spanien<br>
+                    Von Polen bis Italien<br>
+                    27 L&auml;nder, eine Union<br>
+                    Europa ist echt cool, komm schon!<br><br>
+                    Deutschland hat das beste Brot<br>
+                    Frankreich - K&auml;se, sehr gut!<br>
+                    Italien - Pizza, mama mia!<br>
+                    Europa ist wie eine Familie! 🎵</p>
+                </div>
+                
+                <p><strong>Ihre Version (6-8 Zeilen):</strong></p>
+                <textarea id="eu-song" rows="8" placeholder="🎵 ___________________
+
+___________________
+
+___________________
+
+___________________
+
+___________________
+
+___________________ 🎵" lang="de" required></textarea>
+                <button class="button success" onclick="saveSong()">Song speichern</button>
+            </div>
+        </section>
+        <section class="section production-section" role="region" aria-labelledby="teil4-title">
+            <h2 id="teil4-title">🎨 TEIL 4: KREATIV-PROJEKTE (35 Ph&uuml;t)</h2>
+            <p><strong>Produktion: Kreative Gestaltung</strong> <em>Bài tập: Thiết kế sáng tạo</em></p>
+
+            <h3>A) EU-Vietnam Freundschafts-Poster (20 Ph&uuml;t)</h3>
+            
+            <div class="interactive-element">
+                <p><strong>Designen Sie ein Poster f&uuml;r EU-Vietnam Freundschaft:</strong> <em>Thiết kế poster cho tình bạn EU-Việt Nam:</em></p>
+                
+                <h4>Ideen sammeln: <em>Thu thập ý tưởng:</em></h4>
+                <div class="text-content">
+                    <p><strong>Vietnamesische Symbole:</strong> Lotus, Drache, &Aacute;o d&agrave;i, Phở</p>
+                    <p><strong>EU-Symbole:</strong> Sterne, Flaggen, ber&uuml;hmte Geb&auml;ude</p>
+                    <p><strong>Gemeinsame Werte:</strong> Frieden, Freundschaft, Zusammenarbeit</p>
+                </div>
+
+                <h4>Poster-Elemente:</h4>
+                <div class="vocab-grid">
+                    <div class="vocab-item">
+                        <p><strong>1. Titel:</strong></p>
+                        <input type="text" placeholder="EU ❤️ Vietnam oder Ihre eigene Idee..." lang="de" required>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>2. Slogan:</strong></p>
+                        <input type="text" placeholder="Freundschafts-Slogan (Deutsch/Vietnamesisch)..." lang="de" required>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>3. Farben:</strong></p>
+                        <input type="text" placeholder="Welche Farben repräsentieren beide Kulturen?" lang="de" required>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>4. Symbole:</strong></p>
+                        <input type="text" placeholder="4-5 Symbole beschreiben..." lang="de" required>
+                    </div>
+                </div>
+
+                <p><strong>Beschreiben Sie Ihr Poster (50 W&ouml;rter):</strong></p>
+                <textarea id="poster-description" rows="4" placeholder="Mein Poster zeigt ___. Die Farben ___ symbolisieren ___. Der Slogan '____' bedeutet ___. Links ist ___, rechts ist ___. Das Poster soll zeigen, dass ___."></textarea>
+                <button class="button success" onclick="savePoster()">Poster speichern</button>
+            </div>
+
+            <h3>B) Mein EU-Avatar erstellen (15 Ph&uuml;t)</h3>
+            
+            <div class="interactive-element">
+                <p><strong>Erschaffen Sie Ihren 2030-EU-Avatar:</strong> <em>Tạo Avatar EU 2030 của bạn:</em></p>
+                
+                <div class="text-content">
+                    <h4>🧑‍💼 MEIN EU-AVATAR 2030</h4>
+                </div>
+
+                <div class="vocab-grid">
+                    <div class="vocab-item">
+                        <p><strong>Name:</strong></p>
+                        <input type="text" placeholder="Ihr Name oder EU-Nickname..." lang="de" required>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>Alter:</strong></p>
+                        <input type="text" value="22 Jahre" readonly>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>Wohnort:</strong></p>
+                        <input type="text" placeholder="EU-Stadt Ihrer Wahl..." lang="de" required>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>Beruf:</strong></p>
+                        <input type="text" placeholder="Ihr Traumberuf..." lang="de" required>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>Lieblingssprachen:</strong></p>
+                        <input type="text" placeholder="Vietnamesisch + ___ + ___" lang="de" required>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>Hobby:</strong></p>
+                        <input type="text" placeholder="Ihr Lieblingshobby..." lang="de" required>
+                    </div>
+                </div>
+
+                <h4>PERS&Ouml;NLICHKEIT: <em>Tính cách:</em></h4>
+                <div class="interactive-element">
+                    <label><input type="checkbox"> Abenteuerlustig <em>(Thích phiêu lưu)</em></label><br>
+                    <label><input type="checkbox"> Kulturliebhaber <em>(Yêu văn hóa)</em></label><br>
+                    <label><input type="checkbox"> Technik-Fan <em>(Fan công nghệ)</em></label><br>
+                    <label><input type="checkbox"> Familienmensch <em>(Người gia đình)</em></label><br>
+                    <label><input type="checkbox"> Umweltsch&uuml;tzer <em>(Bảo vệ môi trường)</em></label><br>
+                    <label><input type="checkbox"> Unternehmer <em>(Doanh nhân)</em></label><br>
+                    <label><input type="checkbox"> K&uuml;nstler <em>(Nghệ sĩ)</em></label><br>
+                    <label><input type="checkbox"> Hilfsbereit <em>(Hay giúp đỡ)</em></label><br>
+                    <input type="text" placeholder="Andere..." lang="de" required>
+                </div>
+
+                <h4>SUPERKRAFT: <em>Siêu năng lực:</em></h4>
+                <textarea rows="2" placeholder="Ich kann ___ und helfe damit EU-Vietnam Beziehungen." lang="de" required></textarea>
+
+                <h4>LIEBLINGS-EU-AKTIVIT&Auml;T: <em>Hoạt động về EU mà bạn yêu thích:</em></h4>
+                <textarea rows="2" placeholder="Am Wochenende ___" lang="de" required></textarea>
+
+                <h4>MOTTO:</h4>
+                <input type="text" placeholder="Ihr Lebensmotto..." lang="de" required>
+
+                <button class="button success" onclick="saveAvatar()">Avatar speichern</button>
+            </div>
+        </section>
+        <section class="section grammar-section" role="region" aria-labelledby="minitest-title">
+            <h2 id="minitest-title">🎯 MINI-LERNKONTROLLE - SELBSTTEST (10 Ph&uuml;t)</h2>
+            <p><strong>Grammatik: Selbstbeurteilung</strong> <em>Ngữ pháp: Tự đánh giá</em></p>
+
+            <h3>Was habe ich heute gelernt? <em>Hôm nay tôi đã học được gì?</em></h3>
+
+            <div class="interactive-element">
+                <h4>Lesen: <em>Đọc hiểu:</em></h4>
+                <label><input type="checkbox"> Ich kann einfache EU-Kulturtexte verstehen</label><br>
+                <label><input type="checkbox"> Ich finde wichtige Informationen in Texten</label><br>
+                <label><input type="checkbox"> Ich verstehe kulturelle Unterschiede</label><br>
+                <label><input type="checkbox"> Ich kann neue W&ouml;rter aus dem Kontext erschlie&szlig;en</label><br>
+
+                <h4>Schreiben: <em>Viết:</em></h4>
+                <label><input type="checkbox"> Ich kann ein Reisetagebuch schreiben</label><br>
+                <label><input type="checkbox"> Ich kann meine Meinung begr&uuml;nden</label><br>
+                <label><input type="checkbox"> Ich kann kreative Texte verfassen</label><br>
+                <label><input type="checkbox"> Ich verwende neue W&ouml;rter korrekt</label><br>
+
+                <h4>Kulturwissen: <em>Kiến thức văn hóa:</em></h4>
+                <label><input type="checkbox"> Ich kenne deutsche/franz&ouml;sische/italienische Traditionen</label><br>
+                <label><input type="checkbox"> Ich kann EU-L&auml;nder mit Vietnam vergleichen</label><br>
+                <label><input type="checkbox"> Ich verstehe europ&auml;ische Lebensarten</label><br>
+                <label><input type="checkbox"> Ich sehe Verbindungen zwischen EU und Vietnam</label><br>
+
+                <h4>Motivation: <em>Động lực:</em></h4>
+                <label><input type="checkbox"> Europa interessiert mich mehr als vorher</label><br>
+                <label><input type="checkbox"> Ich m&ouml;chte mehr &uuml;ber EU-Kulturen lernen</label><br>
+                <label><input type="checkbox"> Ich kann mir vorstellen, in Europa zu leben</label><br>
+                <label><input type="checkbox"> Ich sehe EU-Vietnam als Freundschaft</label><br>
+
+                <button class="button success" onclick="saveSelfAssessment()">Selbsttest speichern</button>
+            </div>
+        </section>
+        <section class="section vocabulary-section" role="region" aria-labelledby="bonus-title">
+            <h2 id="bonus-title">🎁 BONUS-AKTIVIT&Auml;TEN (Falls Zeit &uuml;brig ist)</h2>
+            <p><strong>Wortschatz: Erweiterung</strong> <em>Từ vựng: Mở rộng</em></p>
+
+            <div class="interactive-element">
+                <h3>1. Familie einbeziehen (10 Ph&uuml;t)</h3>
+                <p><strong>Erz&auml;hlen Sie Ihrer Familie 3 interessante EU-Fakten:</strong></p>
+                <textarea rows="3" placeholder="Fakt 1, Fakt 2, Fakt 3..." lang="de" required></textarea>
+                
+                <p><strong>Fragen Sie sie:</strong> "Welches EU-Land w&uuml;rdet ihr gerne besuchen? Warum?"</p>
+                <textarea rows="3" placeholder="Antworten der Familie..." lang="de" required></textarea>
+            </div>
+
+            <div class="interactive-element">
+                <h3>2. EU-Quiz f&uuml;r Freunde erstellen (15 Ph&uuml;t)</h3>
+                <p><strong>Erfinden Sie 5 lustige Quiz-Fragen &uuml;ber Europa f&uuml;r Ihre Klassenkameraden:</strong></p>
+                <textarea rows="8" placeholder="1. Frage: ___
+Antwort: ___
+
+2. Frage: ___
+Antwort: ___
+
+3. Frage: ___
+Antwort: ___
+
+4. Frage: ___
+Antwort: ___
+
+5. Frage: ___
+Antwort: ___"></textarea>
+            </div>
+
+            <div class="interactive-element">
+                <h3>3. Virtueller EU-Trip (20 Ph&uuml;t)</h3>
+                <p><strong>Googeln Sie Bilder von Ihren 5 Lieblings-EU-St&auml;dten:</strong></p>
+                <div class="vocab-grid">
+                    <div class="vocab-item">
+                        <p><strong>Stadt 1:</strong></p>
+                        <input type="text" placeholder="Stadtname..." lang="de" required>
+                        <textarea rows="2" placeholder="Beschreibung..." lang="de" required></textarea>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>Stadt 2:</strong></p>
+                        <input type="text" placeholder="Stadtname..." lang="fr" required>
+                        <textarea rows="2" placeholder="Beschreibung..." lang="fr" required></textarea>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>Stadt 3:</strong></p>
+                        <input type="text" placeholder="Stadtname..." lang="it" required>
+                        <textarea rows="2" placeholder="Beschreibung..." lang="it" required></textarea>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>Stadt 4:</strong></p>
+                        <input type="text" placeholder="Stadtname..." lang="es" required>
+                        <textarea rows="2" placeholder="Beschreibung..." lang="es" required></textarea>
+                    </div>
+                    <div class="vocab-item">
+                        <p><strong>Stadt 5:</strong></p>
+                        <input type="text" placeholder="Stadtname..." lang="pl" required>
+                        <textarea rows="2" placeholder="Beschreibung..." lang="pl" required></textarea>
+                    </div>
+                </div>
+                <button class="button success" onclick="saveBonusActivities()">Bonus-Aktivit&auml;ten speichern</button>
+            </div>
+        </section>
+        <section class="section production-section" role="region" aria-labelledby="prep-title">
+            <h2 id="prep-title">📚 VORBEREITUNG F&Uuml;R N&Auml;CHSTE STUNDE</h2>
+            <p><strong>Produktion: Vorbereitung</strong> <em>Bài tập: Chuẩn bị</em></p>
+
+            <div class="text-content">
+                <h3>Bringen Sie mit: <em>Mang theo:</em></h3>
+                <ul>
+                    <li>Ihr EU-Reisetagebuch</li>
+                    <li>Das EU-Vietnam Poster (Skizze reicht)</li>
+                    <li>Eine interessante EU-Frage</li>
+                    <li>Ihre Familie-Interview-Ergebnisse</li>
+                </ul>
+
+                <h3>Optional zum &Uuml;ben: <em>Tùy chọn để luyện tập:</em></h3>
+                <ul>
+                    <li>Schauen Sie deutsche/franz&ouml;sische/italienische YouTube-Videos (mit Untertiteln)</li>
+                    <li>Probieren Sie ein einfaches europ&auml;isches Rezept</li>
+                    <li>Lernen Sie noch mehr EU-L&auml;nder-Hauptst&auml;dte</li>
+                </ul>
+            </div>
+
+            <div class="interactive-element">
+                <h4>Ihre EU-Frage f&uuml;r die n&auml;chste Stunde:</h4>
+                <textarea rows="3" placeholder="Welche Frage über Europa möchten Sie in der nächsten Stunde besprechen?" lang="de" required></textarea>
+                <button class="button success" onclick="savePreparation()">Vorbereitung speichern</button>
+            </div>
+        </section>
+        <section class="section grammar-section" role="region" aria-labelledby="celebration-title">
+            <h2 id="celebration-title">🌟 ERFOLGS-CELEBRATION!</h2>
+            <p><strong>Grammatik: Erfolg feiern</strong> <em>Ngữ pháp: Ăn mừng thành công</em></p>
+
+            <div class="text-content">
+                <h3>Herzlichen Gl&uuml;ckwunsch! 🎉</h3>
+                <p><em>Chúc mừng bạn! 🎉</em></p>
+
+                <p>Sie haben 2,5 Stunden intensiv &uuml;ber Europa gelernt und dabei:</p>
+                <p><em>Bạn đã học tích cực về châu Âu trong 2,5 giờ và đã:</em></p>
+
+                <ul>
+                    <li>📖 600+ W&ouml;rter &uuml;ber EU-Kulturen gelesen <em>(Đọc 600+ từ về văn hóa EU)</em></li>
+                    <li>✍️ 350+ W&ouml;rter kreativ geschrieben <em>(Viết sáng tạo 350+ từ)</em></li>
+                    <li>🎮 Spielerisch EU-Wissen aufgebaut <em>(Xây dựng kiến thức EU qua trò chơi)</em></li>
+                    <li>🎨 Kreative Projekte entwickelt <em>(Phát triển các dự án sáng tạo)</em></li>
+                </ul>
+
+                <h3>Belohnen Sie sich mit: <em>Hãy thưởng cho bản thân bằng:</em></h3>
+                <ul>
+                    <li>Einem leckeren Snack <em>(Một món ăn vặt ngon)</em></li>
+                    <li>Ihrer Lieblingsmusik <em>(Bản nhạc yêu thích của bạn)</em></li>
+                    <li>Einem guten Gef&uuml;hl: Sie sind EU-Kultur-Experten! 🌟 <em>(Hãy thật tự hào: Bạn là chuyên gia văn hóa EU! 🌟)</em></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <div class="saved-indicator" id="saved-indicator" aria-live="polite">
+        Gespeichert! <em>Đã lưu!</em>
+    </div>
+    <footer>
+        <div style="text-align:center; padding:1em; color:#888; font-size:0.9em;">
+            &copy; 2024 Deutsch Campus. Alle Rechte vorbehalten.
+        </div>
+    </footer>
+    <script>
+        // Standalone functionality - no backend required
+        let lessonProgress = {
+            vocabulary: {},
+            quiz: {},
+            diary: {},
+            essay: '',
+            song: '',
+            poster: '',
+            avatar: {},
+            selfAssessment: {},
+            bonus: {},
+            preparation: ''
+        };
+
+        // Load saved progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('eu_lesson_progress');
+            if (saved) {
+                lessonProgress = JSON.parse(saved);
+                restoreFormData();
+            }
+        }
+
+        // Save progress to localStorage
+        function saveProgress() {
+            localStorage.setItem('eu_lesson_progress', JSON.stringify(lessonProgress));
+            showSavedIndicator();
+        }
+
+        // Show saved indicator
+        function showSavedIndicator() {
+            const indicator = document.getElementById('saved-indicator');
+            indicator.classList.add('show');
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        // Restore form data from saved progress
+        function restoreFormData() {
+            // Restore quiz answers
+            for (let i = 1; i <= 10; i++) {
+                const element = document.getElementById(`q${i}`);
+                if (element && lessonProgress.quiz[`q${i}`]) {
+                    element.value = lessonProgress.quiz[`q${i}`];
+                }
+            }
+
+            // Restore diary entries
+            for (let i = 1; i <= 5; i++) {
+                const element = document.getElementById(`day${i}`);
+                if (element && lessonProgress.diary[`day${i}`]) {
+                    element.value = lessonProgress.diary[`day${i}`];
+                }
+            }
+
+            // Restore other text areas
+            const essayElement = document.getElementById('reflection-essay');
+            if (essayElement && lessonProgress.essay) {
+                essayElement.value = lessonProgress.essay;
+            }
+
+            const songElement = document.getElementById('eu-song');
+            if (songElement && lessonProgress.song) {
+                songElement.value = lessonProgress.song;
+            }
+
+            const posterElement = document.getElementById('poster-description');
+            if (posterElement && lessonProgress.poster) {
+                posterElement.value = lessonProgress.poster;
+            }
+        }
+
+        // Auto-save function for text inputs
+        function autoSave(elementId, category, key) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.addEventListener('input', function() {
+                    lessonProgress[category][key] = this.value;
+                    saveProgress();
+                });
+            }
+        }
+
+        // Save vocabulary
+        function saveVocabulary(textId) {
+            // Implementation for saving vocabulary
+            saveProgress();
+        }
+
+        // Save comparison
+        function saveComparison(textId) {
+            // Implementation for saving comparison
+            saveProgress();
+        }
+
+        // Save facts
+        function saveFacts() {
+            // Implementation for saving facts
+            saveProgress();
+        }
+
+        // Save quiz answers
+        function saveQuizAnswers() {
+            for (let i = 1; i <= 10; i++) {
+                const element = document.getElementById(`q${i}`);
+                if (element) {
+                    lessonProgress.quiz[`q${i}`] = element.value;
+                }
+            }
+            updateQuizProgress();
+            saveProgress();
+        }
+
+        // Update quiz progress bar
+        function updateQuizProgress() {
+            let completed = 0;
+            for (let i = 1; i <= 10; i++) {
+                const element = document.getElementById(`q${i}`);
+                if (element && element.value.trim() !== '') {
+                    completed++;
+                }
+            }
+            const progressBar = document.getElementById('quiz-progress');
+            if (progressBar) {
+                progressBar.style.width = `${(completed / 10) * 100}%`;
+            }
+        }
+
+        // Save diary day
+        function saveDay(dayNumber) {
+            const element = document.getElementById(`day${dayNumber}`);
+            if (element) {
+                lessonProgress.diary[`day${dayNumber}`] = element.value;
+                saveProgress();
+            }
+        }
+
+        // Save essay
+        function saveEssay() {
+            const element = document.getElementById('reflection-essay');
+            if (element) {
+                lessonProgress.essay = element.value;
+                saveProgress();
+            }
+        }
+
+        // Check capitals
+        function checkCapitals() {
+            const capitals = {
+                'Deutschland': 'Berlin',
+                'Frankreich': 'Paris',
+                'Italien': 'Rom',
+                'Spanien': 'Madrid',
+                'Polen': 'Warschau',
+                'Niederlande': 'Amsterdam',
+                'Österreich': 'Wien',
+                'Belgien': 'Brüssel',
+                'Tschechien': 'Prag',
+                'Ungarn': 'Budapest'
+            };
+            
+            let correct = 0;
+            let total = Object.keys(capitals).length;
+            
+            // Check each answer (implementation would compare user inputs)
+            alert(`Sie haben ${correct} von ${total} Hauptstädten richtig! Gut gemacht!`);
+        }
+
+        // Check food detective
+        function checkFoodDetective() {
+            const answers = {
+                '🍕 + 🍝': 'Italien',
+                '🧀 + 🍷': 'Frankreich',
+                '🥨 + 🍺': 'Deutschland',
+                '🥘 + 🐙': 'Spanien',
+                '🧇 + 🍫': 'Belgien'
+            };
+            
+            alert('Sehr gut! Sie kennen die europäischen Spezialitäten!');
+        }
+
+        // Save song
+        function saveSong() {
+            const element = document.getElementById('eu-song');
+            if (element) {
+                lessonProgress.song = element.value;
+                saveProgress();
+            }
+        }
+
+        // Save poster
+        function savePoster() {
+            const element = document.getElementById('poster-description');
+            if (element) {
+                lessonProgress.poster = element.value;
+                saveProgress();
+            }
+        }
+
+        // Save avatar
+        function saveAvatar() {
+            // Collect all avatar data
+            const avatarData = {};
+            const inputs = document.querySelectorAll('.vocab-item input[type="text"], textarea');
+            inputs.forEach(input => {
+                if (input.value) {
+                    avatarData[input.placeholder] = input.value;
+                }
+            });
+            
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            avatarData.personality = Array.from(checkboxes).map(cb => cb.parentElement.textContent.trim());
+            
+            lessonProgress.avatar = avatarData;
+            saveProgress();
+        }
+
+        // Save self assessment
+        function saveSelfAssessment() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            lessonProgress.selfAssessment = Array.from(checkboxes).map(cb => cb.parentElement.textContent.trim());
+            saveProgress();
+        }
+
+        // Save bonus activities
+        function saveBonusActivities() {
+            // Implementation for saving bonus activities
+            saveProgress();
+        }
+
+        // Save preparation
+        function savePreparation() {
+            // Implementation for saving preparation
+            saveProgress();
+        }
+
+        // Initialize auto-save for all text inputs
+        function initializeAutoSave() {
+            // Auto-save for quiz questions
+            for (let i = 1; i <= 10; i++) {
+                autoSave(`q${i}`, 'quiz', `q${i}`);
+            }
+
+            // Auto-save for diary entries
+            for (let i = 1; i <= 5; i++) {
+                autoSave(`day${i}`, 'diary', `day${i}`);
+            }
+
+            // Auto-save for essay
+            const essayElement = document.getElementById('reflection-essay');
+            if (essayElement) {
+                essayElement.addEventListener('input', function() {
+                    lessonProgress.essay = this.value;
+                    saveProgress();
+                });
+            }
+
+            // Auto-save for song
+            const songElement = document.getElementById('eu-song');
+            if (songElement) {
+                songElement.addEventListener('input', function() {
+                    lessonProgress.song = this.value;
+                    saveProgress();
+                });
+            }
+
+            // Auto-save for poster
+            const posterElement = document.getElementById('poster-description');
+            if (posterElement) {
+                posterElement.addEventListener('input', function() {
+                    lessonProgress.poster = this.value;
+                    saveProgress();
+                });
+            }
+
+            // Update quiz progress on input
+            for (let i = 1; i <= 10; i++) {
+                const element = document.getElementById(`q${i}`);
+                if (element) {
+                    element.addEventListener('input', updateQuizProgress);
+                }
+            }
+        }
+
+        // Print functionality
+        function printLesson() {
+            window.print();
+        }
+
+        // Initialize lesson on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+            initializeAutoSave();
+            updateQuizProgress();
+            
+            // Add print button functionality
+            const printButton = document.createElement('button');
+            printButton.textContent = 'Lektion drucken / In bài học';
+            printButton.className = 'button';
+            printButton.style.position = 'fixed';
+            printButton.style.bottom = '20px';
+            printButton.style.left = '20px';
+            printButton.style.zIndex = '1000';
+            printButton.onclick = printLesson;
+            document.body.appendChild(printButton);
+        });
+
+        // Prevent data loss on page unload
+        window.addEventListener('beforeunload', function() {
+            saveProgress();
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+S to save
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                saveProgress();
+            }
+        });
+
+        // Touch and accessibility improvements
+        function makeAccessible() {
+            const buttons = document.querySelectorAll('.button');
+            buttons.forEach(button => {
+                button.style.minHeight = '44px';
+                button.style.minWidth = '44px';
+            });
+
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.style.minHeight = '44px';
+            });
+        }
+
+        // Call accessibility improvements
+        window.addEventListener('DOMContentLoaded', makeAccessible);
+
+        // Error handling for localStorage
+        function handleStorageError() {
+            try {
+                saveProgress();
+            } catch (e) {
+                console.warn('Speichern nicht möglich:', e);
+                alert('Warnung: Ihre Antworten können möglicherweise nicht gespeichert werden. Bitte notieren Sie wichtige Antworten separat.');
+            }
+        }
+
+        // Replace saveProgress with error-handled version
+        const originalSaveProgress = saveProgress;
+        saveProgress = function() {
+            try {
+                originalSaveProgress();
+            } catch (e) {
+                handleStorageError();
+            }
+        };
+    </script>
+</body>
+</html>

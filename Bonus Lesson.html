@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="EU als Sportverein verstehen - Interaktive deutsche Lektion für vietnamesische Studenten">
+    <title>🏆 EU = Sportverein? - Deutsch Campus</title>
+    <style>
+        /* Deutsch Campus Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            min-height: 100vh;
+        }
+
+        .lesson-header {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .lesson-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .lesson-tabs {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            padding: 0.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-button {
+            background: transparent;
+            border: none;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0.25rem;
+            min-width: 120px;
+            font-size: 0.9rem;
+        }
+
+        .tab-button.active {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-button:hover:not(.active) {
+            background: #f8f9fa;
+            transform: translateY(-1px);
+        }
+
+        .lesson-content {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .lesson-panel {
+            display: none;
+        }
+
+        .lesson-panel.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Deutsch Campus Color Coding */
+        .grammar-section {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .production-section {
+            background: linear-gradient(135deg, #fd7e14, #e83e8c);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(253, 126, 20, 0.3);
+        }
+
+        .vocabulary-section {
+            background: linear-gradient(135deg, #007bff, #6f42c1);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .german {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .vietnamese {
+            font-style: italic;
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .interactive-element {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .text-input, .textarea-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .text-input::placeholder, .textarea-input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .text-input:focus, .textarea-input:focus {
+            outline: none;
+            border-color: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .textarea-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.8);
+            transform: translateY(-2px);
+        }
+
+        .quiz-container {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .quiz-question {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+
+        .quiz-options {
+            margin: 0.5rem 0;
+        }
+
+        .quiz-option {
+            display: block;
+            margin: 0.5rem 0;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .quiz-option input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .comparison-table th {
+            background: rgba(255,255,255,0.2);
+            font-weight: 700;
+        }
+
+        .progress-indicator {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .progress-bar {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            height: 8px;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .saved-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .saved-indicator.show {
+            opacity: 1;
+        }
+
+        .emoji {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .highlight-box {
+            background: rgba(255,255,255,0.2);
+            border-left: 4px solid rgba(255,255,255,0.8);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .team-builder {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .player-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 12pt !important;
+                line-height: 1.5 !important;
+            }
+
+            .lesson-container {
+                max-width: none !important;
+                padding: 0 !important;
+            }
+
+            .lesson-tabs {
+                display: none !important;
+            }
+
+            .lesson-panel {
+                display: block !important;
+                page-break-before: always;
+                background: white !important;
+                color: black !important;
+            }
+
+            .lesson-panel:first-child {
+                page-break-before: avoid;
+            }
+
+            .grammar-section, .production-section, .vocabulary-section {
+                background: white !important;
+                color: black !important;
+                border: 2px solid black !important;
+                page-break-inside: avoid;
+            }
+
+            .grammar-section {
+                border-left: 8px solid #28a745 !important;
+            }
+
+            .production-section {
+                border-left: 8px solid #fd7e14 !important;
+            }
+
+            .vocabulary-section {
+                border-left: 8px solid #007bff !important;
+            }
+
+            .text-input, .textarea-input {
+                border: 1px solid black !important;
+                background: white !important;
+                color: black !important;
+            }
+
+            .btn {
+                background: white !important;
+                color: black !important;
+                border: 1px solid black !important;
+            }
+
+            .interactive-element {
+                background: #f8f9fa !important;
+                color: black !important;
+                border: 1px solid #ccc !important;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 0.5rem;
+            }
+
+            .lesson-header {
+                padding: 1rem;
+            }
+
+            .lesson-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .lesson-content {
+                padding: 1rem;
+            }
+
+            .tab-button {
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+                min-width: 100px;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th, .comparison-table td {
+                padding: 0.5rem;
+            }
+
+            .team-builder {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
+                margin: 0.1rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+
+        .vocab-word {
+            position: relative;
+            display: inline-block;
+            margin-right: 0.5em;
+        }
+        .vocab-icons {
+            margin-left: 0.3em;
+            font-size: 1.1em;
+            vertical-align: middle;
+        }
+        .vocab-icons a, .vocab-icons .sound-icon {
+            cursor: pointer;
+            margin-right: 0.2em;
+            text-decoration: none;
+        }
+        .ipa {
+            font-size: 0.95em;
+            color: #222;
+            margin-top: 0.2em;
+            margin-bottom: 0.2em;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <div class="lesson-header">
+            <h1>🏆 EU = SPORTVEREIN? - SO SÁNH VUI NHỘN!</h1>
+            <p><strong>Bonus-Lektion: EU = Sportverein? - Lustiger Vergleich!</strong></p>
+            <p><em>Bài học bonus: EU = Câu lạc bộ thể thao? - So sánh vui nhộn!</em></p>
+            <div class="progress-indicator">
+                <div class="progress-bar" id="overallProgress" style="width: 0%"></div>
+                <p style="margin-top: 0.5rem;"><span id="progressText">Fortschritt: 0%</span> <em>Tiến độ: 0%</em></p>
+            </div>
+        </div>
+
+        <nav class="lesson-tabs">
+            <button class="tab-button active" onclick="showLesson(1)">
+                📖 Lesen<br><em>Đọc hiểu</em>
+            </button>
+            <button class="tab-button" onclick="showLesson(2)">
+                ⚽️ Vergleichen<br><em>So sánh</em>
+            </button>
+            <button class="tab-button" onclick="showLesson(3)">
+                ✍️ Schreiben<br><em>Viết</em>
+            </button>
+            <button class="tab-button" onclick="showLesson(4)">
+                🎮 Spiele<br><em>Trò chơi</em>
+            </button>
+            <button class="tab-button" onclick="showLesson(5)">
+                🎨 Design<br><em>Thiết kế</em>
+            </button>
+        </nav>
+
+        <div class="lesson-content">
+            <!-- TEIL 1: LESEN -->
+            <div id="lesson1" class="lesson-panel active">
+                <div class="vocabulary-section">
+                    <div class="section-header">
+                        <span class="vocab-word german" data-word="TEIL 1: LESEN - EU ALS SUPER-VEREIN">
+                            TEIL 1: LESEN - EU ALS SUPER-VEREIN
+                            <span class="vocab-icons">
+                                <a href="#" class="google-image-link" title="Google Images" data-word="TEIL 1: LESEN - EU ALS SUPER-VEREIN" target="_blank">🖼</a>
+                                <span class="sound-icon" data-word="TEIL 1: LESEN - EU ALS SUPER-VEREIN" title="Aussprache anhören">🔊</span>
+                            </span>
+                            <div class="ipa">[IPA fehlt]</div>
+                        </span>
+                        <span class="vietnamese">Phần 1: Đọc hiểu - EU như một siêu câu lạc bộ</span>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Aufgabe:</strong> <em>Nhiệm vụ:</em> Lest den Text &uuml;ber die EU als Sportverein und bearbeitet die &Uuml;bungen.</p>
+                        <p><em>Đọc văn bản về EU như một câu lạc bộ thể thao và làm các bài tập.</em></p>
+                    </div>
+
+
+                    <div class="interactive-element">
+                        <h3>📚 Lese-Text: "Die EU = Der gr&ouml;&szlig;te Sportverein Europas?"</h3>
+                        <p><em>Văn bản đọc: "EU = Câu lạc bộ thể thao lớn nhất châu Âu?"</em></p>
+                        
+                        <div style="background: rgba(255,255,255,0.2); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                            <h4>🏆 EU VEREINS-ANALYSE: 27 L&Auml;NDER, EIN TEAM!</h4>
+                            
+                            <p>Stellt euch vor: Die EU ist wie ein riesiger Sportverein mit 27 Mannschaften aus verschiedenen L&auml;ndern. Aber statt Fu&szlig;ball spielen sie "Wirtschaft", "Politik" und "Frieden"!</p>
+                            
+                            <h4>👥 DER VEREINSVORSTAND:</h4>
+                            <ul>
+                                <li><strong>Pr&auml;sident:</strong> EU-Kommissionspr&auml;sidentin (wie ein Vereinsvorstand)</li>
+                                <li><strong>Trainer:</strong> EU-Parlamentspr&auml;sident (plant die Strategie)</li>
+                                <li><strong>Mannschaftskapit&auml;ne:</strong> Die 27 Regierungschefs</li>
+                                <li><strong>Spieler:</strong> 450 Millionen EU-B&uuml;rger</li>
+                            </ul>
+
+                            <h4>🎯 VEREINSZIELE:</h4>
+                            <ul>
+                                <li><strong>Hauptziel:</strong> Frieden in Europa (wie Fair Play im Sport)</li>
+                                <li><strong>Trainingsplan:</strong> Wirtschaft st&auml;rken, Bildung verbessern, Umwelt sch&uuml;tzen</li>
+                                <li><strong>Spielfeld:</strong> Der europ&auml;ische Binnenmarkt</li>
+                                <li><strong>Gegner:</strong> Wirtschaftskrisen, Klimawandel, Konflikte</li>
+                            </ul>
+
+                            <h4>📋 VEREINSREGELN:</h4>
+                            <ol>
+                                <li>Alle Mitglieder m&uuml;ssen demokratisch sein (wie Fairness-Regeln)</li>
+                                <li>Menschenrechte respektieren (wie Respekt vor Gegnern)</li>
+                                <li>Zusammenarbeiten, nicht gegeneinander k&auml;mpfen (Teamgeist!)</li>
+                                <li>Schw&auml;chere Mitglieder unterst&uuml;tzen (wie erfahrene Spieler Anf&auml;ngern helfen)</li>
+                            </ol>
+
+                            <h4>✅ MITGLIEDSCHAFTSVORTEILE:</h4>
+                            <ul>
+                                <li>Freier "Transfer" zwischen L&auml;ndern (wie Spielerwechsel)</li>
+                                <li>Gemeinsame "W&auml;hrung" Euro (wie einheitliche Spielregeln)</li>
+                                <li>Schutz durch die Gruppe (wie Teamsolidarit&auml;t)</li>
+                                <li>Zugang zu allen EU-"Stadien" ohne Visa</li>
+                            </ul>
+
+                            <h4>⚠️ VEREINSPROBLEME:</h4>
+                            <ul>
+                                <li>Manchmal streiten die "Spieler" &uuml;ber Taktiken (wie Brexit = Spieler verl&auml;sst Team)</li>
+                                <li>Neue Mitglieder brauchen Zeit zur Integration (wie neue Spieler)</li>
+                                <li>Verschiedene "Spielstile" m&uuml;ssen harmonieren (Nord- vs. S&uuml;deuropa)</li>
+                            </ul>
+
+                            <h4>🏅 ERFOLGE DES VEREINS EU:</h4>
+                            <ul>
+                                <li>75 Jahre ohne gro&szlig;en "Krieg" zwischen Mitgliedern</li>
+                                <li>St&auml;rkste Wirtschaft der Welt (besseres "Team" als USA oder China allein)</li>
+                                <li>Umweltschutz-Weltmeister (klimafreundlichste Region)</li>
+                            </ul>
+                        </div>
+
+
+                        <div class="quiz-container">
+                            <h4>📝 Lese-Aufgaben: <em>Bài tập đọc hiểu</em></h4>
+                            
+                            <div class="quiz-question">
+                                <p><strong>1. Unterstreicht alle Sport-Metaphern im Text</strong></p>
+                                <p><em>Gạch dưới tất cả các ẩn dụ thể thao trong văn bản</em></p>
+                                <textarea class="textarea-input" placeholder="Schreibt hier die Sport-Metaphern..." data-autosave="reading-metaphors"></textarea>
+                            </div>
+
+                            <div class="quiz-question">
+                                <p><strong>2. Findet 5 Gemeinsamkeiten zwischen EU und Sportvereinen</strong></p>
+                                <p><em>Tìm 5 điểm chung giữa EU và các câu lạc bộ thể thao</em></p>
+                                <textarea class="textarea-input" placeholder="1. Beide haben Regeln... 2. ..." data-autosave="reading-similarities"></textarea>
+                            </div>
+
+                            <div class="quiz-question">
+                                <p><strong>3. Notiert 3 Probleme, die beide haben k&ouml;nnen</strong></p>
+                                <p><em>Ghi lại 3 vấn đề mà cả hai đều có thể gặp phải</em></p>
+                                <textarea class="textarea-input" placeholder="Problem 1: ..." data-autosave="reading-problems"></textarea>
+                            </div>
+
+                            <button class="btn" onclick="completeReadingSection()">Lesen abschlie&szlig;en <em>Hoàn thành đọc hiểu</em></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEIL 2: VERGLEICHEN -->
+            <div id="lesson2" class="lesson-panel">
+                <div class="production-section">
+                    <div class="section-header">
+                        <span class="german">⚽️ TEIL 2: VERGLEICHS-SPASS - EU VS. SPORTS CLUB</span>
+                        <span class="vietnamese">Phần 2: So sánh vui nhộn - EU vs Câu lạc bộ thể thao</span>
+                    </div>
+
+
+                    <div class="interactive-element">
+                        <h3>A) Der gro&szlig;e Vergleich schreiben</h3>
+                        <p><em>Viết bài so sánh lớn</em></p>
+                        
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Aspekt <em>Khía cạnh</em></th>
+                                    <th>EU</th>
+                                    <th>Sportverein (z.B. Bayern M&uuml;nchen)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Hauptziel</strong> <em>Mục tiêu chính</em></td>
+                                    <td>Frieden und Wohlstand</td>
+                                    <td><input type="text" class="text-input" placeholder="Trophäen gewinnen..." data-autosave="compare-goal"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Wie erreichen?</strong> <em>Làm thế nào đạt được?</em></td>
+                                    <td>Wirtschaft st&auml;rken, Bildung f&ouml;rdern</td>
+                                    <td><input type="text" class="text-input" placeholder="Training, Teamwork..." data-autosave="compare-how"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mitglieder</strong> <em>Thành viên</em></td>
+                                    <td>27 L&auml;nder</td>
+                                    <td><input type="text" class="text-input" placeholder="25 Spieler + Staff..." data-autosave="compare-members"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Chef/Boss</strong> <em>Trưởng nhóm</em></td>
+                                    <td><input type="text" class="text-input" placeholder="EU-Kommissionspräsidentin..." data-autosave="compare-eu-boss"></td>
+                                    <td><input type="text" class="text-input" placeholder="Trainer..." data-autosave="compare-club-boss"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Regeln</strong> <em>Quy tắc</em></td>
+                                    <td>EU-Gesetze und Vertr&auml;ge</td>
+                                    <td><input type="text" class="text-input" placeholder="Fußballregeln..." data-autosave="compare-rules"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Budget</strong></td>
+                                    <td><input type="text" class="text-input" placeholder="170 Milliarden Euro/Jahr..." data-autosave="compare-eu-budget"></td>
+                                    <td><input type="text" class="text-input" placeholder="750 Millionen Euro/Jahr..." data-autosave="compare-club-budget"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Erfolg messen</strong> <em>Đo lường thành công</em></td>
+                                    <td><input type="text" class="text-input" placeholder="Frieden, Wirtschaftswachstum..." data-autosave="compare-eu-success"></td>
+                                    <td>Tabellenplatz, Pokale</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Probleme</strong> <em>Vấn đề</em></td>
+                                    <td>Brexit, verschiedene Meinungen</td>
+                                    <td><input type="text" class="text-input" placeholder="Verletzungen, hohe Kosten..." data-autosave="compare-problems"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Fans</strong> <em>Người hâm mộ</em></td>
+
+                                    <td>450 Millionen EU-B&uuml;rger</td>
+                                    <td><input type="text" class="text-input" placeholder="Millionen von Bayern-Fans..." data-autosave="compare-fans"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="interactive-element">
+                        <h3>B) Lustige Analogien erfinden</h3>
+                        <p><em>Sáng tạo những phép so sánh vui nhộn</em></p>
+                        
+                        <div class="quiz-container">
+                            <h4>🏆 EU-FUSSBALL ANALOGIEN</h4>
+                            
+                            <div class="highlight-box">
+                                <p><strong>Beispiel:</strong> <em>Ví dụ:</em></p>
+                                <p><strong>BREXIT</strong> = Ein Star-Spieler verl&auml;sst das Team mitten in der Saison, weil er denkt, er kann alleine besser spielen. Spoiler: Kann er nicht! 😅</p>
+                            </div>
+
+                            <div class="quiz-question">
+                                <p><strong>EU-BEITRITT =</strong></p>
+                                <textarea class="textarea-input" placeholder="Ein neuer Spieler kommt zum Team..." data-autosave="analogy-joining"></textarea>
+                            </div>
+
+                            <div class="quiz-question">
+                                <p><strong>EURO-W&Auml;HRUNG =</strong></p>
+                                <textarea class="textarea-input" placeholder="Alle Spieler tragen die gleiche Trikotfarbe..." data-autosave="analogy-euro"></textarea>
+                            </div>
+
+                            <div class="quiz-question">
+                                <p><strong>EU-PARLAMENT =</strong></p>
+                                <textarea class="textarea-input" placeholder="Die Spielerversammlung entscheidet über..." data-autosave="analogy-parliament"></textarea>
+                            </div>
+
+                            <div class="quiz-question">
+                                <p><strong>HANDELSKRIEG USA-EU =</strong></p>
+                                <textarea class="textarea-input" placeholder="Zwei Top-Teams streiten über..." data-autosave="analogy-trade-war"></textarea>
+                            </div>
+
+                            <div class="quiz-question">
+                                <p><strong>EU-STUDENTEN-AUSTAUSCH (ERASMUS) =</strong></p>
+                                <textarea class="textarea-input" placeholder="Spieler trainieren in verschiedenen Vereinen..." data-autosave="analogy-erasmus"></textarea>
+                            </div>
+
+                            <button class="btn" onclick="completeComparisonSection()">Vergleich abschlie&szlig;en <em>Hoàn thành so sánh</em></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEIL 3: SCHREIBEN -->
+            <div id="lesson3" class="lesson-panel">
+                <div class="grammar-section">
+                    <div class="section-header">
+                        <span class="german">✍️ TEIL 3: SCHREIBEN - EU vs. BAYERN MÜNCHEN ANALYSE</span>
+                        <span class="vietnamese">Phần 3: Viết - Phân tích EU vs Bayern Munich</span>
+                    </div>
+
+
+                    <div class="interactive-element">
+                        <h3>Schreibt einen Sportreporter-Artikel (180-200 Wörter)</h3>
+                        <p><em>Viết một bài báo thể thao (180-200 từ)</em></p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Aufgabe:</strong> <em>Nhiệm vụ:</em> Ihr seid Sportreporter und schreibt eine Analyse: "EU gegen Bayern München - Wer ist erfolgreicher?"</p>
+                            <p><em>Các em là phóng viên thể thao và viết một bài phân tích: "EU đấu với Bayern Munich - Ai thành công hơn?"</em></p>
+                        </div>
+
+                        <div class="quiz-container">
+                            <h4>🏆 SPORT-ANALYSE: EU GEGEN BAYERN MÜNCHEN</h4>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                                <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                                    <h4 style="color: white;">Nächstes Mal wenn jemand fragt: <em>Lần tới khi ai đó hỏi:</em></h4>
+                                    <p style="color: white; font-style: italic;">"Was ist die EU?"</p>
+                                    <p style="color: white;"><strong>Könnt ihr antworten:</strong> "Die EU ist wie ein Sportverein, nur dass statt Toren sie Frieden und Wohlstand für 450 Millionen Menschen schaffen!"</p>
+                                </div>
+                            </div>
+
+                            <p style="color: white; font-size: 1.3rem; margin-top: 2rem;"><strong>Jetzt ab mit euch - erzählt allen von der EU Champions League! 🚀</strong></p>
+                            <p style="color: white; font-style: italic;">Bây giờ hãy đi và kể cho mọi người về Champions League EU!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEIL 4: SPIELE -->
+            <div id="lesson4" class="lesson-panel">
+                <div class="production-section">
+                    <div class="section-header">
+                        <span class="german">🎮 TEIL 4: EU-FUSSBALL SPIELE ERFINDEN <span style="font-size:0.9em; font-weight:400;">(20 Phút)</span></span>
+                        <span class="vietnamese">Phần 4: Sáng tạo trò chơi EU-Bóng đá</span>
+                    </div>
+                    <div class="interactive-element">
+                        <h3>A) EU-Länder-Fußball-Quiz <span style="font-size:0.9em; font-weight:400;">(10 Phút)</span></h3>
+                        <p><strong>Erfindet ein Quiz für Freunde:</strong></p>
+                        <div class="quiz-container">
+                            <h4>🌍 EU-FUSSBALL-NATIONS-QUIZ</h4>
+                            <ol>
+                                <li>Welches EU-Land hat die meisten Weltmeisterschaften gewonnen?<br>
+                                    a) Deutschland &nbsp; b) Frankreich &nbsp; c) Italien
+                                </li>
+                                <li>In welchem EU-Land spielt Cristiano Ronaldo NICHT mehr?<br>
+                                    a) Spanien &nbsp; b) Italien &nbsp; c) Portugal
+                                </li>
+                                <li>Welches kleine EU-Land hat überraschend Island bei der EM 2016 geschlagen?<br>
+                                    a) Luxembourg &nbsp; b) Malta &nbsp; c) Frankreich <span style="font-size:0.9em;">(Ha! Trick-Frage!)</span>
+                                </li>
+                                <li>Bayern München ist aus Deutschland. Real Madrid ist aus <u>___</u>?</li>
+                                <li>Die Champions League ist wie die EU, weil <u>___</u>?</li>
+                            </ol>
+                            <p><strong>BONUS-FRAGE:</strong><br>
+                            Wenn die EU ein Fußballteam wäre, welche Formation würden sie spielen?<br>
+
+
+                            4-4-2? 3-5-2? Oder 27-0-0 (alle verteidigen)? 😄</p>
+                        </div>
+                    </div>
+                    <div class="interactive-element">
+                        <h3>B) EU-Dream-Team Managerspiel <span style="font-size:0.9em; font-weight:400;">(10 Phút)</span></h3>
+                        <p><strong>Stellt euer EU-All-Star Team zusammen:</strong></p>
+                        <div class="quiz-container">
+                            <h4>🏆 MEIN EU-DREAM-TEAM 2024</h4>
+                            <p><strong>FORMATION:</strong> <u>___-___-___</u></p>
+                            <p><strong>TORWART:</strong> <u>___</u> (aus welchem EU-Land: <u>___</u>)<br>Warum: <u>___</u></p>
+                            <p><strong>VERTEIDIGUNG:</strong><br>
+                                1. <u>___</u> (Land: <u>___</u>) - Stärke: <u>___</u><br>
+                                2. <u>___</u> (Land: <u>___</u>) - Stärke: <u>___</u><br>
+                                3. <u>___</u> (Land: <u>___</u>) - Stärke: <u>___</u><br>
+                                4. <u>___</u> (Land: <u>___</u>) - Stärke: <u>___</u>
+                            </p>
+                            <p><strong>MITTELFELD:</strong><br>
+                                1. <u>___</u> (Land: <u>___</u>) - Rolle: <u>___</u><br>
+                                2. <u>___</u> (Land: <u>___</u>) - Rolle: <u>___</u><br>
+                                3. <u>___</u> (Land: <u>___</u>) - Rolle: <u>___</u>
+                            </p>
+                            <p><strong>ANGRIFF:</strong><br>
+                                1. <u>___</u> (Land: <u>___</u>) - Position: <u>___</u><br>
+                                2. <u>___</u> (Land: <u>___</u>) - Position: <u>___</u><br>
+                                3. <u>___</u> (Land: <u>___</u>) - Position: <u>___</u>
+                            </p>
+                            <p><strong>TRAINER:</strong> <u>___</u> (aus <u>___</u>)<br>
+                            Taktik: <u>___</u></p>
+                            <p><strong>TEAM-MOTTO:</strong> "<u>___</u>"</p>
+                            <p><strong>GRÖSSTER RIVALE:</strong> <u>___</u> (Team außerhalb EU)</p>
+                            <p><strong>CHAMPION LEAGUE CHANCEN:</strong> <u>___</u>/10</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- TEIL 5: DESIGN -->
+            <div id="lesson5" class="lesson-panel">
+                <div class="vocabulary-section">
+                    <div class="section-header">
+                        <span class="german">🎨 TEIL 5: KREATIV-DESIGN - EU-SPORTVEREIN <span style="font-size:0.9em; font-weight:400;">(10 Phút)</span></span>
+                        <span class="vietnamese">Phần 5: Thiết kế sáng tạo - Câu lạc bộ thể thao EU</span>
+                    </div>
+                    <div class="interactive-element">
+                        <h3>Designt euren "EU United FC"</h3>
+                        <div class="quiz-container">
+                            <h4>🏟 VEREINSPROFIL: EU UNITED FC</h4>
+                            <p><strong>VEREINSNAME:</strong> EU United FC (oder euer kreativer Name: <u>___</u>)</p>
+                            <p><strong>VEREINSFARBEN:</strong> <u>___</u> und <u>___</u><br>
+                            <span style="font-size:0.95em;">(Warum diese Farben: <u>___</u>)</span></p>
+                            <p><strong>VEREINSLOGO:</strong><br>
+                            Beschreibt oder zeichnet: <u>___</u></p>
+                            <p><strong>HEIMSTADION:</strong> "Europa Arena"<br>
+                            Kapazität: 450.000 Fans (einer pro 1000 EU-Bürger 😄)<br>
+                            Standort: <u>___</u></p>
+                            <p><strong>VEREINSLIED:</strong><br>
+                            Erste Zeile: "<u>___</u>"<br>
+                            Refrain: "<u>___</u>"</p>
+                            <p><strong>MASKOTTCHEN:</strong> <u>___</u><br>
+                            <span style="font-size:0.95em;">(Ein Tier, das Europa repräsentiert)</span></p>
+                            <p><strong>BERÜHMTESTE FANS:</strong><br>
+                            - Präsident <u>___</u> (aus <u>___</u>)<br>
+                            - Musikstar <u>___</u> (aus <u>___</u>)<br>
+                            - YouTuber <u>___</u> (aus <u>___</u>)</p>
+                            <p><strong>GRÖSSTER ERFOLG:</strong> <u>___</u></p>
+                            <p><strong>LUSTIGSTE NIEDERLAGE:</strong> <u>___</u></p>
+                            <p><strong>VEREINSPHILOSOPHIE:</strong><br>
+                            "Wir spielen nicht gegeneinander, sondern <u>___</u>"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auto-save indicator -->
+    <div class="saved-indicator" id="savedIndicator">
+        💾 Automatisch gespeichert <em>Đã lưu tự động</em>
+    </div>
+
+    <script>
+        // Standalone functionality - no backend required
+        let currentLesson = 1;
+        let lessonProgress = {
+            lesson1: 0,
+            lesson2: 0,
+            lesson3: 0,
+            lesson4: 0,
+            lesson5: 0
+        };
+
+        // Load saved progress
+        function loadProgress() {
+            const saved = localStorage.getItem('eu_sports_lesson_progress');
+            if (saved) {
+                lessonProgress = JSON.parse(saved);
+                updateProgressDisplay();
+            }
+        }
+
+        // Save progress
+        function saveProgress() {
+            localStorage.setItem('eu_sports_lesson_progress', JSON.stringify(lessonProgress));
+            showSavedIndicator();
+        }
+
+        // Auto-save functionality
+        function autoSave(element) {
+            const key = element.getAttribute('data-autosave');
+            if (key) {
+                localStorage.setItem(`eu_sports_${key}`, element.value);
+                showSavedIndicator();
+            }
+        }
+
+
+
+
+        // Load auto-saved content
+        function loadAutoSavedContent() {
+            const inputs = document.querySelectorAll('[data-autosave]');
+            inputs.forEach(input => {
+                const key = input.getAttribute('data-autosave');
+                const saved = localStorage.getItem(`eu_sports_${key}`);
+                if (saved) {
+                    input.value = saved;
+                    if (input.getAttribute('data-word-count')) {
+                        updateWordCount(input);
+                    }
+                }
+            });
+        }
+
+        // Show saved indicator
+        function showSavedIndicator() {
+            const indicator = document.getElementById('savedIndicator');
+            indicator.classList.add('show');
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        // Update progress display
+        function updateProgressDisplay() {
+            const totalProgress = Object.values(lessonProgress).reduce((a, b) => a + b, 0) / 5;
+            document.getElementById('overallProgress').style.width = totalProgress + '%';
+            document.getElementById('progressText').textContent = `Fortschritt: ${Math.round(totalProgress)}%`;
+        }
+
+        // Show lesson function
+        function showLesson(lessonNum) {
+            // Hide all panels
+            const panels = document.querySelectorAll('.lesson-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+            
+            // Hide all tab buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected lesson
+            document.getElementById(`lesson${lessonNum}`).classList.add('active');
+            buttons[lessonNum - 1].classList.add('active');
+            
+            currentLesson = lessonNum;
+            
+            // Load auto-saved content for the current lesson
+            loadAutoSavedContent();
+        }
+
+        // Complete reading section
+        function completeReadingSection() {
+            lessonProgress.lesson1 = 100;
+            saveProgress();
+            updateProgressDisplay();
+            
+            // Check if all required fields are filled
+            const metaphors = document.querySelector('[data-autosave="reading-metaphors"]').value;
+            const similarities = document.querySelector('[data-autosave="reading-similarities"]').value;
+            const problems = document.querySelector('[data-autosave="reading-problems"]').value;
+            
+            if (metaphors && similarities && problems) {
+                alert('🎉 Herzlichen Glückwunsch! Leseaufgabe abgeschlossen!\n🎉 Chúc mừng! Hoàn thành bài đọc hiểu!');
+                showLesson(2);
+            } else {
+                alert('⚠️ Bitte füllt alle Felder aus!\n⚠️ Vui lòng điền đầy đủ tất cả các ô!');
+            }
+        }
+
+        // Complete comparison section
+        function completeComparisonSection() {
+            lessonProgress.lesson2 = 100;
+            saveProgress();
+            updateProgressDisplay();
+            alert('⚽️ Großartig! Vergleichsaufgabe fertig!\n⚽️ Tuyệt vời! Hoàn thành bài so sánh!');
+            showLesson(3);
+        }
+
+
+
+        // Complete writing section
+        function completeWritingSection() {
+            const article = document.querySelector('[data-autosave="main-article"]').value;
+            const wordCount = article.split(/\s+/).filter(word => word.length > 0).length;
+            
+            if (wordCount >= 180 && wordCount <= 250) {
+                lessonProgress.lesson3 = 100;
+                saveProgress();
+                updateProgressDisplay();
+                alert('✍️ Perfekt! Euer Artikel ist fertig!\n✍️ Hoàn hảo! Bài viết của em đã xong!');
+                showLesson(4);
+            } else if (wordCount < 180) {
+                alert(`📝 Euer Artikel braucht noch ${180 - wordCount} Wörter!\n📝 Bài viết cần thêm ${180 - wordCount} từ nữa!`);
+            } else {
+                alert('📝 Euer Artikel ist zu lang! Kürzt ihn bitte.\n📝 Bài viết quá dài! Vui lòng rút gọn.');
+            }
+        }
+
+        // Check quiz answers
+        function checkQuizAnswers() {
+            let score = 0;
+            const totalQuestions = 3;
+            
+            // Q1: Germany has most World Cups
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            if (q1 && q1.value === 'a') score++;
+            
+            // Q2: Ronaldo doesn't play in Spain anymore
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            if (q2 && q2.value === 'a') score++;
+            
+            // Q3: Real Madrid is from Spain
+            const madrid = document.querySelector('[data-autosave="quiz-madrid"]').value.toLowerCase();
+            if (madrid.includes('spanien') || madrid.includes('spain') || madrid.includes('tây ban nha')) score++;
+            
+            const percentage = Math.round((score / totalQuestions) * 100);
+            lessonProgress.lesson4 = Math.max(lessonProgress.lesson4, percentage);
+            saveProgress();
+            updateProgressDisplay();
+            
+            alert(`🎯 Quiz Ergebnis: ${score}/${totalQuestions} richtig (${percentage}%)\n🎯 Kết quả quiz: ${score}/${totalQuestions} đúng (${percentage}%)`);
+        }
+
+        // Complete game section
+        function completeGameSection() {
+            lessonProgress.lesson4 = 100;
+            saveProgress();
+            updateProgressDisplay();
+            alert('🎮 Fantastisch! Alle Spiele abgeschlossen!\n🎮 Tuyệt vời! Hoàn thành tất cả trò chơi!');
+            showLesson(5);
+        }
+
+        // Complete design section
+        function completeDesignSection() {
+            lessonProgress.lesson5 = 100;
+            saveProgress();
+            updateProgressDisplay();
+            alert('🎨 Wunderbar! Euer EU United FC ist fertig!\n🎨 Tuyệt vời! EU United FC của em đã hoàn thành!');
+        }
+
+        // Complete final reflection
+        function completeFinalReflection() {
+            alert('🏆 HERZLICHEN GLÜCKWUNSCH! Ihr habt alle Aufgaben erfolgreich abgeschlossen!\n🏆 CHÚC MỪNG! Các em đã hoàn thành thành công tất cả bài tập!');
+        }
+
+        // Update word count
+        function updateWordCount(textarea) {
+            const text = textarea.value;
+            const wordCount = text.split(/\s+/).filter(word => word.length > 0).length;
+            const counter = document.getElementById('wordCount');
+            if (counter) {
+                counter.textContent = `Wörter: ${wordCount} / 180-200 | Từ: ${wordCount} / 180-200`;
+                
+                // Color coding for word count
+                if (wordCount < 180) {
+                    counter.style.color = '#ffc107'; // Yellow - needs more
+                } else if (wordCount >= 180 && wordCount <= 200) {
+                    counter.style.color = '#28a745'; // Green - perfect
+                } else {
+                    counter.style.color = '#dc3545'; // Red - too many
+                }
+            }
+        }
+
+
+
+        // Update chance display for slider
+        function updateChanceDisplay(value) {
+            document.getElementById('chanceDisplay').textContent = value;
+            autoSave(document.querySelector('[data-autosave="chances"]'));
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+            loadAutoSavedContent();
+            
+            // Add auto-save listeners to all inputs
+            const inputs = document.querySelectorAll('[data-autosave]');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    autoSave(this);
+                    if (this.getAttribute('data-word-count')) {
+                        updateWordCount(this);
+                    }
+                });
+                
+                // For checkboxes and radio buttons
+                input.addEventListener('change', function() {
+                    if (this.type === 'checkbox' || this.type === 'radio') {
+                        localStorage.setItem(`eu_sports_${this.getAttribute('data-autosave')}`, this.checked);
+                        showSavedIndicator();
+                    }
+                });
+            });
+            
+            // Load checkbox states
+            document.querySelectorAll('input[type="checkbox"][data-autosave]').forEach(checkbox => {
+                const key = checkbox.getAttribute('data-autosave');
+                const saved = localStorage.getItem(`eu_sports_${key}`);
+                if (saved === 'true') {
+                    checkbox.checked = true;
+                }
+            });
+            
+            // Initial word count for main article
+            const mainArticle = document.querySelector('[data-autosave="main-article"]');
+            if (mainArticle) {
+                updateWordCount(mainArticle);
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case '1':
+                        e.preventDefault();
+                        showLesson(1);
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        showLesson(2);
+                        break;
+                    case '3':
+                        e.preventDefault();
+                        showLesson(3);
+                        break;
+                    case '4':
+                        e.preventDefault();
+                        showLesson(4);
+                        break;
+                    case '5':
+                        e.preventDefault();
+                        showLesson(5);
+                        break;
+                    case 's':
+                        e.preventDefault();
+                        showSavedIndicator();
+                        break;
+                }
+            }
+        });
+
+        // Touch gestures for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 100;
+            const swipeDistance = touchEndX - touchStartX;
+            
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0 && currentLesson > 1) {
+                    // Swipe right - previous lesson
+                    showLesson(currentLesson - 1);
+                } else if (swipeDistance < 0 && currentLesson < 5) {
+                    // Swipe left - next lesson
+                    showLesson(currentLesson + 1);
+                }
+            }
+        }
+
+        // Print function
+        function printLesson() {
+            window.print();
+        }
+
+
+        // Export progress function
+        function exportProgress() {
+            const allData = {};
+            
+            // Get all auto-saved content
+            const inputs = document.querySelectorAll('[data-autosave]');
+            inputs.forEach(input => {
+                const key = input.getAttribute('data-autosave');
+                allData[key] = input.value || (input.type === 'checkbox' ? input.checked : '');
+            });
+            
+            // Add progress data
+            allData.progress = lessonProgress;
+            allData.exportDate = new Date().toISOString();
+            
+            // Create download
+            const blob = new Blob([JSON.stringify(allData, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'eu-sports-lesson-progress.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // --- Vocabulary Enhancement ---
+        // Expanded IPA dictionary for all vocab words
+        const ipaDict = {
+            "Sportverein": "[ˈʃpɔʁt.fɛʁˌaɪ̯n]",
+            "EU": "[eː ʔuː]",
+            "Lesen": "[ˈleːzn̩]",
+            "Vergleichen": "[fɛɐ̯ˈɡlaɪ̯çn̩]",
+            "Schreiben": "[ˈʃʁaɪ̯bn̩]",
+            "Spiele": "[ˈʃpiːlə]",
+            "Design": "[diˈzaɪ̯n]",
+            "Hauptziel": "[ˈhaʊ̯ptˌtsiːl]",
+            "Mitglieder": "[ˈmɪtˌɡliːdɐ]",
+            "Chef": "[ʃɛf]",
+            "Boss": "[bɔs]",
+            "Regeln": "[ˈʁeːɡl̩n]",
+            "Budget": "[byˈʒɛː]",
+            "Erfolg": "[ɛɐ̯ˈfɔlk]",
+            "Probleme": "[pʁoˈbleːmə]",
+            "Fans": "[fɛns]",
+            // Add more as needed
+        };
+
+        function enhanceVocab() {
+            document.querySelectorAll('.vocabulary-section .german').forEach(function(wordElem) {
+                // Only enhance if not already enhanced
+                if (!wordElem.classList.contains('vocab-word')) {
+                    const word = wordElem.textContent.trim();
+                    wordElem.classList.add('vocab-word');
+                    wordElem.setAttribute('data-word', word);
+
+                    // Add icons
+                    const icons = document.createElement('span');
+                    icons.className = 'vocab-icons';
+                    icons.innerHTML = `<a href="#" class="google-image-link" title="Google Images" data-word="${word}" target="_blank">🖼</a><span class="sound-icon" data-word="${word}" title="Aussprache anhören">🔊</span>`;
+                    wordElem.appendChild(icons);
+
+                    // Add IPA
+                    const ipa = ipaDict[word] || '[IPA fehlt]';
+                    const ipaElem = document.createElement('div');
+                    ipaElem.className = 'ipa';
+                    ipaElem.textContent = ipa;
+                    // Insert IPA before the next .vietnamese sibling, if present
+                    const next = wordElem.nextElementSibling;
+                    if (next && next.classList.contains('vietnamese')) {
+                        wordElem.parentNode.insertBefore(ipaElem, next);
+                    } else {
+                        wordElem.appendChild(ipaElem);
+                    }
+                }
+            });
+
+
+            // Add event listeners
+            document.querySelectorAll('.vocab-word .google-image-link').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const word = this.getAttribute('data-word');
+                    window.open(`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(word)}`, '_blank');
+                });
+            });
+            document.querySelectorAll('.vocab-word .sound-icon').forEach(function(icon) {
+                icon.addEventListener('click', function() {
+                    const word = this.getAttribute('data-word');
+                    const utter = new SpeechSynthesisUtterance(word);
+                    utter.lang = 'de-DE';
+                    window.speechSynthesis.speak(utter);
+                });
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            // ... existing code ...
+            enhanceVocab();
+        });
+        // ... existing code ...
+    </script>
+</body>
+</html>

@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="EU-Traumarchitekt Hausaufgabe für vietnamesische Deutschlerner">
+    <title>EU-TRAUMARCHITEKT - Deutsch Campus</title>
+    <meta name="theme-color" content="#667eea">
+    <style>
+        /* Deutsch Campus Styling with Color Coding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        /* Header */
+        .lesson-header {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .lesson-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .lesson-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        /* Tab Navigation */
+        .lesson-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        
+        .tab-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+        }
+        
+        .tab-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .tab-button.active {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            transform: translateY(-2px);
+        }
+        
+        /* Content Panels */
+        .lesson-panel {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .lesson-panel.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Deutsch Campus Color Coding */
+        .grammar-section {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: #222;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .production-section {
+            background: linear-gradient(135deg, #fd7e14 0%, #ffb347 100%);
+            color: #222;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(253, 126, 20, 0.3);
+        }
+        
+        .vocabulary-section {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: #222;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+        
+        /* Vietnamese translations */
+        .vietnamese {
+            font-style: italic;
+            opacity: 0.9;
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        /* Interactive Elements */
+        .interactive-element {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .text-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e9ecef;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .text-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #ffc107 0%, #ffb347 100%);
+        }
+        
+        /* Progress indicator */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        /* Story sections */
+        .story-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 5px solid #007bff;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .story-highlight {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin: 0.5rem 0;
+        }
+        
+        /* Success contract styling */
+        .contract-section {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0fff0 100%);
+            border: 3px solid #28a745;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .checkbox-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 0.8rem;
+            transform: scale(1.2);
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 0.5rem;
+            }
+            
+            .lesson-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tab-button {
+                min-width: 100px;
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .lesson-panel {
+                padding: 1rem;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .lesson-tabs {
+                display: none !important;
+            }
+            
+            .lesson-panel {
+                display: block !important;
+                page-break-before: always;
+                box-shadow: none !important;
+                border: 1px solid black;
+            }
+            
+            .lesson-panel:first-child {
+                page-break-before: avoid;
+            }
+            
+            .grammar-section, .production-section, .vocabulary-section {
+                background: white !important;
+                color: black !important;
+                border: 2px solid black !important;
+            }
+            
+            .grammar-section::before {
+                content: "● GRAMMATIK - NGỮ PHÁP ●";
+                font-weight: bold;
+                display: block;
+                text-align: center;
+                border-bottom: 1px solid black;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .production-section::before {
+                content: "● PRODUKTION - SẢN XUẤT ●";
+                font-weight: bold;
+                display: block;
+                text-align: center;
+                border-bottom: 1px solid black;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .vocabulary-section::before {
+                content: "● WORTSCHATZ - TỪ VỰNG ●";
+                font-weight: bold;
+                display: block;
+                text-align: center;
+                border-bottom: 1px solid black;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        /* Auto-save indicator */
+        .save-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .save-indicator.show {
+            opacity: 1;
+        }
+        
+        .vocab-icon {
+            font-size: 1.1em;
+            vertical-align: middle;
+            margin-left: 0.2em;
+        }
+        .ipa-text {
+            font-size: 1em;
+            color: #555;
+            margin: 0.2em 0 0.2em 0;
+            font-family: 'Segoe UI', 'Arial', sans-serif, 'Arial Unicode MS';
+        }
+    </style>
+</head>
+<body>
+    <noscript>
+      <div style="background: #ffc; color: #222; padding: 1em; text-align: center;">
+        Diese Seite benötigt JavaScript für volle Funktionalität. Bitte aktivieren Sie JavaScript in Ihrem Browser.
+      </div>
+    </noscript>
+    <main>
+    <div class="lesson-container">
+        <div class="lesson-header">
+            <h1>🏗️ EU-TRAUMARCHITEKT</h1>
+            <div class="subtitle">Kiến tr&uacute;c sư ước mơ EU - Hausaufgabe 3 (2,5 Stunden)</div>
+        </div>
+        
+        <div class="save-indicator" id="saveIndicator" aria-live="polite">Automatisch gespeichert - Đã lưu tự động ✓</div>
+        
+        <nav class="lesson-tabs" role="tablist" aria-label="Lektion Tabs">
+            <button class="tab-button active" type="button" role="tab" aria-selected="true" aria-controls="lesson1" id="tab-lesson1" onclick="showLesson(1)">Teil 1: Lesen</button>
+            <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="lesson2" id="tab-lesson2" onclick="showLesson(2)">Teil 2: Schreiben</button>
+            <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="lesson3" id="tab-lesson3" onclick="showLesson(3)">Teil 3: Design</button>
+            <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="lesson4" id="tab-lesson4" onclick="showLesson(4)">Teil 4: Commitment</button>
+        </nav>
+        
+        <div class="lesson-content">
+            <!-- TEIL 1: LESEN -->
+            <div id="lesson1" class="lesson-panel active" role="tabpanel" aria-labelledby="tab-lesson1">
+                <h1>📚 TEIL 1: LESEN - REAL SUCCESS STORIES</h1>
+                <div class="vietnamese">Phần 1: Đọc - Những câu chuyện thành công thực tế (40 phút)</div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress1"></div>
+                </div>
+                
+                <div class="vocabulary-section">
+                    <h3>Wichtiger Wortschatz für heute</h3>
+                    <div class="vietnamese">Từ vựng quan trọng cho hôm nay</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 5px; color: #222;">
+                            <strong style="display: flex; align-items: center; gap: 0.5em;">
+                                der Wendepunkt
+                                <a href="https://www.google.com/search?tbm=isch&q=der+Wendepunkt" target="_blank" title="Google Bilder: der Wendepunkt" class="vocab-icon">🖼️</a>
+                                <span class="vocab-icon" style="cursor:pointer;" onclick="playPronunciation('der Wendepunkt')" title="Aussprache anhören">🔊</span>
+                            </strong>
+                            <div class="ipa-text">[ˈvɛndəˌpʊŋkt]</div>
+                            <em>điểm chuyển mình</em><br>
+                            "2016 war mein Wendepunkt."
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 5px; color: #222;">
+                            <strong style="display: flex; align-items: center; gap: 0.5em;">
+                                die Vorbereitung
+                                <a href="https://www.google.com/search?tbm=isch&q=die+Vorbereitung" target="_blank" title="Google Bilder: die Vorbereitung" class="vocab-icon">🖼️</a>
+                                <span class="vocab-icon" style="cursor:pointer;" onclick="playPronunciation('die Vorbereitung')" title="Aussprache anhören">🔊</span>
+                            </strong>
+                            <div class="ipa-text">[ˈfoːɐ̯bəˌʁaɪ̯tʊŋ]</div>
+                            <em>sự chuẩn bị</em><br>
+                            "Die Vorbereitung dauerte zwei Jahre."
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 5px; color: #222;">
+                            <strong style="display: flex; align-items: center; gap: 0.5em;">
+                                der Durchbruch
+                                <a href="https://www.google.com/search?tbm=isch&q=der+Durchbruch" target="_blank" title="Google Bilder: der Durchbruch" class="vocab-icon">🖼️</a>
+                                <span class="vocab-icon" style="cursor:pointer;" onclick="playPronunciation('der Durchbruch')" title="Aussprache anhören">🔊</span>
+                            </strong>
+                            <div class="ipa-text">[ˈdʊʁçˌbʁʊx]</div>
+                            <em>đột phá</em><br>
+                            "2018 kam der große Durchbruch."
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 5px; color: #222;">
+                            <strong style="display: flex; align-items: center; gap: 0.5em;">
+                                die Karriere-Acceleration
+                                <a href="https://www.google.com/search?tbm=isch&q=die+Karriere-Acceleration" target="_blank" title="Google Bilder: die Karriere-Acceleration" class="vocab-icon">🖼️</a>
+                                <span class="vocab-icon" style="cursor:pointer;" onclick="playPronunciation('die Karriere-Acceleration')" title="Aussprache anhören">🔊</span>
+                            </strong>
+                            <div class="ipa-text">[kaˈʁiː̯əʁə ʔakseləˈʁaːt͡si̯oːn]</div>
+                            <em>sự thăng tiến trong sự nghiệp</em><br>
+                            "Seine Karriere entwickelte sich schnell."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="production-section">
+                    <h3>A) Erfolgsgeschichte 1: Technologie-Pionier</h3>
+                    <div class="vietnamese">Câu chuyện thành công 1: Người tiên phong công nghệ (20 phút)</div>
+                    
+                    <div class="story-section">
+                        <h4>NGUYEN MINH QUAN: VON HO CHI MINH STADT ZUM SILICON VALLEY EUROPAS</h4>
+                        
+                        <div class="story-highlight">
+                            <strong>"Heute leite ich ein Team von 50 Entwicklern bei SAP in Deutschland. Vor 8 Jahren war ich ein normaler Informatik-Student in Vietnam."</strong>
+                        </div>
+                        
+                        <p>Minh Quan (28) ist Senior Product Manager bei SAP in Walldorf. Sein Weg zeigt: Mit der richtigen Strategie ist alles m&ouml;glich.</p>
+                        
+                        <h5>DER WENDEPUNKT (2016):</h5>
+                        <p>"Ich studierte Informatik an der Ho Chi Minh Stadt University. Damals sprach ich kein Wort Deutsch. Aber ein deutscher Professor besuchte unsere Uni f&uuml;r ein Austauschprojekt. Er erz&auml;hlte von den Chancen in Deutschland. Das war mein Weckruf."</p>
+                        
+                        <h5>DIE VORBEREITUNG (2016-2018):</h5>
+                        <p>Quan lernte zwei Jahre lang intensiv Deutsch - jeden Tag 3 Stunden. Er arbeitete nebenbei bei einem deutschen Software-Unternehmen in Ho Chi Minh Stadt.</p>
+                        <div class="story-highlight">
+                            "Ich wollte die deutsche Arbeitskultur verstehen, bevor ich nach Deutschland ging."
+                        </div>
+                        
+                        <h5>DURCHBRUCH MOMENT:</h5>
+                        <p>2018 bekam Quan ein DAAD-Stipendium f&uuml;r einen Master in Karlsruhe.</p>
+                        <p>"Die erste Woche war ein Schock. Deutsche Studenten diskutieren sehr direkt. Aber ich lernte: Das ist nicht unh&ouml;flich, das ist effizient."</p>
+                        
+                        <h5>KARRIERE-ACCELERATION:</h5>
+                        <ul>
+                            <li>2018-2020: Master in Karlsruhe (Note: 1,3)</li>
+                            <li>2020: Praktikum bei SAP (6 Monate)</li>
+                            <li>2021: Junior Developer bei SAP</li>
+                            <li>2023: Team Lead (10 Entwickler)</li>
+                            <li>2024: Senior Product Manager (50 Mitarbeiter)</li>
+                        </ul>
+                        
+                        <h5>GEHALTSENTWICKLUNG:</h5>
+                        <ul>
+                            <li>2021: 52.000€/Jahr (Junior)</li>
+                            <li>2023: 68.000€/Jahr (Team Lead)</li>
+                            <li>2024: 85.000€/Jahr (Senior Manager)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h4>Analyse-Aufgaben</h4>
+                        <div class="vietnamese">Bài tập phân tích</div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>1. Timeline erstellen:</strong> <em>Tạo dòng thời gian</em></label>
+                            <textarea class="text-input" placeholder="Notiert Quans Karriereschritte mit Jahresangaben..." rows="4" id="timeline1" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>2. Erfolgsfaktoren:</strong> <em>Các yếu tố thành công</em></label>
+                            <textarea class="text-input" placeholder="Welche 5 Faktoren führten zu seinem Erfolg?" rows="4" id="success-factors1" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>3. Gehaltsanalyse:</strong> <em>Phân tích lương</em></label>
+                            <textarea class="text-input" placeholder="Wie entwickelte sich sein Gehalt? Was bedeutet das in VND?" rows="3" id="salary-analysis1" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>4. Anwendung:</strong> <em>Ứng dụng</em></label>
+                            <textarea class="text-input" placeholder="Was könnt ihr von Quans Strategie übernehmen?" rows="4" id="application1" onchange="autoSave()"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="production-section">
+                    <h3>B) Erfolgsgeschichte 2: Kulturbrücken-Bauerin</h3>
+                    <div class="vietnamese">Câu chuyện thành công 2: Người xây dựng cầu nối văn hóa (20 phút)</div>
+                    
+                    <div class="story-section">
+                        <h4>TRAN THI MAI: KULTURMANAGERIN IN BERLIN</h4>
+                        
+                        <p>Mai (26) managt heute Kulturaustausch-Programme zwischen Deutschland und Vietnam. Ihr Weg: 2019 kam sie mit B1-Deutsch nach Berlin. Heute spricht sie fließend C2 und verdient 58.000€/Jahr.</p>
+                        
+                        <h5>IHR ERFOLGSREZEPT:</h5>
+                        <ul>
+                            <li><strong>Studium:</strong> Kulturwissenschaften an der Humboldt-Uni</li>
+                            <li><strong>Nebenjob:</strong> Guide f&uuml;r vietnamesische Touristen in Berlin</li>
+                            <li><strong>Praktika:</strong> Goethe-Institut, Ausw&auml;rtiges Amt</li>
+                            <li><strong>Spezialisierung:</strong> Deutsch-Vietnamesische Kulturprojekte</li>
+                        </ul>
+                        
+                        <h5>HEUTE:</h5>
+                        <p>Mai organisiert Festivals, Ausstellungen und Schulpartnerschaften.</p>
+                        <div class="story-highlight">
+                            "Ich baue Brücken zwischen den Herzen der Menschen, nicht nur zwischen Ländern."
+                        </div>
+                        
+                        <h5>HIGHLIGHT 2024:</h5>
+                        <p>Sie organisierte das gr&ouml;ßte Vietnam-Festival in Deutschland - 50.000 Besucher in Berlin!</p>
+                    </div>
+                    
+                    <div class="interactive-element">
+                        <h4>Quick-Analyse</h4>
+                        <div class="vietnamese">Phân tích nhanh</div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Mais Studienfach:</strong></label>
+                            <input type="text" class="text-input" placeholder="Ihre Antwort hier..." id="mai-study" onchange="autoSave()">
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Ihre Spezialisierung:</strong></label>
+                            <input type="text" class="text-input" placeholder="Ihre Antwort hier..." id="mai-specialization" onchange="autoSave()">
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Warum ist sie erfolgreich?</strong></label>
+                            <textarea class="text-input" placeholder="Ihre Antwort hier..." rows="3" id="mai-success" onchange="autoSave()"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TEIL 2: SCHREIBEN -->
+            <div id="lesson2" class="lesson-panel" role="tabpanel" aria-labelledby="tab-lesson2">
+                <h1>✍️ TEIL 2: SCHREIBEN - MEINE KOMPLETTE EU-STRATEGIE</h1>
+                <div class="vietnamese">Phần 2: Viết - Chiến lược EU hoàn chỉnh của tôi (70 phút)</div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress2"></div>
+                </div>
+                
+                <div class="production-section">
+                    <h3>A) Master-Strategieplan schreiben</h3>
+                    <div class="vietnamese">Viết kế hoạch chiến lược tổng thể (45 phút)</div>
+                    
+                    <p><strong>Schreibt euren umfassenden EU-Plan (350-400 W&ouml;rter):</strong></p>
+                    <div class="vietnamese"><em>Tạo CV đức hoàn chỉnh (150-200 từ):</em></div>
+                    
+                    <div class="interactive-element">
+                        <h4>LEBENSLAUF</h4>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>PERSÖNLICHE DATEN:</strong></label>
+                            <textarea class="text-input" placeholder="Name: ___&#10;Geburtsdatum: ___&#10;Geburtsort: ___&#10;Staatsangehörigkeit: Vietnamesisch&#10;Anschrift: ___&#10;Telefon: ___&#10;E-Mail: ___" rows="7" id="personal-data" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>BERUFSZIEL:</strong></label>
+                            <textarea class="text-input" placeholder="Ich strebe eine Position als ___ in einem deutschen Unternehmen an, das sich auf ___ spezialisiert. Mein Ziel ist es, meine interkulturellen Kompetenzen und technischen Fähigkeiten zu nutzen, um EU-Vietnam Geschäftsbeziehungen zu stärken." rows="3" id="career-goal" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>BILDUNGSWEG:</strong></label>
+                            <textarea class="text-input" placeholder="[Aktuell] Deutsch-Intensivkurs (A2→B1), [Institution]&#10;2024 Vietnamesisches Abitur, [Schule], Note: ___&#10;Schwerpunkte: ___" rows="3" id="education" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>SPRACHKENNTNISSE:</strong></label>
+                            <textarea class="text-input" placeholder="Vietnamesisch: Muttersprache&#10;Deutsch: B1 (Ziel: C1 bis 2026)&#10;Englisch: ___" rows="3" id="languages" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>COMPUTERKENNTNISSE:</strong></label>
+                            <textarea class="text-input" placeholder="Microsoft Office: ___&#10;Programmierung: ___&#10;Design Software: ___&#10;Social Media: Profi-Level" rows="4" id="computer-skills" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>ZUSÄTZLICHE QUALIFIKATIONEN:</strong></label>
+                            <textarea class="text-input" placeholder="- Interkulturelle Kompetenz (Vietnam-Deutschland)&#10;- EU-Grundkenntnisse und politisches Verständnis&#10;- Projektmanagement-Grundlagen&#10;- [Weitere relevante Skills]" rows="4" id="additional-skills" onchange="autoSave()"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TEIL 3: DESIGN -->
+            <div id="lesson3" class="lesson-panel" role="tabpanel" aria-labelledby="tab-lesson3">
+                <h1>🎨 TEIL 3: DESIGN DEIN EU-LEBEN</h1>
+                <div class="vietnamese">Phần 3: Thiết kế cuộc sống EU của bạn (40 phút)</div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress3"></div>
+                </div>
+                
+                <div class="production-section">
+                    <h3>A) Mein EU-Alltag 2028 visualisieren</h3>
+                    <div class="vietnamese">Hình dung cuộc sống hàng ngày ở EU năm 2028 (25 phút)</div>
+                    
+                    <p><strong>Schreibt einen detaillierten Tag in eurem EU-Leben (200 W&ouml;rter):</strong></p>
+                    <div class="vietnamese"><em>Viết chi tiết một ngày trong cuộc sống EU của bạn (200 từ):</em></div>
+                    
+                    <div class="interactive-element">
+                        <h4>EIN TAG IM LEBEN VON [NAME] - 15. MÄRZ 2028, MÜNCHEN</h4>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>06:30 - Aufstehen:</strong></label>
+                            <textarea class="text-input" placeholder="Mein Wecker klingelt in meiner schönen 2-Zimmer Wohnung in ___. Durch das Fenster sehe ich ___. Heute ist ein wichtiger Tag: Ich präsentiere mein Vietnam-Projekt dem Vorstand!" rows="3" id="morning-routine" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>07:00 - Frühstück:</strong></label>
+                            <textarea class="text-input" placeholder="Ich trinke deutschen Kaffee und esse Vollkornbrot mit ___. Dabei lese ich vietnamesische Nachrichten auf VnExpress und deutsche Nachrichten auf Spiegel Online. So bleibe ich mit beiden Kulturen verbunden." rows="3" id="breakfast" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>08:15 - Arbeitsweg:</strong></label>
+                            <textarea class="text-input" placeholder="Ich fahre mit ___ zur Arbeit. Unterwegs höre ich ___. München ist so ___! Die Menschen sind freundlich und die Stadt ist perfekt zwischen modern und traditionell." rows="3" id="commute" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>09:00 - Arbeitsbeginn:</strong></label>
+                            <textarea class="text-input" placeholder="Mein Team besteht aus Kollegen aus 8 verschiedenen Ländern. Wir sprechen Deutsch und Englisch. Meine Spezialisierung ist ___. Heute bereite ich meine Präsentation vor." rows="3" id="work-start" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>12:00 - Mittagspause:</strong></label>
+                            <textarea class="text-input" placeholder="Mit meiner Kollegin Sarah esse ich in der Kantine. Wir reden über ___. Sie ist neugierig auf Vietnam und ich erzähle von ___." rows="2" id="lunch" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>14:30 - Die große Präsentation:</strong></label>
+                            <textarea class="text-input" placeholder="Sehr geehrte Damen und Herren, unser Vietnam-Projekt wird ___. Meine Präsentation läuft perfekt! Der CEO sagt: Ihre vietnamesische Perspektive ist genau das, was wir brauchen." rows="3" id="presentation" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>18:00 - Feierabend:</strong></label>
+                            <textarea class="text-input" placeholder="Ich bin stolz und glücklich! Heute rufe ich meine Familie in Vietnam an und erzähle alles." rows="2" id="after-work" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>19:30 - Abend:</strong></label>
+                            <textarea class="text-input" placeholder="Ich treffe meine deutsche Freundin Lisa und meinen vietnamesischen Freund Duc. Wir kochen zusammen ___ und reden über ___." rows="2" id="evening" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>22:00 - Reflexion:</strong></label>
+                            <textarea class="text-input" placeholder="Vor dem Schlafen denke ich: Ich lebe wirklich meinen Traum! Deutschland ist meine zweite Heimat geworden, aber Vietnam bleibt in meinem Herzen." rows="2" id="reflection" onchange="autoSave()"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="production-section">
+                    <h3>B) Wohnungssuche und Budgetplanung</h3>
+                    <div class="vietnamese">Tìm nhà và lập kế hoạch ngân sách (15 phút)</div>
+                    
+                    <p><strong>Plant euer konkretes EU-Budget f&uuml;r 2028:</strong></p>
+                    <div class="vietnamese"><em>Lập kế hoạch ngân sách EU cụ thể cho năm 2028:</em></div>
+                    
+                    <div class="interactive-element">
+                        <h4>MEIN MÜNCHEN-BUDGET 2028 (monatlich)</h4>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>EINKOMMEN:</strong></label>
+                            <textarea class="text-input" placeholder="Gehalt (brutto): ___€&#10;Gehalt (netto): ___€ (ca. 70% vom brutto)" rows="2" id="income" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>🏠 WOHNEN (max. 40% vom Netto):</strong></label>
+                            <textarea class="text-input" placeholder="Miete: ___€&#10;Nebenkosten: ___€&#10;Internet: 30€" rows="3" id="housing" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>🍽️ LEBEN:</strong></label>
+                            <textarea class="text-input" placeholder="Lebensmittel: 300€&#10;Restaurants: 150€&#10;Kochen zu Hause: ___€" rows="3" id="living" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>🚌 TRANSPORT:</strong></label>
+                            <textarea class="text-input" placeholder="MVV (München Verkehr): 70€&#10;Gelegentlich Taxi: 30€" rows="2" id="transport" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>📱 KOMMUNIKATION:</strong></label>
+                            <textarea class="text-input" placeholder="Handy: 25€&#10;Video-Calls nach Vietnam: 10€" rows="2" id="communication" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>✈️ REISEN:</strong></label>
+                            <textarea class="text-input" placeholder="Deutschland erkunden: 100€&#10;EU-Länder besuchen: 150€&#10;Vietnam-Besuch sparen: 200€" rows="3" id="travel" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>💰 SPAREN & FAMILIE:</strong></label>
+                            <textarea class="text-input" placeholder="Notfall-Fonds: 200€&#10;Familie Vietnam unterstützen: ___€&#10;Zukunft sparen: ___€" rows="3" id="saving" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>TOTAL AUSGABEN & BEWERTUNG:</strong></label>
+                            <textarea class="text-input" placeholder="TOTAL AUSGABEN: ___€&#10;ÜBRIG: ___€&#10;BEWERTUNG: ☐ Realistisch ☐ Zu optimistisch ☐ Zu pessimistisch" rows="3" id="total-budget" onchange="autoSave()"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TEIL 4: COMMITMENT -->
+            <div id="lesson4" class="lesson-panel" role="tabpanel" aria-labelledby="tab-lesson4">
+                <h1>💪 TEIL 4: COMMITMENT & ABSCHLUSS</h1>
+                <div class="vietnamese">Phần 4: Cam kết & Kết thúc (30 phút)</div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress4"></div>
+                </div>
+                
+                <div class="contract-section">
+                    <h3>A) Persönlicher Erfolgsvertrag</h3>
+                    <div class="vietnamese">Hợp đồng thành công cá nhân (20 phút)</div>
+                    
+                    <p><strong>Schreibt und unterschreibt euren Vertrag mit euch selbst:</strong></p>
+                    <div class="vietnamese"><em>Viết và ký hợp đồng với chính bản thân bạn:</em></div>
+                    
+                    <div class="interactive-element">
+                        <h4>EU-ERFOLGSVERTRAG</h4>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Ich, [VOLLSTÄNDIGER NAME], schließe heute, am [DATUM], einen Vertrag mit mir selbst ab.</strong></label>
+                            <input type="text" class="text-input" placeholder="Vollständiger Name und heutiges Datum..." id="contract-name" onchange="autoSave()">
+                        </div>
+                        
+                        <h5>MEINE VERPFLICHTUNGEN:</h5>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>TÄGLICH werde ich:</strong></label>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="daily1" onchange="autoSave()">
+                                <label for="daily1">Mindestens 30 Minuten Deutsch lernen</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="daily2" onchange="autoSave()">
+                                <label for="daily2">EU-Nachrichten auf Deutsch lesen (5 Minuten)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="daily3" onchange="autoSave()">
+                                <label for="daily3">Meinen Fortschritt dokumentieren</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="daily4" onchange="autoSave()">
+                                <label for="daily4">Positiv über meine Zukunft denken</label>
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>WÖCHENTLICH werde ich:</strong></label>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="weekly1" onchange="autoSave()">
+                                <label for="weekly1">Meine Ziele überprüfen und anpassen</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="weekly2" onchange="autoSave()">
+                                <label for="weekly2">Mit Familie über meine EU-Pläne sprechen</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="weekly3" onchange="autoSave()">
+                                <label for="weekly3">Deutsche Kultur (Filme, Musik, Bücher) konsumieren</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="weekly4" onchange="autoSave()">
+                                <label for="weekly4">Neue EU-Vokabeln lernen und anwenden</label>
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>MONATLICH werde ich:</strong></label>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="monthly1" onchange="autoSave()">
+                                <label for="monthly1">Meinen Master-Plan aktualisieren</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="monthly2" onchange="autoSave()">
+                                <label for="monthly2">Stipendien und Chancen recherchieren</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="monthly3" onchange="autoSave()">
+                                <label for="monthly3">Deutsche/EU-Unternehmen und Unis kontaktieren</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="monthly4" onchange="autoSave()">
+                                <label for="monthly4">Mein Netzwerk erweitern (LinkedIn, Events)</label>
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>MEIN VERSPRECHEN AN VIETNAM:</strong></label>
+                            <textarea class="text-input" placeholder="Ich werde nie vergessen, woher ich komme. Mein EU-Erfolg soll Vietnam helfen und ehren. Ich werde eine Brücke zwischen beiden Kulturen sein." rows="3" id="vietnam-promise" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>MEIN VERSPRECHEN AN DIE EU:</strong></label>
+                            <textarea class="text-input" placeholder="Ich werde ein guter Repräsentant Vietnams sein. Ich werde deutsche Werte respektieren und gleichzeitig vietnamesische Perspektiven einbringen." rows="3" id="eu-promise" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>BELOHNUNG BEI ERFOLG:</strong></label>
+                            <textarea class="text-input" placeholder="Wenn ich bis 2030 ___ erreicht habe, belohne ich mich mit ___." rows="2" id="reward" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>UNTERSCHRIFT und ZEUGE:</strong></label>
+                            <textarea class="text-input" placeholder="UNTERSCHRIFT: ___________________&#10;DATUM: ___________________&#10;ZEUGE (Familienmitglied): ___________________" rows="3" id="signature" onchange="autoSave()"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="production-section">
+                    <h3>B) Brief an andere vietnamesische Jugendliche</h3>
+                    <div class="vietnamese">Thư gửi các bạn trẻ Việt Nam khác (10 phút)</div>
+                    
+                    <p><strong>Schreibt einen motivierenden Brief (100-120 W&ouml;rter):</strong></p>
+                    <div class="vietnamese"><em>Viết một lá thư động viên (100-120 từ):</em></div>
+                    
+                    <div class="interactive-element">
+                        <h4>An alle vietnamesischen Träumer</h4>
+                        
+                        <textarea class="text-input" placeholder="An alle vietnamesischen Träumer,&#10;&#10;ich habe gerade 6 Sessions über EU-Chancen abgeschlossen und will euch ermutigen: ___&#10;&#10;Die EU ist nicht nur für reiche Familien oder Super-Genies. Jeder Vietnamese mit ___ kann es schaffen.&#10;&#10;Das Wichtigste, was ich gelernt habe: ___&#10;&#10;Mein konkreter Tipp für euch: ___&#10;&#10;Falls ihr Fragen habt oder einen Lernpartner sucht, ___&#10;&#10;Lasst uns zusammen diese EU-Vietnam Brücke bauen!&#10;Wir schaffen das! 💪🇻🇳🇪🇺&#10;&#10;[Euer Name]&#10;&#10;P.S.: In 10 Jahren treffen wir uns alle in Berlin zum Phở! 😊" rows="15" id="motivational-letter" onchange="autoSave()"></textarea>
+                    </div>
+                </div>
+                
+                <div class="grammar-section">
+                    <h3>🎯 ABSCHLIESSENDE SELBSTBEWERTUNG</h3>
+                    <div class="vietnamese">Đánh giá bản thân cuối khóa (10 phút)</div>
+                    
+                    <h4>EU-Readiness Check: Wie bereit bin ich?</h4>
+                    <div class="vietnamese">Kiểm tra mức độ sẵn sàng cho EU: Tôi đã sẵn sàng như thế nào?</div>
+                    
+                    <div class="interactive-element">
+                        <p><strong>Bewertet euch ehrlich (1-10 Skala):</strong></p>
+                        <div class="vietnamese"><em>Đánh giá bản thân một cách trung thực (thang điểm 1-10):</em></div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px;">
+                                <h5>WISSEN & VERSTÄNDNIS:</h5>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>EU-Grundlagen verstehen:</label>
+                                    <input type="range" min="1" max="10" value="5" id="knowledge1" onchange="autoSave(); updateScore()">
+                                    <span id="knowledge1-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>EU-Karrierechancen kennen:</label>
+                                    <input type="range" min="1" max="10" value="5" id="knowledge2" onchange="autoSave(); updateScore()">
+                                    <span id="knowledge2-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Deutsche Kultur verstehen:</label>
+                                    <input type="range" min="1" max="10" value="5" id="knowledge3" onchange="autoSave(); updateScore()">
+                                    <span id="knowledge3-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Rechtliche Voraussetzungen kennen:</label>
+                                    <input type="range" min="1" max="10" value="5" id="knowledge4" onchange="autoSave(); updateScore()">
+                                    <span id="knowledge4-value">5</span>/10
+                                </div>
+                            </div>
+                            
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px;">
+                                <h5>SPRACHLICHE BEREITSCHAFT:</h5>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Deutschkenntnisse:</label>
+                                    <input type="range" min="1" max="10" value="5" id="language1" onchange="autoSave(); updateScore()">
+                                    <span id="language1-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Vertrauen in Sprachfortschritt:</label>
+                                    <input type="range" min="1" max="10" value="5" id="language2" onchange="autoSave(); updateScore()">
+                                    <span id="language2-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Bereitschaft für Sprachintensität:</label>
+                                    <input type="range" min="1" max="10" value="5" id="language3" onchange="autoSave(); updateScore()">
+                                    <span id="language3-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Kulturelle Kommunikation:</label>
+                                    <input type="range" min="1" max="10" value="5" id="language4" onchange="autoSave(); updateScore()">
+                                    <span id="language4-value">5</span>/10
+                                </div>
+                            </div>
+                            
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px;">
+                                <h5>PRAKTISCHE VORBEREITUNG:</h5>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Finanzplanung:</label>
+                                    <input type="range" min="1" max="10" value="5" id="practical1" onchange="autoSave(); updateScore()">
+                                    <span id="practical1-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Zeitmanagement:</label>
+                                    <input type="range" min="1" max="10" value="5" id="practical2" onchange="autoSave(); updateScore()">
+                                    <span id="practical2-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Netzwerk-Aufbau:</label>
+                                    <input type="range" min="1" max="10" value="5" id="practical3" onchange="autoSave(); updateScore()">
+                                    <span id="practical3-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Bewerbungskompetenzen:</label>
+                                    <input type="range" min="1" max="10" value="5" id="practical4" onchange="autoSave(); updateScore()">
+                                    <span id="practical4-value">5</span>/10
+                                </div>
+                            </div>
+                            
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px;">
+                                <h5>MENTALE STÄRKE:</h5>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Motivation und Durchhalteverm&ouml;gen:</label>
+                                    <input type="range" min="1" max="10" value="5" id="mental1" onchange="autoSave(); updateScore()">
+                                    <span id="mental1-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Umgang mit Herausforderungen:</label>
+                                    <input type="range" min="1" max="10" value="5" id="mental2" onchange="autoSave(); updateScore()">
+                                    <span id="mental2-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Kulturelle Anpassungsf&auml;higkeit:</label>
+                                    <input type="range" min="1" max="10" value="5" id="mental3" onchange="autoSave(); updateScore()">
+                                    <span id="mental3-value">5</span>/10
+                                </div>
+                                <div style="margin: 0.5rem 0;">
+                                    <label>Selbstvertrauen:</label>
+                                    <input type="range" min="1" max="10" value="5" id="mental4" onchange="autoSave(); updateScore()">
+                                    <span id="mental4-value">5</span>/10
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 2rem 0; padding: 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;">
+                            <h4>GESAMT-SCORE: <span id="total-score">80</span>/160</h4>
+                            <div id="score-evaluation" style="font-size: 1.2rem; margin-top: 0.5rem;">Auf dem richtigen Weg! 📈</div>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Das war mein AHA-Moment in diesen Sessions:</strong></label>
+                            <textarea class="text-input" placeholder="Ihr größter Erkenntnismoment..." rows="2" id="aha-moment" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Das gr&ouml;ßte Hindernis sehe ich in:</strong></label>
+                            <textarea class="text-input" placeholder="Ihre größte Herausforderung..." rows="2" id="biggest-obstacle" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Darauf freue ich mich am meisten:</strong></label>
+                            <textarea class="text-input" placeholder="Worauf Sie sich am meisten freuen..." rows="2" id="most-excited" onchange="autoSave()"></textarea>
+                        </div>
+                        
+                        <div style="margin: 1rem 0;">
+                            <label><strong>Mein Rat f&uuml;r andere Vietnamese:</strong></label>
+                            <textarea class="text-input" placeholder="Ihr Rat für andere vietnamesische Studenten..." rows="2" id="advice-others" onchange="autoSave()"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vocabulary-section">
+                    <h3>🎊 ABSCHLUSSFEIER: EU-TRAUMARCHITEKT</h3>
+                    <div class="vietnamese">Lễ tốt nghiệp: Kiến trúc sư ước mơ EU</div>
+                    
+                    <div style="text-align: center; padding: 2rem;">
+                        <h4>Herzlichen Gl&uuml;ckwunsch! 🎓✨</h4>
+                        <div class="vietnamese"><em>Chúc mừng bạn!</em></div>
+                        
+                        <p style="margin: 1rem 0;"><strong>Ihr habt erfolgreich abgeschlossen:</strong></p>
+                        <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+                            <li>🎯 6 intensive Sessions &uuml;ber EU-Chancen</li>
+                            <li>📚 1000+ W&ouml;rter EU-relevanten Wortschatz gelernt</li>
+                            <li>✍️ 2000+ W&ouml;rter strategische Texte geschrieben</li>
+                            <li>🗣️ Unz&auml;hlige Diskussionen &uuml;ber eure Zukunft gef&uuml;hrt</li>
+                            <li>🌍 Kulturelle Br&uuml;cken zwischen Vietnam und EU gebaut</li>
+                        </ul>
+                        
+                        <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.2); border-radius: 10px;">
+                            <h5>Eure offiziellen Titel:</h5>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                <div>🇪🇺 <strong>EU-Culture Expert</strong><br><em>Hiểu văn hóa châu Âu</em></div>
+                                <div>💼 <strong>Career Strategist</strong><br><em>Lập kế hoạch nghề nghiệp EU</em></div>
+                                <div>🕵️ <strong>Opportunity Detective</strong><br><em>Tìm cơ hội EU</em></div>
+                                <div>🏗️ <strong>Dream Architect</strong><br><em>Xây dựng kế hoạch tương lai</em></div>
+                                <div>🌉 <strong>Bridge Builder</strong><br><em>Nối Việt Nam với EU</em></div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.2); border-radius: 10px;">
+                            <h5>Was jetzt kommt:</h5>
+                            
+                            <div style="text-align: left;">
+                                <h6>DIESE WOCHE:</h6>
+                                <ul>
+                                    <li>Zeigt eurer Familie euren Master-Plan</li>
+                                    <li>Beginnt mit der t&auml;glichen Deutsch-Routine</li>
+                                    <li>Recherchiert erste konkrete Schritte</li>
+                                </ul>
+                                
+                                <h6>DIESEN MONAT:</h6>
+                                <ul>
+                                    <li>Kontaktiert deutsche Institutionen</li>
+                                    <li>Findet andere EU-interessierte Vietnamese</li>
+                                    <li>Verbessert eure Online-Pr&auml;senz (LinkedIn)</li>
+                                </ul>
+                                
+                                <h6>DIESES JAHR:</h6>
+                                <ul>
+                                    <li>Erreicht euer Deutsch-Sprachziel</li>
+                                    <li>Sammelt erste EU-relevante Erfahrungen</li>
+                                    <li>Baut euer Netzwerk auf</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 2rem 0; padding: 1.5rem; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); border-radius: 10px;">
+                            <h5>Euer EU-Dream-Architect Motto:</h5>
+                            <div style="font-size: 1.3rem; font-weight: bold; margin: 1rem 0;">
+                                "Heute ein Traum, morgen ein Plan, &uuml;bermorgen Realit&auml;t!"
+                            </div>
+                            <div style="font-style: italic;">
+                                "Hôm nay là giấc mơ, ngày mai là kế hoạch, ngày kia là hiện thực!"
+                            </div>
+                        </div>
+                        
+                        <div style="margin: 2rem 0; padding: 1.5rem; background: rgba(255,255,255,0.2); border-radius: 10px;">
+                            <h4>🌟 SCHLUSSNACHRICHT</h4>
+                            
+                            <p style="text-align: left;">
+                                Liebe EU-Dreamers,<br><br>
+                                
+                                ihr habt etwas Großartiges geschafft! Ihr habt nicht nur Deutsch gelernt,
+                                sondern eine Vision f&uuml;r eure Zukunft entwickelt. Ihr seid jetzt keine
+                                Tr&auml;umer mehr - ihr seid Planer, Strategisten, Architekten eurer Zukunft.<br><br>
+                                
+                                Die EU wartet auf euch. Vietnam ist stolz auf euch. Und ihr k&ouml;nnt stolz
+                                auf euch selbst sein.<br><br>
+                                
+                                Der Weg wird nicht immer einfach sein. Es wird Momente geben, wo ihr
+                                zweifelt. Aber erinnert euch an heute, an eure Pl&auml;ne, an eure Tr&auml;ume.<br><br>
+                                
+                                Ihr seid die Generation, die EU und Vietnam noch enger zusammenbringen wird.
+                                Ihr seid die Zukunft.<br><br>
+                                
+                                <strong>Auf geht's! Đi thôi! Let's go! 🚀</strong>
+                            </p>
+                            
+                            <div style="margin-top: 2rem; font-style: italic;">
+                                Mit stolzen Gr&uuml;ßen,<br>
+                                Eure EU-Dream-Academy
+                            </div>
+                        </div>
+                        
+                        <div style="font-size: 2rem; margin: 2rem 0;">
+                            🎬 DAS ENDE ... ODER NUR DER ANFANG? 🎬
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+
+    <script>
+        // STANDALONE FUNCTIONALITY - WORKS OFFLINE
+        
+        // Navigation between lessons
+        function showLesson(lessonNumber) {
+            // Hide all panels
+            const panels = document.querySelectorAll('.lesson-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+            
+            // Show selected panel (with null check)
+            const panel = document.getElementById(`lesson${lessonNumber}`);
+            if (panel) {
+                panel.classList.add('active');
+            } else {
+                // fallback to lesson 1 if invalid
+                const fallback = document.getElementById('lesson1');
+                if (fallback) fallback.classList.add('active');
+                lessonNumber = 1;
+            }
+            
+            // Update tab buttons (with null check)
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach((button, idx) => {
+                button.classList.remove('active');
+                button.setAttribute('aria-selected', 'false');
+            });
+            if (buttons[lessonNumber - 1]) {
+                buttons[lessonNumber - 1].classList.add('active');
+                buttons[lessonNumber - 1].setAttribute('aria-selected', 'true');
+            }
+            
+            // Update progress
+            updateProgress(lessonNumber);
+            
+            // Save current lesson
+            try {
+                localStorage.setItem('currentLesson', lessonNumber);
+            } catch (e) {
+                // ignore if localStorage is not available
+            }
+        }
+        
+        // Progress tracking
+        function updateProgress(lessonNumber) {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach((bar, index) => {
+                if (index + 1 === lessonNumber) {
+                    bar.style.width = '100%';
+                } else if (index + 1 < lessonNumber) {
+                    bar.style.width = '100%';
+                } else {
+                    bar.style.width = '0%';
+                }
+            });
+        }
+        
+        // Auto-save functionality
+        function autoSave() {
+            const formData = {};
+            
+            // Collect all input values
+            const inputs = document.querySelectorAll('input[type="text"], textarea, input[type="checkbox"], input[type="range"]');
+            inputs.forEach(input => {
+                if (input.type === 'checkbox') {
+                    formData[input.id] = input.checked;
+                } else {
+                    formData[input.id] = input.value;
+                    
+                    // Update range slider displays
+                    if (input.type === 'range') {
+                        const valueSpan = document.getElementById(input.id + '-value');
+                        if (valueSpan) {
+                            valueSpan.textContent = input.value;
+                        }
+                    }
+                }
+            });
+            
+            // Save to localStorage
+            try {
+                localStorage.setItem('euDreamArchitectData', JSON.stringify(formData));
+            } catch (e) {
+                // ignore if localStorage is not available
+            }
+            
+            // Show save indicator
+            showSaveIndicator();
+        }
+        
+        // Load saved data
+        function loadSavedData() {
+            let saved = null;
+            try {
+                saved = localStorage.getItem('euDreamArchitectData');
+            } catch (e) {
+                // ignore if localStorage is not available
+            }
+            if (saved) {
+                const formData = JSON.parse(saved);
+                
+                Object.keys(formData).forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        if (element.type === 'checkbox') {
+                            element.checked = formData[id];
+                        } else {
+                            element.value = formData[id];
+                            
+                            // Update range slider displays
+                            if (element.type === 'range') {
+                                const valueSpan = document.getElementById(id + '-value');
+                                if (valueSpan) {
+                                    valueSpan.textContent = formData[id];
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // Update total score if applicable
+                updateScore();
+            }
+            
+            // Load current lesson
+            let currentLesson = null;
+            try {
+                currentLesson = localStorage.getItem('currentLesson');
+            } catch (e) {
+                // ignore if localStorage is not available
+            }
+            if (currentLesson) {
+                showLesson(parseInt(currentLesson));
+            }
+        }
+        
+        // Show save indicator
+        function showSaveIndicator() {
+            const indicator = document.getElementById('saveIndicator');
+            indicator.classList.add('show');
+            
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+        
+        // Update score calculation
+        function updateScore() {
+            let totalScore = 0;
+            const categories = ['knowledge', 'language', 'practical', 'mental'];
+            
+            categories.forEach(category => {
+                for (let i = 1; i <= 4; i++) {
+                    const slider = document.getElementById(`${category}${i}`);
+                    const valueSpan = document.getElementById(`${category}${i}-value`);
+                    
+                    if (slider && valueSpan) {
+                        valueSpan.textContent = slider.value;
+                        totalScore += parseInt(slider.value);
+                    }
+                }
+            });
+            
+            // Update total score display
+            const totalScoreElement = document.getElementById('total-score');
+            const evaluationElement = document.getElementById('score-evaluation');
+            
+            if (totalScoreElement) {
+                totalScoreElement.textContent = totalScore;
+            }
+            
+            if (evaluationElement) {
+                let evaluation = '';
+                if (totalScore >= 140) {
+                    evaluation = 'EU-Ready Champion! 🏆';
+                } else if (totalScore >= 120) {
+                    evaluation = 'Sehr gut vorbereitet! 🌟';
+                } else if (totalScore >= 100) {
+                    evaluation = 'Auf dem richtigen Weg! 📈';
+                } else if (totalScore >= 80) {
+                    evaluation = 'Solide Basis, weitermachen! 💪';
+                } else {
+                    evaluation = 'Mehr Vorbereitung n&ouml;tig! 📚';
+                }
+                evaluationElement.textContent = evaluation;
+            }
+        }
+        
+        // Interactive exercises
+        function checkAnswer(questionId, correctAnswer) {
+            const userAnswer = document.getElementById(questionId).value.toLowerCase().trim();
+            const feedback = document.getElementById(questionId + '-feedback');
+            
+            if (userAnswer === correctAnswer.toLowerCase()) {
+                feedback.innerHTML = '<span style="color: #28a745;">✓ Richtig! - Đúng rồi!</span>';
+                feedback.style.display = 'block';
+            } else {
+                feedback.innerHTML = '<span style="color: #dc3545;">Versuchen Sie es noch einmal - Thử lại nhé!</span>';
+                feedback.style.display = 'block';
+            }
+            
+            autoSave();
+        }
+        
+        // Print functionality
+        function printLesson() {
+            window.print();
+        }
+        
+        // Export data functionality
+        function exportData() {
+            const data = localStorage.getItem('euDreamArchitectData');
+            if (data) {
+                const blob = new Blob([data], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'meine-eu-strategie.json';
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSavedData();
+            updateScore();
+            
+            // Set up range slider listeners
+            const rangeInputs = document.querySelectorAll('input[type="range"]');
+            rangeInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const valueSpan = document.getElementById(this.id + '-value');
+                    if (valueSpan) {
+                        valueSpan.textContent = this.value;
+                    }
+                    updateScore();
+                    autoSave();
+                });
+            });
+            
+            // Auto-save every 30 seconds
+            setInterval(autoSave, 30000);
+        });
+        
+        // Prevent data loss on page unload
+        window.addEventListener('beforeunload', function() {
+            autoSave();
+        });
+        
+        // Handle mobile viewport
+        function handleResize() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        
+        function playPronunciation(word) {
+            if ('speechSynthesis' in window) {
+                const utter = new SpeechSynthesisUtterance(word);
+                utter.lang = 'de-DE';
+                window.speechSynthesis.speak(utter);
+            } else {
+                alert('Sprachausgabe wird von Ihrem Browser nicht unterstützt.');
+            }
+        }
+    </script>
+</body>
+</html>
