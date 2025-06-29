@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Hướng dẫn Tuần 1 cho Dự án Thế vận hội Thể thao Harry Potter - Giai đoạn Nền tảng và Thiết kế">
+    <title>Tuần 1: Thế vận hội Thể thao Harry Potter - Nền tảng & Thiết kế</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #2c1810 0%, #8B4513 50%, #DAA520 100%);
+            color: #2c1810;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            margin: 0;
+            padding: 1rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #f4f1e8;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8B0000 0%, #FFD700 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "⚡✨🏆✨⚡";
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+        }
+
+        .header h1 {
+            margin: 1rem 0 0.5rem 0;
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 16.7%;
+            height: 100%;
+            background: #FFD700;
+            border-radius: 4px;
+            animation: progressGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes progressGlow {
+            0% { box-shadow: 0 0 5px #FFD700; }
+            100% { box-shadow: 0 0 15px #FFD700, 0 0 25px #FFD700; }
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .time-goal {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .time-goal h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.4rem;
+        }
+
+        .hour-section {
+            background: white;
+            border-radius: 15px;
+            margin: 2rem 0;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid #DAA520;
+        }
+
+        .hour-header {
+            background: linear-gradient(135deg, #DAA520 0%, #FFD700 100%);
+            padding: 1.5rem;
+            color: #2c1810;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hour-number {
+            background: #8B0000;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .hour-title {
+            flex: 1;
+        }
+
+        .hour-title h3 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .hour-subtitle {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.8;
+        }
+
+        .activity {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .activity:last-child {
+            border-bottom: none;
+        }
+
+        .activity-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-icon {
+            font-size: 2rem;
+        }
+
+        .activity-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #8B0000;
+            margin: 0;
+        }
+
+        .activity-duration {
+            background: #e5e5e5;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-left: auto;
+        }
+
+        .question-list {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #8B0000;
+        }
+
+        .question-list h4 {
+            margin: 0 0 0.5rem 0;
+            color: #8B0000;
+        }
+
+        .question-list ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .question-list li {
+            margin: 0.5rem 0;
+            line-height: 1.4;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-box::before {
+            content: "🎯";
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        .challenge-box h4 {
+            margin: 0 0 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .interactive-checklist {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .checklist-item:hover {
+            background: #f8f9fa;
+            border-color: #DAA520;
+        }
+
+        .checklist-item.completed {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .checkbox {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
+            min-height: 24px;
+            min-width: 24px;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #DAA520;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox.checked {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .checkbox.checked::after {
+            content: "✓";
+            font-weight: bold;
+        }
+
+        .tips-section {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .tips-section h3 {
+            margin: 0 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tip-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #FFD700;
+        }
+
+        .tip-item h4 {
+            margin: 0 0 0.5rem 0;
+            color: #FFD700;
+        }
+
+        .next-week {
+            background: linear-gradient(135deg, #8B0000 0%, #DAA520 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .next-week h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .magic-wand {
+            display: inline-block;
+            animation: wave 1.5s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        @media (min-width: 768px) {
+            body { padding: 2rem; }
+            .content { padding: 3rem; }
+            .header { padding: 3rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; }
+        }
+
+        .encouragement {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ Thế vận hội Thể thao Harry Potter ⚡</h1>
+            <p class="subtitle">Tuần 1: Nền tảng & Thiết kế</p>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="time-goal">
+                <h2>🕐 Tổng thời gian: 2 giờ</h2>
+                <p><strong>Mục tiêu:</strong> Tạo nền tảng cho Thế vận hội Thể thao Harry Potter của bạn bằng cách hiểu về các môn thể thao phép thuật và thiết kế dự án của bạn</p>
+            </div>
+
+            <div class="hour-section">
+                <div class="hour-header">
+                    <div class="hour-number">1</div>
+                    <div class="hour-title">
+                        <h3>Đọc & Nghiên cứu</h3>
+                        <p class="hour-subtitle">Khám phá sự kỳ diệu của Quidditch và động não ý tưởng của riêng bạn</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-header">
+                        <span class="activity-icon">📚</span>
+                        <h4 class="activity-title">Bài đọc</h4>
+                        <span class="activity-duration">35 phút</span>
+                    </div>
+                    
+                    <p><strong>Đọc gì:</strong> Harry Potter và Hòn đá Phù thủy, Chương 11: "Quidditch"</p>
+                    <p>Nếu bạn không có sách, bạn cũng có thể đọc về Quidditch trực tuyến hoặc xem cảnh phim</p>
+                    
+                    <div class="challenge-box">
+                        <h4>🎯 Nhiệm vụ của bạn:</h4>
+                        <p>Ghi chú trong khi đọc! Bạn đang tìm kiếm manh mối về cách biến các môn thể thao phép thuật thành hiện thực</p>
+                    </div>
+
+                    <div class="question-list">
+                        <h4>Câu hỏi cần suy nghĩ khi đọc:</h4>
+                        <ul>
+                            <li>Điều gì làm cho Quidditch trở nên hấp dẫn khi xem và chơi?</li>
+                            <li>Các vị trí cầu thủ khác nhau là gì và họ làm gì?</li>
+                            <li>Luật chơi tạo ra sự phối hợp nhóm VÀ thử thách cá nhân như thế nào?</li>
+                            <li>Thiết bị nào được sử dụng và bạn có thể tái tạo nó như thế nào?</li>
+                            <li>Một trận Quidditch kéo dài bao lâu và tại sao?</li>
+                        </ul>
+                    </div>
+
+                    <div class="encouragement">
+                        <strong>Thử thách ghi chú:</strong> Hãy cố gắng ghi lại ít nhất 10 chi tiết cụ thể về Quidditch mà bạn có thể sử dụng cho Thế vận hội thể thao của mình.
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-header">
+                        <span class="activity-icon">💡</span>
+                        <h4 class="activity-title">Nghiên cứu & Động não</h4>
+                        <span class="activity-duration">25 phút</span>
+                    </div>
+
+                    <div class="challenge-box">
+                        <h4>🎯 Thử thách của bạn:</h4>
+                        <p>Tìm cách biến các môn thể thao thực tế như bóng rổ, tennis và pickleball thành các môn thể thao phép thuật</p>
+                    </div>
+
+                    <div class="question-list">
+                        <h4>Câu hỏi động não:</h4>
+                        <ul>
+                            <li><strong>Với bóng rổ:</strong> Làm thế nào bạn có thể sử dụng nhiều rổ để làm cho nó giống Quidditch hơn? Nếu một số cú ném có giá trị điểm khác nhau thì sao?</li>
+                            <li><strong>Với tennis:</strong> Bạn có thể thêm những thử thách phép thuật nào? Hãy nghĩ về các phép thuật ảnh hưởng đến cách chơi - bạn có thể tạo ra "mục tiêu phép thuật" để đánh trúng không?</li>
+                            <li><strong>Với pickleball:</strong> Làm thế nào bạn có thể kết hợp môn này với các thí nghiệm khoa học đơn giản (như "thuốc độc")? Điều gì sẽ làm cho nó cảm thấy kỳ diệu?</li>
+                        </ul>
+                    </div>
+
+                    <p><strong>Nhiệm vụ nghiên cứu:</strong> Tìm hiểu một môn thể thao phép thuật khác trong Harry Potter (như các nước đi của Cờ Phù thủy, hoặc các trò chơi phép thuật khác được đề cập trong sách). Viết ra 2-3 ý tưởng từ môn thể thao đó.</p>
+
+                    <div class="encouragement">
+                        <strong>Mục tiêu của bạn:</strong> Kết thúc giờ này, bạn nên có danh sách ít nhất 15 ý tưởng để làm cho các môn thể thao thông thường trở nên kỳ diệu.
+                    </div>
+                </div>
+            </div>
+
+            <div class="hour-section">
+                <div class="hour-header">
+                    <div class="hour-number">2</div>
+                    <div class="hour-title">
+                        <h3>Thiết kế & Lập kế hoạch thủ công</h3>
+                        <p class="hour-subtitle">Tạo sổ tay thể thao thế giới phù thủy và phối hợp với bạn bè</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-header">
+                        <span class="activity-icon">📖</span>
+                        <h4 class="activity-title">Thiết kế Sổ tay Thể thao Phù thủy của bạn</h4>
+                        <span class="activity-duration">30 phút</span>
+                    </div>
+
+                    <div class="challenge-box">
+                        <h4>🎯 Nhiệm vụ của bạn:</h4>
+                        <p>Tạo kế hoạch cho một cuốn sổ tay trông như thuộc về thế giới phù thủy</p>
+                    </div>
+
+                    <div class="question-list">
+                        <h4>Thử thách thiết kế bìa:</h4>
+                        <ul>
+                            <li>Tiêu đề nên là gì? (Gợi ý: Hãy làm cho nó nghe thật trang trọng và kỳ diệu)</li>
+                            <li>Làm thế nào để bạn làm cho nó trông cũ kỹ và kỳ diệu? Hãy nghĩ về màu sắc, phông chữ, biểu tượng</li>
+                            <li>Nên có huy hiệu các nhà không? Viền kiểu Hogwarts?</li>
+                            <li>Phác thảo ít nhất 3 ý tưởng bìa khác nhau, sau đó chọn ý tưởng bạn thích nhất</li>
+                        </ul>
+                    </div>
+
+                    <div class="question-list">
+                        <h4>Lập kế hoạch Mục lục:</h4>
+                        <p>Đây là cấu trúc gợi ý, nhưng BẠN quyết định nội dung từng chương:</p>
+                        <ul>
+                            <li><strong>Chương 1: Đội nhà & Cầu thủ</strong> - Bạn sẽ đưa gì vào đây?</li>
+                            <li><strong>Chương 2: Luật [Môn thể thao 1]</strong> - Môn thể thao nào nên được đưa lên đầu và tại sao?</li>
+                            <li><strong>Chương 3: Luật [Môn thể thao 2]</strong> - Môn thể thao này sẽ có yếu tố phép thuật nào?</li>
+                            <li><strong>Chương 4: Luật [Môn thể thao 3]</strong> - Làm thế nào để bạn làm cho môn này trở nên độc đáo?</li>
+                            <li><strong>Chương 5: Lịch thi đấu & Chấm điểm</strong> - Còn gì cần có trong chương này?</li>
+                        </ul>
+                    </div>
+
+                    <div class="question-list">
+                        <h4>Câu hỏi thiết kế cần trả lời:</h4>
+                        <ul>
+                            <li>Bạn nghĩ mỗi chương cần bao nhiêu trang?</li>
+                            <li>Loại minh họa hoặc sơ đồ nào sẽ giúp giải thích luật chơi?</li>
+                            <li>Bạn có nên thêm bảng thuật ngữ các từ phép thuật bạn tự nghĩ ra không?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="activity-header">
+                        <span class="activity-icon">👥</span>
+                        <h4 class="activity-title">Phối hợp với bạn bè & Lập kế hoạch dự án</h4>
+                        <span class="activity-duration">30 phút</span>
+                    </div>
+
+                    <div class="question-list">
+                        <h4>Mời bạn bè:</h4>
+                        <ul>
+                            <li><strong>Nhiệm vụ của bạn:</strong> Liên hệ với bạn bè có thể quan tâm để giải thích về dự án</li>
+                            <li><strong>Nên nói gì:</strong> Bạn đang tạo ra một Thế vận hội thể thao theo chủ đề Harry Potter kéo dài một tuần</li>
+                        </ul>
+                    </div>
+
+                    <div class="question-list">
+                        <h4>Nên hỏi họ:</h4>
+                        <ul>
+                            <li>Họ có muốn tham gia không?</li>
+                            <li>Họ hào hứng với môn thể thao nào nhất?</li>
+                            <li>Họ có kiến thức Harry Potter nào có thể giúp ích không?</li>
+                            <li>Họ có rảnh trong tuần bạn dự định tổ chức không?</li>
+                        </ul>
+                    </div>
+
+                    <div class="challenge-box">
+                        <h4>🎯 Bài tập nghiên cứu cho bạn bè:</h4>
+                        <p>Giao cho bạn bè một nhiệm vụ vui để giúp dự án:</p>
+                        <ul>
+                            <li>Yêu cầu mỗi người nghiên cứu một môn thể thao hoặc trò chơi phép thuật trong Harry Potter</li>
+                            <li>Họ nghĩ ra 2-3 ý tưởng để làm cho các môn thể thao thông thường trở nên kỳ diệu</li>
+                            <li>Họ nghĩ về nhà mà họ muốn vào và lý do tại sao</li>
+                        </ul>
+                    </div>
+
+                    <div class="question-list">
+                        <h4>Lập kế hoạch thời gian dự án:</h4>
+                        <ul>
+                            <li><strong>Thử thách của bạn:</strong> Xem lịch hè và chọn tuần tốt nhất cho Thế vận hội</li>
+                            <li><strong>Cân nhắc:</strong> Khi nào bạn bè rảnh? Khi nào gia đình bạn có thể giúp quay phim và làm trọng tài?</li>
+                            <li><strong>Kế hoạch:</strong> Tuần nào bạn sẽ chuẩn bị? Đánh dấu nó trên lịch.</li>
+                        </ul>
+                    </div>
+
+                    <div class="question-list">
+                        <h4>Động não thiết bị ban đầu:</h4>
+                        <ul>
+                            <li>Đi dạo quanh nhà và sân</li>
+                            <li><strong>Nhiệm vụ của bạn:</strong> Lập danh sách vật liệu bạn đã có thể dùng làm thiết bị thể thao phép thuật</li>
+                            <li><strong>Suy nghĩ sáng tạo:</strong> Làm thế nào để ống bơi thành chổi bay? Bạn có thể dùng gì để làm mục tiêu hoặc vòng?</li>
+                            <li><strong>Lập hai danh sách:</strong> "Vật liệu đã có" và "Vật liệu cần mua thêm"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="tips-section">
+                <h3>💡 Mẹo để thành công tuần này</h3>
+
+                <div class="tip-item">
+                    <h4>Cho giờ đọc:</h4>
+                    <ul>
+                        <li>Tìm nơi yên tĩnh để có thể ghi chú khi đọc</li>
+                        <li>Đừng chỉ đọc - hãy chủ động tìm ý tưởng để áp dụng và sáng tạo</li>
+                        <li>Nếu bí ý tưởng, hãy tự hỏi "Nếu không thể bay thì làm thế nào?"</li>
+                    </ul>
+                </div>
+
+                <div class="tip-item">
+                    <h4>Cho giờ thiết kế:</h4>
+                    <ul>
+                        <li>Phác thảo nhanh và đừng lo lắng về nghệ thuật hoàn hảo - ý tưởng quan trọng hơn hình vẽ đẹp</li>
+                        <li>Hãy nghĩ về điều gì khiến BẠN hào hứng khi đọc sổ tay này</li>
+                        <li>Nhớ rằng: bạn đang tạo ra thứ mà bạn bè thực sự sẽ sử dụng và giữ lại</li>
+                    </ul>
+                </div>
+
+                <div class="tip-item">
+                    <h4>Cho việc phối hợp với bạn bè:</h4>
+                    <ul>
+                        <li>Hãy nhiệt tình khi giải thích dự án - sự hào hứng của bạn sẽ lan tỏa cho họ</li>
+                        <li>Giao cho họ những việc cụ thể để họ cảm thấy mình góp phần tạo ra dự án</li>
+                        <li>Linh hoạt về lịch trình - bạn muốn bạn bè thực sự hào hứng tham gia</li>
+                    </ul>
+                </div>
+
+                <div class="tip-item">
+                    <h4>Nhắc nhở nghiên cứu:</h4>
+                    <p>Bạn không chỉ sao chép Harry Potter - bạn đang lấy cảm hứng để tạo ra thứ hoàn toàn mới và độc đáo của riêng mình. Mục tiêu là làm cho thể thao trở nên kỳ diệu nhưng vẫn an toàn và vui vẻ ngoài đời thực.</p>
+                </div>
+            </div>
+
+            <div class="next-week">
+                <h3><span class="magic-wand">🪄</span> Xem trước tuần sau</h3>
+                <p>Tuần sau bạn sẽ bắt đầu xây dựng sổ tay thực tế và viết chương đầu tiên. Có ghi chú tốt và kế hoạch vững chắc tuần này sẽ giúp tuần sau vui và hiệu quả hơn nhiều!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCheckbox(item) {
+            const checkbox = item.querySelector('.checkbox');
+            const isChecked = checkbox.classList.contains('checked');
+            
+            if (isChecked) {
+                checkbox.classList.remove('checked');
+                item.classList.remove('completed');
+            } else {
+                checkbox.classList.add('checked');
+                item.classList.add('completed');
+                
+                // Add a little celebration effect
+                checkbox.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    checkbox.style.transform = 'scale(1)';
+                }, 150);
+            }
+            
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const totalItems = document.querySelectorAll('.checklist-item').length;
+            const completedItems = document.querySelectorAll('.checklist-item.completed').length;
+            const progressPercent = (completedItems / totalItems) * 100;
+            
+            const progressFill = document.querySelector('.progress-fill');
+            progressFill.style.width = Math.max(16.7, progressPercent) + '%';
+            
+            if (completedItems === totalItems) {
+                showCelebration();
+            }
+        }
+
+
+
+        // Add celebration animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes celebrationBounce {
+                0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+                50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+                100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize progress on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
