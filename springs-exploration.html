@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Week 2: Freshwater Springs Exploration - Interactive Summer Learning Plan">
+    <title>Week 2: Freshwater Springs Exploration - IterLight</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #E3F2FD 0%, #F5EEDC 50%, #E8F5E8 100%);
+            color: #27548A;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            margin: 0;
+            padding: 1rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.3)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.4)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.5)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.2)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); }
+            33% { transform: translateY(-10px) translateX(5px); }
+            66% { transform: translateY(5px) translateX(-5px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .celebration-banner {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA726 100%);
+            color: #27548A;
+            padding: 1.5rem;
+            margin: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        .celebration-banner::before {
+            content: '🌟';
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            animation: sparkle 2s infinite;
+        }
+
+        .celebration-banner::after {
+            content: '🌟';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            animation: sparkle 2s infinite 1s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; }
+            50% { transform: translateY(-50%) scale(1.2); opacity: 0.8; }
+        }
+
+        .choice-container {
+            padding: 2rem;
+        }
+
+        .choice-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .choice-btn {
+            flex: 1;
+            min-width: 250px;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border: 3px solid transparent;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
+            min-height: 44px;
+            font-size: 16px;
+        }
+
+        .choice-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(79, 195, 247, 0.3);
+        }
+
+        .choice-btn.active {
+            background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%);
+            color: white;
+            border-color: #0277BD;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(79, 195, 247, 0.4);
+        }
+
+        .choice-btn h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.3rem;
+        }
+
+        .choice-btn p {
+            margin: 0;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .choice-content {
+            display: none;
+            background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 1rem;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .choice-content.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .schedule-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #4FC3F7;
+        }
+
+        .day-schedule {
+            display: flex;
+            align-items: center;
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            background: #F8F9FA;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .day-schedule:hover {
+            background: #E3F2FD;
+            transform: translateX(5px);
+        }
+
+        .day-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #4FC3F7;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .activity-icon {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #E0E0E0;
+            vertical-align: top;
+        }
+
+        .comparison-table tr:hover {
+            background: #F8F9FA;
+        }
+
+        .location-card {
+            background: linear-gradient(135deg, #E8F5E8 0%, #C8E6C9 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 5px solid #4CAF50;
+        }
+
+        .progress-indicator {
+            background: #E0E0E0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #4FC3F7 0%, #29B6F6 100%);
+            height: 100%;
+            width: 0%;
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        .interactive-checklist {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 44px;
+        }
+
+        .checklist-item:hover {
+            background: #F0F8FF;
+        }
+
+        .checklist-item.completed {
+            background: #E8F5E8;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .checklist-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4FC3F7;
+            border-radius: 4px;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: white;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item.completed .checklist-checkbox {
+            background: #4FC3F7;
+        }
+
+        .floating-helper {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .floating-helper:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .floating-helper:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .choice-btn {
+                min-width: 100%;
+            }
+            
+            .choice-container {
+                padding: 1rem;
+            }
+            
+            .activity-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-helper {
+                bottom: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        .business-lesson-section {
+            margin: 2rem;
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(156, 39, 176, 0.15);
+        }
+
+        .business-header {
+            background: linear-gradient(135deg, #9C27B0 0%, #AB47BC 100%);
+            color: white;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .business-header:hover {
+            background: linear-gradient(135deg, #8E24AA 0%, #9C27B0 100%);
+        }
+
+        .expand-arrow {
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .expand-arrow.expanded {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .business-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .business-content.expanded {
+            padding: 2rem;
+            max-height: 2000px;
+        }
+
+        .business-story {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid #9C27B0;
+        }
+
+        .story-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .number-card {
+            background: #F8F9FA;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .number-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .number-card.loss {
+            border-top: 4px solid #FF5722;
+        }
+
+        .number-card.made {
+            border-top: 4px solid #2196F3;
+        }
+
+        .number-card.sold {
+            border-top: 4px solid #4CAF50;
+        }
+
+        .number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .encouragement {
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFEB3B 30%);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .lesson-tabs {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .tab-headers {
+            display: flex;
+            background: #F5F5F5;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 44px;
+            font-size: 16px;
+        }
+
+        .tab-btn:hover {
+            background: #E0E0E0;
+        }
+
+        .tab-btn.active {
+            background: white;
+            border-bottom-color: #9C27B0;
+            color: #9C27B0;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pricing-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .price-card {
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .price-card.old {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            border: 2px solid #F44336;
+        }
+
+        .price-card.new {
+            background: linear-gradient(135deg, #E8F5E8 0%, #C8E6C9 100%);
+            border: 2px solid #4CAF50;
+        }
+
+        .price-header {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .big-price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .price-details div {
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .break-even-calculator {
+            background: #F0F4F8;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .calculator-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .calculation {
+            font-size: 1.1rem;
+            color: #4CAF50;
+        }
+
+        .preorder-flow {
+            margin: 2rem 0;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: flex-start;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #F8F9FA;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+            background: #E3F2FD;
+            transform: translateX(5px);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #9C27B0 0%, #AB47BC 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h5 {
+            margin: 0 0 0.5rem 0;
+            color: #27548A;
+        }
+
+        .step-content p {
+            margin: 0;
+            font-style: italic;
+            color: #666;
+        }
+
+        .planning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #9C27B0;
+        }
+
+        .plan-card h5 {
+            margin-top: 0;
+            color: #27548A;
+        }
+
+        .plan-card ul {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+
+        .plan-card li {
+            margin: 0.5rem 0;
+        }
+
+        .business-tracker {
+            background: #F8F9FA;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 5px solid #FF9800;
+        }
+
+        .tracker-example {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tracker-header {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #27548A;
+        }
+
+        .tracker-fields {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .tracker-fields div {
+            padding: 0.5rem;
+            background: #F8F9FA;
+            border-radius: 4px;
+        }
+
+        .entrepreneur-inspiration {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFCC02 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .inspiration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .inspiration-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .inspiration-card:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-3px);
+        }
+
+        .inspiration-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .inspiration-message {
+            font-weight: bold;
+            color: #E65100;
+            margin: 1rem 0 0 0;
+        }
+
+        .spring-animation {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            position: relative;
+        }
+
+        .spring-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4FC3F7 0%, #81D4FA 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .spring-ripple {
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: ripple 2s infinite;
+        }
+
+        .spring-ripple:nth-child(1) { animation-delay: 0s; }
+        .spring-ripple:nth-child(2) { animation-delay: 0.5s; }
+        .spring-ripple:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes ripple {
+            0% {
+                width: 0;
+                height: 0;
+                top: 50%;
+                left: 50%;
+                opacity: 1;
+            }
+            100% {
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <div class="spring-animation">
+                <div class="spring-circle">
+                    <div class="spring-ripple"></div>
+                    <div class="spring-ripple"></div>
+                    <div class="spring-ripple"></div>
+                </div>
+            </div>
+            <h1>Week 2: Freshwater Springs Exploration</h1>
+            <p class="subtitle">Building on Your Artistic Ocean Explorer Success!</p>
+        </header>
+
+        <div class="celebration-banner">
+            <h2>🎉 Celebrating Your Week 1 Achievements! 🎉</h2>
+            <p>Minh, your early fundraising success shows you're already ahead of the game! This week we're exploring Florida's magical freshwater springs while building on your artistic momentum.</p>
+        </div>
+
+        <div class="choice-container">
+            <h2 style="text-align: center; color: #27548A; margin-bottom: 2rem;">Choose Your Adventure Style</h2>
+            
+            <div class="choice-selector">
+                <div class="choice-btn" id="choiceA" onclick="selectChoice('A')">
+                    <h3>🏃‍♀️ Weekend Adventure Focus</h3>
+                    <p>Concentrate your learning into focused weekend sessions</p>
+                </div>
+                <div class="choice-btn" id="choiceB" onclick="selectChoice('B')">
+                    <h3>📅 Even Daily Rhythm</h3>
+                    <p>Spread learning evenly across the week for steady progress</p>
+                </div>
+            </div>
+
+            <div class="choice-content" id="contentA">
+                <h3>🏃‍♀️ Choice A: Weekend Adventure Focus</h3>
+                <p><em>Concentrate your learning into focused weekend sessions</em></p>
+                
+                <div class="schedule-card">
+                    <h4>Weekday Prep (30 minutes daily, Monday-Friday = 2.5 hours total)</h4>
+                    <div class="day-schedule">
+                        <div class="day-icon">🌊</div>
+                        <div>
+                            <strong>Monday/Wednesday/Friday:</strong> Read about spring ecosystems - 20 minutes of "Florida Springs" research + 10 minutes sketching spring formations
+                        </div>
+                    </div>
+                    <div class="day-schedule">
+                        <div class="day-icon">🧁</div>
+                        <div>
+                            <strong>Tuesday/Thursday:</strong> Baking research only - study crystal-clear techniques and transparency effects in desserts
+                        </div>
+                    </div>
+                </div>
+
+                <div class="schedule-card">
+                    <h4>Weekend Intensive (2.5 hours Saturday)</h4>
+                    <div class="day-schedule">
+                        <div class="day-icon">📸</div>
+                        <div>
+                            <strong>Saturday Morning (2.5 hours):</strong> Visit Crystal Springs or Rainbow Springs
+                            <ul>
+                                <li>1.5 hours: Photography session focusing on water clarity, reflections, and aquatic plants</li>
+                                <li>1 hour: Sketching and note-taking about spring ecosystem observations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-indicator">
+                    <div class="progress-bar" id="progressA" style="width: 0%;"></div>
+                </div>
+                <p style="text-align: center; font-weight: bold; color: #4FC3F7;">Weekly Total: 5 hours</p>
+            </div>
+
+            <div class="choice-content" id="contentB">
+                <h3>📅 Choice B: Even Daily Rhythm</h3>
+                <p><em>Spread learning evenly across the week for steady progress</em></p>
+                
+                <div class="schedule-card">
+                    <h4>Daily Sessions (45 minutes daily, Monday-Saturday = 4.5 hours total)</h4>
+                    <div class="day-schedule">
+                        <div class="day-icon">🔬</div>
+                        <div>
+                            <strong>Monday/Wednesday/Friday Focus:</strong>
+                            <ul>
+                                <li>25 minutes: Springs ecosystem reading and research</li>
+                                <li>20 minutes: Photography technique practice (reflections, water clarity)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="day-schedule">
+                        <div class="day-icon">🧁</div>
+                        <div>
+                            <strong>Tuesday/Thursday Focus:</strong>
+                            <ul>
+                                <li>25 minutes: Baking technique research (clear glazes, spring-inspired colors)</li>
+                                <li>20 minutes: Recipe development and planning</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="day-schedule">
+                        <div class="day-icon">🏊‍♀️</div>
+                        <div>
+                            <strong>Saturday Field Work:</strong>
+                            <ul>
+                                <li>45 minutes: Local springs visit OR practice session at nearby clear water location</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-indicator">
+                    <div class="progress-bar" id="progressB" style="width: 0%;"></div>
+                </div>
+                <p style="text-align: center; font-weight: bold; color: #4FC3F7;">Weekly Total: 4.5 hours</p>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <h3 style="text-align: center; margin: 2rem 0 1rem; color: #27548A;">🎯 Key Differences Between Choices</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Choice A: Weekend Focus</th>
+                        <th>Choice B: Daily Rhythm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Weekday Commitment</strong></td>
+                        <td>30 min/day</td>
+                        <td>45 min/day</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Weekend Commitment</strong></td>
+                        <td>2.5 hours Saturday</td>
+                        <td>45 minutes Saturday</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Best For</strong></td>
+                        <td>Busy weekday schedule</td>
+                        <td>Prefer consistent daily routine</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Field Work</strong></td>
+                        <td>One intensive springs visit</td>
+                        <td>Shorter local practice sessions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Energy Style</strong></td>
+                        <td>Save up for big weekend push</td>
+                        <td>Steady daily progress</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="activity-grid">
+            <div class="activity-card">
+                <div class="activity-icon">🌊</div>
+                <h4>Springs Science</h4>
+                <p>How freshwater springs form and maintain crystal clarity</p>
+            </div>
+            <div class="activity-card">
+                <div class="activity-icon">🦭</div>
+                <h4>Manatee Basics</h4>
+                <p>Why springs are crucial habitats for Florida's gentle giants</p>
+            </div>
+            <div class="activity-card">
+                <div class="activity-icon">🌱</div>
+                <h4>Aquatic Plants</h4>
+                <p>How underwater plants create spring ecosystems</p>
+            </div>
+            <div class="activity-card">
+                <div class="activity-icon">📷</div>
+                <h4>Photography</h4>
+                <p>Capturing water clarity and underwater reflections</p>
+            </div>
+            <div class="activity-card">
+                <div class="activity-icon">🧁</div>
+                <h4>Baking Innovation</h4>
+                <p>Developing transparent and crystalline dessert techniques</p>
+            </div>
+            <div class="activity-card">
+                <div class="activity-icon">📖</div>
+                <h4>Scrapbook Collection</h4>
+                <p>10-15 spring-themed photographs, sketches, and recipe notes</p>
+            </div>
+        </div>
+
+        <div class="interactive-checklist">
+            <h3>🏊‍♀️ Bonus Integration Opportunities</h3>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <div class="checklist-checkbox"></div>
+                <span>During your regular swimming practice, observe how water clarity changes in different pools</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <div class="checklist-checkbox"></div>
+                <span>Use tennis breaks to practice quick nature sketching of water patterns</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <div class="checklist-checkbox"></div>
+                <span>Continue your successful baking sales with any new techniques you develop</span>
+            </div>
+        </div>
+
+        <div class="location-card">
+            <h3>📍 Suggested Local Springs</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div>
+                    <h4>For Choice A (Longer Visit):</h4>
+                    <ul>
+                        <li>Crystal Springs</li>
+                        <li>Rainbow Springs State Park</li>
+                        <li>Weeki Wachee Springs</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>For Choice B (Shorter Sessions):</h4>
+                    <ul>
+                        <li>Bayfront Park fountains</li>
+                        <li>Community pools for practice</li>
+                        <li>Local clear water spots</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="business-lesson-section">
+            <div class="business-header" onclick="toggleBusinessLesson()">
+                <h3>💼 Special Business Lesson: Level Up Your Baking Sales!</h3>
+                <p>Learn from your Week 1 cake adventure to make Week 2 even more profitable 📈</p>
+                <div class="expand-arrow" id="businessArrow">▼</div>
+            </div>
+            
+            <div class="business-content" id="businessContent">
+                <div class="business-story">
+                    <div class="story-icon">🎂</div>
+                    <h4>Your Week 1 Adventure Analysis</h4>
+                    <div class="numbers-grid">
+                        <div class="number-card loss">
+                            <div class="number">$50</div>
+                            <div class="label">Loss (Learning Investment!)</div>
+                        </div>
+                        <div class="number-card made">
+                            <div class="number">10</div>
+                            <div class="label">Cakes Made</div>
+                        </div>
+                        <div class="number-card sold">
+                            <div class="number">4-5</div>
+                            <div class="label">Cakes Sold</div>
+                        </div>
+                    </div>
+                    <p class="encouragement">🌟 <strong>Every successful entrepreneur has stories like this!</strong> Your $50 "loss" was actually $50 worth of valuable business education!</p>
+                </div>
+
+                <div class="lesson-tabs">
+                    <div class="tab-headers">
+                        <div class="tab-btn active" onclick="showTab('pricing')">💰 Smart Pricing</div>
+                        <div class="tab-btn" onclick="showTab('preorders')">📋 Pre-Orders</div>
+                        <div class="tab-btn" onclick="showTab('planning')">📊 Planning</div>
+                    </div>
+
+                    <div class="tab-content active" id="pricing">
+                        <h4>🎯 Lesson 1: Know Your True Value</h4>
+                        <div class="pricing-comparison">
+                            <div class="price-card old">
+                                <div class="price-header">❌ Week 1 Pricing</div>
+                                <div class="big-price">$2</div>
+                                <div class="price-details">
+                                    <div>• Too low for handmade quality</div>
+                                    <div>• Needed 30 sales to break even!</div>
+                                    <div>• Didn't reflect your creativity</div>
+                                </div>
+                            </div>
+                            <div class="price-card new">
+                                <div class="price-header">✅ New Smart Pricing</div>
+                                <div class="big-price">$5-7</div>
+                                <div class="price-details">
+                                    <div>• Reflects homemade quality</div>
+                                    <div>• Ocean-themed = special!</div>
+                                    <div>• Supporting hospital = value</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="break-even-calculator">
+                            <h5>🧮 Break-Even Calculator</h5>
+                            <div class="calculator-row">
+                                <span>If costs are $25 and price is $5:</span>
+                                <span class="calculation">$25 ÷ $5 = <strong>5 cakes to break even!</strong></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="preorders">
+                        <h4>📅 Lesson 2: Guarantee Sales Before Baking</h4>
+                        <div class="preorder-flow">
+                            <div class="flow-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h5>Talk to Neighbors First</h5>
+                                    <p>"I'm making spring-themed cakes for my marine biology project - $5 each with proceeds for the hospital!"</p>
+                                </div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h5>Take Orders</h5>
+                                    <p>Get commitments for 6-8 cakes before buying any ingredients</p>
+                                </div>
+                            </div>
+                            <div class="flow-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h5>Bake with Confidence</h5>
+                                    <p>Now you know exactly how many to make and you're guaranteed sales!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="planning">
+                        <h4>📈 Lesson 3: Plan Like a Pro</h4>
+                        <div class="planning-grid">
+                            <div class="plan-card">
+                                <h5>🎯 Week 2 Goal</h5>
+                                <ul>
+                                    <li>Make 6-8 spring-themed cakes</li>
+                                    <li>Spend $20-25 on ingredients</li>
+                                    <li>Sell for $5-6 each</li>
+                                    <li>Target profit: $5-25</li>
+                                </ul>
+                            </div>
+                            <div class="plan-card">
+                                <h5>💡 Spring Theme Ideas</h5>
+                                <ul>
+                                    <li>Crystal-clear glazes</li>
+                                    <li>Blue & green water colors</li>
+                                    <li>Manatee decorations</li>
+                                    <li>Aquatic plant designs</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="business-tracker">
+                            <h5>📝 Simple Business Tracker</h5>
+                            <div class="tracker-example">
+                                <div class="tracker-header">Week 2 Spring Cakes</div>
+                                <div class="tracker-fields">
+                                    <div>Made: _____ cakes</div>
+                                    <div>Cost: $______</div>
+                                    <div>Sold: _____ at $_____ each</div>
+                                    <div>Revenue: $_____</div>
+                                    <div>Profit/Loss: $_____</div>
+                                    <div>Lesson learned: ________________</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="entrepreneur-inspiration">
+                    <h4>🌟 Remember: Every Entrepreneur's Journey</h4>
+                    <div class="inspiration-grid">
+                        <div class="inspiration-card">
+                            <div class="inspiration-icon">🏰</div>
+                            <div>Walt Disney's first animation company went bankrupt</div>
+                        </div>
+                        <div class="inspiration-card">
+                            <div class="inspiration-icon">📺</div>
+                            <div>Oprah was fired from her first TV job</div>
+                        </div>
+                        <div class="inspiration-card">
+                            <div class="inspiration-icon">🎵</div>
+                            <div>Pandora's founder was rejected 300 times</div>
+                        </div>
+                    </div>
+                    <p class="inspiration-message">Your Week 1 experience taught you what doesn't work - that's just as valuable as knowing what does work! 💪</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); border-radius: 15px; padding: 2rem; margin: 2rem; text-align: center;">
+            <h3>🤔 Which Works Better for Your Week?</h3>
+            <p><strong>Choose Weekend Focus (A)</strong> if your weekdays are packed with other summer activities and you'd rather have one amazing springs adventure.</p>
+            <p><strong>Choose Daily Rhythm (B)</strong> if you prefer spreading things out and like the idea of daily progress, even in small chunks.</p>
+            <p style="color: #4FC3F7; font-weight: bold; font-size: 1.1rem;">Both paths will prepare you perfectly for Week 3's wetlands exploration while keeping your time commitment manageable during this preparation phase!</p>
+        </div>
+    </div>
+
+    <div class="floating-helper" onclick="showEncouragement()">
+        💡
+        <div class="tooltip">Need help choosing?</div>
+    </div>
+
+    <script>
+        let selectedChoice = null;
+        let businessExpanded = false;
+        let activeTab = 'pricing';
+
+        function toggleBusinessLesson() {
+            const content = document.getElementById('businessContent');
+            const arrow = document.getElementById('businessArrow');
+            
+            businessExpanded = !businessExpanded;
+            
+            if (businessExpanded) {
+                content.classList.add('expanded');
+                arrow.classList.add('expanded');
+                
+                // Add celebration for opening the lesson
+                setTimeout(() => {
+                    showBusinessCelebration();
+                }, 500);
+            } else {
+                content.classList.remove('expanded');
+                arrow.classList.remove('expanded');
+            }
+        }
+
+        function showBusinessCelebration() {
+            const celebration = document.createElement('div');
+            celebration.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #9C27B0 0%, #AB47BC 100%);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 20px;
+                box-shadow: 0 5px 20px rgba(156, 39, 176, 0.4);
+                z-index: 1001;
+                font-weight: 500;
+                animation: slideInRight 0.5s ease-out;
+            `;
+            celebration.textContent = '🎉 Great choice! Learning business skills will help your fundraising!';
+            
+            document.body.appendChild(celebration);
+            
+            setTimeout(() => {
+                celebration.remove();
+            }, 4000);
+        }
+
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            activeTab = tabName;
+            
+            // Provide contextual encouragement
+            const encouragements = {
+                'pricing': 'Smart pricing is key to sustainable business! 💰',
+                'preorders': 'Pre-orders eliminate risk and guarantee success! 📋',
+                'planning': 'Good planning makes everything easier! 📊'
+            };
+            
+            // Show brief encouraging message
+            const message = document.createElement('div');
+            message.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                right: 20px;
+                background: rgba(156, 39, 176, 0.9);
+                color: white;
+                padding: 0.8rem 1.2rem;
+                border-radius: 15px;
+                font-size: 0.9rem;
+                z-index: 1001;
+                animation: fadeInUp 0.3s ease-out;
+            `;
+            message.textContent = encouragements[tabName];
+            
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.remove();
+            }, 2500);
+        }
+
+        function selectChoice(choice) {
+            // Reset all choices
+            document.getElementById('choiceA').classList.remove('active');
+            document.getElementById('choiceB').classList.remove('active');
+            document.getElementById('contentA').classList.remove('active');
+            document.getElementById('contentB').classList.remove('active');
+            
+            // Activate selected choice
+            document.getElementById('choice' + choice).classList.add('active');
+            document.getElementById('content' + choice).classList.add('active');
+            
+            selectedChoice = choice;
+            
+            // Animate progress bar
+            setTimeout(() => {
+                const progressBar = document.getElementById('progress' + choice);
+                const totalHours = choice === 'A' ? 5 : 4.5;
+                const percentage = (totalHours / 5) * 100;
+                progressBar.style.width = percentage + '%';
+            }, 500);
+            
+            // Provide encouraging feedback
+            showChoiceFeedback(choice);
+        }
+
+        function showChoiceFeedback(choice) {
+            const feedback = choice === 'A' 
+                ? "Great choice! Weekend focus allows for deep, immersive learning experiences. 📚✨"
+                : "Excellent! Daily rhythm builds consistent habits and steady progress. 🌟📈";
+            
+            // Create temporary feedback element
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 25px;
+                box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+                z-index: 1001;
+                font-weight: 500;
+                animation: slideDown 0.5s ease-out;
+            `;
+            feedbackDiv.textContent = feedback;
+            
+            document.body.appendChild(feedbackDiv);
+            
+            setTimeout(() => {
+                feedbackDiv.remove();
+            }, 3000);
+        }
+
+        function toggleCheck(item) {
+            item.classList.toggle('completed');
+            const checkbox = item.querySelector('.checklist-checkbox');
+            if (item.classList.contains('completed')) {
+                checkbox.textContent = '✓';
+                
+                // Add celebration animation
+                checkbox.style.animation = 'bounce 0.6s ease';
+                setTimeout(() => {
+                    checkbox.style.animation = '';
+                }, 600);
+            } else {
+                checkbox.textContent = '';
+            }
+        }
+
+        function showEncouragement() {
+            const encouragements = [
+                "🌟 You're doing amazing! Trust your instincts about what schedule works best for you.",
+                "💪 Both choices lead to fantastic learning! Pick what feels right for your energy.",
+                "🌊 Remember, this is about exploring and having fun while learning!",
+                "📸 Your photography skills from Week 1 will be perfect for capturing spring beauty!",
+                "🧁 Can't wait to see what transparent dessert techniques you discover!"
+            ];
+            
+            const randomEncouragement = encouragements[Math.floor(Math.random() * encouragements.length)];
+            
+            // Create encouragement popup
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+                color: white;
+                padding: 2rem;
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+                z-index: 1002;
+                text-align: center;
+                max-width: 400px;
+                animation: popIn 0.5s ease-out;
+            `;
+            
+            popup.innerHTML = `
+                <div style="font-size: 1.2rem; margin-bottom: 1rem;">${randomEncouragement}</div>
+                <button onclick="this.parentElement.remove()" style="
+                    background: rgba(255, 255, 255, 0.2);
+                    border: 2px solid white;
+                    color: white;
+                    padding: 0.5rem 1.5rem;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    font-size: 1rem;
+                    transition: all 0.3s ease;
+                " onmouseover="this.style.background='rgba(255,255,255,0.3)'" 
+                   onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                    Thanks! 😊
+                </button>
+            `;
+            
+            document.body.appendChild(popup);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (popup.parentElement) {
+                    popup.remove();
+                }
+            }, 5000);
+        }
+
+        // Add CSS animations dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(-50%) translateY(0);
+                }
+            }
+            
+            @keyframes bounce {
+                0%, 20%, 60%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-10px);
+                }
+                80% {
+                    transform: translateY(-5px);
+                }
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes slideInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(100px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    animation: none !important;
+                    transition: none !important;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add welcome animation
+            setTimeout(() => {
+                const header = document.querySelector('.header h1');
+                header.style.animation = 'bounce 1s ease-out';
+            }, 500);
+            
+            // Hint to try clicking a choice
+            setTimeout(() => {
+                if (!selectedChoice) {
+                    const hint = document.createElement('div');
+                    hint.style.cssText = `
+                        position: absolute;
+                        top: -10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: #FFD700;
+                        color: #27548A;
+                        padding: 0.5rem 1rem;
+                        border-radius: 15px;
+                        font-size: 0.9rem;
+                        box-shadow: 0 3px 10px rgba(255, 215, 0, 0.4);
+                        animation: pulse 2s infinite;
+                        z-index: 100;
+                    `;
+                    hint.textContent = '👆 Click to choose your adventure!';
+                    
+                    const choiceSelector = document.querySelector('.choice-selector');
+                    choiceSelector.style.position = 'relative';
+                    choiceSelector.appendChild(hint);
+                    
+                    // Remove hint after choice is made or after 10 seconds
+                    setTimeout(() => {
+                        if (hint.parentElement && !selectedChoice) {
+                            hint.remove();
+                        }
+                    }, 10000);
+                    
+                    // Watch for choice selection to remove hint
+                    const observer = new MutationObserver(() => {
+                        if (selectedChoice && hint.parentElement) {
+                            hint.remove();
+                            observer.disconnect();
+                        }
+                    });
+                    observer.observe(document.body, { subtree: true, attributes: true });
+                }
+            }, 3000);
+        });
+
+        // Add pulse animation for the hint
+        const pulseStyle = document.createElement('style');
+        pulseStyle.textContent = `
+            @keyframes pulse {
+                0% { transform: translateX(-50%) scale(1); }
+                50% { transform: translateX(-50%) scale(1.05); }
+                100% { transform: translateX(-50%) scale(1); }
+            }
+        `;
+        document.head.appendChild(pulseStyle);
+    </script>
+</body>
+</html>
