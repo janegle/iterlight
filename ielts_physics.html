@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Behind Animation - Interactive IELTS Lesson</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-tab.active {
+            background: white;
+            color: #667eea;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+        }
+
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 50%;
+            background: #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .physics-demo {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .demo-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .demo-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .particle-container {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to bottom, #87CEEB, #4682B4);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .particle {
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .light-demo {
+            width: 100%;
+            height: 150px;
+            background: radial-gradient(circle at 30% 30%, #FFD700, #FFA500, #FF4500, #000);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .light-ray {
+            position: absolute;
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), transparent);
+            animation: rotate 4s linear infinite;
+            transform-origin: bottom center;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .question-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            background: #f8f9ff;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .question-number {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .dropdown {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-top: 10px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 5px;
+            transition: background 0.2s ease;
+        }
+
+        .radio-option:hover {
+            background: #f0f0f0;
+        }
+
+        .check-answers {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .check-answers:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .feedback {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+        }
+
+        .reading-passage {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        .reading-passage p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlight-term {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-term:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .demo-controls {
+                justify-content: center;
+            }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 Physics Behind Animation</h1>
+            <p>An Interactive IELTS Reading Experience</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+        <div class="lesson-card">
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showTab('reading')">📖 Reading Passage</button>
+                <button class="nav-tab" onclick="showTab('demos')">⚡ Physics Demos</button>
+                <button class="nav-tab" onclick="showTab('questions')">❓ Questions</button>
+                <button class="nav-tab" onclick="showTab('results')">📊 Results</button>
+            </div>
+
+            <div id="reading" class="tab-content active">
+                <div class="reading-passage">
+                    <h2 style="color: #667eea; margin-bottom: 20px;">The Physics Behind Modern Animation and Entertainment Technology</h2>
+                    
+                    <p>The entertainment industry has undergone revolutionary changes through the application of advanced physics principles in digital animation and visual effects production. Contemporary animation studios employ sophisticated computational methods that simulate real-world physical phenomena to create increasingly realistic animated sequences. These technological developments have transformed audience expectations while establishing new scientific standards for entertainment media production.</p>
+
+                    <div class="section">
+                        <h3><span class="section-icon">🎯</span>Motion Capture Technology</h3>
+                        <p><span class="highlight-term">Motion capture technology</span> represents one of the most significant advances in animation physics applications. This process involves recording human movement patterns using specialized sensors that detect positional changes with <span class="highlight-term">millimeter precision</span>. The collected data undergoes complex mathematical processing where algorithms convert biological motion into digital representations. Studios such as Pixar and DreamWorks utilize motion capture systems that can record up to <span class="highlight-term">120 frames per second</span>, enabling animators to reproduce subtle human gestures with unprecedented accuracy. The technology has become essential for creating believable character animations in both films and interactive gaming environments.</p>
+                    </div>
+
+                    <div class="section">
+                        <h3><span class="section-icon">🌊</span>Fluid Dynamics Simulation</h3>
+                        <p><span class="highlight-term">Fluid dynamics simulation</span> has revolutionized the depiction of liquids and gases in animated productions. Traditional hand-drawn animation required artists to approximate water movement through artistic interpretation, often resulting in unrealistic flow patterns. Modern computational fluid dynamics software applies <span class="highlight-term">Navier-Stokes equations</span> to calculate liquid behavior under various environmental conditions. This mathematical approach enables animators to simulate complex scenarios such as ocean waves, rainfall, and fire propagation with scientific precision. Recent animated films demonstrate water effects that are virtually indistinguishable from actual footage, representing a remarkable achievement in applied physics.</p>
+                    </div>
+
+                    <div class="section">
+                        <h3><span class="section-icon">💡</span>Lighting Simulation Technology</h3>
+                        <p>Lighting simulation technology employs principles of electromagnetic radiation to create realistic illumination effects in animated environments. Digital artists now utilize <span class="highlight-term">ray-tracing algorithms</span> that calculate light behavior by tracing individual <span class="highlight-term">photon paths</span> through virtual scenes. This process accounts for light reflection, refraction, and absorption properties of different materials, producing shadows and highlights that correspond to real-world lighting conditions. The computational requirements for ray-tracing are substantial, with modern animation studios investing millions of dollars in specialized processing equipment capable of handling the enormous calculation demands.</p>
+                    </div>
+
+                    <div class="section">
+                        <h3><span class="section-icon">✨</span>Particle Systems Technology</h3>
+                        <p><span class="highlight-term">Particle systems technology</span> enables the creation of complex visual effects including explosions, smoke, and atmospheric phenomena. These systems utilize physics engines that simulate the behavior of thousands of individual particles according to fundamental laws of motion and <span class="highlight-term">thermodynamics</span>. Each particle follows calculated trajectories influenced by forces such as gravity, wind resistance, and collision interactions. Animation studios can adjust various parameters including particle density, velocity, and lifespan to achieve desired visual outcomes. The technology has become indispensable for creating spectacular action sequences that would be impossible or extremely dangerous to film with live actors.</p>
+                    </div>
+
+                    <div class="section">
+                        <h3><span class="section-icon">🤖</span>AI Integration</h3>
+                        <p>The integration of <span class="highlight-term">artificial intelligence</span> with physics simulation has opened new possibilities for automated animation generation. Machine learning algorithms can analyze existing motion data to predict natural movement patterns, reducing the manual work required from human animators. Some studios have developed AI systems capable of generating realistic character animations based on simple input parameters, though human oversight remains necessary to ensure artistic quality. These developments suggest that future entertainment production may rely increasingly on automated physics-based animation systems.</p>
+                    </div>
+
+                    <div class="section">
+                        <h3><span class="section-icon">💰</span>Economic Impact</h3>
+                        <p>The economic impact of physics-driven animation technology extends beyond entertainment into educational and scientific visualization applications. Medical institutions use similar techniques to create anatomical models for surgical training, while engineering companies employ animation software to demonstrate complex mechanical systems. The entertainment industry's investment in physics simulation technology has generated innovations that benefit numerous other fields, creating a cycle of technological advancement driven by entertainment market demands.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="demos" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">Interactive Physics Demonstrations</h2>
+                
+                <div class="physics-demo">
+                    <h3>🌊 Fluid Dynamics Simulation</h3>
+                    <p>Watch how particles simulate water movement using physics principles!</p>
+                    <div class="demo-controls">
+                        <button class="demo-button" onclick="startFluidDemo()">Start Water Simulation</button>
+                        <button class="demo-button" onclick="stopFluidDemo()">Stop</button>
+                    </div>
+                    <div class="particle-container" id="fluidContainer"></div>
+                </div>
+
+                <div class="physics-demo">
+                    <h3>💡 Ray-Tracing Light Simulation</h3>
+                    <p>See how light rays are traced through virtual environments!</p>
+                    <div class="demo-controls">
+                        <button class="demo-button" onclick="startLightDemo()">Start Light Tracing</button>
+                        <button class="demo-button" onclick="stopLightDemo()">Stop</button>
+                    </div>
+                    <div class="light-demo" id="lightContainer"></div>
+                </div>
+
+                <div class="physics-demo">
+                    <h3>✨ Particle Systems</h3>
+                    <p>Experience how thousands of particles create special effects!</p>
+                    <div class="demo-controls">
+                        <button class="demo-button" onclick="createExplosion()">Create Explosion</button>
+                        <button class="demo-button" onclick="clearParticles()">Clear</button>
+                    </div>
+                    <div class="particle-container" id="particleContainer"></div>
+                </div>
+            </div>
+
+            <div id="questions" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">IELTS Reading Questions</h2>
+                
+                <div class="question-section">
+                    <h3>Questions 1-6: Matching Headings</h3>
+                    <p>Choose the correct heading for each paragraph from the list below:</p>
+                    
+                    <div style="background: #f8f9ff; padding: 15px; border-radius: 10px; margin: 15px 0;">
+                        <strong>List of Headings:</strong><br>
+                        i. Economic benefits beyond entertainment applications<br>
+                        ii. The role of artificial intelligence in future animation<br>
+                        iii. Capturing and processing human movement data<br>
+                        iv. Scientific accuracy in simulating water and air<br>
+                        v. Creating realistic lighting through electromagnetic principles<br>
+                        vi. Managing thousands of individual particles for special effects
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 1: Paragraph B (Motion Capture)</div>
+                        <select class="dropdown" data-question="1" data-answer="iii">
+                            <option value="">Select heading...</option>
+                            <option value="i">i. Economic benefits beyond entertainment</option>
+                            <option value="ii">ii. The role of artificial intelligence</option>
+                            <option value="iii">iii. Capturing and processing human movement</option>
+                            <option value="iv">iv. Scientific accuracy in simulating water</option>
+                            <option value="v">v. Creating realistic lighting</option>
+                            <option value="vi">vi. Managing individual particles</option>
+                        </select>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 2: Paragraph C (Fluid Dynamics)</div>
+                        <select class="dropdown" data-question="2" data-answer="iv">
+                            <option value="">Select heading...</option>
+                            <option value="i">i. Economic benefits beyond entertainment</option>
+                            <option value="ii">ii. The role of artificial intelligence</option>
+                            <option value="iii">iii. Capturing and processing human movement</option>
+                            <option value="iv">iv. Scientific accuracy in simulating water</option>
+                            <option value="v">v. Creating realistic lighting</option>
+                            <option value="vi">vi. Managing individual particles</option>
+                        </select>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 3: Paragraph D (Lighting)</div>
+                        <select class="dropdown" data-question="3" data-answer="v">
+                            <option value="">Select heading...</option>
+                            <option value="i">i. Economic benefits beyond entertainment</option>
+                            <option value="ii">ii. The role of artificial intelligence</option>
+                            <option value="iii">iii. Capturing and processing human movement</option>
+                            <option value="iv">iv. Scientific accuracy in simulating water</option>
+                            <option value="v">v. Creating realistic lighting</option>
+                            <option value="vi">vi. Managing individual particles</option>
+                        </select>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 4: Paragraph E (Particle Systems)</div>
+                        <select class="dropdown" data-question="4" data-answer="vi">
+                            <option value="">Select heading...</option>
+                            <option value="i">i. Economic benefits beyond entertainment</option>
+                            <option value="ii">ii. The role of artificial intelligence</option>
+                            <option value="iii">iii. Capturing and processing human movement</option>
+                            <option value="iv">iv. Scientific accuracy in simulating water</option>
+                            <option value="v">v. Creating realistic lighting</option>
+                            <option value="vi">vi. Managing individual particles</option>
+                        </select>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 5: Paragraph F (AI Integration)</div>
+                        <select class="dropdown" data-question="5" data-answer="ii">
+                            <option value="">Select heading...</option>
+                            <option value="i">i. Economic benefits beyond entertainment</option>
+                            <option value="ii">ii. The role of artificial intelligence</option>
+                            <option value="iii">iii. Capturing and processing human movement</option>
+                            <option value="iv">iv. Scientific accuracy in simulating water</option>
+                            <option value="v">v. Creating realistic lighting</option>
+                            <option value="vi">vi. Managing individual particles</option>
+                        </select>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 6: Paragraph G (Economic Impact)</div>
+                        <select class="dropdown" data-question="6" data-answer="i">
+                            <option value="">Select heading...</option>
+                            <option value="i">i. Economic benefits beyond entertainment</option>
+                            <option value="ii">ii. The role of artificial intelligence</option>
+                            <option value="iii">iii. Capturing and processing human movement</option>
+                            <option value="iv">iv. Scientific accuracy in simulating water</option>
+                            <option value="v">v. Creating realistic lighting</option>
+                            <option value="vi">vi. Managing individual particles</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="question-section">
+                    <h3>Questions 7-11: Sentence Completion</h3>
+                    <p>Complete the sentences with NO MORE THAN TWO WORDS from the passage:</p>
+
+                    <div class="question">
+                        <div class="question-number">Question 7</div>
+                        <p>Motion capture systems can detect positional changes with <input type="text" class="answer-input" data-question="7" data-answer="millimeter" placeholder="________ precision."></p>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 8</div>
+                        <p>Modern studios record motion at speeds of up to <input type="text" class="answer-input" data-question="8" data-answer="120 frames" placeholder="________ per second."></p>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 9</div>
+                        <p>Fluid dynamics software uses <input type="text" class="answer-input" data-question="9" data-answer="Navier-Stokes equations" placeholder="________ to calculate how liquids behave."></p>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 10</div>
+                        <p>Ray-tracing technology works by following individual <input type="text" class="answer-input" data-question="10" data-answer="photon paths" placeholder="________ through virtual environments."></p>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 11</div>
+                        <p>Particle systems simulate effects by applying fundamental laws of motion and <input type="text" class="answer-input" data-question="11" data-answer="thermodynamics" placeholder="________."></p>
+                    </div>
+                </div>
+
+                <div class="question-section">
+                    <h3>Questions 12-14: True/False/Not Given</h3>
+                    <p>Choose YES, NO, or NOT GIVEN:</p>
+
+                    <div class="question">
+                        <div class="question-number">Question 12</div>
+                        <p>Traditional hand-drawn animation always produced unrealistic water movement effects.</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q12" value="YES" data-question="12" data-answer="NO">
+                                <span>YES</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q12" value="NO" data-question="12" data-answer="NO">
+                                <span>NO</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q12" value="NOT GIVEN" data-question="12" data-answer="NO">
+                                <span>NOT GIVEN</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 13</div>
+                        <p>Ray-tracing technology requires expensive specialized computer equipment.</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q13" value="YES" data-question="13" data-answer="YES">
+                                <span>YES</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q13" value="NO" data-question="13" data-answer="YES">
+                                <span>NO</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q13" value="NOT GIVEN" data-question="13" data-answer="YES">
+                                <span>NOT GIVEN</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <div class="question-number">Question 14</div>
+                        <p>AI systems can now create character animations without any human supervision.</p>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q14" value="YES" data-question="14" data-answer="NO">
+                                <span>YES</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q14" value="NO" data-question="14" data-answer="NO">
+                                <span>NO</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q14" value="NOT GIVEN" data-question="14" data-answer="NO">
+                                <span>NOT GIVEN</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="check-answers" onclick="checkAnswers()">Check My Answers 🎯</button>
+            </div>
+
+            <div id="results" class="tab-content">
+                <h2 style="color: #667eea; margin-bottom: 20px;">Your Results</h2>
+                <div id="scoreContainer">
+                    <p style="text-align: center; font-size: 1.2rem; color: #666;">Complete the questions to see your results!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let fluidInterval, lightInterval;
+        let answers = {};
+        
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Update progress
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            const tabs = ['reading', 'demos', 'questions', 'results'];
+            const activeTab = document.querySelector('.tab-content.active').id;
+            const progress = (tabs.indexOf(activeTab) + 1) * 25;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+        
+        function startFluidDemo() {
+            const container = document.getElementById('fluidContainer');
+            container.innerHTML = '';
+            
+            fluidInterval = setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 80 + 20 + '%';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 5000);
+            }, 200);
+        }
+        
+        function stopFluidDemo() {
+            if (fluidInterval) {
+                clearInterval(fluidInterval);
+            }
+        }
+        
+        function startLightDemo() {
+            const container = document.getElementById('lightContainer');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 12; i++) {
+                const ray = document.createElement('div');
+                ray.className = 'light-ray';
+                ray.style.left = '30%';
+                ray.style.bottom = '30%';
+                ray.style.transform = `rotate(${i * 30}deg)`;
+                ray.style.animationDelay = i * 0.1 + 's';
+                container.appendChild(ray);
+            }
+        }
+        
+        function stopLightDemo() {
+            document.getElementById('lightContainer').innerHTML = '';
+        }
+        
+        function createExplosion() {
+            const container = document.getElementById('particleContainer');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = '50%';
+                particle.style.top = '50%';
+                particle.style.background = `hsl(${Math.random() * 60 + 15}, 100%, 60%)`;
+                
+                const angle = (Math.PI * 2 * i) / 50;
+                const velocity = Math.random() * 100 + 50;
+                const x = Math.cos(angle) * velocity;
+                const y = Math.sin(angle) * velocity;
+                
+                particle.style.animation = `explode 2s ease-out forwards`;
+                particle.style.setProperty('--x', x + 'px');
+                particle.style.setProperty('--y', y + 'px');
+                
+                container.appendChild(particle);
+            }
+            
+            // Add explosion animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes explode {
+                    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+                    100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        function clearParticles() {
+            document.getElementById('particleContainer').innerHTML = '';
+        }
+        
+        function checkAnswers() {
+            let score = 0;
+            const totalQuestions = 14;
+            const results = [];
+            
+            // Check dropdown answers (Questions 1-6)
+            for (let i = 1; i <= 6; i++) {
+                const element = document.querySelector(`[data-question="${i}"]`);
+                const userAnswer = element.value;
+                const correctAnswer = element.getAttribute('data-answer');
+                
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    results.push({ question: i, correct: true, userAnswer, correctAnswer });
+                } else {
+                    results.push({ question: i, correct: false, userAnswer, correctAnswer });
+                }
+                
+                // Add visual feedback
+                element.style.borderColor = userAnswer === correctAnswer ? '#28a745' : '#dc3545';
+            }
+            
+            // Check text input answers (Questions 7-11)
+            for (let i = 7; i <= 11; i++) {
+                const element = document.querySelector(`[data-question="${i}"]`);
+                const userAnswer = element.value.toLowerCase().trim();
+                const correctAnswer = element.getAttribute('data-answer').toLowerCase();
+                
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    results.push({ question: i, correct: true, userAnswer, correctAnswer });
+                } else {
+                    results.push({ question: i, correct: false, userAnswer, correctAnswer });
+                }
+                
+                // Add visual feedback
+                element.style.borderColor = userAnswer === correctAnswer ? '#28a745' : '#dc3545';
+            }
+            
+            // Check radio button answers (Questions 12-14)
+            for (let i = 12; i <= 14; i++) {
+                const selectedRadio = document.querySelector(`input[name="q${i}"]:checked`);
+                const userAnswer = selectedRadio ? selectedRadio.value : '';
+                const correctAnswer = selectedRadio ? selectedRadio.getAttribute('data-answer') : '';
+                
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    results.push({ question: i, correct: true, userAnswer, correctAnswer });
+                } else {
+                    results.push({ question: i, correct: false, userAnswer, correctAnswer });
+                }
+                
+                // Add visual feedback to radio group
+                const radioGroup = document.querySelector(`input[name="q${i}"]`).closest('.radio-group');
+                radioGroup.style.borderLeft = userAnswer === correctAnswer ? '4px solid #28a745' : '4px solid #dc3545';
+                radioGroup.style.paddingLeft = '10px';
+            }
+            
+            // Calculate percentage and band score
+            const percentage = Math.round((score / totalQuestions) * 100);
+            let bandScore;
+            
+            if (percentage >= 90) bandScore = '8.0-9.0';
+            else if (percentage >= 80) bandScore = '7.0-7.5';
+            else if (percentage >= 70) bandScore = '6.5';
+            else if (percentage >= 60) bandScore = '6.0';
+            else if (percentage >= 50) bandScore = '5.5';
+            else if (percentage >= 40) bandScore = '5.0';
+            else bandScore = '4.0-4.5';
+            
+            // Display results
+            displayResults(score, totalQuestions, percentage, bandScore, results);
+            
+            // Switch to results tab
+            showTab('results');
+            document.querySelector('[onclick="showTab(\'results\')"]').classList.add('active');
+        }
+        
+        function displayResults(score, total, percentage, bandScore, results) {
+            const container = document.getElementById('scoreContainer');
+            
+            let resultHTML = `
+                <div class="score-display">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎯</div>
+                    <div>Your Score: ${score}/${total}</div>
+                    <div style="font-size: 1.2rem; margin: 10px 0;">${percentage}%</div>
+                    <div style="background: white; padding: 15px; border-radius: 10px; margin-top: 20px;">
+                        <strong>Estimated IELTS Band Score: ${bandScore}</strong>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h3 style="color: #667eea; margin-bottom: 20px;">Detailed Feedback:</h3>
+            `;
+            
+            results.forEach(result => {
+                const icon = result.correct ? '✅' : '❌';
+                const feedbackClass = result.correct ? 'correct' : 'incorrect';
+                
+                resultHTML += `
+                    <div class="feedback ${feedbackClass}">
+                        ${icon} <strong>Question ${result.question}:</strong> 
+                        ${result.correct ? 'Correct!' : `Incorrect. Your answer: "${result.userAnswer || 'No answer'}", Correct answer: "${result.correctAnswer}"`}
+                    </div>
+                `;
+            });
+            
+            resultHTML += `
+                </div>
+                
+                <div style="background: #f8f9ff; padding: 20px; border-radius: 15px; margin-top: 30px;">
+                    <h4 style="color: #667eea; margin-bottom: 15px;">🎓 Study Tips for Improvement:</h4>
+                    <ul style="list-style-type: none; padding: 0;">
+                        <li style="margin-bottom: 10px;">📖 <strong>Reading:</strong> Practice identifying main ideas and supporting details</li>
+                        <li style="margin-bottom: 10px;">🔍 <strong>Vocabulary:</strong> Focus on scientific and technical terms</li>
+                        <li style="margin-bottom: 10px;">⏱️ <strong>Time Management:</strong> Practice completing passages within 20 minutes</li>
+                        <li style="margin-bottom: 10px;">📝 <strong>Question Types:</strong> Familiarize yourself with all IELTS question formats</li>
+                    </ul>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="demo-button" onclick="resetQuiz()" style="font-size: 1.1rem; padding: 12px 24px;">
+                        🔄 Try Again
+                    </button>
+                </div>
+            `;
+            
+            container.innerHTML = resultHTML;
+        }
+        
+        function resetQuiz() {
+            // Clear all answers
+            document.querySelectorAll('.answer-input').forEach(input => {
+                input.value = '';
+                input.style.borderColor = '#e9ecef';
+            });
+            
+            document.querySelectorAll('.dropdown').forEach(select => {
+                select.value = '';
+                select.style.borderColor = '#e9ecef';
+            });
+            
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+            });
+            
+            document.querySelectorAll('.radio-group').forEach(group => {
+                group.style.borderLeft = 'none';
+                group.style.paddingLeft = '0';
+            });
+            
+            // Reset results
+            document.getElementById('scoreContainer').innerHTML = `
+                <p style="text-align: center; font-size: 1.2rem; color: #666;">Complete the questions to see your results!</p>
+            `;
+            
+            // Go back to questions tab
+            showTab('questions');
+        }
+        
+        // Add hover effects to highlighted terms
+        document.querySelectorAll('.highlight-term').forEach(term => {
+            term.addEventListener('click', function() {
+                const tooltip = document.createElement('div');
+                tooltip.style.cssText = `
+                    position: absolute;
+                    background: #333;
+                    color: white;
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    font-size: 0.9rem;
+                    z-index: 1000;
+                    max-width: 200px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                `;
+                
+                const term = this.textContent;
+                const definitions = {
+                    'Motion capture technology': 'Technology that records human movement for digital animation',
+                    'millimeter precision': 'Extremely accurate measurement to the nearest millimeter',
+                    '120 frames per second': 'High-speed recording capturing 120 images every second',
+                    'Fluid dynamics simulation': 'Computer modeling of liquid and gas behavior',
+                    'Navier-Stokes equations': 'Mathematical equations describing fluid motion',
+                    'ray-tracing algorithms': 'Computer methods for calculating realistic lighting',
+                    'photon paths': 'The routes that light particles travel through scenes',
+                    'Particle systems technology': 'Systems that simulate thousands of small objects',
+                    'thermodynamics': 'The science of heat and energy transfer',
+                    'artificial intelligence': 'Computer systems that can perform tasks requiring human intelligence'
+                };
+                
+                tooltip.textContent = definitions[term] || 'Key technical term in animation physics';
+                document.body.appendChild(tooltip);
+                
+                const rect = this.getBoundingClientRect();
+                tooltip.style.left = rect.left + 'px';
+                tooltip.style.top = (rect.bottom + 5) + 'px';
+                
+                setTimeout(() => {
+                    if (tooltip.parentNode) {
+                        tooltip.parentNode.removeChild(tooltip);
+                    }
+                }, 3000);
+            });
+        });
+        
+        // Initialize progress bar
+        updateProgress();
+        
+        // Auto-save answers
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('change', function() {
+                const question = this.getAttribute('data-question');
+                if (question) {
+                    answers[question] = this.value || this.checked;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

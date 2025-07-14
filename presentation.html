@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IterLight - Personalized AI Educational Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #27548A;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: #27548A;
+            color: white;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            position: relative;
+            height: calc(100vh - 80px); /* Subtract header height */
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            height: calc(100vh - 80px); /* Subtract header height */
+            padding: 3rem;
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide h1 {
+            font-size: 3rem;
+            color: #27548A;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .slide h2 {
+            font-size: 2rem;
+            color: #27548A;
+            margin: 2rem 0 1rem 0;
+            border-bottom: 3px solid #F5EEDC;
+            padding-bottom: 0.5rem;
+        }
+
+        .slide h3 {
+            font-size: 1.5rem;
+            color: #444;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 2rem 0;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            max-height: calc(100vh - 400px);
+            overflow-y: auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table th {
+            background: #27548A;
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .testimonial {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: 0;
+            left: 1rem;
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-arrow {
+            width: 50px;
+            height: 50px;
+            background: #27548A;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-arrow:hover {
+            background: #1e3f6f;
+            transform: scale(1.1);
+        }
+
+        .nav-arrow:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #27548A;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #27548A 0%, #1e3f6f 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-button {
+            background: #F5EEDC;
+            color: #27548A;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .slide-indicator {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(39, 84, 138, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: #27548A;
+        }
+
+        ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: #F5EEDC;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="iterlight_logo.png" alt="IterLight Logo">
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" onclick="showSlide(0)">Mục tiêu</button>
+                <button class="nav-tab" onclick="showSlide(1)">Đối tượng</button>
+                <button class="nav-tab" onclick="showSlide(2)">Sản phẩm</button>
+                <button class="nav-tab" onclick="showSlide(3)">Lợi thế</button>
+                <button class="nav-tab" onclick="showSlide(4)">Phản hồi</button>
+                <button class="nav-tab" onclick="showSlide(5)">Liên hệ</button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <!-- Slide 1: Overview -->
+            <!-- Removed the first slide (Overview) section -->
+
+            <!-- Slide 1: Project Goals -->
+            <section class="slide active">
+                <h1>Mục tiêu dự án</h1>
+                
+                <div class="cta-section">
+                    <h2 style="color: white; border: none;">Tầm nhìn chung</h2>
+                    <p style="font-size: 1.2rem;">Mang công nghệ học tập cá nhân hóa ứng dụng AI đến các trung tâm giáo dục hàng đầu, giúp học sinh học tập hiệu quả hơn và giáo viên giảng dạy dễ dàng hơn.</p>
+                </div>
+
+                <h2>Các mục tiêu chiến lược</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔬</div>
+                        <h3>Phát triển công nghệ AI</h3>
+                        <p>Tạo lộ trình học, nội dung và đánh giá thích ứng (adaptive assessment) theo thời gian thực</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h3>Tích hợp hệ thống</h3>
+                        <p>Tích hợp công nghệ vào hệ thống vận hành hiện tại của đối tác, hỗ trợ đồng thương hiệu</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Tăng động lực học tập</h3>
+                        <p>Cá nhân hóa theo sở thích & mục tiêu từng học viên</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏗️</div>
+                        <h3>Hệ sinh thái thông minh</h3>
+                        <p>Nền tảng mở rộng quy mô mà vẫn giữ cá nhân hóa sâu</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Đối tác chiến lược</h3>
+                        <p>Định vị IterLight là đối tác đồng kiến tạo chiến lược</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3: Target Audience -->
+            <section class="slide">
+                <h1>Đối tượng triển khai</h1>
+                
+                <h2>Thị trường Châu Á (Việt Nam, Singapore – mở rộng)</h2>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-number">2+</div>
+                        <div class="stat-label">Quốc gia chính</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Trung tâm tiềm năng</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Học sinh mục tiêu</div>
+                    </div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🏫 Trung tâm giáo dục</h3>
+                        <ul>
+                            <li>Tư vấn du học</li>
+                            <li>Luyện thi IELTS, A-Level, SAT</li>
+                            <li>Kỹ năng (debate)</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌐 Trường quốc tế</h3>
+                        <ul>
+                            <li>Bilingual schools</li>
+                            <li>Hướng đến đào tạo cá nhân hóa</li>
+                            <li>Chương trình quốc tế</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎯 Tiêu chí đối tác</h3>
+                        <ul>
+                            <li>Quy mô và mô hình ổn định</li>
+                            <li>Cam kết chất lượng rõ ràng</li>
+                            <li>Sở hữu hệ thống LMS hoặc có nhu cầu nâng cấp</li>
+                            <li>Tư duy đổi mới, sẵn sàng tích hợp AI</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Product Features -->
+            <section class="slide">
+                <h1>Tính năng sản phẩm</h1>
+                
+                <h2>Tính năng chủ lực của IterLight</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Lộ trình học cá nhân hóa + KPI theo tháng</h3>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>AI-generated worksheets cá nhân hóa theo sở thích, trình độ</h3>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Dashboard phụ huynh & giáo viên: cập nhật tiến độ real-time</h3>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>AI phát hiện điểm yếu tiềm ẩn & đề xuất giải pháp học phù hợp</h3>
+                    </div>
+                </div>
+
+                <h2>So sánh với thị trường hiện tại</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Tiêu chí</th>
+                            <th>Thị trường hiện tại</th>
+                            <th>IterLight mang lại</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cá nhân hóa lộ trình</strong></td>
+                            <td>Theo điểm đầu vào/mục tiêu</td>
+                            <td><span class="highlight">Dựa trên hành vi học + sở thích sâu</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Feedback AI</strong></td>
+                            <td>Phát hiện lỗi → sửa lỗi</td>
+                            <td><span class="highlight">Gợi ý cải thiện, ví dụ luyện tập thực chiến</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phát âm & Viết</strong></td>
+                            <td>Chấm điểm, sửa ngữ pháp</td>
+                            <td><span class="highlight">Gợi ý cách nói/viết lại tốt hơn, bài tập luyện thêm</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nội dung học</strong></td>
+                            <td>Dựng sẵn từ ngân hàng đề</td>
+                            <td><span class="highlight">Có thể tạo mới theo học sinh cụ thể</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dự báo & can thiệp</strong></td>
+                            <td>Không có hoặc bị động</td>
+                            <td><span class="highlight">Cảnh báo sớm + hành động kịp thời</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Slide 5: Competitive Advantages -->
+            <section class="slide">
+                <h1>Lợi thế cạnh tranh và năng lực cốt lõi</h1>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>1. Cá nhân hóa toàn diện</h3>
+                        <p>→ Học viên được thiết kế <span class="highlight">lộ trình toàn diện</span> không chỉ theo kết quả đầu vào/đầu ra mà còn theo sở thích, tốc độ tiếp thu, chiến lược thi & mục tiêu học tập cá nhân</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>2. Dynamic Content Generation / Adaptive learning</h3>
+                        <p>→ AI tự tạo bài tập theo thời gian thực dựa trên <span class="highlight">lỗi sai vừa mắc + chủ đề học sinh yêu thích</span></p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>3. Predictive Analytics</h3>
+                        <p>→ Phát hiện sớm vấn đề tiềm ẩn + đề xuất hành động → <span class="highlight">giúp duy trì chất lượng đầu ra</span></p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>4. Công cụ theo dõi & báo cáo toàn diện</h3>
+                        <p>→ Tăng chất lượng phản hồi, <span class="highlight">giúp giáo viên dạy sâu hơn mà không bị quá tải</span></p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>5. Gia tăng giá trị thương hiệu</h3>
+                        <p>→ Không chỉ là "AI chấm bài" mà là <span class="highlight">AI hỗ trợ huấn luyện chiến lược</span><br>
+                        → Định vị đối tác là trung tâm dẫn đầu trong giáo dục cá nhân hóa bằng AI</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: Customer Testimonials -->
+            <section class="slide">
+                <h1>Phản hồi từ khách hàng</h1>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">"IterLight không chỉ là một nền tảng. Với từng gia đình, nó là một người đồng hành thật sự trong hành trình giáo dục."</div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>📚 Lily (13 tuổi) – Khai phá nội lực qua kỹ năng viết</h3>
+                        <p><strong>Thách thức:</strong> Không biết bắt đầu bài luận, cảm thấy "mình không có gì đặc biệt để kể"</p>
+                        <p><strong>Kết quả:</strong> Viết thành công chuỗi bài luận truyền cảm hứng về "nắm gạo của bà ngoại" và khởi động dự án làm bánh nướng</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🏎️ Sophia (17 tuổi) – Từ "sợ toán" đến tạo TikTok dạy toán</h3>
+                        <p><strong>Thách thức:</strong> Toán là rào cản lớn khi chuẩn bị thi SAT</p>
+                        <p><strong>Kết quả:</strong> Học toán qua Formula 1, cải thiện điểm số và tạo content TikTok về toán học</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🎮 Alex (11 tuổi) – Biến sở thích thành động lực học tập</h3>
+                        <p><strong>Thách thức:</strong> Nghiện game, không quan tâm đến học thuật truyền thống</p>
+                        <p><strong>Kết quả:</strong> Thiết kế worksheet toán gắn với Harry Potter, tự thiết kế bìa truyện và đặt mục tiêu vào đội bóng rổ</p>
+                    </div>
+                </div>
+
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Học sinh cải thiện kỹ năng chính yếu</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">95%+</div>
+                        <div class="stat-label">Phụ huynh đánh giá con tiến bộ rõ rệt</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">90%+</div>
+                        <div class="stat-label">Bài tập hoàn thành do hứng thú</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Học sinh tiếp tục sau thử nghiệm</div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">"Con tôi không còn sợ Toán – nhờ bài tập dựa trên đam mê Formula 1"</div>
+                    <div class="testimonial-author">– Mrs. Pham</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">"Con tôi biết viết những bài luận chạm đến trái tim – vì được tìm ra giọng nói thật của mình"</div>
+                    <div class="testimonial-author">– Ms. Nguyen</div>
+                </div>
+            </section>
+
+            <!-- Slide 7: Contact -->
+            <section class="slide">
+                <h1>Liên hệ hợp tác</h1>
+                
+                <div class="cta-section">
+                    <h2 style="color: white; border: none;">Sẵn sàng cách mạng hóa giáo dục?</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">Hãy cùng IterLight xây dựng tương lai giáo dục cá nhân hóa cho thế hệ trẻ Việt Nam</p>
+                    <button class="cta-button">Đăng ký tư vấn miễn phí</button>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🤝 Hợp tác B2B2C</h3>
+                        <ul>
+                            <li>Tích hợp AI vào hệ thống hiện tại</li>
+                            <li>Đào tạo giáo viên</li>
+                            <li>Chia sẻ doanh thu</li>
+                            <li>Đồng thương hiệu</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>📞 Thông tin liên hệ</h3>
+                        <ul>
+                            <li>Website: iterlight.com</li>
+                            <li>Email: info@iterlight.com</li>
+                            <li>Điện thoại: +1 (312) 730-3724</li>
+                            <li>Địa chỉ: Clearwater, FL, USA</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🎯 Mô hình hợp tác</h3>
+                        <ul>
+                            <li><strong>Platinum:</strong> Độc quyền địa phương</li>
+                            <li><strong>Gold:</strong> Tích hợp sâu công nghệ</li>
+                            <li><strong>Silver:</strong> Sử dụng cơ bản</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">Cảm ơn bạn đã quan tâm đến IterLight. Chúng tôi mong muốn được đồng hành cùng bạn trong việc mang lại trải nghiệm giáo dục tốt nhất cho học sinh Việt Nam.</div>
+                </div>
+            </section>
+        </main>
+
+        <div class="navigation">
+            <button class="nav-arrow" onclick="previousSlide()" id="prevBtn">‹</button>
+            <button class="nav-arrow" onclick="nextSlide()" id="nextBtn">›</button>
+        </div>
+
+        <div class="slide-indicator">
+            <div class="indicator-dot active" onclick="showSlide(0)"></div>
+            <div class="indicator-dot" onclick="showSlide(1)"></div>
+            <div class="indicator-dot" onclick="showSlide(2)"></div>
+            <div class="indicator-dot" onclick="showSlide(3)"></div>
+            <div class="indicator-dot" onclick="showSlide(4)"></div>
+            <div class="indicator-dot" onclick="showSlide(5)"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 6;
+
+        function showSlide(index) {
+            // Hide all slides
+            const slides = document.querySelectorAll('.slide');
+            const tabs = document.querySelectorAll('.nav-tab');
+            const dots = document.querySelectorAll('.indicator-dot');
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Show current slide
+            slides[index].classList.add('active');
+            tabs[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            currentSlide = index;
+            updateNavigationButtons();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    showSlide(0);
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    showSlide(totalSlides - 1);
+                    break;
+            }
+        });
+
+        // Initialize
+        updateNavigationButtons();
+
+        // Add smooth transitions and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate feature cards on slide change
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all feature cards
+            document.querySelectorAll('.feature-card, .stat-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .feature-card, .stat-card {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            .slide.active .feature-card,
+            .slide.active .stat-card {
+                animation: fadeInUp 0.6s ease forwards;
+            }
+
+            .slide.active .feature-card:nth-child(1) { animation-delay: 0.1s; }
+            .slide.active .feature-card:nth-child(2) { animation-delay: 0.2s; }
+            .slide.active .feature-card:nth-child(3) { animation-delay: 0.3s; }
+            .slide.active .feature-card:nth-child(4) { animation-delay: 0.4s; }
+            .slide.active .feature-card:nth-child(5) { animation-delay: 0.5s; }
+
+            .slide.active .stat-card:nth-child(1) { animation-delay: 0.1s; }
+            .slide.active .stat-card:nth-child(2) { animation-delay: 0.2s; }
+            .slide.active .stat-card:nth-child(3) { animation-delay: 0.3s; }
+            .slide.active .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+            .slide {
+                transition: all 0.5s ease;
+            }
+
+            .nav-tab {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .nav-tab::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                transition: left 0.5s;
+            }
+
+            .nav-tab:hover::after {
+                left: 100%;
+            }
+
+            .testimonial {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .testimonial::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                right: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+                animation: float 6s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                50% { transform: translateY(-20px) rotate(180deg); }
+            }
+
+            .logo {
+                animation: pulse 2s ease-in-out infinite;
+            }
+
+            @keyframes pulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+            }
+
+            .cta-button {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .cta-button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(39, 84, 138, 0.3), transparent);
+                transition: left 0.5s;
+            }
+
+            .cta-button:hover::before {
+                left: 100%;
+            }
+
+            /* Responsive design */
+            @media (max-width: 768px) {
+                .header {
+                    flex-direction: column;
+                    gap: 1rem;
+                }
+
+                .nav-tabs {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                .slide {
+                    padding: 1.5rem;
+                    height: calc(100vh - 120px);
+                }
+
+                .slide h1 {
+                    font-size: 2rem;
+                }
+
+                .features-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1rem;
+                    max-height: calc(100vh - 300px);
+                }
+
+                .comparison-table {
+                    font-size: 0.9rem;
+                }
+
+                .navigation {
+                    bottom: 1rem;
+                    right: 1rem;
+                }
+
+                .hero-section {
+                    max-height: calc(100vh - 250px);
+                }
+            }
+
+            @media (max-width: 480px) {
+                .nav-tab {
+                    padding: 0.5rem 1rem;
+                    font-size: 0.9rem;
+                }
+
+                .slide h1 {
+                    font-size: 1.5rem;
+                }
+
+                .slide h2 {
+                    font-size: 1.3rem;
+                }
+
+                .feature-card {
+                    padding: 1.5rem;
+                }
+
+                .stats-container {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

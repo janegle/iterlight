@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Học Viện Bóng Rổ Pokemon của Ash - Phiêu lưu tiếng Anh lớp 1">
+    <title>Học Viện Bóng Rổ Pokemon của Ash - Phiêu Lưu Tiếng Anh</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #F5F5F5;
+            color: #1A1A1A;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            margin: 0;
+            padding: 1rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #FFF;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 2px solid #2C3E50;
+        }
+        
+        .header {
+            background: #2E4057;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+            border-bottom: 3px solid #1A252F;
+        }
+        
+        .header::before {
+            content: "🏀⚡🏆🎯";
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+        
+        .student-info {
+            background: #F8F9FA;
+            padding: 1rem;
+            margin: 1rem;
+            border-radius: 15px;
+            border: 2px solid #495057;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #1A1A1A;
+        }
+        
+        .intro-section {
+            background: #1E3A5F;
+            color: #FFFFFF;
+            padding: 2rem;
+            margin: 1rem;
+            border-radius: 15px;
+            position: relative;
+            border: 2px solid #0F1B2E;
+        }
+        
+        .intro-section::before {
+            content: "⚡";
+            font-size: 4rem;
+            position: absolute;
+            top: -1rem;
+            right: 1rem;
+        }
+        
+        .intro-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .section {
+            margin: 2rem 1rem;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            border: 2px solid #6C757D;
+        }
+        
+        .section-header {
+            background: #B71C1C;
+            padding: 1.5rem;
+            color: #FFFFFF;
+            border-bottom: 3px solid #8B0000;
+        }
+        
+        .section-title {
+            font-size: 1.6rem;
+            margin: 0;
+            font-weight: bold;
+        }
+        
+        .lesson-box {
+            background: #E8F5E8;
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #4CAF50;
+        }
+        
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1B5E20;
+            margin-bottom: 0.5rem;
+        }
+        
+        .lesson-content {
+            color: #2E7D32;
+            font-size: 1rem;
+        }
+        
+        .story-box {
+            background: #FFF8E1;
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #F57C00;
+            color: #E65100;
+        }
+        
+        .emergency-alert {
+            background: #FFEBEE;
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #E53935;
+            color: #C62828;
+            position: relative;
+        }
+        
+        .emergency-alert::before {
+            content: "🚨";
+            font-size: 2rem;
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+        }
+        
+        .event-sequence {
+            background: #F0F4F8;
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #64748B;
+        }
+        
+        .event-item {
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #3B82F6;
+            color: #1E3A8A;
+            font-weight: 500;
+        }
+        
+        .word-box {
+            background: #EDF2F7;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px dashed #4A5568;
+            margin: 1rem 0;
+            text-align: center;
+            color: #2D3748;
+        }
+        
+        .sequence-answers {
+            background: #F7FAFC;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 2px solid #A0AEC0;
+        }
+        
+        .sequence-line {
+            margin: 0.8rem 0;
+            color: #2D3748;
+            font-size: 1.1rem;
+        }
+        
+        .vocabulary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem;
+        }
+        
+        .vocab-item {
+            background: #F8F9FA;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid #6C757D;
+            text-align: center;
+        }
+        
+        .vocab-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .vocab-text {
+            color: #1A1A1A;
+            font-weight: bold;
+        }
+        
+        .choices {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        
+        .choice {
+            padding: 0.5rem;
+            background: #F8F9FA;
+            border: 1px solid #6C757D;
+            border-radius: 5px;
+            color: #495057;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .choice:hover {
+            background: #E9ECEF;
+            border-color: #495057;
+        }
+        
+        .question-container {
+            margin: 1.5rem 1rem;
+            padding: 1rem;
+            background: #F8F9FA;
+            border-radius: 10px;
+            border: 2px solid #42A5F5;
+        }
+        
+        .question {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #0D47A1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .answer-line {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            color: #1A1A1A;
+        }
+        
+        .answer-blank {
+            display: inline-block;
+            width: 150px;
+            height: 2px;
+            background: #1565C0;
+            margin: 0 5px;
+            vertical-align: baseline;
+        }
+        
+        .dialogue-scenario {
+            background: #F3E5F5;
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid #9C27B0;
+        }
+        
+        .character-speech {
+            background: #E1F5FE;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            border-left: 4px solid #0288D1;
+            color: #01579B;
+        }
+        
+        .story-passage {
+            background: #FFF3E0;
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #FF8F00;
+            color: #E65100;
+            line-height: 1.8;
+        }
+        
+        .story-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #BF360C;
+        }
+        
+        .comparison-table {
+            background: #F0F4F8;
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid #64748B;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 0.8rem;
+            background: white;
+            border-radius: 8px;
+            color: #2D3748;
+            align-items: center;
+        }
+        
+        .vs-divider {
+            text-align: center;
+            font-weight: bold;
+            color: #E53E3E;
+            font-size: 1.2rem;
+        }
+        
+        .creative-section {
+            background: #F7FAFC;
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid #4299E1;
+        }
+        
+        .creative-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2B6CB0;
+            margin-bottom: 1rem;
+        }
+        
+        .drawing-prompt {
+            background: #FED7D7;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px dashed #E53E3E;
+            margin: 1rem 0;
+            color: #C53030;
+        }
+        
+        .writing-prompt {
+            background: #D6F5D6;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px dashed #38A169;
+            margin: 1rem 0;
+            color: #2F855A;
+        }
+        
+        .final-section {
+            background: #2E7D32;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 2rem;
+            margin: 1rem;
+            border-radius: 15px;
+            border: 2px solid #1B5E20;
+        }
+        
+        .final-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .celebration {
+            background: rgba(255,255,255,0.15);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-style: italic;
+            border-left: 4px solid #FFD600;
+        }
+        
+        .moral-lesson {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-weight: bold;
+            border: 2px solid #81C784;
+        }
+        
+        @media (min-width: 768px) {
+            body {
+                padding: 2rem;
+            }
+            
+            .header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .vocabulary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            body {
+                padding: 3rem;
+            }
+            
+            .vocabulary-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #2C2C2C;
+                color: #FFFFFF;
+            }
+            
+            .container {
+                background: #3C3C3C;
+                color: #FFFFFF;
+            }
+            
+            .section {
+                background: #2C2C2C;
+            }
+            
+            .question-container {
+                background: #3C3C3C;
+                color: #FFFFFF;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .container {
+                box-shadow: none;
+                border: 1px solid black;
+            }
+            
+            .section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HỌC VIỆN B&Oacute;NG RỔ POKEMON CỦA ASH</h1>
+            <div class="subtitle">PHIÊU LƯU TIẾNG ANH LỚP 1</div>
+        </div>
+        
+        <div class="student-info">
+            <strong>T&ecirc;n Huấn Luyện Vi&ecirc;n:</strong> _________________ ( ) 
+            <strong>Ng&agrave;y:</strong> _____________ 
+            <strong>Điểm:</strong> _____ / 30
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">⚡ PHẦN A: SẮP XẾP C&Acirc;U CHUYỆN (5 điểm)</div>
+            </div>
+            
+            <div class="lesson-box">
+                <div class="lesson-title">📖 B&Agrave;I HỌC: Thứ Tự Sự Kiện</div>
+                <div class="lesson-content">
+                    C&acirc;u chuyện xảy ra theo thứ tự đặc biệt - trước ti&ecirc;n, tiếp theo, sau đ&oacute;, cuối c&ugrave;ng. Hiểu được thứ tự gi&uacute;p ch&uacute;ng ta theo d&otilde;i những g&igrave; đang xảy ra!<br><br>
+                    <strong>V&iacute; dụ:</strong> First I wake up, Next I brush my teeth, Then I eat breakfast, Finally I go to school.
+                </div>
+            </div>
+            
+            <div class="emergency-alert">
+                <strong>🏀 T&igrave;nh Huống Khẩn Cấp:</strong> Ash nhận được tin nhắn khẩn từ Pokemon League: "Gi&uacute;p đỡ! Chiếc Golden Basketball Trophy đ&atilde; biến mất trong buổi lễ trao giải Pokemon Basketball Championship tối qua!"
+            </div>
+            
+            <div class="story-box">
+                <strong>Sắp xếp c&aacute;c sự kiện n&agrave;y theo đ&uacute;ng thứ tự bằng c&aacute;ch viết 1, 2, 3, 4, 5:</strong>
+            </div>
+            
+            <div class="event-sequence">
+                <div class="event-item">
+                    <strong>___</strong> Ash discovered muddy footprints leading to the Pokemon Center.
+                </div>
+                <div class="event-item">
+                    <strong>___</strong> The Pokemon League officials noticed the Golden Basketball Trophy was missing at sunrise.
+                </div>
+                <div class="event-item">
+                    <strong>___</strong> Ash arrived at the championship arena with Pikachu.
+                </div>
+                <div class="event-item">
+                    <strong>___</strong> A mysterious figure was seen sneaking around during the victory celebration.
+                </div>
+                <div class="event-item">
+                    <strong>___</strong> Ash followed the clues and found the trophy hidden behind the basketball practice equipment.
+                </div>
+            </div>
+            
+            <div class="story-box">
+                <strong>Bây giờ h&atilde;y viết lại c&acirc;u chuyện theo thứ tự sử dụng c&aacute;c từ chỉ thời gian:</strong>
+            </div>
+            
+            <div class="word-box">
+                <strong>Hộp Từ Vựng:</strong> First &nbsp;&nbsp; Next &nbsp;&nbsp; Then &nbsp;&nbsp; After that &nbsp;&nbsp; Finally
+            </div>
+            
+            <div class="sequence-answers">
+                <div class="sequence-line"><strong>1.</strong> <span class="answer-blank"></span>, <span class="answer-blank"></span></div>
+                <div class="sequence-line"><strong>2.</strong> <span class="answer-blank"></span>, <span class="answer-blank"></span></div>
+                <div class="sequence-line"><strong>3.</strong> <span class="answer-blank"></span>, <span class="answer-blank"></span></div>
+                <div class="sequence-line"><strong>4.</strong> <span class="answer-blank"></span>, <span class="answer-blank"></span></div>
+                <div class="sequence-line"><strong>5.</strong> <span class="answer-blank"></span>, <span class="answer-blank"></span></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">🏀 PHẦN B: LÂU Đ&Agrave;I TỪ VỰNG POKEMON BASKETBALL (5 điểm)</div>
+            </div>
+            
+            <div class="lesson-box">
+                <div class="lesson-title">🔍 B&Agrave;I HỌC: Từ Vựng Thể Thao v&agrave; Pokemon</div>
+                <div class="lesson-content">
+                    B&oacute;ng rổ Pokemon c&oacute; những từ đặc biệt cho người chơi, địa điểm v&agrave; đồ vật m&agrave; ch&uacute;ng ta vẫn c&oacute; thể học h&ocirc;m nay!<br><br>
+                    <strong>V&iacute; dụ:</strong> trainer (huấn luyện vi&ecirc;n), arena (s&acirc;n thi đấu), basketball (quả b&oacute;ng rổ), team (đội)
+                </div>
+            </div>
+            
+            <div class="story-box">
+                <strong>Nh&igrave;n v&agrave;o mỗi h&igrave;nh ảnh Pokemon basketball v&agrave; khoanh tr&ograve;n từ đ&uacute;ng:</strong>
+            </div>
+            
+            <div class="vocabulary-grid">
+                <div class="vocab-item">
+                    <span class="vocab-emoji">⚡⚡⚡</span>
+                    <div class="vocab-text">
+                        <strong>6.</strong> The electric Pokemon who helps train the basketball team:
+                        <div class="choices">
+                            <div class="choice">a) Charizard</div>
+                            <div class="choice">b) Pikachu</div>
+                            <div class="choice">c) Squirtle</div>
+                            <div class="choice">d) Bulbasaur</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <span class="vocab-emoji">🏀🏀🏀</span>
+                    <div class="vocab-text">
+                        <strong>7.</strong> What players bounce and throw into the hoop:
+                        <div class="choices">
+                            <div class="choice">a) Pokeball</div>
+                            <div class="choice">b) basketball</div>
+                            <div class="choice">c) football</div>
+                            <div class="choice">d) tennis ball</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <span class="vocab-emoji">🏆🏆🏆</span>
+                    <div class="vocab-text">
+                        <strong>8.</strong> What the winning team receives at the end of the championship:
+                        <div class="choices">
+                            <div class="choice">a) trophy</div>
+                            <div class="choice">b) medal</div>
+                            <div class="choice">c) ribbon</div>
+                            <div class="choice">d) certificate</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <span class="vocab-emoji">👕👕👕</span>
+                    <div class="vocab-text">
+                        <strong>9.</strong> What Pokemon players wear during the game:
+                        <div class="choices">
+                            <div class="choice">a) costume</div>
+                            <div class="choice">b) uniform</div>
+                            <div class="choice">c) pajamas</div>
+                            <div class="choice">d) coat</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vocab-item">
+                    <span class="vocab-emoji">🏟️🏟️🏟️</span>
+                    <div class="vocab-text">
+                        <strong>10.</strong> The large building where Pokemon basketball games are played:
+                        <div class="choices">
+                            <div class="choice">a) house</div>
+                            <div class="choice">b) school</div>
+                            <div class="choice">c) arena</div>
+                            <div class="choice">d) store</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">⚡ PHẦN C: CUỘC HỘI THOẠI POKEMON (5 điểm)</div>
+            </div>
+            
+            <div class="lesson-box">
+                <div class="lesson-title">💬 B&Agrave;I HỌC: Lời N&oacute;i Lịch Sự v&agrave; Khuyến Kh&iacute;ch</div>
+                <div class="lesson-content">
+                    Trong thế giới Pokemon, mọi người n&oacute;i chuyện rất lịch sự v&agrave; lu&ocirc;n khuyến kh&iacute;ch nhau. Ch&uacute;ng ta c&oacute; thể học c&aacute;ch lịch sự như vậy!<br><br>
+                    <strong>V&iacute; dụ:</strong> "Great job!" (l&agrave;m tốt lắm), "Please" v&agrave; "Thank you" (xin ch&agrave;o v&agrave; cảm ơn), "Good luck!" (ch&uacute;c may mắn)
+                </div>
+            </div>
+            
+            <div class="story-box">
+                <strong>Ash gặp gỡ c&aacute;c nh&acirc;n vật kh&aacute;c nhau trong giải đấu. Chọn c&acirc;u trả lời lịch sự nhất:</strong>
+            </div>
+            
+            <div class="dialogue-scenario">
+                <div class="character-speech">
+                    <strong>11.</strong> Professor Oak says: "Ash, welcome to the Pokemon Basketball Championship!"
+                </div>
+                <div class="vocab-text">
+                    Ash should say:
+                    <div class="choices">
+                        <div class="choice">a) "Hi Professor!"</div>
+                        <div class="choice">b) "Thank you, Professor Oak! I'm excited to be here."</div>
+                        <div class="choice">c) "Yeah, cool."</div>
+                        <div class="choice">d) "Whatever."</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dialogue-scenario">
+                <div class="character-speech">
+                    <strong>12.</strong> Nurse Joy asks: "Would your Pokemon like some energy drinks before the game?"
+                </div>
+                <div class="vocab-text">
+                    Ash should say:
+                    <div class="choices">
+                        <div class="choice">a) "They don't need drinks."</div>
+                        <div class="choice">b) "Maybe later."</div>
+                        <div class="choice">c) "Yes please, that would be wonderful for my team!"</div>
+                        <div class="choice">d) "Drinks are boring."</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dialogue-scenario">
+                <div class="character-speech">
+                    <strong>13.</strong> A Pokemon trainer says: "I saw someone suspicious near the trophy room last night."
+                </div>
+                <div class="vocab-text">
+                    Ash should say:
+                    <div class="choices">
+                        <div class="choice">a) "So what?"</div>
+                        <div class="choice">b) "Thank you for telling me! Could you describe what you saw?"</div>
+                        <div class="choice">c) "I don't care."</div>
+                        <div class="choice">d) "That's not important."</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dialogue-scenario">
+                <div class="character-speech">
+                    <strong>14.</strong> Brock offers: "Would you like to try my special Pokemon energy cookies?"
+                </div>
+                <div class="vocab-text">
+                    Ash should say:
+                    <div class="choices">
+                        <div class="choice">a) "No thanks."</div>
+                        <div class="choice">b) "Cookies are gross."</div>
+                        <div class="choice">c) "Yes please, they smell delicious!"</div>
+                        <div class="choice">d) "I'm not hungry."</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dialogue-scenario">
+                <div class="character-speech">
+                    <strong>15.</strong> A Pokemon League referee says: "The missing trophy might be hidden in the practice gym."
+                </div>
+                <div class="vocab-text">
+                    Ash should say:
+                    <div class="choices">
+                        <div class="choice">a) "Thanks for the helpful tip!"</div>
+                        <div class="choice">b) "I already knew that."</div>
+                        <div class="choice">c) "Are you sure?"</div>
+                        <div class="choice">d) "That's obvious."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">🔍 PHẦN D: B&Iacute; ẨN GOLDEN BASKETBALL TROPHY (5 điểm)</div>
+            </div>
+            
+            <div class="lesson-box">
+                <div class="lesson-title">📚 B&Agrave;I HỌC: Đọc Hiểu Để T&igrave;m Manh Mối</div>
+                <div class="lesson-content">
+                    C&aacute;c th&aacute;m tử đọc cẩn thận để t&igrave;m những manh mối quan trọng ẩn giấu trong c&acirc;u chuyện. Mọi chi tiết đều c&oacute; thể quan trọng!
+                </div>
+            </div>
+            
+            <div class="story-passage">
+                <div class="story-title">The Case of the Missing Golden Basketball Trophy</div>
+                
+                <p>Ash examined the Pokemon League trophy room carefully. The glass display case where the Golden Basketball Trophy was kept had been opened, but there were no signs of breaking or forcing. "Interesting," thought Ash. "Someone who had access to this room took the trophy."</p>
+                
+                <p>He noticed three important clues: First, there were orange and black fur strands on the display case handle. Second, the floor had small round marks leading from the trophy room toward the practice gym. Third, he could hear the sound of a basketball bouncing somewhere nearby.</p>
+                
+                <p>Following his ears and the trail of marks, Ash walked through the long corridors to the practice gym. There he found Team Rocket's Meowth, who was covered in sweat and looked very nervous, trying to play basketball with the golden trophy.</p>
+                
+                <p>"Oh no! It's the twerp!" said Meowth, dropping the basketball. "I was just... um... practicing my basketball skills for the boss!"</p>
+                
+                <p>Ash looked at Meowth kindly and noticed the golden trophy sitting on the bench. "Meowth," he said gently, "I think you have something that belongs to the Pokemon League."</p>
+                
+                <p>Meowth's face turned red. "I'm sorry, Ash! I only borrowed the trophy because I wanted to practice being a basketball star like you Pokemon trainers. I was going to put it back before anyone noticed, but then I got carried away practicing my shots!"</p>
+            </div>
+            
+            <div class="story-box">
+                <strong>Trả lời c&aacute;c c&acirc;u hỏi n&agrave;y:</strong>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">16. How was the trophy case opened?</div>
+                <div class="choices">
+                    <div class="choice">a) It was broken open</div>
+                    <div class="choice">b) Someone with access opened it</div>
+                    <div class="choice">c) It was left unlocked</div>
+                    <div class="choice">d) The key was stolen</div>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">17. What were the strands on the case handle?</div>
+                <div class="choices">
+                    <div class="choice">a) Hair</div>
+                    <div class="choice">b) String</div>
+                    <div class="choice">c) Orange and black fur</div>
+                    <div class="choice">d) Ribbon</div>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">18. Where did the round marks lead?</div>
+                <div class="choices">
+                    <div class="choice">a) To the cafeteria</div>
+                    <div class="choice">b) To the practice gym</div>
+                    <div class="choice">c) To the parking lot</div>
+                    <div class="choice">d) To the Pokemon Center</div>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">19. What was Meowth trying to do in the gym?</div>
+                <div class="choices">
+                    <div class="choice">a) Steal the trophy</div>
+                    <div class="choice">b) Practice basketball</div>
+                    <div class="choice">c) Hide from Team Rocket</div>
+                    <div class="choice">d) Sleep</div>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">20. Why did Meowth take the trophy?</div>
+                <div class="choices">
+                    <div class="choice">a) He wanted to sell it</div>
+                    <div class="choice">b) He wanted to practice being a basketball star</div>
+                    <div class="choice">c) He was angry</div>
+                    <div class="choice">d) Team Rocket ordered him to</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">🎯 PHẦN E: POKEMON BASKETBALL V&Agrave; CUỘC SỐNG THỰC (5 điểm)</div>
+            </div>
+            
+            <div class="lesson-box">
+                <div class="lesson-title">🔄 B&Agrave;I HỌC: So S&aacute;nh Thế Giới Pokemon v&agrave; Thế Giới Thực</div>
+                <div class="lesson-content">
+                    Hiểu được sự kh&aacute;c biệt giữa thế giới Pokemon v&agrave; thế giới thực gi&uacute;p ch&uacute;ng ta tr&acirc;n trọng cả hai!
+                </div>
+            </div>
+            
+            <div class="story-box">
+                <strong>Ho&agrave;n th&agrave;nh c&aacute;c c&acirc;u so s&aacute;nh thế giới Pokemon với thế giới thực:</strong>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <div><strong>21.</strong> In the Pokemon world, trainers travel with _______</div>
+                    <div class="vs-divider">vs</div>
+                    <div>but in real life we travel with _______</div>
+                </div>
+                <div class="choices">
+                    <div class="choice">a) Pokemon / family</div>
+                    <div class="choice">b) family / Pokemon</div>
+                    <div class="choice">c) cars / Pokemon</div>
+                    <div class="choice">d) Pokemon / cars</div>
+                </div>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <div><strong>22.</strong> Pokemon trainers use _______ to catch Pokemon</div>
+                    <div class="vs-divider">vs</div>
+                    <div>but basketball players use _______ to score points</div>
+                </div>
+                <div class="choices">
+                    <div class="choice">a) basketballs / Pokeballs</div>
+                    <div class="choice">b) Pokeballs / basketballs</div>
+                    <div class="choice">c) nets / balls</div>
+                    <div class="choice">d) balls / nets</div>
+                </div>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <div><strong>23.</strong> In Pokemon battles, trainers say _______</div>
+                    <div class="vs-divider">vs</div>
+                    <div>but in basketball games, coaches say _______</div>
+                </div>
+                <div class="choices">
+                    <div class="choice">a) "Good shot!" / "Pokemon, go!"</div>
+                    <div class="choice">b) "Pokemon, go!" / "Good shot!"</div>
+                    <div class="choice">c) "Time out!" / "Attack!"</div>
+                    <div class="choice">d) "Defense!" / "Evolve!"</div>
+                </div>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <div><strong>24.</strong> Pokemon eat _______</div>
+                    <div class="vs-divider">vs</div>
+                    <div>but basketball players eat _______</div>
+                </div>
+                <div class="choices">
+                    <div class="choice">a) regular food / Pokemon food</div>
+                    <div class="choice">b) Pokemon food / regular food</div>
+                    <div class="choice">c) candy / vegetables</div>
+                    <div class="choice">d) berries / candy</div>
+                </div>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <div><strong>25.</strong> In Pokemon Centers, Pokemon are healed by _______</div>
+                    <div class="vs-divider">vs</div>
+                    <div>but in real life, athletes are helped by _______</div>
+                </div>
+                <div class="choices">
+                    <div class="choice">a) doctors / Nurse Joy</div>
+                    <div class="choice">b) Nurse Joy / doctors</div>
+                    <div class="choice">c) machines / Pokemon</div>
+                    <div class="choice">d) coaches / trainers</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">🎨 PHẦN F: CUỘC PHIÊU LƯU S&Aacute;NG TẠO POKEMON BASKETBALL (5 điểm)</div>
+            </div>
+            
+            <div class="creative-section">
+                <div class="creative-title">✏️ TH&Aacute;CH THỨC VẼ V&Agrave; VIẾT</div>
+                <p style="color: #2B6CB0; font-style: italic;"><em>Lưu &yacute;: Sử dụng giấy ri&ecirc;ng cho tất cả c&aacute;c hoạt động vẽ</em></p>
+                
+                <div class="drawing-prompt">
+                    <strong>26. Vẽ Cảnh Pokemon Basketball (2 điểm):</strong> Vẽ Ash t&igrave;m thấy Golden Basketball Trophy với Meowth trong ph&ograve;ng tập. Bao gồm s&acirc;n basketball, Pikachu, v&agrave; chiếc c&uacute;p lấp l&aacute;nh! <em>(Vẽ tr&ecirc;n giấy ri&ecirc;ng)</em>
+                </div>
+                
+                <div class="writing-prompt">
+                    <strong>27. M&ocirc; Tả Nh&acirc;n Vật (1 điểm):</strong> Nh&igrave;n v&agrave;o bức vẽ của bạn v&agrave; m&ocirc; tả Meowth:<br>
+                    Meowth looks <span class="answer-blank"></span> and the practice gym has <span class="answer-blank"></span>
+                </div>
+                
+                <div class="writing-prompt">
+                    <strong>28. Hội Thoại Pokemon (1 điểm):</strong> Viết những g&igrave; Ash n&oacute;i để l&agrave;m cho Meowth cảm thấy tốt hơn về sai lầm của m&igrave;nh:<br>
+                    Ash said: "Don't worry, Meowth. <span class="answer-blank"></span><br>
+                    <span class="answer-blank"></span>"
+                </div>
+                
+                <div class="writing-prompt">
+                    <strong>29. Cuộc Phiêu Lưu Pokemon Của Bạn (1 điểm):</strong> Nếu bạn sống trong thế giới Pokemon v&agrave; chơi basketball, bạn muốn c&oacute; Pokemon n&agrave;o trong đội v&agrave; tại sao? Viết 1-2 c&acirc;u:<br><br>
+                    I would want <span class="answer-blank"></span> on my team<br><br>
+                    because <span class="answer-blank"></span><br>
+                    <span class="answer-blank"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="final-section">
+            <div class="final-title">🏀 B&Iacute; ẨN POKEMON BASKETBALL Đ&Atilde; ĐƯỢC GIẢI! 🏀</div>
+            
+            <div class="celebration">
+                <strong>Xuất sắc! C&ocirc;ng việc th&aacute;m tử Pokemon thật tuyệt vời!</strong> Bạn đ&atilde; gi&uacute;p đưa Golden Basketball Trophy trở về an to&agrave;n!
+            </div>
+            
+            <div class="moral-lesson">
+                <strong>H&atilde;y nhớ:</strong> Đ&ocirc;i khi mọi người phạm sai lầm v&igrave; t&ograve; m&ograve; v&agrave; muốn học hỏi, kh&ocirc;ng phải v&igrave; họ xấu!
+            </div>
+            
+            <div style="font-size: 3rem; margin-top: 2rem;">
+                ⚡🏀🏆🎯
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add subtle animations for engagement
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'all 0.6s ease';
+                
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+            
+            // Simple hover effects for choice options
+            const choices = document.querySelectorAll('.choice');
+            choices.forEach(choice => {
+                choice.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.transition = 'transform 0.2s ease';
+                });
+                
+                choice.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Add click effects for choices
+            choices.forEach(choice => {
+                choice.addEventListener('click', function() {
+                    // Remove previous selections in the same question
+                    const siblings = this.parentElement.querySelectorAll('.choice');
+                    siblings.forEach(sibling => {
+                        sibling.style.backgroundColor = '#F8F9FA';
+                        sibling.style.borderColor = '#6C757D';
+                        sibling.style.color = '#495057';
+                    });
+                    
+                    // Highlight selected choice
+                    this.style.backgroundColor = '#E3F2FD';
+                    this.style.borderColor = '#1976D2';
+                    this.style.color = '#0D47A1';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
