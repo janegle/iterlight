@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IterLight AI Tutor App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* iPhone Frame Container */
+        .iphone-frame {
+            width: 375px;
+            height: 812px;
+            background: #000;
+            border-radius: 40px;
+            padding: 8px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            position: relative;
+            border: 2px solid #333;
+        }
+
+        .iphone-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #000;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        .iphone-frame::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 134px;
+            height: 5px;
+            background: #333;
+            border-radius: 3px;
+            z-index: 10;
+        }
+
+        /* App Container */
+        .app-container {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Mobile App Header */
+        .app-header {
+            background: #1a3a52;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .home-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1a3a52;
+            font-size: 12px;
+        }
+
+        /* Navigation with Arrows */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .nav-arrow {
+            background: #ff6b47;
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: absolute;
+            z-index: 10;
+        }
+
+        .nav-arrow:hover {
+            background: #e55a3c;
+            transform: scale(1.1);
+        }
+
+        .nav-arrow.left {
+            left: 10px;
+        }
+
+        .nav-arrow.right {
+            right: 10px;
+        }
+
+        .nav-arrow:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Page Content */
+        .page {
+            display: none;
+            padding: 20px;
+            animation: slideIn 0.5s ease-in;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Candle Characters */
+        .candle-character {
+            width: 80px;
+            height: 96px;
+            margin: 0 auto;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .candle-blue {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><rect x="30" y="40" width="40" height="60" rx="15" fill="%234a90e2"/><circle cx="50" cy="25" r="15" fill="%234a90e2"/><ellipse cx="45" cy="20" rx="3" ry="4" fill="black"/><ellipse cx="55" cy="20" rx="3" ry="4" fill="black"/><path d="M40 30 Q50 35 60 30" stroke="black" stroke-width="2" fill="none"/><rect x="47" y="10" width="6" height="15" fill="black"/><ellipse cx="50" cy="8" rx="4" ry="6" fill="%23ff6b47"/></svg>');
+        }
+
+        .candle-yellow {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><rect x="30" y="40" width="40" height="60" rx="15" fill="%23ffd700"/><circle cx="50" cy="25" r="15" fill="%23ffd700"/><ellipse cx="45" cy="20" rx="3" ry="4" fill="black"/><ellipse cx="55" cy="20" rx="3" ry="4" fill="black"/><path d="M40 30 Q50 35 60 30" stroke="black" stroke-width="2" fill="none"/><rect x="47" y="10" width="6" height="15" fill="black"/><ellipse cx="50" cy="8" rx="4" ry="6" fill="%23ff6b47"/></svg>');
+        }
+
+        .candle-pink {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120"><rect x="30" y="40" width="40" height="60" rx="15" fill="%23ff9eb5"/><circle cx="50" cy="25" r="15" fill="%23ff9eb5"/><ellipse cx="45" cy="20" rx="3" ry="4" fill="black"/><ellipse cx="55" cy="20" rx="3" ry="4" fill="black"/><path d="M40 30 Q50 35 60 30" stroke="black" stroke-width="2" fill="none"/><rect x="47" y="10" width="6" height="15" fill="black"/><ellipse cx="50" cy="8" rx="4" ry="6" fill="%23ff6b47"/><rect x="20" y="15" width="15" height="8" rx="4" fill="black"/><rect x="65" y="15" width="15" height="8" rx="4" fill="black"/></svg>');
+        }
+
+        /* Home Page */
+        .hero {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #1a3a52 0%, #2d5a87 100%);
+            color: white;
+            margin: 15px 0;
+            border-radius: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ff6b47, #ffb347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .google-signin {
+            background: white;
+            color: #333;
+            padding: 12px 25px;
+            border-radius: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .google-signin:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Portal Selection */
+        .portal-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .portal-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .portal-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,107,71,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .portal-card:hover::before {
+            opacity: 1;
+            animation: shimmer 1s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .portal-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Section Navigation */
+        .section-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            position: relative;
+            padding: 0 50px;
+        }
+
+        .section-item {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            min-width: 200px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .section-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .section-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #ff6b47;
+        }
+
+        .section-title {
+            color: #1a3a52;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .section-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-card h3 {
+            color: #1a3a52;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .lesson-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b47;
+        }
+
+        .lesson-item h4 {
+            color: #1a3a52;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .lesson-item p {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background: #e9ecef;
+            height: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(45deg, #ff6b47, #ffb347);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #ff6b47;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #1a3a52;
+            border: 1px solid #e9ecef;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Child Selection */
+        .child-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .child-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .child-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .child-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b47, #ffb347);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b47;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* Chart Placeholder */
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+        }
+
+        .chart-placeholder {
+            height: 200px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        /* Lesson History */
+        .lesson-history {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .grade-badge {
+            background: #4caf50;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Scroll Indicators */
+        .scroll-indicator {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 50;
+            opacity: 0.8;
+        }
+
+        .scroll-indicator:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        .scroll-indicator.top {
+            top: 10px;
+        }
+
+        .scroll-indicator.bottom {
+            bottom: 10px;
+        }
+
+        .scroll-indicator.fade {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Hidden elements */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="iphone-frame">
+        <div class="app-container">
+            <!-- App Header -->
+            <div class="app-header">
+        <button class="home-btn" onclick="goHome()">🏠 Home</button>
+        <div class="logo">
+            <div class="logo-icon">iL</div>
+            <span>IterLight</span>
+        </div>
+        <div style="width: 60px;"></div> <!-- Spacer for centering -->
+    </div>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="hero">
+            <div class="candle-character candle-blue"></div>
+            <h1>AI-Powered Learning</h1>
+            <p>Master Math and English with personalized tutoring</p>
+            <a href="#" class="google-signin" onclick="showPortalSelection()">
+                <span>🔍</span> Sign in with Google
+            </a>
+        </div>
+    </div>
+
+    <!-- Portal Selection -->
+    <div id="portal-selection" class="page">
+        <div class="nav-container">
+            <h2 style="color: #1a3a52; text-align: center;">Choose Your Portal</h2>
+        </div>
+        
+        <div class="portal-selection">
+            <div class="portal-card" onclick="showStudentPortal()">
+                <div class="portal-icon">🎓</div>
+                <div class="candle-character candle-yellow"></div>
+                <h3 style="color: #1a3a52; margin-top: 15px;">Student Portal</h3>
+                <p style="color: #666;">Access lessons and track your progress</p>
+            </div>
+            
+            <div class="portal-card" onclick="showParentPortal()">
+                <div class="portal-icon">👨‍👩‍👧‍👦</div>
+                <div class="candle-character candle-pink"></div>
+                <h3 style="color: #1a3a52; margin-top: 15px;">Parent Portal</h3>
+                <p style="color: #666;">Monitor your child's learning journey</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Portal -->
+    <div id="student-portal" class="page">
+        <!-- Scroll Indicators -->
+        <div class="scroll-indicator top fade" id="student-scroll-top" onclick="scrollToTop('student-portal')">↑</div>
+        <div class="scroll-indicator bottom fade" id="student-scroll-bottom" onclick="scrollToBottom('student-portal')">↓</div>
+        
+        <div class="nav-container">
+            <button class="nav-arrow left" onclick="previousStudentSection()" id="student-prev">←</button>
+            <div class="section-item" id="student-section">
+                <div class="section-icon">📚</div>
+                <div class="section-title">Today's Lessons</div>
+                <div class="section-desc">Start your daily learning</div>
+            </div>
+            <button class="nav-arrow right" onclick="nextStudentSection()" id="student-next">→</button>
+        </div>
+
+        <!-- Student Content Area -->
+        <div id="student-lessons" class="student-content">
+            <div class="candle-character candle-blue" style="width: 50px; height: 60px; margin: 0 auto 15px;"></div>
+            
+            <div class="dashboard-card">
+                <h3>📐 Math - Algebra I</h3>
+                <div class="lesson-item">
+                    <h4>Linear Equations</h4>
+                    <p>Due: Today, 3:00 PM</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                    <button class="btn btn-primary">Continue Lesson</button>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>📚 English - Literature</h3>
+                <div class="lesson-item">
+                    <h4>Reading Comprehension</h4>
+                    <p>Due: Today, 5:00 PM</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%"></div>
+                    </div>
+                    <button class="btn btn-primary">Start Lesson</button>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>📅 This Week's Schedule</h3>
+                <div class="lesson-item">
+                    <h4>Math - Quadratic Functions</h4>
+                    <p>Tomorrow, 2:00 PM</p>
+                </div>
+                <div class="lesson-item">
+                    <h4>English - Essay Writing</h4>
+                    <p>Wednesday, 4:00 PM</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="student-progress" class="student-content hidden">
+            <div class="candle-character candle-yellow" style="width: 50px; height: 60px; margin: 0 auto 15px;"></div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">82%</div>
+                    <div class="stat-label">Overall Grade</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24</div>
+                    <div class="stat-label">Lessons Done</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Day Streak</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2.5h</div>
+                    <div class="stat-label">Study Time</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>📊 Progress Over Time</h3>
+                <div class="chart-placeholder">Your learning progress chart</div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>🎯 Recent Performance</h3>
+                <div class="lesson-item">
+                    <h4>Linear Equations <span class="grade-badge">85%</span></h4>
+                    <p>Completed: July 10, 2025</p>
+                </div>
+                <div class="lesson-item">
+                    <h4>Reading Comprehension <span class="grade-badge">92%</span></h4>
+                    <p>Completed: July 9, 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Parent Portal -->
+    <div id="parent-portal" class="page">
+        <!-- Scroll Indicators -->
+        <div class="scroll-indicator top fade" id="parent-portal-scroll-top" onclick="scrollToTop('parent-portal')">↑</div>
+        <div class="scroll-indicator bottom fade" id="parent-portal-scroll-bottom" onclick="scrollToBottom('parent-portal')">↓</div>
+        
+        <div class="nav-container">
+            <button class="nav-arrow left" onclick="previousChild()" id="child-prev">←</button>
+            <div class="section-item" id="child-section">
+                <div class="section-icon">👧</div>
+                <div class="section-title">Emma (Grade 9)</div>
+                <div class="section-desc">Select your child</div>
+            </div>
+            <button class="nav-arrow right" onclick="nextChild()" id="child-next">→</button>
+        </div>
+
+        <!-- Child Selection Content -->
+        <div id="child-selection" class="child-content">
+            <div class="candle-character candle-pink" style="width: 50px; height: 60px; margin: 0 auto 15px;"></div>
+            
+            <div class="child-cards">
+                <div class="child-card" onclick="showChildDashboard('emma')">
+                    <div class="child-avatar">👧</div>
+                    <h3 style="color: #1a3a52;">Emma</h3>
+                    <p style="color: #666;">Grade 9 • Math & English</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 82%"></div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: #666; margin-top: 8px;">Overall: 82%</p>
+                </div>
+                
+                <div class="child-card" onclick="showChildDashboard('alex')">
+                    <div class="child-avatar">👦</div>
+                    <h3 style="color: #1a3a52;">Alex</h3>
+                    <p style="color: #666;">Grade 7 • Math & English</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 76%"></div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: #666; margin-top: 8px;">Overall: 76%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Child Dashboard -->
+    <div id="child-dashboard" class="page">
+        <!-- Scroll Indicators -->
+        <div class="scroll-indicator top fade" id="child-dashboard-scroll-top" onclick="scrollToTop('child-dashboard')">↑</div>
+        <div class="scroll-indicator bottom fade" id="child-dashboard-scroll-bottom" onclick="scrollToBottom('child-dashboard')">↓</div>
+        
+        <div class="nav-container">
+            <button class="nav-arrow left" onclick="previousChildSection()" id="child-section-prev">←</button>
+            <div class="section-item" id="child-dashboard-section">
+                <div class="section-icon">📊</div>
+                <div class="section-title">Progress Dashboard</div>
+                <div class="section-desc">Emma's performance overview</div>
+            </div>
+            <button class="nav-arrow right" onclick="nextChildSection()" id="child-section-next">→</button>
+        </div>
+
+        <!-- Child Dashboard Content -->
+        <div id="child-progress-dashboard" class="child-dashboard-content">
+            <div class="candle-character candle-blue" style="width: 50px; height: 60px; margin: 0 auto 15px;"></div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">82%</div>
+                    <div class="stat-label">Overall Grade</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4/5</div>
+                    <div class="stat-label">Weekly Lessons</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Day Streak</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2.5h</div>
+                    <div class="stat-label">Study Time</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>📈 Progress Trends</h3>
+                <div class="chart-placeholder">Time series showing Emma's progress over the past 3 months</div>
+            </div>
+
+            <div class="chart-container">
+                <h3>📊 Score Distribution</h3>
+                <div class="chart-placeholder">Histogram of Emma's scores by subject</div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>🔔 Recent Updates</h3>
+                <div class="lesson-item">
+                    <h4>New Grade Available</h4>
+                    <p>Linear Equations - 85% • July 10, 2025</p>
+                </div>
+                <div class="lesson-item">
+                    <h4>Assignment Due Soon</h4>
+                    <p>English essay due tomorrow at 5:00 PM</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Child Lesson Reports -->
+        <div id="child-lesson-reports" class="child-dashboard-content hidden">
+            <div class="candle-character candle-yellow" style="width: 50px; height: 60px; margin: 0 auto 15px;"></div>
+            
+            <div class="dashboard-card">
+                <h3>📝 Recent Lesson Reports</h3>
+                <div class="lesson-history">
+                    <div class="lesson-item">
+                        <h4>Math - Linear Equations <span class="grade-badge">85%</span></h4>
+                        <p>Completed: July 10, 2025</p>
+                        <p style="font-size: 0.8rem; margin-top: 8px;"><strong>Strengths:</strong> Problem-solving, algebraic manipulation</p>
+                        <p style="font-size: 0.8rem;"><strong>Areas to improve:</strong> Word problems, verification</p>
+                        <button class="btn btn-secondary" style="margin-top: 8px;">View Full Report</button>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4>English - Reading Comprehension <span class="grade-badge">88%</span></h4>
+                        <p>Completed: July 9, 2025</p>
+                        <p style="font-size: 0.8rem; margin-top: 8px;"><strong>Strengths:</strong> Vocabulary, inference skills</p>
+                        <p style="font-size: 0.8rem;"><strong>Areas to improve:</strong> Main idea identification</p>
+                        <button class="btn btn-secondary" style="margin-top: 8px;">View Full Report</button>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4>Math - Solving Inequalities <span class="grade-badge">92%</span></h4>
+                        <p>Completed: July 8, 2025</p>
+                        <p style="font-size: 0.8rem; margin-top: 8px;"><strong>Strengths:</strong> Logic, step-by-step approach</p>
+                        <p style="font-size: 0.8rem;"><strong>Areas to improve:</strong> Complex inequalities</p>
+                        <button class="btn btn-secondary" style="margin-top: 8px;">View Full Report</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>📊 Performance Summary</h3>
+                <p style="margin: 15px 0; line-height: 1.5;"><strong>Mathematics:</strong> Emma demonstrates strong analytical thinking and problem-solving skills. She excels in algebraic manipulation but would benefit from more practice with word problems and real-world applications.</p>
+                
+                <p style="margin: 15px 0; line-height: 1.5;"><strong>English:</strong> Excellent vocabulary and reading comprehension. Emma shows creativity in writing but should focus on essay structure and paragraph transitions for advanced writing tasks.</p>
+                
+                <p style="margin: 15px 0; line-height: 1.5;"><strong>Recommendations:</strong> Continue current pace with additional focus on practical applications. Consider advanced placement preparation for both subjects.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation state
+        let currentStudentSection = 0;
+        let currentChild = 0;
+        let currentChildSection = 0;
+
+        const studentSections = [
+            {
+                icon: '📚',
+                title: 'Today\'s Lessons',
+                desc: 'Start your daily learning',
+                contentId: 'student-lessons'
+            },
+            {
+                icon: '📊',
+                title: 'Progress Dashboard',
+                desc: 'Track your achievements',
+                contentId: 'student-progress'
+            }
+        ];
+
+        const children = [
+            {
+                icon: '👧',
+                name: 'Emma',
+                grade: 'Grade 9',
+                progress: 82
+            },
+            {
+                icon: '👦',
+                name: 'Alex',
+                grade: 'Grade 7',
+                progress: 76
+            }
+        ];
+
+        const childSections = [
+            {
+                icon: '📊',
+                title: 'Progress Dashboard',
+                desc: 'Performance overview',
+                contentId: 'child-progress-dashboard'
+            },
+            {
+                icon: '📝',
+                title: 'Lesson Reports',
+                desc: 'Detailed lesson analysis',
+                contentId: 'child-lesson-reports'
+            }
+        ];
+
+        // Page navigation functions
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update scroll indicators for the new page
+            setTimeout(() => {
+                updateScrollIndicators(pageId);
+            }, 100);
+        }
+
+        function goHome() {
+            showPage('home');
+            // Reset all navigation states
+            currentStudentSection = 0;
+            currentChild = 0;
+            currentChildSection = 0;
+        }
+
+        function showPortalSelection() {
+            showPage('portal-selection');
+        }
+
+        function showStudentPortal() {
+            showPage('student-portal');
+            updateStudentSection();
+        }
+
+        function showParentPortal() {
+            showPage('parent-portal');
+            updateChildSelection();
+        }
+
+        // Student navigation
+        function updateStudentSection() {
+            const section = studentSections[currentStudentSection];
+            const sectionElement = document.getElementById('student-section');
+            
+            sectionElement.innerHTML = `
+                <div class="section-icon">${section.icon}</div>
+                <div class="section-title">${section.title}</div>
+                <div class="section-desc">${section.desc}</div>
+            `;
+
+            // Show/hide content
+            const contents = document.querySelectorAll('.student-content');
+            contents.forEach(content => content.classList.add('hidden'));
+            document.getElementById(section.contentId).classList.remove('hidden');
+
+            // Update arrow states
+            document.getElementById('student-prev').disabled = currentStudentSection === 0;
+            document.getElementById('student-next').disabled = currentStudentSection === studentSections.length - 1;
+        }
+
+        function previousStudentSection() {
+            if (currentStudentSection > 0) {
+                currentStudentSection--;
+                updateStudentSection();
+            }
+        }
+
+        function nextStudentSection() {
+            if (currentStudentSection < studentSections.length - 1) {
+                currentStudentSection++;
+                updateStudentSection();
+            }
+        }
+
+        // Parent navigation - Child selection
+        function updateChildSelection() {
+            const child = children[currentChild];
+            const sectionElement = document.getElementById('child-section');
+            
+            sectionElement.innerHTML = `
+                <div class="section-icon">${child.icon}</div>
+                <div class="section-title">${child.name} (${child.grade})</div>
+                <div class="section-desc">Select your child</div>
+            `;
+
+            // Update arrow states
+            document.getElementById('child-prev').disabled = currentChild === 0;
+            document.getElementById('child-next').disabled = currentChild === children.length - 1;
+        }
+
+        function previousChild() {
+            if (currentChild > 0) {
+                currentChild--;
+                updateChildSelection();
+            }
+        }
+
+        function nextChild() {
+            if (currentChild < children.length - 1) {
+                currentChild++;
+                updateChildSelection();
+            }
+        }
+
+        function showChildDashboard(childName) {
+            showPage('child-dashboard');
+            currentChildSection = 0; // Reset to first section
+            updateChildDashboardSection();
+        }
+
+        // Child dashboard navigation
+        function updateChildDashboardSection() {
+            const section = childSections[currentChildSection];
+            const child = children[currentChild];
+            const sectionElement = document.getElementById('child-dashboard-section');
+            
+            sectionElement.innerHTML = `
+                <div class="section-icon">${section.icon}</div>
+                <div class="section-title">${section.title}</div>
+                <div class="section-desc">${child.name}'s ${section.desc.toLowerCase()}</div>
+            `;
+
+            // Show/hide content
+            const contents = document.querySelectorAll('.child-dashboard-content');
+            contents.forEach(content => content.classList.add('hidden'));
+            document.getElementById(section.contentId).classList.remove('hidden');
+
+            // Update arrow states
+            document.getElementById('child-section-prev').disabled = currentChildSection === 0;
+            document.getElementById('child-section-next').disabled = currentChildSection === childSections.length - 1;
+        }
+
+        function previousChildSection() {
+            if (currentChildSection > 0) {
+                currentChildSection--;
+                updateChildDashboardSection();
+            }
+        }
+
+        function nextChildSection() {
+            if (currentChildSection < childSections.length - 1) {
+                currentChildSection++;
+                updateChildDashboardSection();
+            }
+        }
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let startY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            if (!startX || !startY) return;
+
+            let endX = e.changedTouches[0].clientX;
+            let endY = e.changedTouches[0].clientY;
+
+            let deltaX = startX - endX;
+            let deltaY = startY - endY;
+
+            // Minimum swipe distance
+            if (Math.abs(deltaX) < 50) return;
+            
+            // Ensure horizontal swipe (not vertical scroll)
+            if (Math.abs(deltaY) > Math.abs(deltaX)) return;
+
+            const currentPage = document.querySelector('.page.active').id;
+
+            if (deltaX > 0) { // Swipe left (next)
+                if (currentPage === 'student-portal') {
+                    nextStudentSection();
+                } else if (currentPage === 'parent-portal') {
+                    nextChild();
+                } else if (currentPage === 'child-dashboard') {
+                    nextChildSection();
+                }
+            } else { // Swipe right (previous)
+                if (currentPage === 'student-portal') {
+                    previousStudentSection();
+                } else if (currentPage === 'parent-portal') {
+                    previousChild();
+                } else if (currentPage === 'child-dashboard') {
+                    previousChildSection();
+                }
+            }
+
+            startX = 0;
+            startY = 0;
+        });
+
+        // Scroll functions
+        function scrollToTop(pageId) {
+            const page = document.getElementById(pageId);
+            page.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToBottom(pageId) {
+            const page = document.getElementById(pageId);
+            page.scrollTo({ top: page.scrollHeight, behavior: 'smooth' });
+        }
+
+        function updateScrollIndicators(pageId) {
+            const page = document.getElementById(pageId);
+            const topIndicator = document.getElementById(pageId + '-scroll-top');
+            const bottomIndicator = document.getElementById(pageId + '-scroll-bottom');
+            
+            if (!page || !topIndicator || !bottomIndicator) return;
+            
+            const scrollTop = page.scrollTop;
+            const scrollHeight = page.scrollHeight;
+            const clientHeight = page.clientHeight;
+            
+            // Show/hide top indicator
+            if (scrollTop > 50) {
+                topIndicator.classList.remove('fade');
+            } else {
+                topIndicator.classList.add('fade');
+            }
+            
+            // Show/hide bottom indicator
+            if (scrollTop + clientHeight < scrollHeight - 50) {
+                bottomIndicator.classList.remove('fade');
+            } else {
+                bottomIndicator.classList.add('fade');
+            }
+        }
+
+        // Add scroll event listeners to pages
+        function addScrollListeners() {
+            const scrollablePages = ['student-portal', 'parent-portal', 'child-dashboard'];
+            
+            scrollablePages.forEach(pageId => {
+                const page = document.getElementById(pageId);
+                if (page) {
+                    page.addEventListener('scroll', () => updateScrollIndicators(pageId));
+                }
+            });
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+            addScrollListeners();
+        });
+
+        // Add click animations to cards
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('portal-card') || 
+                e.target.classList.contains('child-card') ||
+                e.target.classList.contains('section-item')) {
+                e.target.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    e.target.style.transform = '';
+                }, 150);
+            }
+        });
+
+        // Add haptic feedback simulation for mobile
+        function vibrate() {
+            if ('vibrate' in navigator) {
+                navigator.vibrate(50);
+            }
+        }
+
+        // Add vibration to button clicks
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn') || 
+                e.target.classList.contains('nav-arrow') ||
+                e.target.classList.contains('portal-card') ||
+                e.target.classList.contains('child-card')) {
+                vibrate();
+            }
+        });
+    </script>
+        </div>
+    </div>
+</body>
+</html>
