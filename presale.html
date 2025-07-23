@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IterLight - Sports-Inspired Math Curriculum</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="60" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-left {
+            color: white;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .launch-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .launch-badge .fire {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #f0f8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .eric-endorsement {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .eric-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+            color: white;
+        }
+        
+        .eric-info h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        
+        .eric-info p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .pricing-preview {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .price-main {
+            font-size: 36px;
+            font-weight: 800;
+            color: #4ecdc4;
+            margin-bottom: 5px;
+        }
+        
+        .price-regular {
+            font-size: 16px;
+            opacity: 0.7;
+            text-decoration: line-through;
+            margin-bottom: 10px;
+        }
+        
+        .price-note {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .countdown {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .countdown-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 10px 15px;
+            border-radius: 10px;
+            min-width: 60px;
+        }
+        
+        .countdown-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4ecdc4;
+            display: block;
+        }
+        
+        .countdown-label {
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-section {
+            margin-bottom: 25px;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 15px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            color: white;
+            border-bottom-color: white;
+        }
+        
+        .free-updates {
+            font-size: 14px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+        }
+        
+        .free-updates::before {
+            content: '✨';
+            margin-right: 8px;
+        }
+        
+        .hero-right {
+            position: relative;
+        }
+        
+        .worksheet-carousel {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .worksheet-carousel:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .carousel-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .carousel-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .carousel-subtitle {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        
+        .worksheet-preview {
+            position: relative;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #dee2e6;
+        }
+        
+        .preview-content {
+            text-align: center;
+            color: #6c757d;
+        }
+        
+        .preview-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #dee2e6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: #667eea;
+            transform: scale(1.2);
+        }
+        
+        .sport-labels {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .sport-label {
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .view-sample-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .view-sample-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            opacity: 0.7;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .hero-left {
+                order: 2;
+            }
+            
+            .hero-right {
+                order: 1;
+            }
+            
+            .worksheet-carousel {
+                transform: none;
+                padding: 20px;
+            }
+            
+            .countdown {
+                justify-content: center;
+            }
+            
+            .eric-endorsement {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="logo">
+                        <div class="logo-icon">iL</div>
+                        IterLight
+                    </div>
+                    
+                    <div class="launch-badge">
+                        <span class="fire">🚀</span>
+                        Launching September 1st, 2025
+                    </div>
+                    
+                    <h1 class="hero-title">Sports-Inspired Math Curriculum</h1>
+                    <p class="hero-subtitle">Make math exciting with lessons built around your child's favorite sports. From basketball fractions to soccer multiplication - learning that feels like play.</p>
+                    
+                    <div class="eric-endorsement">
+                        <div class="eric-photo">🏈</div>
+                        <div class="eric-info">
+                            <h4>Endorsed by Eric Black</h4>
+                            <p>CFL Professional & Official Ambassador</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-preview">
+                        <div class="price-main">$75/year</div>
+                        <div class="price-regular">Regular: $600/year</div>
+                        <div class="price-note">Pre-order special - Premium access to all grades</div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 13px; opacity: 0.9;">
+                            <strong>900 lessons per grade:</strong> 25 weeks × 2 lessons × 3 difficulty levels × 6 sports
+                        </div>
+                    </div>
+                    
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="days">42</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">15</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">33</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-section">
+                        <button class="btn-primary" onclick="orderWithEricCode()">
+                            Order Now with Eric Black Code
+                        </button>
+                        <br>
+                        <a href="#" class="btn-secondary">Other payment options</a>
+                    </div>
+                    
+                    <div class="free-updates">
+                        Get weekly sample worksheets and curriculum previews while you wait
+                    </div>
+                </div>
+                
+                <div class="hero-right">
+                    <div class="floating-elements">⚽🏀🏈</div>
+                    
+                    <div class="worksheet-carousel">
+                        <div class="carousel-header">
+                            <h3 class="carousel-title">Sample Worksheets</h3>
+                            <p class="carousel-subtitle">900 lessons per grade</p>
+                            <p style="font-size: 14px; color: #95a5a6; margin-top: 5px;">25 weeks × 2 lessons × 3 levels × 6 sports</p>
+                        </div>
+                        
+                        <div class="worksheet-preview" id="worksheetPreview">
+                            <div class="preview-content">
+                                <span class="preview-icon">⚽</span>
+                                <h4>Soccer Championship</h4>
+                                <p>Multiplication & Division Adventure<br>Grade 3-4</p>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-dots">
+                            <div class="dot active" data-sport="soccer"></div>
+                            <div class="dot" data-sport="basketball"></div>
+                            <div class="dot" data-sport="football"></div>
+                            <div class="dot" data-sport="baseball"></div>
+                            <div class="dot" data-sport="hockey"></div>
+                            <div class="dot" data-sport="cheerleading"></div>
+                        </div>
+                        
+                        <div class="sport-labels">
+                            <span class="sport-label">Soccer</span>
+                            <span class="sport-label">Basketball</span>
+                            <span class="sport-label">Football</span>
+                            <span class="sport-label">Baseball</span>
+                            <span class="sport-label">Hockey</span>
+                            <span class="sport-label">Cheerleading</span>
+                        </div>
+                        
+                        <a href="#" class="view-sample-btn" onclick="viewSample()">View Full Sample Worksheet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Worksheet carousel data
+        const worksheets = {
+            soccer: {
+                icon: '⚽',
+                title: 'Soccer Championship',
+                subtitle: 'Multiplication & Division Adventure<br>Grade 3-4'
+            },
+            basketball: {
+                icon: '🏀',
+                title: 'Basketball Math',
+                subtitle: 'Counting & Addition for Grades 1-2'
+            },
+            football: {
+                icon: '🏈',
+                title: 'Football Field Numbers',
+                subtitle: 'Number Recognition K-1'
+            },
+            baseball: {
+                icon: '⚾',
+                title: 'Baseball Statistics',
+                subtitle: 'Fractions & Data Fun Grade 3-4'
+            },
+            hockey: {
+                icon: '🏒',
+                title: 'Hockey Arena Math',
+                subtitle: 'Time & Measurement Grade 3-4'
+            },
+            cheerleading: {
+                icon: '📣',
+                title: 'Cheerleading Shapes',
+                subtitle: 'Geometry & Patterns Grade 2'
+            }
+        };
+
+        // Carousel functionality
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                const sport = dot.dataset.sport;
+                updateWorksheetPreview(sport);
+                
+                // Update active dot
+                document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+            });
+        });
+
+        function updateWorksheetPreview(sport) {
+            const worksheet = worksheets[sport];
+            const preview = document.getElementById('worksheetPreview');
+            
+            preview.innerHTML = `
+                <div class="preview-content">
+                    <span class="preview-icon">${worksheet.icon}</span>
+                    <h4>${worksheet.title}</h4>
+                    <p>${worksheet.subtitle}</p>
+                </div>
+            `;
+        }
+
+        // Auto-rotate carousel
+        let currentIndex = 0;
+        const sportKeys = Object.keys(worksheets);
+        
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % sportKeys.length;
+            const currentSport = sportKeys[currentIndex];
+            updateWorksheetPreview(currentSport);
+            
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }, 3000);
+
+        // Countdown timer (placeholder - you'd set actual launch date)
+        function updateCountdown() {
+            const launchDate = new Date('2025-09-01T00:00:00');
+            const now = new Date();
+            const diff = launchDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+
+        // CTA functions
+        function orderWithEricCode() {
+            // This would redirect to Stripe with ERICBLACK code pre-filled
+            alert('Redirecting to checkout with Eric Black promo code...');
+            // window.location.href = 'https://your-stripe-checkout-url?prefilled_promo_code=ERICBLACK';
+        }
+
+        function viewSample() {
+            // This would open the sample worksheet
+            alert('Opening sample worksheet...');
+            // Could open modal or redirect to sample page
+        }
+    </script>
+</body>
+</html>
