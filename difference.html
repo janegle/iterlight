@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IterLight AI: Khi AI Học Cách Yêu Thương Học Sinh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Reserve space so footer never covers content */
+        #slides-wrapper { padding-bottom: 120px; }
+        .slide {
+            display: none;
+            min-height: 85vh; /* Adjusted for more content */
+            padding-bottom: 32px; /* Reduced; wrapper handles safe area */
+        }
+        .slide.active {
+            display: flex;
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #6D28D9, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .content-box {
+            max-height: calc(60vh - 16px);
+            margin-bottom: 8px; /* small gap from footer safe area */
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #a0aec0 #edf2f7;
+        }
+        .content-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .content-box::-webkit-scrollbar-track {
+            background: #edf2f7;
+            border-radius: 10px;
+        }
+        .content-box::-webkit-scrollbar-thumb {
+            background-color: #a0aec0;
+            border-radius: 10px;
+            border: 2px solid #edf2f7;
+        }
+        .footnote {
+            font-size: 0.75rem; /* ~12px */
+            color: #6b7280; /* gray-500 */
+            margin-top: 0.5rem;
+        }
+    </style>
+
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div id="presentation-container" class="w-full max-w-6xl bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <img src="https://iterlight.com/banner_image.png" alt="IterLight Banner" class="w-full max-h-28 object-contain bg-white">
+        <div id="slides-wrapper" class="relative overflow-auto">
+            <!-- Slide 1: Title -->
+            <div class="slide active fade-in flex-col items-center justify-center text-center p-8 md:p-16">
+                <h1 class="text-4xl md:text-6xl font-black text-gray-900 leading-tight">IterLight:Khi AI Biết Yêu Thương Học Sinh</h1>
+                <p class="mt-4 text-lg md:text-2xl text-gray-600 max-w-3xl">Vì sao <span class="font-bold text-violet-600">33 / 100 khác biệt</span> có thể quyết định thành bại trong kỷ nguyên giáo dục số.</p>
+                <p class="footnote">Ghi chú: 33/100 là điểm trung bình tổng hợp từ các nền tảng AI lớn (OpenAI ChatGPT, Google Gemini, Anthropic Claude, xAI Grok).</p>
+                <img src="https://iterlight.com/IGlogo.png" alt="IterLight Logo" class="mt-8 h-12">
+            </div>
+
+            <!-- Slide 2: The Story Begins -->
+            <div class="slide fade-in flex-col lg:flex-row items-center justify-center p-8 md:p-12">
+                <div class="lg:w-1/2 text-center lg:text-left pr-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Câu Chuyện Bắt Đầu Từ Một Sự Tương Phản</h2>
+                    <p class="mt-4 text-lg text-gray-600">Hãy tưởng tượng hai người giáo viên cùng nhận xét một bài làm IELTS của học sinh. Cách họ phản hồi sẽ định hình toàn bộ hành trình học tập của em.</p>
+                </div>
+                <div class="lg:w-1/2 mt-8 lg:mt-0">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-red-50 p-6 rounded-xl border border-red-200">
+                            <h3 class="font-bold text-red-800">Nhà Phân Tích Lâm Sàng ChatGPT</h3>
+                            <p class="text-sm text-red-700 mt-2">Đưa ra báo cáo kỹ thuật, lạnh lùng, chỉ tập trung vào lỗi sai.</p>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-xl border border-green-200">
+                            <h3 class="font-bold text-green-800">Người Huấn Luyện Bậc Thầy IterLight</h3>
+                            <p class="text-sm text-green-700 mt-2">Khen ngợi, đồng cảm, và đưa ra một kế hoạch hành động đầy cảm hứng.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3: The Case Study -->
+            <div class="slide fade-in flex-col items-center justify-center p-8 md:p-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900">Tình huống thực tế: Bài làm của học sinh</h2>
+                <p class="text-lg text-gray-600 mt-2 text-center">Đây là bối cảnh để so sánh hai phương pháp tiếp cận.</p>
+                <div class="mt-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-gray-100 p-6 rounded-xl border border-gray-200 content-box">
+                        <h3 class="font-bold text-lg text-gray-800">Đề bài IELTS Writing Task 2</h3>
+                        <p class="mt-2 text-sm text-gray-700">Some people believe that watching sports anime motivates young people to participate in sports, while others think it encourages them to spend more time watching screens instead of being active. Discuss both views and give your own opinion.</p>
+                        <p class="mt-2 text-sm text-gray-500 italic">(Write at least 250 words)</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-xl border border-gray-200 content-box">
+                        <h3 class="font-bold text-lg text-gray-800">Bài làm của học sinh (Band 5.0)</h3>
+                        <p class="mt-2 text-sm text-gray-700">Nowadays, many young people watch sports anime on TV and internet. Some people think this makes them want to play sports, but others believe it makes them lazy and spend too much time watching screens. I will discuss both sides and give my opinion.</p>
+                        <p class="mt-2 text-sm text-gray-700">On one hand, sports anime can motivate young people to try sports. When I watched Haikyuu, I became interested in volleyball and joined my school team. The characters in anime work very hard and never give up, which teaches good lessons. Many of my friends also started playing basketball after watching Kuroko no Basket. These animes show that teamwork is important and you must practice a lot to become good at sports.</p>
+                        <p class="mt-2 text-sm text-gray-700">However, some people think anime makes young people spend too much time watching TV instead of exercising. If someone watches anime for many hours every day, they don't have time for physical activities. Also, some people might think they can become good at sports just by watching, but this is not true. You need to practice in real life to improve your skills.</p>
+                        <p class="mt-2 text-sm text-gray-700">In my opinion, sports anime can be good motivation if people watch it in the right way. Young people should watch anime for entertainment and inspiration, but they must also go outside and practice sports. Parents and teachers should encourage children to balance screen time with physical activities.</p>
+                        <p class="mt-2 text-sm text-gray-700">To conclude, sports anime has both positive and negative effects. The most important thing is to find a good balance between watching anime and doing sports. If we do this, anime can help young people develop interest in sports and lead healthy lifestyles.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: The Clinical Analyst's Full Feedback -->
+            <div class="slide fade-in flex-col items-center justify-center p-8 md:p-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900">Phản hồi từ <span class="text-red-600">Nhà Phân Tích Lâm Sàng ChatGPT</span></h2>
+                <div class="mt-6 w-full max-w-4xl bg-gray-100 p-6 rounded-xl border border-gray-200 content-box text-xs">
+                    <h3 class="font-bold text-base text-center">📘 BẢN NHẬN XÉT KẾT QUẢ IELTS ĐỊNH TRÌNH – HỌC SINH TRẺ VIỆT NAM</h3>
+                    <p class="text-center font-semibold">Dự đoán Band điểm: 5.0 – 5.5</p>
+                    <hr class="my-3">
+                    <h4 class="font-bold">I. TỔNG QUAN NĂNG LỰC</h4>
+                    <p>Học sinh thể hiện tinh thần học tập nghiêm túc, có hiểu biết và đam mê rõ rệt đối với chủ đề. Tuy còn một số điểm cần cải thiện, bạn nhỏ đã có nền tảng tốt để phát triển kỹ năng tiếng Anh toàn diện – đặc biệt là trong phần Nói và phần Đọc.</p>
+                    <h4 class="font-bold mt-2">II. NHẬN XÉT CHI TIẾT</h4>
+                    <h5 class="font-semibold mt-1">📖 1. Reading – Đọc hiểu (Dự đoán Band 5.5)</h5>
+                    <p><strong>Điểm mạnh:</strong> Nắm được ý chính và hiểu ngữ cảnh; làm tốt câu hỏi trắc nghiệm và từ vựng.</p>
+                    <p><strong>Cần cải thiện:</strong> Câu trả lời ngắn đôi lúc thiếu chính xác (ví dụ thiếu “physical” trong “more than physical ability”); cần rèn kỹ năng định vị từ khóa.</p>
+                    <p><strong>Gợi ý phụ huynh:</strong> Luyện “skim & scan” và các cụm từ thường gặp trong IELTS Reading.</p>
+                    <h5 class="font-semibold mt-2">✍️ 2. Writing – Viết học thuật (Dự đoán Band 5.0)</h5>
+                    <p><strong>Điểm mạnh:</strong> Bố cục rõ ràng; biết so sánh, tổng hợp dữ kiện (Task 1); có ví dụ thực tế (Task 2).</p>
+                    <p><strong>Cần cải thiện:</strong> Vốn từ hạn chế; lỗi ngữ pháp cơ bản; lập luận còn đơn giản.</p>
+                    <p><strong>Gợi ý phụ huynh:</strong> Viết ngắn hằng ngày, luyện paraphrasing, mở rộng từ vựng học thuật.</p>
+                    <h5 class="font-semibold mt-2">🎧 3. Listening – Nghe hiểu (Dự đoán Band 5.0)</h5>
+                    <p>Nội dung tương tự: nắm ý chính tốt; chú ý chính tả và dạng từ; tránh bỏ sót câu.</p>
+                    <h5 class="font-semibold mt-2">🗣️ 4. Speaking – Nói (Dự đoán Band 5.5)</h5>
+                    <p>Nội dung tương tự: nói tự nhiên, rõ ràng; tăng đa dạng từ vựng, ngữ pháp và kết nối ý.</p>
+                    <hr class="my-3">
+                    <h4 class="font-bold mt-2">IV. LỜI NHẮN GỬI TỪ GIÁO VIÊN</h4>
+                    <p>Con đang có một nền tảng rất tốt và đặc biệt là niềm yêu thích học tiếng Anh qua anime và thể thao – đây là lợi thế mà không phải bạn nào cũng có. Cô tin rằng nếu con tiếp tục duy trì đam mê và luyện tập đúng cách, thì con hoàn toàn có thể đạt điểm cao trong kỳ thi IELTS chính thức trong tương lai.</p>
+                </div>
+                <p class="mt-4 text-2xl font-bold text-red-500">Điểm đánh giá: 62/100</p>
+                <p class="footnote">Ghi chú: Điểm trung bình tổng hợp từ các nền tảng AI lớn (OpenAI ChatGPT, Google Gemini, Anthropic Claude, xAI Grok).</p>
+            </div>
+
+            <!-- Slide 5: The Master Coach's Full Feedback -->
+            <div class="slide fade-in flex-col items-center justify-center p-8 md:p-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900">Phản hồi từ <span class="gradient-text">Người Huấn Luyện Bậc Thầy IterLight</span></h2>
+                <div class="mt-6 w-full max-w-4xl bg-indigo-50 p-6 rounded-xl border border-indigo-200 content-box text-xs">
+                    <h3 class="font-bold text-base text-center">✨ Thư Gửi Em – Về Hành Trình Bay Cao Cùng IELTS</h3>
+                    <p>Em thân mến,</p>
+                    <p>Chiều nay, khi ngồi đọc từng dòng trong bài làm của em, cô cứ mỉm cười mãi. Không chỉ vì những con chữ tiếng Anh em viết ra, mà bởi đằng sau đó, cô thấy một tâm hồn tràn đầy năng lượng, một trái tim yêu anime, yêu thể thao – và cả tiếng Anh nữa.</p>
+                    <p>Cô trân trọng câu chuyện của em – từ những dòng viết về Haikyuu!! đến cách em hình dung đôi mắt mình sáng lên khi nói về bóng chuyền. Đó là điều quý giá mà không một kỳ thi nào có thể đo đếm được. Và cũng chính nó sẽ là “vũ khí” mạnh mẽ nhất giúp em tiến xa trên hành trình học tập này.</p>
+                    <h4 class="font-bold mt-3">🎯 Em Đang Ở Đâu? Một Khởi Đầu Vững Chắc</h4>
+                    <p>Dựa trên bài làm vừa rồi, cô ước lượng trình độ hiện tại của em ở mức Band 5.0 – 5.5. Đây là một cột mốc đáng tự hào và là nền tảng lý tưởng để bứt phá.</p>
+                    <p>Cô nhớ về một cậu bé từng ngồi trong phòng thi IELTS, tay run run cầm bút. Cậu ấy cũng mê anime như em, cũng băn khoăn từng câu chữ. Năm đó, cậu chỉ đạt Band 5.0. Nhưng ba tháng sau, cậu đã vươn lên Band 6.5. Không phải nhờ phép màu, mà vì cậu hiểu được một điều: IELTS không phải là cuộc thi tìm sự hoàn hảo, mà là cuộc thi về khả năng giao tiếp và chiến lược học tập đúng đắn.</p>
+                    <p>Với em, cô nhìn thấy một nền tảng chắc chắn và một “tia sáng” sẵn sàng bùng lên – chỉ cần thêm chút tỉ mỉ và vài bước luyện tập phù hợp, cô tin em sẽ tiến rất xa.</p>
+                    <h4 class="font-bold mt-3">📘 Phân Tích Từng Kỹ Năng – Mài Giũa Viên Ngọc Thô</h4>
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li><strong>🔍 Reading (Band 5.5)</strong>
+                            <p><strong>Điểm mạnh:</strong> Em hiểu được mạch chính của bài, giống như Hinata đọc đường bay của quả bóng – nhanh và chính xác.</p>
+                            <p><strong>Cần cải thiện:</strong> Tránh vội, chú ý “more than physical ability”; cẩn trọng với “Not Given”.</p>
+                        </li>
+                        <li><strong>✍️ Writing (Band 5.0)</strong>
+                            <p><strong>Điểm mạnh:</strong> Cảm xúc chân thành, ví dụ rõ ràng.</p>
+                            <p><strong>Cần cải thiện:</strong> Ví dụ nâng cấp câu: “After witnessing Hinata's unwavering determination in Haikyuu!!, I found myself irresistibly drawn to volleyball, ultimately joining my school team despite my initial hesitation”.</p>
+                            <ul class="list-disc list-inside ml-5">
+                                <li>Vốn từ còn lặp.</li>
+                                <li>Cấu trúc chủ yếu câu đơn, ít liên từ.</li>
+                                <li>Task 1 thiên mô tả, thiếu so sánh/phân tích.</li>
+                            </ul>
+                        </li>
+                        <li><strong>🎧 Listening (Band 5.0)</strong>
+                            <p><strong>Điểm mạnh:</strong> Bắt nhịp tốt, theo dõi ý chính.</p>
+                            <p><strong>Cần cải thiện:</strong> Sửa các “nhiễu” nhỏ như sport → sports; character develop → character development.</p>
+                        </li>
+                        <li><strong>🗣️ Speaking (Band 5.5)</strong>
+                            <p><strong>Điểm mạnh:</strong> Tự nhiên, truyền cảm khi nói về Hinata.</p>
+                            <p><strong>Cần cải thiện:</strong></p>
+                            <ul class="list-disc list-inside ml-5">
+                                <li>Ngữ pháp: mạo từ, số ít/số nhiều.</li>
+                                <li>Từ vựng: dùng remarkable, outstanding, I'm passionate about...</li>
+                                <li>Kết nối ý: What I find particularly remarkable is..., From my perspective...</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <h4 class="font-bold mt-3">🛠️ Kế Hoạch 4 Tuần – Cùng Nhau “Lên Tầm Cao”</h4>
+                    <h5 class="font-semibold">📅 Tuần 1–2: Xây Nền Vững</h5>
+                    <ul class="list-disc list-inside ml-5">
+                        <li>Mỗi ngày: 5 từ + 3 từ đồng nghĩa nâng cao, đặt câu.</li>
+                        <li>Luyện câu phức: Although, While, Whereas, In contrast...</li>
+                        <li>Viết lại Task 1 & 2 với từ vựng/câu phức nâng cấp.</li>
+                        <li>Ghi âm Speaking Part 1; tự sửa 3 lỗi/ngày.</li>
+                    </ul>
+                    <h5 class="font-semibold mt-2">📅 Tuần 3–4: Tăng Tốc Bay Cao</h5>
+                    <ul class="list-disc list-inside ml-5">
+                        <li>Task 1 (20’), Task 2 (40’) đúng thời gian.</li>
+                        <li>Mỗi tuần 1 bài Reading + 1 bài Listening; phân tích lỗi.</li>
+                        <li>Speaking Part 2: nói liên tục 2’ (ưu tiên trôi chảy).</li>
+                        <li>Học 10 cụm diễn đạt áp dụng cho Nói & Viết.</li>
+                    </ul>
+                    <h4 class="font-bold mt-3">💌 Lời Nhắn Cuối Cùng</h4>
+                    <p>Em à, IELTS chỉ là một cánh cửa. Điều quan trọng là mỗi ngày em đang trở thành phiên bản tốt hơn của chính mình – một người biết nỗ lực, biết kiên trì và không ngừng học hỏi.</p>
+                    <p>Nếu có lúc nản lòng, hãy nhớ Hinata – cậu bé thấp nhất đội nhưng nhảy cao nhất. Không vì cậu đặc biệt từ đầu, mà vì cậu chưa từng bỏ cuộc.</p>
+                    <p>Em cũng vậy. Với ngọn lửa và nghị lực mà cô cảm nhận được, cô tin em sẽ vượt xa ước mơ hiện tại. Band 6.5 đang ở phía trước – và cô luôn ở đây, đồng hành cùng em.</p>
+                    <p>Thương chúc em luôn vui, tiến bộ và là chính mình. Cô giáo của em ❤️</p>
+                    <p class="italic">P.S: Lần tới khi viết, hãy tưởng tượng em đang kể cho Hinata nghe. Cậu ấy sẽ muốn nghe một câu chuyện sống động, đầy cảm xúc – chứ không phải chỉ những dòng khô khan như sách giáo khoa.</p>
+                </div>
+                <p class="mt-4 text-2xl font-bold text-indigo-600">Điểm đánh giá: 95/100</p>
+                <p class="footnote text-center">Ghi chú: Điểm trung bình tổng hợp từ các nền tảng AI lớn (OpenAI ChatGPT, Google Gemini, Anthropic Claude, xAI Grok).</p>
+            </div>
+
+            <!-- Slide 6: The Scorecard -->
+            <div class="slide fade-in flex-col items-center justify-center p-8 md:p-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900">Giải Mã Sự Vượt Trội</h2>
+                <p class="text-lg text-gray-600 mt-2 text-center max-w-3xl">33 / 100 khác biệt không chỉ là con số. Đó là vực sâu ngăn cách giữa hai triết lý giáo dục.</p>
+                <div class="mt-8 w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-100 p-6 rounded-xl">
+                        <h3 class="font-bold text-xl text-red-600">Giải pháp AI thông thường</h3>
+                        <ul class="mt-4 space-y-3 text-gray-700">
+                            <li><strong class="text-gray-900">Tâm lý:</strong> Xa cách, phán xét.</li>
+                            <li><strong class="text-gray-900">Phân tích:</strong> Chung chung, hời hợt.</li>
+                            <li><strong class="text-gray-900">Hành động:</strong> Sáo rỗng, thiếu định hướng.</li>
+                        </ul>
+                        <div class="text-center mt-6 text-5xl font-black text-red-400">62</div>
+                    </div>
+                    <div class="bg-violet-100 p-6 rounded-xl border-2 border-violet-500">
+                        <h3 class="font-bold text-xl text-violet-700">IterLight AI</h3>
+                        <ul class="mt-4 space-y-3 text-gray-700">
+                            <li><strong class="text-gray-900">Tâm lý:</strong> Đồng cảm, truyền cảm hứng.</li>
+                            <li><strong class="text-gray-900">Phân tích:</strong> Sâu sắc, chi tiết đến từng lỗi nhỏ.</li>
+                            <li><strong class="text-gray-900">Hành động:</strong> Cụ thể, khả thi với lộ trình rõ ràng.</li>
+                        </ul>
+                        <div class="text-center mt-6 text-5xl font-black text-indigo-600">95</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: The Three Pillars -->
+            <div class="slide fade-in flex-col items-center justify-center p-8 md:p-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900">Ba Trụ Cột Tạo Nên Sự Khác Biệt</h2>
+                <div class="mt-10 w-full grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="p-6">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 mx-auto">
+                            <svg class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                        </div>
+                        <h3 class="mt-5 text-xl font-bold">Cảm Xúc Trước, Lý Trí Sau</h3>
+                        <p class="mt-2 text-gray-600">Phá vỡ rào cản sợ sai, tạo không gian an toàn để học sinh sẵn sàng tiếp thu góp ý.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 mx-auto">
+                           <svg class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                        </div>
+                        <h3 class="mt-5 text-xl font-bold">Năng Lực "Huấn Luyện" Chuyên Sâu</h3>
+                        <p class="mt-2 text-gray-600">Biến mỗi bài làm thành một buổi huấn luyện 1-1, với lộ trình cải thiện rõ ràng.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 mx-auto">
+                            <svg class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                        </div>
+                        <h3 class="mt-5 text-xl font-bold">Tùy Biến Theo Dấu Ấn Thương Hiệu</h3>
+                        <p class="mt-2 text-gray-600">Tùy chỉnh giọng văn, cấu trúc phản hồi để phù hợp với triết lý giáo dục của trung tâm.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Business Advantage -->
+            <div class="slide fade-in flex-col items-center justify-center p-8 md:p-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900">Từ Con Số Đến Lợi Thế Kinh Doanh</h2>
+                <div class="mt-8 w-full overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Chỉ số</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Giải pháp AI thông thường</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">IterLight AI</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Tỷ lệ duy trì (Retention)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">Học sinh dễ nản → Bỏ học sớm</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-indigo-700 font-semibold">Động lực cao → Gắn bó lâu dài</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Sự hài lòng của phụ huynh</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">"Chính xác, dùng được."</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-indigo-700 font-semibold">"Ấn tượng sâu sắc, rất đáng tiền."</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Truyền miệng (Word-of-mouth)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">Trung bình, không nổi bật</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-indigo-700 font-semibold">Mạnh mẽ, trở thành câu chuyện để kể</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Định vị thương hiệu</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600">"Một trong nhiều trung tâm."</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-indigo-700 font-semibold">"Nơi dẫn đầu về chất lượng & sự tận tâm."</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Slide 9: Beyond IELTS -->
+            <div class="slide fade-in flex-col items-center justify-center p-8 md:p-12 text-center">
+                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Không Chỉ Dừng Lại ở Ngôn Ngữ</h2>
+                 <p class="mt-4 text-lg text-gray-600 max-w-3xl">Câu chuyện về IELTS chỉ là một ví dụ điển hình cho sức mạnh của "engine" IterLight AI.</p>
+                 <div class="mt-8 w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-100 p-8 rounded-xl text-left">
+                        <h3 class="font-bold text-xl text-gray-800">Năng lực cốt lõi</h3>
+                        <p class="mt-2 text-gray-600">Triết lý "huấn luyện viên đồng hành" của chúng tôi có thể được áp dụng trên mọi lĩnh vực giáo dục, từ cơ bản đến phức tạp nhất.</p>
+                    </div>
+                    <div class="bg-violet-100 p-8 rounded-xl text-left">
+                         <h3 class="font-bold text-xl text-violet-800">Ví dụ về các lĩnh vực khác</h3>
+                         <p class="mt-2 text-gray-700">Hãy tưởng tượng việc giải một bài toán tích phân phức tạp trong chương trình chuyên Toán. AI của chúng tôi không chỉ đưa ra đáp án, mà sẽ:</p>
+                         <ul class="mt-3 list-disc list-inside text-violet-900 space-y-1">
+                            <li>Hướng dẫn từng bước suy luận logic.</li>
+                            <li>Chỉ ra các lỗi sai phổ biến và cách tránh.</li>
+                            <li>Gợi ý các phương pháp tiếp cận khác nhau.</li>
+                         </ul>
+                    </div>
+                 </div>
+                 <p class="mt-8 text-xl font-semibold text-gray-800">Sức mạnh của chúng tôi là khả năng <span class="gradient-text">chuyển hóa mọi nội dung học thuật thành một hành trình được dẫn dắt đầy cảm hứng.</span></p>
+            </div>
+            
+            <!-- Slide 10: The Strategic Choice -->
+            <div class="slide fade-in flex-col items-center justify-center text-center p-8 md:p-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Lựa Chọn Của Người Dẫn Đầu</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-3xl">Trong thời đại mà mọi trung tâm đều có thể tiếp cận AI, lợi thế cạnh tranh không đến từ việc <span class="font-semibold">có AI</span>, mà đến từ việc <span class="font-semibold text-indigo-600">sở hữu AI tốt nhất</span>.</p>
+                <p class="mt-8 text-xl md:text-2xl font-semibold text-gray-800 italic">"Câu hỏi chiến lược không phải là liệu bạn có cần một AI tốt hơn không, mà là liệu bạn có đủ tầm nhìn để nắm bắt cơ hội này trước khi đối thủ của bạn làm điều đó hay không."</p>
+                <div class="mt-10 flex flex-col sm:flex-row gap-4">
+                    <button id="ctaBtn" class="px-8 py-4 bg-violet-600 text-white font-bold rounded-lg shadow-lg hover:bg-violet-700 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-violet-300">
+                        Trở thành đối tác của IterLight
+                    </button>
+                    <button id="appendixBtn" class="px-8 py-4 bg-violet-50 text-violet-800 font-bold rounded-lg shadow-lg hover:bg-violet-100 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-violet-200">
+                        Xem Phụ Lục Chi Tiết
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Slide 11: Appendix Title -->
+            <div class="slide fade-in flex-col items-center justify-center text-center p-8 md:p-16">
+                <h2 class="text-4xl md:text-5xl font-black text-gray-800">Phụ Lục</h2>
+                <p class="mt-4 text-lg text-gray-600">Tài liệu chi tiết được sử dụng trong phân tích.</p>
+            </div>
+            
+            <!-- Slide 12: Appendix 1 (PDF Embed) -->
+            <div class="slide fade-in flex-col items-center justify-center p-8 md:p-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900">Phụ lục 1: Tài liệu Worksheet đầy đủ (PDF)</h2>
+                <div class="mt-6 w-full max-w-4xl bg-gray-100 p-6 rounded-xl border border-gray-200 content-box text-xs">
+                    <p class="mb-4 text-gray-700">Nếu trình duyệt cho phép, tệp PDF sẽ hiển thị bên dưới. Nếu không, hãy mở tệp trực tiếp.</p>
+                    <div class="w-full" style="height: 70vh;">
+                        <object data="file:///C:/Users/thngu/Downloads/IELTS_Complete_Worksheet_Set_Sports_&_Anime_Theme_Band_5_6_and_Sample.pdf" type="application/pdf" width="100%" height="100%">
+                            <p>Không thể hiển thị PDF do giới hạn trình duyệt. Bạn có thể mở tệp trực tiếp: 
+                                <a class="text-indigo-600 underline" href="file:///C:/Users/thngu/Downloads/IELTS_Complete_Worksheet_Set_Sports_&_Anime_Theme_Band_5_6_and_Sample.pdf">Mở PDF</a>
+                            </p>
+                        </object>
+                    </div>
+                </div>
+            </div>
+
+
+            
+            <!-- Slide 12: Appendix 2 (Clean HTML) -->
+            <div class="slide fade-in flex-col items-center justify-center p-8 md:p-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900">Phụ lục 2: Phản hồi từ "Nhà Phân Tích Lâm Sàng ChatGPT"</h2>
+                <div class="mt-6 w-full max-w-4xl bg-gray-100 p-6 rounded-xl border border-gray-200 content-box text-sm leading-6 text-gray-800">
+                    <h3 class="font-bold text-lg text-center">📘 BẢN NHẬN XÉT KẾT QUẢ IELTS ĐỊNH TRÌNH – HỌC SINH TRẺ VIỆT NAM</h3>
+                    <p class="text-center font-semibold">Chủ đề: Thể thao & Anime • Dự đoán Band điểm: 5.0 – 5.5</p>
+                    <hr class="my-3">
+                    <h4 class="font-bold">I. TỔNG QUAN NĂNG LỰC</h4>
+                    <p>Học sinh thể hiện tinh thần học tập nghiêm túc, có hiểu biết và đam mê rõ rệt đối với chủ đề. Tuy còn một số điểm cần cải thiện, bạn nhỏ đã có nền tảng tốt để phát triển kỹ năng tiếng Anh toàn diện – đặc biệt là trong phần Nói và phần Đọc.</p>
+                    <hr class="my-3">
+                    <h4 class="font-bold">II. NHẬN XÉT CHI TIẾT</h4>
+                    <h5 class="font-semibold mt-2">📖 1. Reading – Đọc hiểu (Dự đoán Band 5.5)</h5>
+                    <p class="mt-1"><strong>Điểm mạnh:</strong> Nắm được ý chính và hiểu ngữ cảnh của bài đọc; lựa chọn đáp án đúng cho phần câu hỏi trắc nghiệm; biết xác định thông tin đúng/sai/dự đoán.</p>
+                    <p class="mt-1"><strong>Cần cải thiện:</strong> Một số lỗi thiếu chính xác trong câu trả lời dạng ngắn (ví dụ thiếu từ “physical” trong “more than physical ability”); cần luyện cách tìm từ chính xác trong đoạn văn.</p>
+                    <p class="mt-1"><strong>Gợi ý phụ huynh:</strong> Luyện thêm kỹ thuật “skim & scan”, học các cụm từ thường gặp trong IELTS Reading.</p>
+                    <h5 class="font-semibold mt-3">✍️ 2. Writing – Viết học thuật (Dự đoán Band 5.0)</h5>
+                    <p class="mt-1"><strong>Điểm mạnh:</strong> Biết bố cục rõ ràng; có tư duy so sánh và tổng hợp dữ kiện (Task 1); có ví dụ cụ thể (Task 2).</p>
+                    <p class="mt-1"><strong>Cần cải thiện:</strong> Vốn từ vựng hạn chế; một số lỗi ngữ pháp cơ bản; lập luận còn đơn giản.</p>
+                    <p class="mt-1"><strong>Gợi ý phụ huynh:</strong> Luyện viết từng đoạn nhỏ mỗi ngày; luyện paraphrasing; mở rộng vốn từ học thuật.</p>
+                    <h5 class="font-semibold mt-3">🎧 3. Listening – Nghe hiểu (Dự đoán Band 5.0)</h5>
+                    <p class="mt-1"><strong>Điểm mạnh:</strong> Nghe hiểu ý chính; làm đúng nhiều câu trắc nghiệm; điền từ theo ngữ cảnh.</p>
+                    <p class="mt-1"><strong>Cần cải thiện:</strong> Lỗi chính tả (“sports” thiếu “s”); dễ nhầm khi thông tin nhiều; đôi khi bỏ sót câu.</p>
+                    <p class="mt-1"><strong>Gợi ý phụ huynh:</strong> Luyện nghe chủ đề quen thuộc; nghe lặp lại để tăng phản xạ.</p>
+                    <h5 class="font-semibold mt-3">🗣️ 4. Speaking – Nói (Dự đoán Band 5.5)</h5>
+                    <p class="mt-1"><strong>Điểm mạnh:</strong> Trả lời lưu loát, phát âm rõ; phát triển ý kiến và thể hiện cảm xúc; kết nối anime với đời sống (Part 2 & 3).</p>
+                    <p class="mt-1"><strong>Cần cải thiện:</strong> Một số lỗi ngữ pháp phổ biến; vốn từ còn đơn giản; cần mở rộng câu trả lời.</p>
+                    <p class="mt-1"><strong>Gợi ý phụ huynh:</strong> Luyện nói theo chủ đề yêu thích với mục tiêu trôi chảy.</p>
+                    <hr class="my-3">
+                    <h4 class="font-bold">III. ĐÁNH GIÁ CHUNG & ĐỊNH HƯỚNG PHÁT TRIỂN</h4>
+                    <p class="mt-1">Ưu điểm: tinh thần tích cực, biết ứng dụng sở thích cá nhân (anime, thể thao) vào bài thi. Điểm cần chú trọng: mở rộng vốn từ, luyện cấu trúc ngữ pháp chính xác, rèn diễn đạt tự nhiên. Dự đoán Band hiện tại: 5.0–5.5. Mục tiêu khả thi: 6.0–6.5 trong 6–8 tháng luyện tập đều đặn.</p>
+                    <hr class="my-3">
+                    <h4 class="font-bold">IV. LỜI NHẮN GỬI TỪ GIÁO VIÊN</h4>
+                    <p>Con đang có một nền tảng rất tốt và đặc biệt là niềm yêu thích học tiếng Anh qua anime và thể thao – đây là lợi thế mà không phải bạn nào cũng có. Cô tin rằng nếu con tiếp tục duy trì đam mê và luyện tập đúng cách, thì con hoàn toàn có thể đạt điểm cao trong kỳ thi IELTS chính thức trong tương lai.</p>
+                </div>
+            </div>
+            
+            <!-- Slide 13: Appendix 3 (Clean HTML) -->
+            <div class="slide fade-in flex-col items-center justify-center p-8 md:p-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900">Phụ lục 3: Phản hồi từ "Người Huấn Luyện Bậc Thầy IterLight"</h2>
+                <div class="mt-6 w-full max-w-4xl bg-indigo-50 p-6 rounded-xl border border-indigo-200 content-box text-sm leading-6 text-gray-800">
+                    <h3 class="font-bold text-lg text-center">✨ Thư Gửi Em – Về Hành Trình Bay Cao Cùng IELTS</h3>
+                    <p>Em thân mến,</p>
+                    <p>Chiều nay, khi ngồi đọc từng dòng trong bài làm của em, cô cứ mỉm cười mãi. Không chỉ vì những con chữ tiếng Anh em viết ra, mà bởi đằng sau đó, cô thấy một tâm hồn tràn đầy năng lượng, một trái tim yêu anime, yêu thể thao – và cả tiếng Anh nữa.</p>
+                    <p>Cô trân trọng câu chuyện của em – từ những dòng viết về Haikyuu!! đến cách em hình dung đôi mắt mình sáng lên khi nói về bóng chuyền. Đó là điều quý giá mà không một kỳ thi nào có thể đo đếm được. Và cũng chính nó sẽ là “vũ khí” mạnh mẽ nhất giúp em tiến xa trên hành trình học tập này.</p>
+                    <h4 class="font-bold mt-3">🎯 Em Đang Ở Đâu? Một Khởi Đầu Vững Chắc</h4>
+                    <p>Dựa trên bài làm vừa rồi, cô ước lượng trình độ hiện tại của em ở mức Band 5.0 – 5.5. Đây là một cột mốc đáng tự hào và là nền tảng lý tưởng để bứt phá.</p>
+                    <p>Cô nhớ về một cậu bé từng ngồi trong phòng thi IELTS, tay run run cầm bút. Cậu ấy cũng mê anime như em, cũng băn khoăn từng câu chữ. Năm đó, cậu chỉ đạt Band 5.0. Nhưng ba tháng sau, cậu đã vươn lên Band 6.5. Không phải nhờ phép màu, mà vì cậu hiểu được một điều: IELTS không phải là cuộc thi tìm sự hoàn hảo, mà là cuộc thi về khả năng giao tiếp và chiến lược học tập đúng đắn.</p>
+                    <p>Với em, cô nhìn thấy một nền tảng chắc chắn và một “tia sáng” sẵn sàng bùng lên – chỉ cần thêm chút tỉ mỉ và vài bước luyện tập phù hợp, cô tin em sẽ tiến rất xa.</p>
+                    <h4 class="font-bold mt-3">📘 Phân Tích Từng Kỹ Năng – Mài Giũa Viên Ngọc Thô</h4>
+                    <ol class="list-decimal list-inside space-y-2">
+                        <li><strong>🔍 Reading (Band 5.5)</strong>
+                            <p><strong>Điểm mạnh:</strong> Em hiểu được mạch chính của bài, giống như Hinata đọc đường bay của quả bóng – nhanh và chính xác.</p>
+                            <p><strong>Cần cải thiện:</strong> Tránh vội, chú ý “more than physical ability”; cẩn trọng với “Not Given”.</p>
+                        </li>
+                        <li><strong>✍️ Writing (Band 5.0)</strong>
+                            <p><strong>Điểm mạnh:</strong> Cảm xúc chân thành, ví dụ rõ ràng.</p>
+                            <p><strong>Cần cải thiện:</strong> Ví dụ nâng cấp câu: “After witnessing Hinata's unwavering determination in Haikyuu!!, I found myself irresistibly drawn to volleyball, ultimately joining my school team despite my initial hesitation”.</p>
+                            <ul class="list-disc list-inside ml-5">
+                                <li>Vốn từ còn lặp.</li>
+                                <li>Cấu trúc chủ yếu câu đơn, ít liên từ.</li>
+                                <li>Task 1 thiên mô tả, thiếu so sánh/phân tích.</li>
+                            </ul>
+                        </li>
+                        <li><strong>🎧 Listening (Band 5.0)</strong>
+                            <p><strong>Điểm mạnh:</strong> Bắt nhịp tốt, theo dõi ý chính.</p>
+                            <p><strong>Cần cải thiện:</strong> Sửa các “nhiễu” nhỏ như sport → sports; character develop → character development.</p>
+                        </li>
+                        <li><strong>🗣️ Speaking (Band 5.5)</strong>
+                            <p><strong>Điểm mạnh:</strong> Tự nhiên, truyền cảm khi nói về Hinata.</p>
+                            <p><strong>Cần cải thiện:</strong></p>
+                            <ul class="list-disc list-inside ml-5">
+                                <li>Ngữ pháp: mạo từ, số ít/số nhiều.</li>
+                                <li>Từ vựng: dùng remarkable, outstanding, I'm passionate about...</li>
+                                <li>Kết nối ý: What I find particularly remarkable is..., From my perspective...</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <h4 class="font-bold mt-3">🛠️ Kế Hoạch 4 Tuần – Cùng Nhau “Lên Tầm Cao”</h4>
+                    <h5 class="font-semibold">📅 Tuần 1–2: Xây Nền Vững</h5>
+                    <ul class="list-disc list-inside ml-5">
+                        <li>Mỗi ngày: 5 từ + 3 từ đồng nghĩa nâng cao, đặt câu.</li>
+                        <li>Luyện câu phức: Although, While, Whereas, In contrast...</li>
+                        <li>Viết lại Task 1 & 2 với từ vựng/câu phức nâng cấp.</li>
+                        <li>Ghi âm Speaking Part 1; tự sửa 3 lỗi/ngày.</li>
+                    </ul>
+                    <h5 class="font-semibold mt-2">📅 Tuần 3–4: Tăng Tốc Bay Cao</h5>
+                    <ul class="list-disc list-inside ml-5">
+                        <li>Task 1 (20’), Task 2 (40’) đúng thời gian.</li>
+                        <li>Mỗi tuần 1 bài Reading + 1 bài Listening; phân tích lỗi.</li>
+                        <li>Speaking Part 2: nói liên tục 2’ (ưu tiên trôi chảy).</li>
+                        <li>Học 10 cụm diễn đạt áp dụng cho Nói & Viết.</li>
+                    </ul>
+                    <h4 class="font-bold mt-3">💌 Lời Nhắn Cuối Cùng</h4>
+                    <p>Em à, IELTS chỉ là một cánh cửa. Điều quan trọng là mỗi ngày em đang trở thành phiên bản tốt hơn của chính mình – một người biết nỗ lực, biết kiên trì và không ngừng học hỏi.</p>
+                    <p>Nếu có lúc nản lòng, hãy nhớ Hinata – cậu bé thấp nhất đội nhưng nhảy cao nhất. Không vì cậu đặc biệt từ đầu, mà vì cậu chưa từng bỏ cuộc.</p>
+                    <p>Em cũng vậy. Với ngọn lửa và nghị lực mà cô cảm nhận được, cô tin em sẽ vượt xa ước mơ hiện tại. Band 6.5 đang ở phía trước – và cô luôn ở đây, đồng hành cùng em.</p>
+                    <p>Thương chúc em luôn vui, tiến bộ và là chính mình. Cô giáo của em ❤️</p>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Navigation -->
+        <div class="sticky bottom-0 left-0 right-0 p-4 flex justify-between items-center bg-white/80 backdrop-blur-sm border-t border-gray-200">
+            <button id="prevBtn" class="px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                &larr; Trước
+            </button>
+            <div class="flex items-center gap-3">
+                <div id="slideCounter" class="text-sm font-medium text-gray-700"></div>
+                <img src="https://iterlight.com/IGlogo.png" alt="IterLight Logo" class="h-6">
+            </div>
+            <button id="nextBtn" class="px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                Tiếp &rarr;
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const appendixBtn = document.getElementById('appendixBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            let currentSlide = 0;
+            const appendixStartIndex = 10; // Slide index where appendices start
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active', 'fade-in');
+                    }
+                });
+                currentSlide = index;
+                updateNav();
+            }
+
+            function updateNav() {
+                slideCounter.textContent = `Slide ${currentSlide + 1} / ${slides.length}`;
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === slides.length - 1;
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slides.length - 1) {
+                    showSlide(currentSlide + 1);
+                }
+            });
+
+            if (appendixBtn) {
+                appendixBtn.addEventListener('click', () => {
+                    showSlide(appendixStartIndex);
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                } else if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                }
+            });
+
+            // PDF text extraction using pdf.js (Slide 12C)
+            const choosePdfBtn = document.getElementById('choosePdfBtn');
+            const pdfFileInput = document.getElementById('pdfFileInput');
+            const pdfTextOutput = document.getElementById('pdfTextOutput');
+            const pdfStatus = document.getElementById('pdfStatus');
+
+            if (choosePdfBtn && pdfFileInput && pdfTextOutput) {
+                // Configure worker if needed
+                if (window['pdfjsLib']) {
+                    try {
+                        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.7.107/pdf.worker.min.js';
+                    } catch {}
+                }
+
+                choosePdfBtn.addEventListener('click', () => pdfFileInput.click());
+
+                pdfFileInput.addEventListener('change', async (e) => {
+                    const file = e.target.files && e.target.files[0];
+                    if (!file) return;
+                    pdfStatus.textContent = `Đang nạp: ${file.name} ...`;
+                    pdfTextOutput.textContent = '';
+
+                    try {
+                        const url = URL.createObjectURL(file);
+                        const loadingTask = pdfjsLib.getDocument(url);
+                        const pdf = await loadingTask.promise;
+                        let fullText = '';
+                        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                            const page = await pdf.getPage(pageNum);
+                            const textContent = await page.getTextContent();
+                            const pageText = textContent.items.map(item => item.str).join(' ');
+                            fullText += `\n\n===== Trang ${pageNum} / ${pdf.numPages} =====\n\n` + pageText;
+                        }
+                        pdfTextOutput.textContent = fullText.trim();
+                        pdfStatus.textContent = `Đã nạp xong: ${file.name} (${pdf.numPages} trang)`;
+                        URL.revokeObjectURL(url);
+                    } catch (err) {
+                        console.error(err);
+                        pdfStatus.textContent = 'Không thể đọc nội dung PDF. Vui lòng thử lại hoặc mở tệp trực tiếp.';
+                    }
+                });
+            }
+
+            showSlide(currentSlide);
+        });
+    </script>
+
+</body>
+</html>
