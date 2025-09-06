@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IterLight | Đồng Hành Cùng Nhà Vô Địch Tương Lai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e3a8a;
+            --text-color: #334155;
+            --bg-color: #f8fafc;
+            --sidebar-width: 250px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .presentation-container {
+            display: flex;
+            height: 100%;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            border-radius: 6px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background-color: #f1f5f9;
+        }
+
+        .sidebar-nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            height: 100vh;
+            padding: 6rem 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid #e2e8f0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .slide.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide h1, .slide h2, .slide h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .slide h1 { font-size: 2.8em; }
+        .slide h2 { font-size: 2.2em; border-left: 4px solid var(--primary-color); padding-left: 1rem; }
+        .slide h3 { font-size: 1.5em; }
+        .slide p, .slide li { font-size: 1.1em; line-height: 1.8; max-width: 800px; }
+        .slide ul { list-style-position: inside; padding-left: 1rem; }
+        .slide li { margin-bottom: 0.75rem; }
+
+        .title-slide h1 {
+            font-size: 3.5em;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .title-slide .subtitle {
+            font-size: 1.4em;
+            font-weight: 400;
+            color: #64748b;
+            max-width: 700px;
+        }
+        .logos { display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; }
+        .logos img { max-height: 60px; }
+        .logos span { font-size: 2.5em; color: #cbd5e1; }
+
+        .side-by-side {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
+            height: 70vh;
+            margin-top: 2rem;
+        }
+        .side-by-side-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .side-by-side-item iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .side-by-side-item .header {
+            padding: 0.75rem;
+            background: #f1f5f9;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .report-highlight-container {
+            position: relative;
+        }
+
+        .report-highlight {
+            position: absolute;
+            border: 3px solid #ef4444;
+            border-radius: 8px;
+            background: rgba(239, 68, 68, 0.1);
+            animation: pulse 2s infinite;
+            pointer-events: none;
+        }
+        .report-highlight::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ef4444;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .worksheet-tabs {
+            display: flex;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .worksheet-tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            border: none;
+            background: transparent;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .worksheet-tab.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            font-weight: 600;
+        }
+        .worksheet-content { display: none; }
+        .worksheet-content.active { display: block; }
+
+        .competitor-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+        .competitor-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .competitor-card h3 {
+            color: var(--primary-color);
+        }
+        .competitor-card ul {
+            list-style-type: '✓ ';
+            padding-left: 1.5rem;
+        }
+        .competitor-card.competitor-ai img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .competitor-card.competitor-ai p {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #64748b;
+        }
+
+        .toggle-menu {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1001;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* --- NEW: Arrow Navigation Styles --- */
+        .navigation-arrows {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-arrow {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+        
+        .nav-arrow.hidden {
+            display: none;
+        }
+        /* --- END: Arrow Navigation Styles --- */
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                z-index: 1000;
+                transform: translateX(-100%);
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                width: 100%;
+            }
+            .toggle-menu {
+                display: flex;
+            }
+            .slide {
+                padding: 6rem 5% 4rem;
+                height: auto; /* Allow slides to grow on mobile */
+                min-height: 100vh;
+            }
+            .side-by-side {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            .side-by-side-item {
+                height: 60vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 2.2em; }
+            .slide h2 { font-size: 1.8em; }
+            .title-slide h1 { font-size: 2.5em; }
+            .title-slide .subtitle { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">IterLight</div>
+            <ul class="sidebar-nav" id="sidebar-nav">
+                <li><a href="#slide-1" class="active">Giới thiệu</a></li>
+                <li><a href="#slide-2">Sứ mệnh chung</a></li>
+                <li><a href="#slide-3">Cơ hội tại Việt Nam</a></li>
+                <li><a href="#slide-4">Giải pháp của chúng tôi</a></li>
+                <li><a href="#slide-5">Chương trình học</a></li>
+                <li><a href="#slide-6">Cổng thông tin học sinh</a></li>
+                <li><a href="#slide-7">Cổng thông tin phụ huynh</a></li>
+                <li><a href="#slide-8">Báo cáo AI & Phản hồi</a></li>
+                <li><a href="#slide-9">Mở rộng nền tảng</a></li>
+                <li><a href="#slide-10">Lợi thế cạnh tranh</a></li>
+                <li><a href="#slide-11">Bài học song ngữ</a></li>
+                <li><a href="#slide-12">Thư viện bài học</a></li>
+                <li><a href="#slide-13">Tóm tắt & Hợp tác</a></li>
+                <li><a href="#slide-14">Bước tiếp theo</a></li>
+            </ul>
+        </aside>
+
+        <button class="toggle-menu" id="toggle-menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <main class="main-content" id="main-content">
+            <section id="slide-1" class="slide title-slide">
+                <div class="logos">
+                    <img src="iterlight_logo.png" alt="IterLight Logo">
+                </div>
+                <h1>Đồng Hành Cùng Nhà Vô Địch Tương Lai</h1>
+                <p class="subtitle">Xây Dựng Nền Tảng Vững Chắc cho Các Kỳ Thi Đẳng Cấp Quốc Tế</p>
+            </section>
+
+            <section id="slide-2" class="slide">
+                <h2>Một Sứ Mệnh Chung</h2>
+                <ul>
+                    <li>Chúng tôi vô cùng trân trọng di sản của quý vị trong việc nuôi dưỡng tài năng Việt Nam thông qua các sự kiện uy tín như <strong>"Kỳ thi tin học trẻ toàn quốc."</strong></li>
+                    <li>Sứ mệnh chung: Khai phá tiềm năng tối đa của mỗi học sinh Việt Nam.</li>
+                    <li>Giới thiệu một hệ sinh thái rèn luyện đột phá để xây dựng kỹ năng cốt lõi, hướng tới thành công học thuật dài hạn.</li>
+                </ul>
+            </section>
+
+            <section id="slide-3" class="slide">
+                <h2>Cơ Hội Tại Thị Trường Việt Nam</h2>
+                 <ul>
+                    <li><strong>Nhu cầu:</strong> Sự quan tâm của học sinh đối với các kỳ thi quốc tế (SAT, AP, IELTS, TOEFL) đang tăng trưởng nhanh chóng.</li>
+                    <li><strong>Khoảng trống thị trường:</strong> Hầu hết các dịch vụ hiện tại là các khóa luyện thi ngắn hạn, tập trung vào mẹo và thủ thuật.</li>
+                    <li><strong>Vấn đề:</strong> Cách tiếp cận này tạo ra sự hiểu biết nông cạn và nền tảng yếu kém cho các kỳ thi quan trọng.</li>
+                    <li><strong>Nguyên tắc của chúng tôi:</strong> Thành công thực sự và bền vững được xây dựng trên sự nắm vững các khái niệm cốt lõi một cách sâu sắc.</li>
+                </ul>
+            </section>
+
+            <section id="slide-4" class="slide">
+                <h2>Giải Pháp Của Chúng Tôi: Xây Dựng Chương Trình Học, Không Phải Luyện Thi Cấp Tốc</h2>
+                 <ul>
+                    <li><strong>Triết lý:</strong> Bí quyết thực sự để đạt thành tích cao nằm ở việc xây dựng sự thành thạo nền tảng theo thời gian.</li>
+                    <li><strong>Nền tảng:</strong> Một hệ sinh thái học tập toàn diện, hấp dẫn được thiết kế để phát triển kỹ năng dài hạn.</li>
+                    <li><strong>Phương pháp:</strong> Một mô hình thích ứng giúp điều chỉnh nội dung theo bất kỳ sở thích nào khơi dậy trí tò mò của học sinh—từ thể thao đến âm nhạc, game và nghệ thuật.</li>
+                </ul>
+            </section>
+            
+            <section id="slide-5" class="slide">
+                <h2>Chương Trình Học: Chiều Sâu & Cá Nhân Hóa Vượt Trội</h2>
+                <ul>
+                    <li><strong>Lộ trình Toàn diện:</strong> Một chương trình học đầy đủ hỗ trợ học sinh từ Lớp 1 đến Lớp 12.</li>
+                    <li><strong>Thư viện nội dung khổng lồ:</strong> Hàng trăm bài học cho mỗi khối lớp, bao gồm 25 chủ đề cốt lõi ở 3 cấp độ khó riêng biệt.</li>
+                    <li><strong>Cá nhân hóa sâu sắc:</strong> Nội dung được điều chỉnh theo đam mê của học sinh, biến việc học từ một gánh nặng thành một trải nghiệm thú vị.</li>
+                    <li><strong>Trọng tâm chiến lược:</strong> Đối với các lớp 10-12, chương trình học được thiết kế để xây dựng các kỹ năng phân tích chính xác cần thiết để đạt điểm cao trong môn Toán SAT.</li>
+                </ul>
+            </section>
+            
+            <section id="slide-6" class="slide">
+                 <h2>Cổng Thông Tin Học Sinh: Sân Tập Của Vận Động Viên</h2>
+                 <p>Học sinh có thể theo dõi và làm chủ hành trình học tập của mình.</p>
+                 <div class="side-by-side" style="height: auto; grid-template-columns: 1fr 1.5fr;">
+                     <img src="IMG_1489.jpg" alt="Student Portal Screenshot" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                     <div>
+                         <h3>Các chỉ số hiệu suất</h3>
+                         <p>Học sinh theo dõi tiến trình của mình như vận động viên (Điểm tổng thể, Số bài đã học, Thời gian học), giúp các em làm chủ việc học của mình.</p>
+                         <h3>Động cơ tạo động lực</h3>
+                         <p>Các tính năng game hóa như "Chuỗi ngày học" và "Thành tích gần đây" xây dựng tính nhất quán và biến việc luyện tập hàng ngày thành một thói quen bổ ích.</p>
+                     </div>
+                 </div>
+            </section>
+
+            <section id="slide-7" class="slide">
+                <h2>Cổng Thông Tin Phụ Huynh: Người Quản Lý Đội Hỗ Trợ</h2>
+                <p>Thành công đòi hỏi một đội ngũ, và phụ huynh là một phần quan trọng trong đó.</p>
+                <div class="side-by-side" style="height: auto; grid-template-columns: 1fr 1.5fr;">
+                     <img src="IMG_1490.jpg" alt="Parent Portal Screenshot" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                     <div>
+                         <h3>Đối tác trong giáo dục</h3>
+                         <p>Cổng thông tin dành riêng cho Phụ huynh của chúng tôi giúp họ trở thành những đối tác tích cực trong việc học của con em mình.</p>
+                         <h3>Theo dõi dễ dàng</h3>
+                         <p>Phụ huynh có thể dễ dàng theo dõi tiến độ và xem báo cáo kết quả học tập, tạo ra một môi trường học tập hỗ trợ mạnh mẽ tại nhà.</p>
+                     </div>
+                 </div>
+            </section>
+
+            <section id="slide-8" class="slide">
+                <h2>"Vũ Khí Bí Mật": Báo Cáo Từ Huấn Luyện Viên AI Của Chúng Tôi</h2>
+                <p>Không chỉ là điểm số, báo cáo AI của chúng tôi mang lại sự cố vấn thực sự. Đây là điểm khác biệt cốt lõi.</p>
+                <div class="side-by-side">
+                    <div class="side-by-side-item">
+                        <div class="header">Báo cáo tiếng Anh</div>
+                        <iframe src="minh_professional_report.html"></iframe>
+                    </div>
+                    <div class="side-by-side-item report-highlight-container">
+                        <div class="header">Báo cáo tiếng Việt</div>
+                        <iframe src="vietnamese_report.html"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section id="slide-9" class="slide">
+                <h2>Mở Rộng Tầm Nhìn: Một Nền Tảng Cho Sự Xuất Sắc Học Thuật Toàn Diện</h2>
+                <ul>
+                    <li>Mô hình học tập dựa trên sở thích đã được chứng minh của chúng tôi được xây dựng để mở rộng.</li>
+                    <li>Chúng tôi đang phát triển các chương trình học toàn diện cho môn <strong>Tiếng Anh,</strong> tiến đến việc chuẩn bị cho các kỳ thi <strong>IELTS, TOEFL, và AP.</strong></li>
+                    <li><strong>Phương pháp kết hợp của chúng tôi:</strong>
+                        <ul>
+                            <li>Học tập nền tảng dài hạn giúp xây dựng kỹ năng sâu.</li>
+                            <li>Giai đoạn luyện thi tập trung với báo cáo và chiến lược hàng tuần trước các kỳ thi quan trọng.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            
+             <section id="slide-10" class="slide">
+                <h2>Lợi Thế Cạnh Tranh: Vượt Trội Tại Việt Nam</h2>
+                <div class="competitor-comparison">
+                    <div class="competitor-card">
+                        <h3>Nền tảng IterLight</h3>
+                        <ul>
+                            <li><strong>Chiều sâu nội dung:</strong> Chương trình học lớp 1-12 toàn diện, với thư viện bài học phong phú.</li>
+                            <li><strong>Độ chính xác vượt trội:</strong> Tài liệu được xây dựng theo tiêu chuẩn quốc tế cao nhất.</li>
+                            <li><strong>Cá nhân hóa chưa từng có:</strong> Phản hồi sâu sắc, đồng cảm và có tính hành động từ Huấn luyện viên AI của chúng tôi. Chúng tôi không chỉ kiểm tra học sinh; chúng tôi phát triển họ.</li>
+                        </ul>
+                    </div>
+                     <div class="competitor-card competitor-ai">
+                         <h3>Đối thủ AI khác (Prep)</h3>
+                         <img src="Screen Shot 2025-08-29 at 11.27.24 PM.png" alt="Competitor AI Feedback">
+                         <p>Phản hồi thường tập trung vào dữ liệu và chỉ số kỹ thuật, thiếu đi sự hướng dẫn mang tính huấn luyện và truyền cảm hứng để xây dựng sự tự tin và tư duy phát triển.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="slide-11" class="slide">
+                <h2>Trải Nghiệm Bài Học</h2>
+                <p>Nội dung của chúng tôi được thiết kế để tiếp cận và chinh phục các em nhỏ trên toàn cầu.</p>
+                <div class="side-by-side">
+                    <div class="side-by-side-item">
+                        <div class="header">Tiếng Anh</div>
+                        <iframe src="grade_4_problem_solving_soccer_advanced.html"></iframe>
+                    </div>
+                    <div class="side-by-side-item">
+                        <div class="header">Tiếng Việt</div>
+                        <iframe src="vietnamese_math_lesson.html"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section id="slide-12" class="slide">
+                <h2>Thư Viện Bài Học Phong Phú</h2>
+                <p>Khám phá chiều sâu của chương trình học Toán Lớp 4 của chúng tôi.</p>
+                <div class="worksheet-viewer" style="height: 70vh; width: 100%;">
+                    <div class="worksheet-tabs" id="worksheet-tabs">
+                        <button class="worksheet-tab active" data-target="ws1">Đo lường</button>
+                        <button class="worksheet-tab" data-target="ws2">Tỷ lệ</button>
+                        <button class="worksheet-tab" data-target="ws3">Thống kê</button>
+                    </div>
+                    <div id="worksheet-container" style="height: calc(100% - 50px); border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                        <div id="ws1" class="worksheet-content active" style="height: 100%;">
+                             <iframe src="grade_4_measurement_soccer_advanced.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                        </div>
+                        <div id="ws2" class="worksheet-content" style="height: 100%;">
+                            <iframe src="grade_4_ratios_soccer_advanced.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                        </div>
+                        <div id="ws3" class="worksheet-content" style="height: 100%;">
+                             <iframe src="grade_4_statistics_soccer_advanced.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="slide-13" class="slide">
+                <h2>Tóm Tắt &amp; Cơ Hội Hợp Tác</h2>
+                <ul>
+                    <li><strong>Nền tảng của chúng tôi cung cấp:</strong>
+                        <ul>
+                            <li>Một chương trình học lớp 1-12 toàn diện, được cá nhân hóa.</li>
+                            <li>Một huấn luyện viên AI tận tâm đồng hành cùng học sinh.</li>
+                            <li>Một hệ thống cổng thông tin kép cho cả học sinh và phụ huynh.</li>
+                        </ul>
+                    </li>
+                    <li>Chúng tôi tin rằng nền tảng của mình là một công cụ vô giá cho các học sinh và trường học trong mạng lưới của quý vị và rất vinh dự được khám phá các cơ hội hợp tác.</li>
+                </ul>
+            </section>
+
+            <section id="slide-14" class="slide">
+                <h2>Cùng Nhau Xây Dựng Tương Lai</h2>
+                <ul>
+                    <li><strong>Bước tiếp theo:</strong> Chúng tôi rất mong muốn được sắp xếp một buổi demo riêng, chuyên sâu cho đội ngũ của quý vị.</li>
+                    <li>Hãy cùng thảo luận về cách chúng ta có thể hợp tác để mang đến cấp độ chuẩn bị mới này cho học sinh trên khắp Việt Nam.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <div class="navigation-arrows">
+        <button id="prev-slide" class="nav-arrow" title="Previous Slide">&#8593;</button>
+        <button id="next-slide" class="nav-arrow" title="Next Slide">&#8595;</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarNav = document.getElementById('sidebar-nav');
+            const mainContent = document.getElementById('main-content');
+            const slides = document.querySelectorAll('.slide');
+            const toggleMenu = document.getElementById('toggle-menu');
+            const sidebar = document.getElementById('sidebar');
+
+            // --- Slide Intersection Observer ---
+            const observerOptions = {
+                root: mainContent,
+                rootMargin: '0px',
+                threshold: 0.6 // Increased threshold for better accuracy
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        const id = entry.target.getAttribute('id');
+                        const activeLink = sidebarNav.querySelector(`a[href="#${id}"]`);
+                        
+                        sidebarNav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                        
+                        // NEW: Update arrow navigation state
+                        updateArrowVisibility();
+                    }
+                });
+            }, observerOptions);
+
+            slides.forEach(slide => {
+                observer.observe(slide);
+            });
+            
+            // --- Sidebar Navigation ---
+            sidebarNav.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    // This part works fine with scrollIntoView, no change needed
+                    if(window.innerWidth <= 1024) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            toggleMenu.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+            
+            mainContent.addEventListener('click', () => {
+                if (window.innerWidth <= 1024 && sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                }
+            });
+
+            // --- Worksheet Tabs ---
+            const worksheetTabsContainer = document.getElementById('worksheet-tabs');
+            if (worksheetTabsContainer) {
+                const tabs = worksheetTabsContainer.querySelectorAll('.worksheet-tab');
+                const contents = document.querySelectorAll('.worksheet-content');
+
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        tabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+
+                        const targetId = tab.dataset.target;
+                        contents.forEach(content => {
+                            if (content.id === targetId) {
+                                content.classList.add('active');
+                            } else {
+                                content.classList.remove('active');
+                            }
+                        });
+                    });
+                });
+            }
+
+            // --- NEW: Arrow Navigation Logic ---
+            const prevButton = document.getElementById('prev-slide');
+            const nextButton = document.getElementById('next-slide');
+            const slideArray = Array.from(slides);
+
+            function getCurrentSlideIndex() {
+                let currentSlide = slideArray.find(slide => {
+                    const rect = slide.getBoundingClientRect();
+                    return rect.top >= 0 && rect.top < window.innerHeight / 2;
+                });
+                return currentSlide ? slideArray.indexOf(currentSlide) : 0;
+            }
+
+            function navigateToSlide(index) {
+                if (index >= 0 && index < slideArray.length) {
+                    slideArray[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+            
+            function updateArrowVisibility() {
+                const currentIndex = getCurrentSlideIndex();
+                prevButton.classList.toggle('hidden', currentIndex === 0);
+                nextButton.classList.toggle('hidden', currentIndex === slideArray.length - 1);
+            }
+
+            prevButton.addEventListener('click', () => {
+                let currentIndex = getCurrentSlideIndex();
+                navigateToSlide(currentIndex - 1);
+            });
+
+            nextButton.addEventListener('click', () => {
+                let currentIndex = getCurrentSlideIndex();
+                navigateToSlide(currentIndex + 1);
+            });
+            
+            // Initial check for arrow visibility on load
+            setTimeout(updateArrowVisibility, 100); 
+
+        });
+    </script>
+</body>
+</html>
