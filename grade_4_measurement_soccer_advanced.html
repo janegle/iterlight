@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<!--
+Math Worksheet HTML
+Generated: 2025-08-26 21:45:42
+Grade 4: Measurement + soccer + Advanced + Soccer Math Explorer
+Math Topic: Measurement
+Sports Context: soccer
+Difficulty Level: Advanced
+-->
+
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>⚽ Tournament Travel Time Calculations ⚽</title>
+ <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+ <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.6.1/distrib/jsxgraphcore.js"></script>
+ <script>
+ window.MathJax = {
+ tex: {
+ inlineMath: [['\\(', '\\)']],
+ displayMath: [['\\[', '\\]']]
+ }
+ };
+ </script>
+ <style>
+ * {
+ box-sizing: border-box;
+ max-width: 100%;
+ word-wrap: break-word;
+ overflow-wrap: break-word;
+ }
+
+ body {
+ font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;
+ background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%);
+ color: #2c3e50;
+ margin: 0;
+ padding: 0;
+ line-height: 1.6;
+ overflow-x: hidden;
+ }
+
+ .container {
+ max-width: 1200px;
+ width: 100%;
+ margin: 0 auto;
+ padding: 1rem;
+ overflow: hidden;
+ box-sizing: border-box;
+ }
+
+ .lesson-container {
+ width: 100%;
+ max-width: 1200px;
+ padding: 1rem;
+ overflow: hidden;
+ box-sizing: border-box;
+ }
+
+ .content-section {
+ background: white;
+ border-radius: 8px;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+ margin: 1rem 0;
+ padding: 1.5rem;
+ border-left: 5px solid #1976d2;
+ overflow: hidden;
+ box-sizing: border-box;
+ max-width: 100%;
+ }
+
+ .theory-section {
+ border-left-color: #1976d2;
+ background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%);
+ }
+
+ .practice-section {
+ border-left-color: #388e3c;
+ background: linear-gradient(135deg, #e8f5e8 0%, #f1f8f1 100%);
+ }
+
+ .problem-section {
+ border-left-color: #7b1fa2;
+ background: linear-gradient(135deg, #f3e5f5 0%, #faf5ff 100%);
+ }
+
+ .review-section {
+ border-left-color: #f57c00;
+ background: linear-gradient(135deg, #fff3e0 0%, #fff8f0 100%);
+ }
+
+ .elementary-header {
+ font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;
+ font-size: 2.5em;
+ color: #e74c3c;
+ text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+ text-align: center;
+ margin: 1rem 0;
+ overflow: hidden;
+ max-width: 100%;
+ }
+
+ .elementary-number {
+ font-size: 2em;
+ font-weight: bold;
+ color: #2c3e50;
+ background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+ border-radius: 50%;
+ width: 60px;
+ height: 60px;
+ display: inline-flex;
+ align-items: center;
+ justify-content: center;
+ margin: 0.5rem;
+ box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+ }
+
+ .elementary-problem {
+ background: linear-gradient(135deg, #fff5f5 0%, #ffeaa7 100%);
+ border: 3px solid #fd79a8;
+ border-radius: 15px;
+ padding: 1.5rem;
+ margin: 1rem 0;
+ box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+ overflow: hidden;
+ max-width: 100%;
+ word-wrap: break-word;
+ }
+
+ .elementary-emoji {
+ font-size: 1.5em;
+ margin: 0 0.5rem;
+ filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+ }
+
+ .elementary-progress {
+ background: linear-gradient(90deg, #74b9ff 0%, #0984e3 100%);
+ height: 20px;
+ border-radius: 10px;
+ margin: 1rem 0;
+ position: relative;
+ overflow: hidden;
+ max-width: 100%;
+ }
+
+ .elementary-star {
+ color: #fdcb6e;
+ font-size: 1.8em;
+ text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+ margin: 0 0.2rem;
+ }
+
+ .elementary-counting {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.5rem;
+ justify-content: center;
+ margin: 1rem 0;
+ overflow: hidden;
+ max-width: 100%;
+ }
+
+ .elementary-counting-item {
+ width: 40px;
+ height: 40px;
+ background: linear-gradient(45deg, #a29bfe 0%, #6c5ce7 100%);
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: #000000;
+ font-weight: bold;
+ font-size: 1.2em;
+ box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+ }
+
+ .problem-container {
+ max-width: 100%;
+ overflow: hidden;
+ box-sizing: border-box;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 1rem;
+ }
+
+ .step-box {
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ background: #f8f9fa;
+ border: 2px solid #e9ecef;
+ border-radius: 10px;
+ padding: 1rem;
+ margin: 0.5rem 0;
+ }
+
+ .vocab-section {
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ }
+
+ .math-block {
+ display: block;
+ text-align: center;
+ margin: 1.5rem 0;
+ padding: 1.5rem;
+ background: linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%);
+ border: 2px solid #e9ecef;
+ border-radius: 10px;
+ font-size: 1.3em;
+ color: #2c3e50;
+ font-family: 'Times New Roman', serif;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+ overflow: hidden;
+ max-width: 100%;
+ word-wrap: break-word;
+ }
+
+ .math {
+ font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+ font-style: normal;
+ font-size: 1.1em;
+ font-weight: 500;
+ line-height: 1.4;
+ padding: 0.5em 0.7em;
+ background: #f8f9fa;
+ color: #2c3e50;
+ border: 1px solid #dee2e6;
+ border-radius: 6px;
+ max-width: 100%;
+ word-break: break-word;
+ box-sizing: border-box;
+ display: inline-block;
+ }
+
+ .answer-input {
+ width: 100%;
+ max-width: 200px;
+ font-size: 16px;
+ padding: 8px;
+ border: 2px solid #dee2e6;
+ border-radius: 5px;
+ margin: 0.5rem;
+ box-sizing: border-box;
+ }
+
+ .check-btn {
+ background: linear-gradient(45deg, #74b9ff 0%, #0984e3 100%);
+ color: #000000;
+ border: none;
+ padding: 10px 20px;
+ font-size: 16px;
+ border-radius: 5px;
+ cursor: pointer;
+ margin: 0.5rem;
+ transition: all 0.3s ease;
+ min-height: 44px;
+ box-sizing: border-box;
+ }
+
+ .check-btn:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+ }
+
+ .feedback {
+ margin: 0.5rem;
+ padding: 10px;
+ border-radius: 5px;
+ font-weight: bold;
+ text-align: center;
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ }
+
+ .correct {
+ background: #d4edda;
+ color: #155724;
+ border: 1px solid #c3e6cb;
+ animation: bounce 0.5s ease;
+ }
+
+ .incorrect {
+ background: #f8d7da;
+ color: #721c24;
+ border: 1px solid #f5c6cb;
+ animation: shake 0.5s ease;
+ }
+
+ @keyframes bounce {
+ 0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
+ 40%, 43% { transform: translateY(-10px); }
+ 70% { transform: translateY(-5px); }
+ 90% { transform: translateY(-2px); }
+ }
+
+ @keyframes shake {
+ 0%, 100% { transform: translateX(0); }
+ 10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+ 20%, 40%, 60%, 80% { transform: translateX(5px); }
+ }
+
+ .jxgbox {
+ border: 2px solid #2c3e50;
+ background: white;
+ margin: 1rem auto;
+ max-width: 100%;
+ overflow: hidden;
+ box-sizing: border-box;
+ }
+
+ .solution-box {
+ background: #e8f5e8;
+ border: 2px solid #388e3c;
+ border-radius: 10px;
+ padding: 1rem;
+ margin: 1rem 0;
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ }
+
+ .hidden {
+ display: none;
+ }
+
+ .tab-container {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 0.5rem;
+ margin: 1rem 0;
+ overflow: hidden;
+ max-width: 100%;
+ }
+
+ .tab-btn {
+ background: #e9ecef;
+ color: #2c3e50;
+ border: none;
+ padding: 10px 15px;
+ border-radius: 5px 5px 0 0;
+ cursor: pointer;
+ font-size: 14px;
+ min-height: 44px;
+ box-sizing: border-box;
+ }
+
+ .tab-btn.active {
+ background: #1976d2;
+ color: #000000;
+ }
+
+ .lesson-panel {
+ background: white;
+ border: 2px solid #1976d2;
+ border-radius: 0 5px 5px 5px;
+ padding: 1.5rem;
+ margin-top: 0;
+ max-width: 100%;
+ overflow: hidden;
+ box-sizing: border-box;
+ }
+
+ h1, h2, h3 {
+ overflow: hidden;
+ max-width: 100%;
+ word-wrap: break-word;
+ }
+
+ /* Mobile Styles */
+ @media (max-width: 767px) {
+ .container {
+ padding: 10px;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .elementary-header {
+ font-size: 2em;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .problem-container {
+ flex-direction: column;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .answer-input {
+ width: 100%;
+ font-size: 16px;
+ max-width: 100%;
+ box-sizing: border-box;
+ }
+
+ .check-btn {
+ width: 100%;
+ padding: 12px;
+ font-size: 16px;
+ max-width: 100%;
+ box-sizing: border-box;
+ }
+
+ .jxgbox {
+ height: 150px;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .step-box {
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ }
+
+ .tab-container {
+ flex-direction: column;
+ }
+
+ .tab-btn {
+ width: 100%;
+ }
+ }
+
+ /* Small mobile */
+ @media (max-width: 480px) {
+ .container {
+ padding: 5px;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .elementary-header {
+ font-size: 1.8em;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .jxgbox {
+ height: 120px;
+ max-width: 100%;
+ overflow: hidden;
+ }
+ }
+
+ /* Tablet Styles */
+ @media (min-width: 768px) and (max-width: 1024px) {
+ .container {
+ padding: 15px;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .elementary-header {
+ font-size: 2.5em;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .jxgbox {
+ height: 180px;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .problem-container {
+ flex-direction: column;
+ max-width: 100%;
+ overflow: hidden;
+ }
+ }
+
+ /* Desktop Styles */
+ @media (min-width: 1920px) {
+ .container {
+ max-width: 1200px;
+ overflow: hidden;
+ }
+
+ .problem-container {
+ display: flex;
+ gap: 20px;
+ flex-wrap: wrap;
+ max-width: 100%;
+ }
+
+ .step-box {
+ max-width: calc(50% - 10px);
+ overflow: hidden;
+ word-wrap: break-word;
+ }
+ }
+
+ @media print {
+ * {
+ background: white !important;
+ color: black !important;
+ }
+ 
+ .check-btn {
+ background: #f0f0f0 !important;
+ color: black !important;
+ border: 1px solid black !important;
+ }
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <div class="lesson-container">
+ <h1 class="elementary-header">⚽ TOURNAMENT TRAVEL TIME CALCULATIONS ⚽</h1>
+ <h2 style="text-align: center; color: #2c3e50;">Grade 4 Advanced Mathematics Worksheet</h2>
+
+ <div class="tab-container">
+ <button class="tab-btn active" onclick="showLesson(1)">🌟 Lesson Objectives</button>
+ <button class="tab-btn" onclick="showLesson(2)">📚 Key Vocabulary</button>
+ <button class="tab-btn" onclick="showLesson(3)">🚌 Guided Examples</button>
+ <button class="tab-btn" onclick="showLesson(4)">🎮 Practice Problems</button>
+ <button class="tab-btn" onclick="showLesson(5)">🏆 Challenge Problems</button>
+ <button class="tab-btn" onclick="showLesson(6)">🌈 Lesson Summary</button>
+ </div>
+
+ <!-- Lesson 1: Objectives -->
+ <div id="lesson1" class="lesson-panel">
+ <div class="content-section theory-section">
+ <h2>🌟 LESSON OBJECTIVES 🌟</h2>
+ 
+ <div class="elementary-problem">
+ <p><strong>By the end of this lesson, you will be able to:</strong></p>
+ <ul style="font-size: 1.2em; color: #2c3e50;">
+ <li>Calculate travel time using distance and speed <span class="elementary-emoji">⚡</span></li>
+ <li>Determine arrival times for tournament schedules <span class="elementary-emoji">🕐</span></li>
+ <li>Solve complex multi-step time problems <span class="elementary-emoji">🧮</span></li>
+ <li>Apply mathematical reasoning to real-world soccer scenarios <span class="elementary-emoji">⚽</span></li>
+ </ul>
+ </div>
+
+ <div class="elementary-counting">
+ <div class="elementary-counting-item">⚽</div>
+ <div class="elementary-counting-item">🚌</div>
+ <div class="elementary-counting-item">⏰</div>
+ <div class="elementary-counting-item">📏</div>
+ <div class="elementary-counting-item">⚡</div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Lesson 2: Key Vocabulary -->
+ <div id="lesson2" class="lesson-panel hidden">
+ <div class="content-section theory-section">
+ <h2>📚 KEY VOCABULARY & CONCEPTS 📚</h2>
+
+ <div class="vocab-section">
+ <div class="elementary-problem">
+ <h3><strong>Essential Terms:</strong></h3>
+ <ul style="font-size: 1.2em; color: #2c3e50;">
+ <li><strong>Speed</strong>: How fast something travels (kilometers per hour) <span class="elementary-emoji">🏃‍♂️</span></li>
+ <li><strong>Distance</strong>: How far something travels (kilometers) <span class="elementary-emoji">📏</span></li>
+ <li><strong>Time</strong>: How long a journey takes (hours/minutes) <span class="elementary-emoji">⏰</span></li>
+ <li><strong>Formula</strong>: \(\text{Time} = \frac{\text{Distance}}{\text{Speed}}\) <span class="elementary-emoji">📊</span></li>
+ </ul>
+ </div>
+
+ <div class="math-block">
+ <h3>Time Magic Formula! ✨</h3>
+ \[\boxed{\text{Time} = \frac{\text{Distance}}{\text{Speed}}}\]
+ </div>
+
+ <div id="vocab-diagram" class="jxgbox" style="width: 100%; height: 200px;"></div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Lesson 3: Guided Examples -->
+ <div id="lesson3" class="lesson-panel hidden">
+ <div class="content-section practice-section">
+ <h2>🚌 GUIDED EXAMPLES WITH SOLUTIONS 🚌</h2>
+
+ <div class="elementary-problem" data-problem-type="guided" data-role="all" data-visible="true">
+ <h3>Example 1: Diego's Championship Journey ⚽</h3>
+ <p>Just like in the story, Diego's team travels 240 kilometers at 60 km/h.</p>
+ 
+ <div class="step-box">
+ <p><strong>Step-by-Step Solution:</strong></p>
+ <ol>
+ <li><strong>Identify</strong>: Distance = 240 km, Speed = 60 km/h</li>
+ <li><strong>Apply Formula</strong>: \(\text{Time} = \frac{240}{60} = 4 \text{ hours}\)</li>
+ <li><strong>Calculate Arrival</strong>: 8:00 AM + 4 hours = 12:00 PM ✅</li>
+ </ol>
+ </div>
+ </div>
+
+ <div class="elementary-problem" data-problem-type="guided" data-role="all" data-visible="true">
+ <h3>Example 2: World Cup History - Brazil 2014 🏆</h3>
+ <p>During the 2014 World Cup in Brazil, the German team traveled 450 km from São Paulo to Brasília at 90 km/h for their semifinal match.</p>
+ 
+ <div class="step-box">
+ <p><strong>Step-by-Step Solution:</strong></p>
+ <ol>
+ <li><strong>Distance</strong>: 450 km</li>
+ <li><strong>Speed</strong>: 90 km/h</li>
+ <li><strong>Time</strong>: \(\frac{450}{90} = 5 \text{ hours}\)</li>
+ <li><strong>If they left at 7:00 AM</strong>: 7:00 AM + 5 hours = 12:00 PM</li>
+ </ol>
+ </div>
+ </div>
+
+ <div class="elementary-problem" data-problem-type="guided" data-role="all" data-visible="true">
+ <h3>Example 3: Sofia's Soccer Strategy 🎯</h3>
+ <p>Sofia, an aspiring goalkeeper, studies game film during her 3-hour bus ride to a tournament. If the bus travels at 80 km/h, how far does her team travel?</p>
+ 
+ <div class="step-box">
+ <p><strong>Step-by-Step Solution:</strong></p>
+ <ol>
+ <li><strong>Rearrange Formula</strong>: \(\text{Distance} = \text{Speed} \times \text{Time}\)</li>
+ <li><strong>Calculate</strong>: Distance = \(80 \times 3 = 240\) km</li>
+ <li><strong>Answer</strong>: Sofia's team travels 240 kilometers! 🌈</li>
+ </ol>
+ </div>
+ </div>
+
+ <div id="guided-diagram" class="jxgbox" style="width: 100%; height: 250px;"></div>
+ </div>
+ </div>
+
+ <!-- Lesson 4: Practice Problems -->
+ <div id="lesson4" class="lesson-panel hidden">
+ <div class="content-section problem-section">
+ <h2>🎮 INDEPENDENT PRACTICE PROBLEMS 🎮</h2>
+
+ <div class="elementary-problem" data-problem-type="practice" data-role="student">
+ <h3>Level 1: Tournament Warm-Up ⭐</h3>
+ 
+ <div class="problem-container">
+ <div class="step-box">
+ <p><strong>Problem 1</strong>: A youth soccer team travels 180 km at 60 km/h. How long does the trip take?</p>
+ <input type="number" class="answer-input" id="answer1" placeholder="Enter hours">
+ <button class="check-btn" onclick="checkAnswer('answer1', 3, 1)">Check Answer ⚽</button>
+ <div id="feedback1" class="feedback"></div>
+ <div id="solution1" class="solution-box hidden" style="display: none;" data-visible="false">
+ <p><strong>Solution</strong>: \(\frac{180}{60} = 3 \text{ hours}\) ⏰</p>
+ </div>
+ </div>
+
+ <div class="step-box">
+ <p><strong>Problem 2</strong>: If a team leaves at 9:00 AM and travels for 3 hours, what time do they arrive?</p>
+ <input type="number" class="answer-input" id="answer2" placeholder="Enter hour (12=12PM)">
+ <button class="check-btn" onclick="checkAnswer('answer2', 12, 2)">Check Answer 🕐</button>
+ <div id="feedback2" class="feedback"></div>
+ <div id="solution2" class="solution-box hidden" style="display: none;" data-visible="false">
+ <p><strong>Solution</strong>: 9:00 AM + 3 hours = 12:00 PM 🕐</p>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="elementary-problem" data-problem-type="practice" data-role="student">
+ <h3>Level 2: Championship Challenge ⭐⭐</h3>
+ 
+ <div class="problem-container">
+ <div class="step-box">
+ <p><strong>Problem 3</strong>: During the 2018 World Cup in Russia, teams often traveled between cities. If a team traveled 720 km at 90 km/h, how many hours did they travel?</p>
+ <input type="number" class="answer-input" id="answer3" placeholder="Enter hours">
+ <button class="check-btn" onclick="checkAnswer('answer3', 8, 3)">Check Answer ✈️</button>
+ <div id="feedback3" class="feedback"></div>
+ <div id="solution3" class="solution-box hidden" style="display: none;" data-visible="false">
+ <p><strong>Solution</strong>: \(\frac{720}{90} = 8 \text{ hours}\) ✈️</p>
+ </div>
+ </div>
+
+ <div class="step-box">
+ <p><strong>Problem 4</strong>: Maria's team has a match at 2:00 PM. Their 4-hour journey covers 320 km. What speed must they maintain? (Enter km/h)</p>
+ <input type="number" class="answer-input" id="answer4" placeholder="Enter km/h">
+ <button class="check-btn" onclick="checkAnswer('answer4', 80, 4)">Check Answer 🚌</button>
+ <div id="feedback4" class="feedback"></div>
+ <div id="solution4" class="solution-box hidden" style="display: none;" data-visible="false">
+ <p><strong>Solution</strong>: Speed = \(\frac{320}{4} = 80 \text{ km/h}\), Leave at 10:00 AM 🚌</p>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="elementary-problem" data-problem-type="practice" data-role="student">
+ <h3>Level 3: Advanced Tournament Logic ⭐⭐⭐</h3>
+ 
+ <div class="problem-container">
+ <div class="step-box">
+ <p><strong>Problem 5</strong>: Two teams leave simultaneously. Team A travels 400 km at 80 km/h. Team B travels 300 km at 60 km/h. Both take how many hours? (They tie!)</p>
+ <input type="number" class="answer-input" id="answer5" placeholder="Enter hours">
+ <button class="check-btn" onclick="checkAnswer('answer5', 5, 5)">Check Answer 🤝</button>
+ <div id="feedback5" class="feedback"></div>
+ <div id="solution5" class="solution-box hidden" style="display: none;" data-visible="false">
+ <p><strong>Solution</strong>: Team A: \(5 \text{ hours}\), Team B: \(5 \text{ hours}\) - **TIE!** 🤝</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Lesson 5: Challenge Problems -->
+ <div id="lesson5" class="lesson-panel hidden">
+ <div class="content-section problem-section">
+ <h2>🏆 CHALLENGE PROBLEMS FOR MATH CHAMPIONS 🏆</h2>
+
+ <div class="elementary-problem" data-problem-type="practice" data-role="student">
+ <h3>Challenge 1: The World Cup Scheduling Puzzle 🌍</h3>
+ <p>During the 2022 World Cup in Qatar, Team A needs to travel between three cities:</p>
+ <ul>
+ <li>Leg 1: 120 km at 80 km/h</li>
+ <li>Leg 2: 200 km at 100 km/h</li>
+ <li>Leg 3: 180 km at 60 km/h</li>
+ </ul>
+ <p>Calculate the total travel time (in hours). If they start at 6:30 AM, when do they arrive?</p>
+ 
+ <div class="step-box">
+ <input type="number" step="0.1" class="answer-input" id="challenge1" placeholder="Total hours">
+ <button class="check-btn" onclick="checkAnswer('challenge1', 6.5, 'c1')">Check Total Time 🎯</button>
+ <div id="feedbackc1" class="feedback"></div>
+ <div id="solutionc1" class="solution-box hidden" style="display: none;" data-visible="false">
+ <p><strong>Solution</strong>:</p>
+ <ul>
+ <li>Leg 1: \(1.5 \text{ hours}\)</li>
+ <li>Leg 2: \(2 \text{ hours}\)</li>
+ <li>Leg 3: \(3 \text{ hours}\)</li>
+ <li>Total: \(6.5 \text{ hours}\), \(\text{Arrival}: 1:00 \text{ PM}\) 🎯</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+
+ <div class="elementary-problem" data-problem-type="practice" data-role="student">
+ <h3>Challenge 2: Advanced Speed Calculation 🚀</h3>
+ <p>Young goalkeeper Alex notices that during a 5-hour team bus journey, they travel at 70 km/h for the first 2 hours, then increase speed for the remaining journey to cover a total distance of 410 km. What was their speed during the final 3 hours?</p>
+ 
+ <div class="step-box">
+ <input type="number" class="answer-input" id="challenge2" placeholder="Speed km/h">
+ <button class="check-btn" onclick="checkAnswer('challenge2', 90, 'c2')">Check Speed 🏃‍♂️</button>
+ <div id="feedbackc2" class="feedback"></div>
+ <div id="solutionc2" class="solution-box hidden" style="display: none;" data-visible="false">
+ <p><strong>Solution</strong>:</p>
+ <ul>
+ <li>\(\text{Distance in first 2 hours}: 140 \text{ km}\)</li>
+ <li>\(\text{Remaining distance}: 270 \text{ km}\)</li>
+ <li>\(\text{Speed for last 3 hours}: 90 \text{ km/h}\) 🏃‍♂️</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+
+ <div id="challenge-diagram" class="jxgbox" style="width: 100%; height: 200px;"></div>
+ </div>
+ </div>
+
+ <!-- Lesson 6: Summary -->
+ <div id="lesson6" class="lesson-panel hidden">
+ <div class="content-section review-section">
+ <h2>🌈 LESSON SUMMARY & REVIEW 🌈</h2>
+
+ <div class="elementary-problem">
+ <h3>Key Takeaways:</h3>
+ <ul style="font-size: 1.2em; color: #2c3e50;">
+ <li><strong>Master Formula</strong>: \(\text{Time} = \frac{\text{Distance}}{\text{Speed}}\) <span class="elementary-emoji">📐</span></li>
+ <li><strong>Real Application</strong>: Tournament organizers use these calculations daily! <span class="elementary-emoji">⚽</span></li>
+ <li><strong>Problem-Solving</strong>: Break complex journeys into manageable steps <span class="elementary-emoji">🧩</span></li>
+ <li><strong>Mathematical Thinking</strong>: Speed and time calculations help teams succeed! <span class="elementary-emoji">🏆</span></li>
+ </ul>
+ </div>
+
+ <div class="math-block">
+ <h3>Quick Self-Check: ✅</h3>
+ <p>Can you calculate how long it takes to travel 300 km at 75 km/h?</p>
+ <div style="margin-top: 1rem;">
+ <input type="number" class="answer-input" id="finalCheck" placeholder="Enter hours">
+ <button class="check-btn" onclick="checkAnswer('finalCheck', 4, 'final')">Check Answer! 🌟</button>
+ <div id="feedbackfinal" class="feedback"></div>
+ </div>
+ <p style="margin-top: 1rem;"><strong>Answer</strong>: \(4 \text{ hours}!\)</p>
+ </div>
+
+ <div class="elementary-progress" style="position: relative; overflow: hidden;">
+ <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #74b9ff 0%, #0984e3 100%); animation: fillProgress 2s ease-out;"></div>
+ <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #000000; font-weight: bold; z-index: 2;">
+ LESSON COMPLETE! 🎉
+ </div>
+ </div>
+
+ <div style="text-align: center; margin-top: 2rem;">
+ <div class="elementary-counting">
+ <span class="elementary-star">⭐</span>
+ <span class="elementary-star">⭐</span>
+ <span class="elementary-star">⭐</span>
+ <span class="elementary-star">⭐</span>
+ <span class="elementary-star">⭐</span>
+ </div>
+ <h2><strong>Great job, Math Champion! You're ready for any tournament travel calculation!</strong> 🌟⚽🎉</h2>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <script>
+ let currentLesson = 1;
+ let progress = {};
+
+ function showLesson(lessonNumber) {
+ // Hide all lesson panels
+ for (let i = 1; i <= 6; i++) {
+ const panel = document.getElementById(`lesson${i}`);
+ const button = document.querySelector(`.tab-btn:nth-child(${i})`);
+ if (panel && button) {
+ if (i === lessonNumber) {
+ panel.classList.remove('hidden');
+ button.classList.add('active');
+ } else {
+ panel.classList.add('hidden');
+ button.classList.remove('active');
+ }
+ }
+ }
+ 
+ currentLesson = lessonNumber;
+ progress[`lesson${lessonNumber}`] = true;
+ 
+ // Save progress to localStorage
+ try {
+ localStorage.setItem('travelTimeProgress', JSON.stringify(progress));
+ } catch (e) {
+ console.log('LocalStorage not available');
+ }
+ 
+ // Initialize diagrams when shown
+ setTimeout(() => {
+ initializeDiagrams(lessonNumber);
+ }, 100);
+ }
+
+ function checkAnswer(inputId, correctAnswer, feedbackId) {
+ const input = document.getElementById(inputId);
+ const feedbackElement = document.getElementById(`feedback${feedbackId}`);
+ const solutionElement = document.getElementById(`solution${feedbackId}`);
+ 
+ if (!input || !feedbackElement) return;
+ 
+ const userAnswer = parseFloat(input.value);
+ const tolerance = 0.1;
+ 
+ if (Math.abs(userAnswer - correctAnswer) <= tolerance) {
+ feedbackElement.className = 'feedback correct';
+ feedbackElement.innerHTML = `🎉 Excellent work! That's correct! ${getRandomPositiveFeedback()}`;
+ 
+ // Show confetti animation
+ createConfetti(input);
+ 
+ // Save progress
+ progress[inputId] = true;
+ try {
+ localStorage.setItem('travelTimeProgress', JSON.stringify(progress));
+ } catch (e) {
+ console.log('LocalStorage not available');
+ }
+ } else {
+ feedbackElement.className = 'feedback incorrect';
+ feedbackElement.innerHTML = `🤔 Not quite right. Try again! Remember: Time = Distance ÷ Speed`;
+ 
+ // Shake animation
+ input.style.animation = 'shake 0.5s ease';
+ setTimeout(() => {
+ input.style.animation = '';
+ }, 500);
+ }
+ }
+
+ function getRandomPositiveFeedback() {
+ const feedback = [
+ '⚽ You\'re a math champion!',
+ '🌟 Outstanding calculation!',
+ '🏆 Perfect problem solving!',
+ '🎯 Right on target!',
+ '⭐ Amazing work!',
+ '🚀 You\'re getting faster!'
+ ];
+ return feedback[Math.floor(Math.random() * feedback.length)];
+ }
+
+ function createConfetti(element) {
+ const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd'];
+ const rect = element.getBoundingClientRect();
+ 
+ for (let i = 0; i < 10; i++) {
+ const confetti = document.createElement('div');
+ confetti.style.cssText = `
+ position: fixed;
+ top: ${rect.top + rect.height/2}px;
+ left: ${rect.left + rect.width/2}px;
+ width: 6px;
+ height: 6px;
+ background: ${colors[Math.floor(Math.random() * colors.length)]};
+ border-radius: 50%;
+ pointer-events: none;
+ z-index: 1000;
+ animation: confettiFall ${0.5 + Math.random() * 0.5}s ease-out forwards;
+ `;
+ 
+ document.body.appendChild(confetti);
+ 
+ setTimeout(() => {
+ if (confetti.parentNode) {
+ confetti.parentNode.removeChild(confetti);
+ }
+ }, 1000);
+ }
+ }
+
+ function initializeDiagrams(lessonNumber) {
+ try {
+ if (lessonNumber === 2 && document.getElementById('vocab-diagram')) {
+ createVocabDiagram();
+ } else if (lessonNumber === 3 && document.getElementById('guided-diagram')) {
+ createGuidedDiagram();
+ } else if (lessonNumber === 5 && document.getElementById('challenge-diagram')) {
+ createChallengeDiagram();
+ }
+ } catch (error) {
+ console.log('Diagram initialization error:', error);
+ }
+ }
+
+ function createVocabDiagram() {
+ try {
+ const board = JXG.JSXGraph.initBoard('vocab-diagram', {
+ boundingbox: [-1, 3, 10, -1],
+ axis: true,
+ showCopyright: false,
+ showNavigation: false
+ });
+
+ // Speed visualization
+ board.create('point', [1, 1], {name: 'Start ⚽', size: 5, color: '#e74c3c'});
+ board.create('point', [8, 1], {name: 'Finish 🏁', size: 5, color: '#27ae60'});
+ board.create('line', [[1, 1], [8, 1]], {strokeColor: '#3498db', strokeWidth: 3});
+ 
+ // Distance arrow
+ board.create('arrow', [[1, 0.5], [8, 0.5]], {
+ strokeColor: '#f39c12',
+ strokeWidth: 3,
+ lastArrow: {size: 8}
+ });
+ 
+ board.create('text', [4.5, 0.2], 'Distance = 240 km 📏', {
+ fontSize: 14,
+ color: '#2c3e50'
+ });
+ 
+ board.create('text', [4.5, 1.7], 'Speed = 60 km/h ⚡', {
+ fontSize: 14,
+ color: '#2c3e50'
+ });
+ 
+ board.create('text', [4.5, 2.3], 'Time = 240 ÷ 60 = 4 hours ⏰', {
+ fontSize: 16,
+ color: '#e74c3c',
+ fontWeight: 'bold'
+ });
+ 
+ } catch (error) {
+ console.log('Vocab diagram error:', error);
+ }
+ }
+
+ function createGuidedDiagram() {
+ try {
+ const board = JXG.JSXGraph.initBoard('guided-diagram', {
+ boundingbox: [-1, 6, 10, -1],
+ axis: true,
+ showCopyright: false,
+ showNavigation: false
+ });
+
+ // Three journey examples
+ const journeys = [
+ {y: 4.5, distance: 240, speed: 60, time: 4, color: '#e74c3c', name: 'Diego ⚽'},
+ {y: 3, distance: 450, speed: 90, time: 5, color: '#27ae60', name: 'Germany 🏆'},
+ {y: 1.5, distance: 240, speed: 80, time: 3, color: '#3498db', name: 'Sofia 🎯'}
+ ];
+
+ journeys.forEach((journey, index) => {
+ const length = journey.distance / 60; // Scale for display
+ 
+ board.create('point', [1, journey.y], {
+ name: journey.name,
+ size: 4,
+ color: journey.color
+ });
+ 
+ board.create('arrow', [[1, journey.y], [1 + length, journey.y]], {
+ strokeColor: journey.color,
+ strokeWidth: 2,
+ lastArrow: {size: 6}
+ });
+ 
+ board.create('text', [1 + length/2, journey.y - 0.3], 
+ `${journey.distance}km at ${journey.speed}km/h = ${journey.time}h`, {
+ fontSize: 12,
+ color: journey.color
+ });
+ });
+ 
+ } catch (error) {
+ console.log('Guided diagram error:', error);
+ }
+ }
+
+ function createChallengeDiagram() {
+ try {
+ const board = JXG.JSXGraph.initBoard('challenge-diagram', {
+ boundingbox: [-1, 4, 12, -1],
+ axis: true,
+ showCopyright: false,
+ showNavigation: false
+ });
+
+ // Multi-leg journey visualization
+ const legs = [
+ {start: 1, length: 1.5, speed: 80, distance: 120, color: '#e74c3c'},
+ {start: 2.5, length: 2, speed: 100, distance: 200, color: '#27ae60'},
+ {start: 4.5, length: 3, speed: 60, distance: 180, color: '#3498db'}
+ ];
+
+ let currentX = 1;
+ legs.forEach((leg, index) => {
+ board.create('arrow', [[currentX, 2], [currentX + leg.length, 2]], {
+ strokeColor: leg.color,
+ strokeWidth: 3,
+ lastArrow: {size: 8}
+ });
+ 
+ board.create('text', [currentX + leg.length/2, 2.5], 
+ `Leg ${index + 1}: ${leg.distance}km`, {
+ fontSize: 12,
+ color: leg.color
+ });
+ 
+ board.create('text', [currentX + leg.length/2, 1.5], 
+ `${leg.speed} km/h`, {
+ fontSize: 11,
+ color: leg.color
+ });
+ 
+ currentX += leg.length;
+ });
+
+ board.create('text', [5, 0.5], 'Total Time: 6.5 hours 🎯', {
+ fontSize: 16,
+ color: '#2c3e50',
+ fontWeight: 'bold'
+ });
+ 
+ } catch (error) {
+ console.log('Challenge diagram error:', error);
+ }
+ }
+
+ // Add CSS for confetti animation
+ const style = document.createElement('style');
+ style.textContent = `
+ @keyframes confettiFall {
+ 0% {
+ transform: translateY(0) rotate(0deg);
+ opacity: 1;
+ }
+ 100% {
+ transform: translateY(100px) rotate(360deg) translateX(${Math.random() * 200 - 100}px);
+ opacity: 0;
+ }
+ }
+ 
+ @keyframes fillProgress {
+ 0% { width: 0%; }
+ 100% { width: 100%; }
+ }
+ `;
+ document.head.appendChild(style);
+
+ // Initialize on page load
+ document.addEventListener('DOMContentLoaded', function() {
+ // Load saved progress
+ try {
+ const savedProgress = localStorage.getItem('travelTimeProgress');
+ if (savedProgress) {
+ progress = JSON.parse(savedProgress);
+ }
+ } catch (e) {
+ console.log('LocalStorage not available');
+ progress = {};
+ }
+
+ // Set up keyboard navigation
+ document.addEventListener('keydown', function(e) {
+ if (e.key === 'Enter') {
+ const activeElement = document.activeElement;
+ if (activeElement && activeElement.classList.contains('answer-input')) {
+ const nextButton = activeElement.nextElementSibling;
+ if (nextButton && nextButton.classList.contains('check-btn')) {
+ nextButton.click();
+ }
+ }
+ }
+ });
+
+ // Initialize first lesson
+ initializeDiagrams(1);
+ });
+ </script>
+</body>
+</html>

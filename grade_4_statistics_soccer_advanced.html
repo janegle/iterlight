@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<!--
+Math Worksheet HTML
+Generated: 2025-09-01 12:35:44
+Grade 4: Statistics + soccer + Advanced + Soccer Data Detective
+Math Topic: Statistics
+Sports Context: soccer
+Difficulty Level: Advanced
+-->
+
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>⚽ Ticket Prices and Tournament Economics - Grade 4 Advanced</title>
+ 
+ <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+ <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+ 
+ <script>
+ window.MathJax = {
+ tex: {
+ inlineMath: [['\\(', '\\)']],
+ displayMath: [['\\[', '\\]']]
+ }
+ };
+ </script>
+ 
+ <style>
+ * {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ }
+ 
+ body {
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ line-height: 1.6;
+ color: #2c3e50;
+ background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+ min-height: 100vh;
+ padding: 0;
+ overflow-x: hidden;
+ }
+ 
+ .container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 20px;
+ overflow: hidden;
+ box-sizing: border-box;
+ width: 100%;
+ }
+ 
+ .lesson-container {
+ width: 100%;
+ max-width: 1200px;
+ padding: 1rem;
+ overflow: hidden;
+ box-sizing: border-box;
+ }
+ 
+ .content-section {
+ background: white;
+ border-radius: 8px;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+ border-left: 5px solid;
+ padding: 1.5rem;
+ margin: 1rem 0;
+ max-width: 100%;
+ overflow: hidden;
+ box-sizing: border-box;
+ word-wrap: break-word;
+ }
+ 
+ .theory-section {
+ border-left-color: #1976d2;
+ background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%);
+ }
+ 
+ .practice-section {
+ border-left-color: #388e3c;
+ background: linear-gradient(135deg, #e8f5e8 0%, #f1f8f1 100%);
+ }
+ 
+ .problem-section {
+ border-left-color: #7b1fa2;
+ background: linear-gradient(135deg, #f3e5f5 0%, #faf5ff 100%);
+ }
+ 
+ .review-section {
+ border-left-color: #f57c00;
+ background: linear-gradient(135deg, #fff3e0 0%, #fff8f0 100%);
+ }
+ 
+ /* Elementary Grade Specific Styles */
+ .elementary-header {
+ font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;
+ font-size: 2.5em;
+ color: #e74c3c;
+ text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+ text-align: center;
+ margin: 1rem 0;
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ }
+ 
+ .elementary-emoji {
+ font-size: 1.5em;
+ margin: 0 0.5rem;
+ filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+ }
+ 
+ h1 {
+ color: #2c3e50;
+ text-align: center;
+ margin: 1rem 0;
+ font-size: 2.5em;
+ text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ }
+ 
+ h2 {
+ color: #34495e;
+ border-bottom: 2px solid #3498db;
+ padding-bottom: 0.5rem;
+ margin: 1.5rem 0 1rem 0;
+ font-size: 1.8em;
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ }
+ 
+ h3 {
+ color: #2c3e50;
+ margin: 1.2rem 0 0.8rem 0;
+ font-size: 1.4em;
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ }
+ 
+ .problem-container {
+ max-width: 100%;
+ overflow: hidden;
+ box-sizing: border-box;
+ margin: 1rem 0;
+ padding: 1rem;
+ background: white;
+ border-radius: 8px;
+ border: 2px solid #e9ecef;
+ }
+ 
+ .step-box {
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ background: #f8f9fa;
+ padding: 1rem;
+ margin: 0.5rem 0;
+ border-radius: 5px;
+ border-left: 4px solid #3498db;
+ }
+ 
+ .vocab-section {
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ background: linear-gradient(135deg, #e8f5e8 0%, #f1f8f1 100%);
+ padding: 1.5rem;
+ border-radius: 10px;
+ border-left: 5px solid #27ae60;
+ }
+ 
+ .math-block {
+ display: block;
+ text-align: center;
+ margin: 1.5rem 0;
+ padding: 1.5rem;
+ background: linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%);
+ border: 2px solid #e9ecef;
+ border-radius: 10px;
+ font-size: 1.3em;
+ color: #2c3e50;
+ font-family: 'Times New Roman', serif;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ }
+ 
+ .answer-input {
+ padding: 12px;
+ border: 2px solid #bdc3c7;
+ border-radius: 8px;
+ font-size: 16px;
+ width: 200px;
+ max-width: 100%;
+ box-sizing: border-box;
+ color: #2c3e50;
+ background: white;
+ }
+ 
+ .answer-input:focus {
+ border-color: #3498db;
+ outline: none;
+ box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+ }
+ 
+ .check-btn {
+ padding: 12px 24px;
+ background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+ color: #000000;
+ border: none;
+ border-radius: 8px;
+ font-size: 16px;
+ font-weight: bold;
+ cursor: pointer;
+ margin-left: 10px;
+ transition: all 0.3s ease;
+ max-width: 100%;
+ box-sizing: border-box;
+ }
+ 
+ .check-btn:hover {
+ background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
+ transform: translateY(-2px);
+ box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+ }
+ 
+ .feedback {
+ margin-top: 10px;
+ padding: 10px;
+ border-radius: 5px;
+ font-weight: bold;
+ display: none;
+ max-width: 100%;
+ box-sizing: border-box;
+ word-wrap: break-word;
+ }
+ 
+ .feedback.correct {
+ background: #d4edda;
+ color: #155724;
+ border: 1px solid #c3e6cb;
+ }
+ 
+ .feedback.incorrect {
+ background: #f8d7da;
+ color: #721c24;
+ border: 1px solid #f5c6cb;
+ }
+ 
+ .solution {
+ display: none;
+ background: #e8f4fd;
+ border: 1px solid #b8daff;
+ border-radius: 8px;
+ padding: 15px;
+ margin: 15px 0;
+ max-width: 100%;
+ box-sizing: border-box;
+ word-wrap: break-word;
+ }
+ 
+ .tab-navigation {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 5px;
+ margin-bottom: 20px;
+ max-width: 100%;
+ overflow: hidden;
+ }
+ 
+ .tab-btn {
+ padding: 10px 20px;
+ background: #ecf0f1;
+ color: #2c3e50;
+ border: none;
+ border-radius: 5px 5px 0 0;
+ cursor: pointer;
+ font-weight: bold;
+ transition: all 0.3s ease;
+ flex: 1;
+ min-width: 120px;
+ max-width: 200px;
+ box-sizing: border-box;
+ }
+ 
+ .tab-btn.active {
+ background: #3498db;
+ color: #000000;
+ }
+ 
+ .tab-btn:hover {
+ background: #bdc3c7;
+ }
+ 
+ .tab-btn.active:hover {
+ background: #2980b9;
+ }
+ 
+ .lesson-panel {
+ display: none;
+ animation: fadeIn 0.3s ease-in;
+ max-width: 100%;
+ overflow: hidden;
+ }
+ 
+ .lesson-panel.active {
+ display: block;
+ }
+ 
+ @keyframes fadeIn {
+ from { opacity: 0; transform: translateY(10px); }
+ to { opacity: 1; transform: translateY(0); }
+ }
+ 
+ .bounce {
+ animation: bounce 0.6s ease;
+ }
+ 
+ @keyframes bounce {
+ 0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+ 40% { transform: translateY(-10px); }
+ 60% { transform: translateY(-5px); }
+ }
+ 
+ .shake {
+ animation: shake 0.6s ease;
+ }
+ 
+ @keyframes shake {
+ 0%, 100% { transform: translateX(0); }
+ 25% { transform: translateX(-5px); }
+ 75% { transform: translateX(5px); }
+ }
+ 
+ .objectives-list {
+ list-style: none;
+ padding: 0;
+ }
+ 
+ .objectives-list li {
+ background: white;
+ margin: 0.5rem 0;
+ padding: 1rem;
+ border-radius: 8px;
+ border-left: 4px solid #3498db;
+ box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+ word-wrap: break-word;
+ }
+ 
+ .vocab-term {
+ font-weight: bold;
+ color: #2c3e50;
+ font-size: 1.1em;
+ }
+ 
+ .example-box {
+ background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+ border: 2px solid #0ea5e9;
+ border-radius: 12px;
+ padding: 1.5rem;
+ margin: 1rem 0;
+ max-width: 100%;
+ overflow: hidden;
+ box-sizing: border-box;
+ word-wrap: break-word;
+ }
+ 
+ .challenge-box {
+ background: linear-gradient(135deg, #fef3e2 0%, #fed7aa 100%);
+ border: 2px solid #f59e0b;
+ border-radius: 12px;
+ padding: 1.5rem;
+ margin: 1rem 0;
+ max-width: 100%;
+ overflow: hidden;
+ box-sizing: border-box;
+ word-wrap: break-word;
+ }
+ 
+ /* Responsive Styles */
+ @media (max-width: 767px) {
+ .container {
+ padding: 10px;
+ }
+ 
+ h1 {
+ font-size: 2em;
+ }
+ 
+ .answer-input {
+ width: 100%;
+ }
+ 
+ .check-btn {
+ width: 100%;
+ margin-left: 0;
+ margin-top: 10px;
+ }
+ 
+ .tab-btn {
+ min-width: 80px;
+ padding: 8px 12px;
+ font-size: 14px;
+ }
+ }
+ 
+ @media (max-width: 480px) {
+ .container {
+ padding: 5px;
+ }
+ h1 {
+ font-size: 1.8em;
+ }
+ }
+ 
+ /* Print styles */
+ @media print {
+ body {
+ background: white;
+ color: black;
+ }
+ 
+ .check-btn, .tab-navigation {
+ display: none;
+ }
+ 
+ .solution {
+ display: block !important;
+ }
+ 
+ .lesson-panel {
+ display: block !important;
+ }
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <div class="lesson-container">
+ <h1 class="elementary-header">⚽ TICKET PRICES AND TOURNAMENT ECONOMICS ⚽</h1>
+ <h2>Grade 4 Advanced Math Worksheet</h2>
+ 
+ <div class="tab-navigation">
+ <button class="tab-btn active" onclick="showLesson(1)">🎯 Objectives</button>
+ <button class="tab-btn" onclick="showLesson(2)">📚 Vocabulary</button>
+ <button class="tab-btn" onclick="showLesson(3)">🌟 Examples</button>
+ <button class="tab-btn" onclick="showLesson(4)">🚀 Practice</button>
+ <button class="tab-btn" onclick="showLesson(5)">🔥 Challenge</button>
+ <button class="tab-btn" onclick="showLesson(6)">✅ Solutions</button>
+ </div>
+
+ <!-- Lesson 1: Learning Objectives -->
+ <div id="lesson1" class="lesson-panel active">
+ <div class="content-section theory-section">
+ <h3>🎯 <strong>LEARNING OBJECTIVES</strong></h3>
+ <p>By the end of this lesson, you will be able to:</p>
+ <ul class="objectives-list">
+ <li><span class="elementary-emoji">🎫</span> Calculate costs and savings for soccer tournament tickets</li>
+ <li><span class="elementary-emoji">💰</span> Compare prices and find differences between ticket types</li>
+ <li><span class="elementary-emoji">⏰</span> Solve multi-step word problems involving money and time</li>
+ <li><span class="elementary-emoji">⚽</span> Apply multiplication and division to real-world soccer scenarios</li>
+ </ul>
+ </div>
+ </div>
+
+ <!-- Lesson 2: Vocabulary -->
+ <div id="lesson2" class="lesson-panel">
+ <div class="content-section vocab-section">
+ <h3>📚 <strong>KEY VOCABULARY & CONCEPTS</strong></h3>
+ 
+ <div class="step-box">
+ <h4><strong>💰 Economics Terms:</strong></h4>
+ <ul>
+ <li><span class="vocab-term">Tournament Economics</span>: How money flows in soccer competitions <span class="elementary-emoji">⚽</span></li>
+ <li><span class="vocab-term">Price Difference</span>: The gap between expensive and cheap tickets <span class="elementary-emoji">📊</span></li>
+ <li><span class="vocab-term">Savings Rate</span>: How much money you save per week <span class="elementary-emoji">💰</span></li>
+ <li><span class="vocab-term">Budget Planning</span>: Calculating if you have enough money <span class="elementary-emoji">📝</span></li>
+ </ul>
+ </div>
+ 
+ <div class="step-box">
+ <h4><strong>🧮 Math Skills:</strong></h4>
+ <ul>
+ <li>Multi-step word problems <span class="elementary-emoji">🔢</span></li>
+ <li>Money calculations with dollars and cents <span class="elementary-emoji">💵</span></li>
+ <li>Multiplication and division applications <span class="elementary-emoji">✖️➗</span></li>
+ <li>Comparison and analysis <span class="elementary-emoji">📈</span></li>
+ </ul>
+ </div>
+ </div>
+ </div>
+
+ <!-- Lesson 3: Guided Examples -->
+ <div id="lesson3" class="lesson-panel">
+ <div class="content-section practice-section">
+ <h3>🌟 <strong>GUIDED EXAMPLES</strong></h3>
+ 
+ <div class="example-box">
+ <h4><strong>Example 1: Historical Ticket Price Comparison</strong> 📜⚽</h4>
+ <p>In 1994, Roberto Baggio's World Cup final ticket cost $50. Today's Champions League final tickets cost $500. Diego wants to understand this amazing price jump!</p>
+ 
+ <div class="step-box">
+ <strong>Step 1:</strong> Find the difference between old and new prices
+ <div class="math-block">\[\text{Price Difference} = \$500 - \$50 = \$450\]</div>
+ </div>
+ 
+ <div class="step-box">
+ <strong>Step 2:</strong> Find how many times more expensive today's tickets are
+ <div class="math-block">\[\text{Price Multiple} = \$500 \div \$50 = 10 \text{ times}\]</div>
+ </div>
+ 
+ <div class="step-box">
+ <strong>Answer:</strong> Today's tickets cost $450 more and are 10 times more expensive! 🤯
+ </div>
+ </div>
+ 
+ <div class="example-box">
+ <h4><strong>Example 2: Strategic Savings Planning</strong> 💪⚽</h4>
+ <p>Diego earns $5 per week helping his dad organize soccer equipment. He wants to save for a $100 premium season pass to watch his local team practice and play.</p>
+ 
+ <div class="step-box">
+ <strong>Step 1:</strong> Calculate total weeks needed
+ <div class="math-block">\[\text{Weeks Needed} = \$100 \div \$5 = 20 \text{ weeks}\]</div>
+ </div>
+ 
+ <div class="step-box">
+ <strong>Step 2:</strong> Convert to months for better understanding
+ <div class="math-block">\[20 \text{ weeks} \div 4 \text{ weeks per month} = 5 \text{ months}\]</div>
+ </div>
+ 
+ <div class="step-box">
+ <strong>Answer:</strong> Diego needs exactly 20 weeks (5 months) of saving! ⭐
+ </div>
+ </div>
+ 
+ <div class="example-box">
+ <h4><strong>Example 3: Tournament Seating Strategy</strong> 🏆⚽</h4>
+ <p>At the youth soccer championship, there are three seating options:</p>
+ <ul>
+ <li>General Admission: $25</li>
+ <li>Premium Seats: $75</li>
+ <li>VIP Box Seats: $125</li>
+ </ul>
+ <p>Diego's family of 4 wants to compare their total costs for different seating choices.</p>
+ 
+ <div class="step-box">
+ <strong>Step 1:</strong> Calculate cost for each option
+ <ul>
+ <li>General: \(4 \times \$25 = \$100\)</li>
+ <li>Premium: \(4 \times \$75 = \$300\)</li>
+ <li>VIP: \(4 \times \$125 = \$500\)</li>
+ </ul>
+ </div>
+ 
+ <div class="step-box">
+ <strong>Step 2:</strong> Find the differences
+ <ul>
+ <li>Premium vs General: \(\$300 - \$100 = \$200\)</li>
+ <li>VIP vs Premium: \(\$500 - \$300 = \$200\)</li>
+ </ul>
+ </div>
+ 
+ <div class="step-box">
+ <strong>Answer:</strong> Each upgrade costs exactly $200 more for the family! 💡
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Lesson 4: Independent Practice -->
+ <div id="lesson4" class="lesson-panel">
+ <div class="content-section problem-section">
+ <h3>🚀 <strong>INDEPENDENT PRACTICE PROBLEMS</strong></h3>
+ 
+ <div class="problem-container">
+ <h4><strong>Problem 1:</strong> ⚽ <strong>Youth League Economics</strong></h4>
+ <p>Maria's soccer team is planning to attend a professional match. Adult tickets cost $45 each, and student tickets cost $25 each. If 6 adults and 15 students attend, what is the total cost?</p>
+ <div>
+ <input type="text" id="problem1" class="answer-input" placeholder="Enter your answer">
+ <button class="check-btn" onclick="checkAnswer('problem1')">Check Answer</button>
+ </div>
+ <div id="feedback-problem1" class="feedback"></div>
+ <div id="solution-problem1" class="solution">
+ <strong>Solution:</strong><br>
+ Adult cost: \(6 \times \$45 = \$270\)<br>
+ Student cost: \(15 \times \$25 = \$375\)<br>
+ Total: \(\$270 + \$375 = \$645\)
+ </div>
+ </div>
+ 
+ <div class="problem-container">
+ <h4><strong>Problem 2:</strong> 🎫 <strong>Tournament Package Deal</strong></h4>
+ <p>The soccer tournament offers a family package: 4 tickets plus 4 meals for $280. Individual tickets cost $55 each and meals cost $15 each. How much money does the family package save?</p>
+ <div>
+ <input type="text" id="problem2" class="answer-input" placeholder="Enter your answer">
+ <button class="check-btn" onclick="checkAnswer('problem2')">Check Answer</button>
+ </div>
+ <div id="feedback-problem2" class="feedback"></div>
+ <div id="solution-problem2" class="solution">
+ <strong>Solution:</strong><br>
+ Individual cost: \((4 \times \$55) + (4 \times \$15) = \$220 + \$60 = \$280\)<br>
+ Savings: \(\$280 - \$280 = \$0\) (No savings - same price!)
+ </div>
+ </div>
+ 
+ <div class="problem-container">
+ <h4><strong>Problem 3:</strong> ⏰ <strong>Savings Goal Challenge</strong></h4>
+ <p>Carlos wants to attend 8 different soccer matches this season. Each ticket costs $35. If he saves $12 per week from his allowance, how many weeks will it take him to save enough money?</p>
+ <div>
+ <input type="text" id="problem3" class="answer-input" placeholder="Enter your answer">
+ <button class="check-btn" onclick="checkAnswer('problem3')">Check Answer</button>
+ </div>
+ <div id="feedback-problem3" class="feedback"></div>
+ <div id="solution-problem3" class="solution">
+ <strong>Solution:</strong><br>
+ Total needed: \(8 \times \$35 = \$280\)<br>
+ Weeks needed: \(\$280 \div \$12 = 23.33...\) → <strong>24 weeks</strong> (He needs to save for the full 24th week)
+ </div>
+ </div>
+ 
+ <div class="problem-container">
+ <h4><strong>Problem 4:</strong> 🏟️ <strong>Stadium Capacity Planning</strong></h4>
+ <p>The new soccer stadium has 3 sections:</p>
+ <ul>
+ <li>North Stand: 2,400 seats at $30 each</li>
+ <li>East Stand: 1,800 seats at $50 each</li>
+ <li>West Premium: 600 seats at $80 each</li>
+ </ul>
+ <p>If all seats are sold, what is the total revenue for the stadium?</p>
+ <div>
+ <input type="text" id="problem4" class="answer-input" placeholder="Enter your answer">
+ <button class="check-btn" onclick="checkAnswer('problem4')">Check Answer</button>
+ </div>
+ <div id="feedback-problem4" class="feedback"></div>
+ <div id="solution-problem4" class="solution">
+ <strong>Solution:</strong><br>
+ North: \(2,400 \times \$30 = \$72,000\)<br>
+ East: \(1,800 \times \$50 = \$90,000\)<br>
+ West: \(600 \times \$80 = \$48,000\)<br>
+ Total: \(\$72,000 + \$90,000 + \$48,000 = \$210,000\)
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Lesson 5: Challenge Problems -->
+ <div id="lesson5" class="lesson-panel">
+ <div class="content-section review-section">
+ <h3>🔥 <strong>ADVANCED CHALLENGE PROBLEMS</strong></h3>
+ 
+ <div class="challenge-box">
+ <h4><strong>Challenge 1:</strong> 🧠 <strong>Family Budget Strategy</strong></h4>
+ <p>Diego's family of 4 has a total budget of $450 for a tournament day. The budget must cover tickets, $20 for parking, a family meal deal for $70, and one souvenir per person at $25 each. Using the seating options from Guided Example 3 (General: $25, Premium: $75, VIP: $125), which is the most expensive seating option they can afford for the whole family without going over budget? Show your calculations.</p>
+ <div>
+ <input type="text" id="challenge1" class="answer-input" placeholder="Enter your answer">
+ <button class="check-btn" onclick="checkAnswer('challenge1')">Check Answer</button>
+ </div>
+ <div id="feedback-challenge1" class="feedback"></div>
+ <div id="solution-challenge1" class="solution">
+ <strong>Solution:</strong><br>
+ 1. Calculate fixed costs: Parking ($20) + Meal ($70) + Souvenirs \((4 \times \$25 = \$100)\) = $190.<br>
+ 2. Calculate money left for tickets: \(\$450 - \$190 = \$260\).<br>
+ 3. Test seating options for 4 people:<br>
+ - VIP: \(4 \times \$125 = \$500\) (Too expensive)<br>
+ - Premium: \(4 \times \$75 = \$300\) (Too expensive)<br>
+ - General: \(4 \times \$25 = \$100\) (Affordable)<br>
+ <strong>Answer:</strong> The most expensive option they can afford is General Admission.
+ </div>
+ </div>
+ 
+ <div class="challenge-box">
+ <h4><strong>Challenge 2:</strong> 🎯 <strong>Season Pass Optimization</strong></h4>
+ <p>A club offers two season passes for its 20 home games:</p>
+ <ul>
+ <li><strong>Gold Pass:</strong> $320 (access to all 20 games)</li>
+ <li><strong>Silver Pass:</strong> $200 (access to any 10 games)</li>
+ </ul>
+ <p>Single game tickets cost $25 each.</p>
+ <p>A family of 4 plans to attend 14 games together. What is the cheapest way for the family to attend all 14 games? Compare the cost of buying all single tickets vs. buying 4 Silver Passes and single tickets for the extra games.</p>
+ <div>
+ <input type="text" id="challenge2" class="answer-input" placeholder="Enter your answer">
+ <button class="check-btn" onclick="checkAnswer('challenge2')">Check Answer</button>
+ </div>
+ <div id="feedback-challenge2" class="feedback"></div>
+ <div id="solution-challenge2" class="solution">
+ <strong>Solution:</strong><br>
+ 1. Cost with all single tickets: \(4 \text{ people} \times 14 \text{ games} \times \$25/\text{ticket} = \$1,400\).<br>
+ 2. Cost with Silver Passes + extra games:<br>
+ - Cost of 4 Silver Passes: \(4 \times \$200 = \$800\). This covers 10 games.<br>
+ - They need to attend 4 more games \((14 - 10)\).<br>
+ - Cost of extra games: \(4 \text{ people} \times 4 \text{ games} \times \$25/\text{ticket} = \$400\).<br>
+ - Total cost: \(\$800 + \$400 = \$1,200\).<br>
+ <strong>Answer:</strong> The cheapest way is to buy 4 Silver Passes and single tickets for the other 4 games, for a total cost of $1,200.
+ </div>
+ </div>
+ 
+ <div class="challenge-box">
+ <h4><strong>Challenge 3:</strong> 🏆 <strong>Tournament Bracket Economics</strong></h4>
+ <p>In a knockout tournament with 16 teams, ticket prices increase by $15 after each round:</p>
+ <ul>
+ <li>Round 1 (8 games): $25 per ticket</li>
+ <li>Round 2 (4 games): $40 per ticket</li>
+ <li>Round 3 (2 games): $55 per ticket</li>
+ <li>Final (1 game): $70 per ticket</li>
+ </ul>
+ <p>If each game averages 5,000 spectators, what is the total revenue for the entire tournament?</p>
+ <div>
+ <input type="text" id="challenge3" class="answer-input" placeholder="Enter your answer">
+ <button class="check-btn" onclick="checkAnswer('challenge3')">Check Answer</button>
+ </div>
+ <div id="feedback-challenge3" class="feedback"></div>
+ <div id="solution-challenge3" class="solution">
+ <strong>Solution:</strong><br>
+ Round 1: \(8 \times 5,000 \times \$25 = \$1,000,000\)<br>
+ Round 2: \(4 \times 5,000 \times \$40 = \$800,000\)<br>
+ Round 3: \(2 \times 5,000 \times \$55 = \$550,000\)<br>
+ Final: \(1 \times 5,000 \times \$70 = \$350,000\)<br>
+ Total: \(\$1,000,000 + \$800,000 + \$550,000 + \$350,000 = \$2,700,000\)
+ </div>
+ </div>
+ 
+ <div class="challenge-box">
+ <h4>🎊 <strong>BONUS BRAIN TEASER</strong></h4>
+ <p>Diego notices that his piggy bank has only quarters ($0.25) and he counted exactly 148 coins. His sister's bank has only dimes ($0.10) but contains exactly $37.00. Who has more money, and by how much? 🤔💰</p>
+ <div>
+ <input type="text" id="bonus" class="answer-input" placeholder="Enter your answer">
+ <button class="check-btn" onclick="checkAnswer('bonus')">Check Answer</button>
+ </div>
+ <div id="feedback-bonus" class="feedback"></div>
+ <div id="solution-bonus" class="solution">
+ <strong>Solution:</strong><br>
+ Diego: \(148 \times \$0.25 = \$37.00\)<br>
+ Sister: $37.00<br>
+ They have exactly the same amount! It's a tie! 🎉
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Lesson 6: Solutions -->
+ <div id="lesson6" class="lesson-panel">
+ <div class="content-section review-section">
+ <h3>✅ <strong>SOLUTIONS</strong></h3>
+ 
+ <div class="step-box">
+ <h4><strong>Independent Practice Solutions:</strong></h4>
+ 
+ <p><strong>Problem 1:</strong><br>
+ Adult cost: \(6 \times \$45 = \$270\)<br>
+ Student cost: \(15 \times \$25 = \$375\)<br>
+ Total: \(\$270 + \$375 = \$645\)</p>
+ 
+ <p><strong>Problem 2:</strong><br>
+ Individual cost: \((4 \times \$55) + (4 \times \$15) = \$220 + \$60 = \$280\)<br>
+ Savings: \(\$280 - \$280 = \$0\) (No savings - same price!)</p>
+ 
+ <p><strong>Problem 3:</strong><br>
+ Total needed: \(8 \times \$35 = \$280\)<br>
+ Weeks needed: \(\$280 \div \$12 = 23.33...\) → <strong>24 weeks</strong> (He needs to save for the full 24th week)</p>
+ 
+ <p><strong>Problem 4:</strong><br>
+ North: \(2,400 \times \$30 = \$72,000\)<br>
+ East: \(1,800 \times \$50 = \$90,000\)<br>
+ West: \(600 \times \$80 = \$48,000\)<br>
+ Total: \(\$72,000 + \$90,000 + \$48,000 = \$210,000\)</p>
+ </div>
+ 
+ <div class="step-box">
+ <h4><strong>Advanced Challenge Solutions:</strong></h4>
+ 
+ <p><strong>Challenge 1:</strong><br>
+ 1. Calculate fixed costs: Parking ($20) + Meal ($70) + Souvenirs \((4 \times \$25 = \$100)\) = $190.<br>
+ 2. Calculate money left for tickets: \(\$450 - \$190 = \$260\).<br>
+ 3. Test seating options for 4 people:<br>
+ - VIP: \(4 \times \$125 = \$500\) (Too expensive)<br>
+ - Premium: \(4 \times \$75 = \$300\) (Too expensive)<br>
+ - General: \(4 \times \$25 = \$100\) (Affordable)<br>
+ <strong>Answer:</strong> The most expensive option they can afford is General Admission.</p>
+ 
+ <p><strong>Challenge 2:</strong><br>
+ 1. Cost with all single tickets: \(4 \text{ people} \times 14 \text{ games} \times \$25/\text{ticket} = \$1,400\).<br>
+ 2. Cost with Silver Passes + extra games:<br>
+ - Cost of 4 Silver Passes: \(4 \times \$200 = \$800\). This covers 10 games.<br>
+ - They need to attend 4 more games \((14 - 10)\).<br>
+ - Cost of extra games: \(4 \text{ people} \times 4 \text{ games} \times \$25/\text{ticket} = \$400\).<br>
+ - Total cost: \(\$800 + \$400 = \$1,200\).<br>
+ <strong>Answer:</strong> The cheapest way is to buy 4 Silver Passes and single tickets for the other 4 games, for a total cost of $1,200.</p>
+ 
+ <p><strong>Challenge 3:</strong><br>
+ Round 1: \(8 \times 5,000 \times \$25 = \$1,000,000\)<br>
+ Round 2: \(4 \times 5,000 \times \$40 = \$800,000\)<br>
+ Round 3: \(2 \times 5,000 \times \$55 = \$550,000\)<br>
+ Final: \(1 \times 5,000 \times \$70 = \$350,000\)<br>
+ Total: \(\$1,000,000 + \$800,000 + \$550,000 + \$350,000 = \$2,700,000\)</p>
+ </div>
+ 
+ <div class="step-box">
+ <h4><strong>Bonus Brain Teaser Solution:</strong></h4>
+ <p>Diego: \(148 \times \$0.25 = \$37.00\)<br>
+ Sister: $37.00<br>
+ They have exactly the same amount! It's a tie! 🎉</p>
+ </div>
+ 
+ <div class="vocab-section">
+ <h4>📝 <strong>LESSON SUMMARY</strong></h4>
+ 
+ <p>🌟 <strong>Key Takeaways:</strong></p>
+ <ul>
+ <li>Tournament economics involves careful money planning and calculations</li>
+ <li>Multi-step problems require breaking down complex scenarios into simple math operations</li>
+ <li>Real-world applications make math meaningful and exciting</li>
+ <li>Historical comparisons help us understand how prices change over time</li>
+ </ul>
+ 
+ <p class="elementary-emoji">🏅 <strong>Great job completing this advanced soccer economics worksheet! You're ready to tackle any ticket pricing challenge!</strong> ⚽💰🎉</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <script>
+ // Tab switching functionality
+ function showLesson(lessonNumber) {
+ // Hide all lesson panels
+ const panels = document.querySelectorAll('.lesson-panel');
+ panels.forEach(panel => {
+ panel.classList.remove('active');
+ });
+ 
+ // Remove active class from all tab buttons
+ const tabButtons = document.querySelectorAll('.tab-btn');
+ tabButtons.forEach(btn => {
+ btn.classList.remove('active');
+ });
+ 
+ // Show the selected lesson panel
+ const selectedPanel = document.getElementById('lesson' + lessonNumber);
+ if (selectedPanel) {
+ selectedPanel.classList.add('active');
+ }
+ 
+ // Add active class to the clicked tab button
+ const clickedButton = event.target;
+ clickedButton.classList.add('active');
+ }
+ 
+ // Answer key for checking
+ const answers = {
+   problem1: "645",
+   problem2: "0",
+   problem3: "24",
+   problem4: "210000",
+   challenge1: "general",
+   challenge2: "1200",
+   challenge3: "2700000",
+   bonus: "tie"
+ };
+ 
+ // Function to check answers
+ function checkAnswer(problemId) {
+   const input = document.getElementById(problemId);
+   const feedback = document.getElementById('feedback-' + problemId);
+   const solution = document.getElementById('solution-' + problemId);
+   const userAnswer = input.value.trim().toLowerCase();
+   const correctAnswer = answers[problemId];
+   
+   if (userAnswer === correctAnswer) {
+     feedback.textContent = "✅ Correct! Great job!";
+     feedback.className = "feedback correct";
+     feedback.style.display = "block";
+     input.classList.add("bounce");
+     setTimeout(() => input.classList.remove("bounce"), 600);
+   } else {
+     feedback.textContent = "❌ Try again! Check your calculations.";
+     feedback.className = "feedback incorrect";
+     feedback.style.display = "block";
+     input.classList.add("shake");
+     setTimeout(() => input.classList.remove("shake"), 600);
+   }
+   
+   // Show solution after 3 attempts or if correct
+   if (userAnswer === correctAnswer) {
+     solution.style.display = "block";
+   }
+ }
+ 
+ // Show solution when requested
+ function showSolution(problemId) {
+   const solution = document.getElementById('solution-' + problemId);
+   solution.style.display = "block";
+ }
+ </script>
+ </body>
+ </html>

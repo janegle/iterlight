@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<!--
+Math Worksheet HTML
+Generated: 2025-08-26 18:49:55
+Grade 4: Problem Solving + soccer + Advanced + Soccer Math Adventure
+Math Topic: Problem Solving
+Sports Context: soccer
+Difficulty Level: Advanced
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚽ Equipment Budgets and Team Expenses - Soccer Math Adventure</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.6.1/distrib/jsxgraphcore.js"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            padding: 1rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .lesson-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 1rem;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .elementary-header {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;
+            font-size: 2.5em;
+            color: #e74c3c;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .elementary-problem {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaa7 100%);
+            border: 3px solid #fd79a8;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .elementary-emoji {
+            font-size: 1.5em;
+            margin: 0 0.5rem;
+            vertical-align: middle;
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+        }
+
+        .elementary-star {
+            color: #fdcb6e;
+            font-size: 1.8em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            margin: 0 0.2rem;
+        }
+
+        .theory-section {
+            border-left-color: #1976d2;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%);
+        }
+
+        .practice-section {
+            border-left-color: #388e3c;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f1f8f1 100%);
+        }
+
+        .problem-section {
+            border-left-color: #7b1fa2;
+            background: linear-gradient(135deg, #f3e5f5 0%, #faf5ff 100%);
+        }
+
+        .review-section {
+            border-left-color: #f57c00;
+            background: linear-gradient(135deg, #fff3e0 0%, #fff8f0 100%);
+        }
+
+        .step-box {
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .vocab-item {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f1f8f1 100%);
+            border-left: 4px solid #388e3c;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+        }
+
+        .math-block {
+            display: block;
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%);
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1.3em;
+            color: #2c3e50;
+            font-family: 'Times New Roman', serif;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            max-width: 100%;
+            overflow: auto;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .answer-input {
+            width: 100%;
+            font-size: 16px;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .check-btn {
+            width: 100%;
+            min-height: 44px;
+            padding: 12px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            max-width: 100%;
+            box-sizing: border-box;
+            margin: 0.5rem 0;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(116, 185, 255, 0.4);
+        }
+
+        .feedback {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .correct {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        .example-box, .challenge-box, .elementary-problem {
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%);
+            border: 3px solid #1976d2;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #faf5ff 100%);
+            border: 3px solid #7b1fa2;
+        }
+
+        .solution {
+            display: none;
+            background: #e8f5e8;
+            border: 2px solid #388e3c;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .show-solution-btn {
+            background: #388e3c;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0.5rem 0;
+            font-size: 14px;
+        }
+
+        .show-solution-btn:hover {
+            background: #2e7d32;
+        }
+
+        .jxgbox {
+            border: 2px solid #2c3e50;
+            background: white;
+            margin: 1rem auto;
+            max-width: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+            position: relative;
+            border-radius: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #e74c3c;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem 0;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #34495e;
+            margin: 1rem 0;
+        }
+
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            color: #2c3e50;
+        }
+
+        .strategy-list {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tab-navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: 2px solid #74b9ff;
+            background: white;
+            color: #2c3e50; /* IMPROVED: Darker color for better contrast */
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: #74b9ff;
+            color: #000000;
+        }
+
+        .tab-btn:hover {
+            background: #0984e3;
+            color: #000000;
+        }
+
+        .lesson-panel {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .lesson-panel.active {
+            display: block !important;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Debug styles to help identify issues */
+        .lesson-panel:not(.active) {
+            display: none !important;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .bounce {
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding: 10px;
+            }
+            h1 { font-size: 2em; }
+        }
+    </style>
+    
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\(', '\)']],
+                displayMath: [['\[', '\]']]
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="elementary-header">⚽ Equipment Budgets and Team Expenses ⚽<br>A Soccer Math Adventure! 🌈</h1>
+
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="showLesson(1)">📚 Learning Goals</button>
+            <button class="tab-btn" onclick="showLesson(2)">🎯 Vocabulary</button>
+            <button class="tab-btn" onclick="showLesson(3)">📖 Examples</button>
+            <button class="tab-btn" onclick="showLesson(4)">🚀 Practice</button>
+            <button class="tab-btn" onclick="showLesson(5)">🏆 Challenge</button>
+        </div>
+        
+        <!-- Status indicator -->
+        <div id="tab-status" style="text-align: center; margin: 10px 0; padding: 10px; background: #e8f5e8; border-radius: 8px; font-weight: bold; color: #2c3e50;">
+            📚 Currently viewing: Learning Goals (Lesson 1)
+        </div>
+
+        <div id="lesson1" class="lesson-panel active">
+            <div class="content-section theory-section">
+                <h2>📚 Learning Objectives</h2>
+                <div class="elementary-problem">
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul>
+                        <li><span class="elementary-star">⭐</span> Multiply multi-digit numbers to calculate total costs</li>
+                        <li><span class="elementary-star">⭐</span> Add and subtract money amounts with decimals</li>
+                        <li><span class="elementary-star">⭐</span> Solve multi-step word problems involving budgets</li>
+                        <li><span class="elementary-star">⭐</span> Compare costs and make budget decisions</li>
+                        <li><span class="elementary-star">⭐</span> Work with simple percentages and discounts (Advanced Challenge!)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section theory-section">
+                <h2>🌟 The Story Begins...</h2>
+                <div class="example-box">
+                    <p>Meet Diego! <span class="elementary-emoji">⚽</span> He's helping Coach Maria plan the budget for their soccer team, just like the professionals at FC Barcelona! Did you know that FC Barcelona spends over $50 million each year on equipment and player gear? The same math principles that help professional teams also help Diego's team manage their money wisely!</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="lesson2" class="lesson-panel">
+            <div class="content-section theory-section">
+                <h2>🎯 Key Vocabulary</h2>
+                <div class="vocab-section">
+                    <div class="vocab-item">
+                        <strong>Budget</strong>: <span class="elementary-emoji">💰</span> The amount of money available to spend
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Total Cost</strong>: <span class="elementary-emoji">🧮</span> The final amount after adding all expenses
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Unit Price</strong>: <span class="elementary-emoji">🏷️</span> The cost of one item
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Discount</strong>: <span class="elementary-emoji">💸</span> A reduction in price
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Surplus</strong>: <span class="elementary-emoji">📈</span> Money left over after subtracting costs
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lesson3" class="lesson-panel">
+            <div class="content-section practice-section">
+                <h2>📖 Guided Examples</h2>
+                
+                <div class="example-box">
+                    <h3>Example 1: Jersey Mathematics <span class="elementary-emoji">👕</span></h3>
+                    <p><em>Historical Context: The first soccer jerseys were made of heavy cotton in the 1870s!</em></p>
+                    
+                    <div class="step-box">
+                        <p>Diego needs to calculate the cost of jerseys for his 15-player team.</p>
+                        <ul>
+                            <li>Cost per jersey: $20</li>
+                            <li>Number of jerseys needed: 15</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-box">
+                        <p><strong>Step-by-step solution:</strong></p>
+                        <div class="math-block" role="math" aria-label="Total Jersey Cost equals Number of Jerseys times Cost per Jersey">
+                            \[
+                            \text{Total Jersey Cost} = \text{Number of Jerseys} \times \text{Cost per Jersey}
+                            \]
+                        </div>
+                        <div class="math-block" role="math" aria-label="Total Jersey Cost equals 15 times 20 equals 300">
+                            \[
+                            \text{Total Jersey Cost} = 15 \times 20 = 300
+                            \]
+                        </div>
+                        <p><strong>Answer: $300</strong> <span class="elementary-emoji">💵</span></p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h3>Example 2: Sock Addition <span class="elementary-emoji">🧦</span></h3>
+                    <p><em>Rules Context: FIFA requires all players on a team to wear matching socks!</em></p>
+                    
+                    <div class="step-box">
+                        <p>Now Diego adds the sock costs:</p>
+                        <ul>
+                            <li>Socks cost: $8 per pair</li>
+                            <li>Number of pairs: 15</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-box">
+                        <div class="math-block" role="math" aria-label="Total Sock Cost equals 15 times 8 equals 120">
+                            \[
+                            \text{Total Sock Cost} = 15 \times 8 = 120
+                            \]
+                        </div>
+                        <p><strong>Combined uniform cost:</strong></p>
+                        <div class="math-block" role="math" aria-label="Total Uniform Cost equals Jersey Cost plus Sock Cost equals 300 plus 120 equals 420">
+                            \[
+                            \text{Total Uniform Cost} = \text{Jersey Cost} + \text{Sock Cost} = 300 + 120 = 420
+                            \]
+                        </div>
+                        <p><strong>Answer: $420</strong> <span class="elementary-emoji">🎯</span></p>
+                    </div>
+                    <!-- ADDED: JSXGraph Chart -->
+                    <div id="costChart" class="jxgbox" style="height: 300px; width: 100%;"></div>
+                </div>
+
+                <div class="example-box">
+                    <h3>Example 3: Professional Team Comparison <span class="elementary-emoji">🏆</span></h3>
+                    <p><em>Real-life Context: Manchester United's equipment budget is $8 million per year!</em></p>
+                    
+                    <div class="step-box">
+                        <p>If Manchester United spends $8,000,000 on equipment for 25 players, how much do they spend per player on average?</p>
+                        <div class="math-block" role="math" aria-label="Cost per Player equals 8,000,000 divided by 25 equals 320,000">
+                            \[
+                            \text{Cost per Player} = \frac{8,000,000}{25} = 320,000
+                            \]
+                        </div>
+                        <p><strong>Answer: $320,000 per player!</strong> <span class="elementary-emoji">😱</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lesson4" class="lesson-panel">
+            <div class="content-section problem-section">
+                <h2>🚀 Independent Practice Problems</h2>
+
+                <div class="elementary-problem" data-problem-type="practice">
+                    <h3>Problem 1: Basic Budget <span class="elementary-star">⭐</span></h3>
+                    <p><em>Story: Emma's team needs new equipment!</em></p>
+                    <p>Emma's soccer team has 12 players. They need:</p>
+                    <ul>
+                        <li>Soccer balls: $15 each (need 6 balls)</li>
+                        <li>Cones: $3 each (need 20 cones)</li>
+                    </ul>
+                    <p>Calculate the total cost for balls and cones.</p>
+                    
+                    <input type="number" id="answer1" class="answer-input" placeholder="Enter your answer (dollars only)" aria-label="Answer for Problem 1">
+                    <button class="check-btn" onclick="checkAnswer('answer1', 150, 1)" aria-label="Check answer for Problem 1">Check Answer <span class="elementary-emoji">✅</span></button>
+                    <div id="feedback1" class="feedback"></div>
+                    
+                    <button class="show-solution-btn" onclick="toggleSolution('solution1')">Show Solution</button>
+                    <div id="solution1" class="solution" data-role="student" data-visible="false" style="display: none">
+                        <p><strong>Solution:</strong></p>
+                        <div class="math-block" role="math" aria-label="Solution for Problem 1">
+                            \[
+                            \begin{align*}
+                            \text{Soccer balls: } & 6 \times 15 = 90 \\
+                            \text{Cones: } & 20 \times 3 = 60 \\
+                            \hline
+                            \text{Total: } & 90 + 60 = 150
+                            \end{align*}
+                            \]
+                        </div>
+                        <p><strong>Answer: $150</strong> <span class="elementary-emoji">💰</span></p>
+                    </div>
+                </div>
+
+                <div class="elementary-problem" data-problem-type="practice">
+                    <h3>Problem 2: Discount Detective <span class="elementary-star">⭐⭐</span></h3>
+                    <p><em>Strategy Context: Teams often buy in bulk to save money!</em></p>
+                    <p>Diego finds a sports store offering:</p>
+                    <ul>
+                        <li>Regular price for shin guards: $12 each</li>
+                        <li>Bulk discount: Buy 15 or more, get 20% off</li>
+                        <li>Team size: 15 players</li>
+                    </ul>
+                    <p>How much money does the team save with the bulk discount?</p>
+                    
+                    <input type="number" id="answer2" class="answer-input" placeholder="Enter savings amount" aria-label="Answer for Problem 2">
+                    <button class="check-btn" onclick="checkAnswer('answer2', 36, 2)" aria-label="Check answer for Problem 2">Check Answer <span class="elementary-emoji">✅</span></button>
+                    <div id="feedback2" class="feedback"></div>
+                    
+                    <button class="show-solution-btn" onclick="toggleSolution('solution2')">Show Solution</button>
+                    <div id="solution2" class="solution" data-role="student" data-visible="false" style="display: none">
+                        <p><strong>Solution:</strong></p>
+                        <div class="math-block" role="math" aria-label="Solution for Problem 2">
+                             \[
+                            \begin{align*}
+                            \text{Regular cost: } & 15 \times 12 = 180 \\
+                            \text{Discount amount: } & 180 \times 0.20 = 36 \\
+                            \text{Discounted price: } & 180 - 36 = 144
+                            \end{align*}
+                            \]
+                        </div>
+                        <p><strong>Savings: $36</strong> <span class="elementary-emoji">💸</span></p>
+                    </div>
+                </div>
+
+                <div class="elementary-problem" data-problem-type="practice">
+                    <h3>Problem 3: Tournament Planning <span class="elementary-star">⭐⭐⭐</span></h3>
+                    <p><em>Practice Context: Teams must budget for tournament expenses!</em></p>
+                    <p>Sofia's team is planning for a tournament. They need:</p>
+                    <ul>
+                        <li>Transportation: $8 per player</li>
+                        <li>Entry fee: $150 for the whole team</li>
+                        <li>Meals: $12 per player</li>
+                        <li>Team has 18 players</li>
+                        <li>They raised $500 through fundraising</li>
+                    </ul>
+                    <p>How much more money do they need? (Enter 0 if they have enough)</p>
+                    
+                    <input type="number" id="answer3" class="answer-input" placeholder="Additional money needed" aria-label="Answer for Problem 3">
+                    <button class="check-btn" onclick="checkAnswer('answer3', 10, 3)" aria-label="Check answer for Problem 3">Check Answer <span class="elementary-emoji">✅</span></button>
+                    <div id="feedback3" class="feedback"></div>
+                    
+                    <button class="show-solution-btn" onclick="toggleSolution('solution3')">Show Solution</button>
+                    <div id="solution3" class="solution" data-role="student" data-visible="false" style="display: none">
+                        <p><strong>Solution:</strong></p>
+                        <div class="math-block" role="math" aria-label="Solution for Problem 3">
+                            \[
+                            \begin{align*}
+                            \text{Transportation: } & 18 \times 8 = 144 \\
+                            \text{Entry fee: } & 150 \\
+                            \text{Meals: } & 18 \times 12 = 216 \\
+                            \hline
+                            \text{Total needed: } & 144 + 150 + 216 = 510 \\
+                            \text{Money raised: } & 500 \\
+                            \text{Additional needed: } & 510 - 500 = 10
+                            \end{align*}
+                            \]
+                        </div>
+                        <p><strong>They need $10 more!</strong> <span class="elementary-emoji">📈</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lesson5" class="lesson-panel">
+            <div class="content-section problem-section">
+                <h2>🏆 Challenge Problems for Math Champions!</h2>
+
+                <div class="challenge-box" data-problem-type="practice">
+                    <h3>Challenge 1: The League Organizer <span class="elementary-emoji">🎪</span></h3>
+                    <p><em>Advanced Real-life Application</em></p>
+                    <p>You're organizing a small league with 4 teams. Each team has 14 players. You need to buy:</p>
+                    <ul>
+                        <li>Jerseys: $25 each (1 per player)</li>
+                        <li>Shorts: $18 each (1 per player)</li>
+                        <li>Soccer balls: $22 each (5 per team)</li>
+                    </ul>
+                    <p>The league has a budget of $4,000. How many extra soccer balls could the league buy with the leftover money?</p>
+                    
+                    <input type="number" id="answer4" class="answer-input" placeholder="Number of extra balls" aria-label="Answer for Challenge 1">
+                    <button class="check-btn" onclick="checkAnswer('answer4', 52, 4)" aria-label="Check answer for Challenge 1">Check Answer <span class="elementary-emoji">✅</span></button>
+                    <div id="feedback4" class="feedback"></div>
+                    
+                    <button class="show-solution-btn" onclick="toggleSolution('solution4')">Show Solution</button>
+                    <div id="solution4" class="solution" data-role="student" data-visible="false" style="display: none">
+                        <p><strong>Solution:</strong></p>
+                        <div class="math-block" role="math" aria-label="Solution for Challenge 1">
+                             \[
+                            \begin{align*}
+                            \text{Total players: } & 4 \times 14 = 56 \\
+                            \text{Jersey cost: } & 56 \times 25 = 1,400 \\
+                            \text{Shorts cost: } & 56 \times 18 = 1,008 \\
+                            \text{Ball cost: } & 4 \times 5 \times 22 = 440 \\
+                            \hline
+                            \text{Total cost: } & 1400 + 1008 + 440 = 2,848 \\
+                            \text{Surplus: } & 4000 - 2848 = 1,152 \\
+                            \text{Extra balls: } & 1152 \div 22 = 52.36...
+                            \end{align*}
+                            \]
+                        </div>
+                        <p><strong>They can buy 52 extra balls</strong> <span class="elementary-star">⭐</span></p>
+                    </div>
+                </div>
+
+                <div class="challenge-box" data-problem-type="practice">
+                    <h3>Challenge 2: The Fundraising Goal <span class="elementary-emoji">🌈</span></h3>
+                    <p><em>Competition-level Problem</em></p>
+                    <p>A team of 16 players wants to buy new equipment bags that cost $30 each.</p>
+                    <ul>
+                        <li>The store offers a 10% discount if they buy 15 or more bags</li>
+                        <li>The team has raised $450 from a bake sale</li>
+                    </ul>
+                    <p>What is the final cost after the discount?</p>
+                    
+                    <input type="number" id="answer5" class="answer-input" placeholder="Final cost after discount" aria-label="Answer for Challenge 2">
+                    <button class="check-btn" onclick="checkAnswer('answer5', 432, 5)" aria-label="Check answer for Challenge 2">Check Answer <span class="elementary-emoji">✅</span></button>
+                    <div id="feedback5" class="feedback"></div>
+                    
+                    <button class="show-solution-btn" onclick="toggleSolution('solution5')">Show Solution</button>
+                    <div id="solution5" class="solution" data-role="student" data-visible="false" style="display: none">
+                        <p><strong>Solution:</strong></p>
+                        <div class="math-block" role="math" aria-label="Solution for Challenge 2">
+                            \[
+                            \begin{align*}
+                            \text{Cost before discount: } & 16 \times 30 = 480 \\
+                            \text{Discount amount: } & 480 \div 10 = 48 \\
+                            \text{Final cost: } & 480 - 48 = 432
+                            \end{align*}
+                            \]
+                        </div>
+                        <p><strong>Final cost: $432</strong> <span class="elementary-emoji">🏆</span></p>
+                    </div>
+                </div>
+
+                <div class="challenge-box" data-problem-type="practice">
+                    <h3>Challenge 3: The Tournament Trip <span class="elementary-emoji">⚽</span></h3>
+                    <p><em>Olympic-level Challenge</em></p>
+                    <p>A team of 12 players is going to an out-of-town tournament. Calculate the total cost:</p>
+                    <ul>
+                        <li>Hotel: 3 rooms, each room costs $110 per night</li>
+                        <li>Food: Each of the 12 players gets $25</li>
+                        <li>Gas: Two parent-coaches need $40 each for gas</li>
+                        <li>Tournament Fee: $200 for the team</li>
+                    </ul>
+                    <p>What is the total cost for the entire tournament trip?</p>
+                    
+                    <input type="number" id="answer6" class="answer-input" placeholder="Total tournament cost" aria-label="Answer for Challenge 3">
+                    <button class="check-btn" onclick="checkAnswer('answer6', 910, 6)" aria-label="Check answer for Challenge 3">Check Answer <span class="elementary-emoji">✅</span></button>
+                    <div id="feedback6" class="feedback"></div>
+                    
+                    <button class="show-solution-btn" onclick="toggleSolution('solution6')">Show Solution</button>
+                    <div id="solution6" class="solution" data-role="student" data-visible="false" style="display: none">
+                        <p><strong>Solution:</strong></p>
+                        <div class="math-block" role="math" aria-label="Solution for Challenge 3">
+                            \[
+                            \begin{align*}
+                            \text{Hotel cost: } & 3 \times 110 = 330 \\
+                            \text{Food cost: } & 12 \times 25 = 300 \\
+                            \text{Gas cost: } & 2 \times 40 = 80 \\
+                            \text{Tournament fee: } & 200 \\
+                            \hline
+                            \text{Grand total: } & 330 + 300 + 80 + 200 = 910
+                            \end{align*}
+                            \]
+                        </div>
+                        <p><strong>Total cost: $910</strong> <span class="elementary-emoji">🌟</span></p>
+                    </div>
+                </div>
+
+                <div class="content-section theory-section">
+                    <h2>🎯 Problem-Solving Strategies</h2>
+                    <div class="strategy-list">
+                        <ol>
+                            <li><strong>Read Carefully</strong> <span class="elementary-emoji">📖</span> - Identify what you need to find</li>
+                            <li><strong>Make a Plan</strong> <span class="elementary-emoji">🗺️</span> - Decide which operations to use</li>
+                            <li><strong>Show Your Work</strong> <span class="elementary-emoji">✏️</span> - Write each step clearly</li>
+                            <li><strong>Check Your Answer</strong> <span class="elementary-emoji">✅</span> - Does it make sense?</li>
+                            <li><strong>Use Estimation</strong> <span class="elementary-emoji">🎪</span> - Round numbers to check if you're close</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="content-section review-section">
+                    <h2>🎉 Summary & Review</h2>
+                    <div class="elementary-problem">
+                        <p>Today you learned to:</p>
+                        <ul>
+                            <li>✅ Calculate equipment costs for soccer teams</li>
+                            <li>✅ Work with multi-step budget problems</li>
+                            <li>✅ Apply simple discounts</li>
+                            <li>✅ Compare professional and amateur team expenses</li>
+                            <li>✅ Use real-world math like professional soccer managers!</li>
+                        </ul>
+                        <p><strong>Remember:</strong> Even the biggest soccer clubs like Real Madrid and Barcelona use these same math skills to manage their budgets. You're thinking like a professional! <span class="elementary-emoji">⚽🌟</span></p>
+                    </div>
+                </div>
+
+                <div class="content-section review-section">
+                    <h2>🏅 Homework Challenge</h2>
+                    <div class="elementary-problem">
+                        <p>Research your favorite professional soccer team and find information about their annual budget. Calculate how much they might spend per player on equipment if they have a squad of 25 players and spend 5% of their total budget on equipment. Present your findings to the class! <span class="elementary-emoji">📚⚽</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLesson = 1;
+        let progress = JSON.parse(localStorage.getItem('lessonProgress')) || {};
+
+        function showLesson(lessonNumber) {
+            try {
+                console.log(`Attempting to show lesson ${lessonNumber}...`);
+                
+                // Validate lesson number
+                if (lessonNumber < 1 || lessonNumber > 5) {
+                    console.error(`Invalid lesson number: ${lessonNumber}`);
+                    return;
+                }
+                
+                // Hide all lesson panels
+                document.querySelectorAll('.lesson-panel').forEach(panel => {
+                    panel.classList.remove('active');
+                    console.log(`Hidden panel: ${panel.id}`);
+                });
+                
+                // Show the selected lesson panel
+                const selectedPanel = document.getElementById('lesson' + lessonNumber);
+                if (selectedPanel) {
+                    selectedPanel.classList.add('active');
+                    console.log(`Showed panel: ${selectedPanel.id}`);
+                } else {
+                    console.error(`Lesson panel lesson${lessonNumber} not found`);
+                    return;
+                }
+                
+                // Remove active class from all tab buttons
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    console.log(`Removed active from: ${btn.textContent}`);
+                });
+                
+                // Add active class to the correct tab button
+                const tabButtons = document.querySelectorAll('.tab-btn');
+                if (tabButtons[lessonNumber - 1]) {
+                    tabButtons[lessonNumber - 1].classList.add('active');
+                    console.log(`Activated tab: ${tabButtons[lessonNumber - 1].textContent}`);
+                } else {
+                    console.error(`Tab button for lesson ${lessonNumber} not found`);
+                    return;
+                }
+                
+                // Update current lesson and save to localStorage
+                currentLesson = lessonNumber;
+                progress.currentLesson = lessonNumber;
+                localStorage.setItem('lessonProgress', JSON.stringify(progress));
+                
+                // Update status indicator
+                const statusElement = document.getElementById('tab-status');
+                if (statusElement) {
+                    const activeTab = document.querySelector('.tab-btn.active');
+                    if (activeTab) {
+                        statusElement.textContent = `📚 Currently viewing: ${activeTab.textContent} (Lesson ${lessonNumber})`;
+                    }
+                }
+                
+                // Re-render MathJax if available
+                if (window.MathJax) {
+                    MathJax.typesetPromise();
+                }
+                
+                console.log(`Successfully switched to lesson ${lessonNumber}`);
+                
+            } catch (error) {
+                console.error(`Error in showLesson(${lessonNumber}):`, error);
+                // Fallback: try to show at least the first lesson
+                if (lessonNumber !== 1) {
+                    console.log('Attempting fallback to lesson 1...');
+                    showLesson(1);
+                }
+            }
+        }
+
+        function checkAnswer(inputId, correctAnswer, questionNumber) {
+            const inputElement = document.getElementById(inputId);
+            const userAnswer = parseFloat(inputElement.value);
+            const feedbackElement = document.getElementById('feedback' + questionNumber);
+            
+            if (isNaN(userAnswer)) {
+                feedbackElement.textContent = 'Please enter a valid number! 🤔';
+                feedbackElement.className = 'feedback incorrect';
+                feedbackElement.style.display = 'block';
+                return;
+            }
+            
+            if (userAnswer === correctAnswer) {
+                feedbackElement.textContent = 'Excellent work! You solved it correctly! 🎉⚽';
+                feedbackElement.className = 'feedback correct bounce';
+                progress['question' + questionNumber] = true;
+                
+                setTimeout(() => {
+                    feedbackElement.classList.remove('bounce');
+                }, 600);
+            } else {
+                feedbackElement.textContent = 'Not quite right. Check your calculations and try again! 💪';
+                feedbackElement.className = 'feedback incorrect';
+            }
+            
+            feedbackElement.style.display = 'block';
+            localStorage.setItem('lessonProgress', JSON.stringify(progress));
+        }
+
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling;
+            
+            if (solution.style.display === 'none' || solution.style.display === '') {
+                solution.style.display = 'block';
+                button.textContent = 'Hide Solution';
+            } else {
+                solution.style.display = 'none';
+                button.textContent = 'Show Solution';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing lesson tabs...');
+            
+            // Test tab functionality
+            testTabFunctionality();
+            
+            const savedProgress = JSON.parse(localStorage.getItem('lessonProgress'));
+            if (savedProgress && savedProgress.currentLesson) {
+                console.log(`Loading saved progress: lesson ${savedProgress.currentLesson}`);
+                showLesson(savedProgress.currentLesson);
+            } else {
+                console.log('No saved progress, starting with lesson 1');
+                showLesson(1);
+            }
+            
+            document.querySelectorAll('.answer-input').forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        this.nextElementSibling.click();
+                    }
+                });
+            });
+            
+            // ADDED: JSXGraph Initialization
+            try {
+                JXG.Options.infobox.fontSize = 0;
+                const board = JXG.JSXGraph.initBoard('costChart', {
+                    boundingbox: [-1, 450, 4, -50],
+                    axis: true,
+                    grid: false,
+                    showCopyright: false,
+                    showNavigation: false,
+                    defaultAxes: {
+                        x: { name: 'Item', ticks: { visible: false } },
+                        y: { name: 'Cost ($)', ticks: { majorHeight: 20 } }
+                    }
+                });
+                board.create('chart', [300], { chartStyle: 'bar', width: 0.6, labels: ['Jerseys ($300)'], color: '#1976d2' });
+                board.create('chart', [120], { chartStyle: 'bar', width: 0.6, labels: ['Socks ($120)'], offset: [1.2, 0], color: '#f57c00' });
+                board.create('chart', [420], { chartStyle: 'bar', width: 0.6, labels: ['Total ($420)'], offset: [2.4, 0], color: '#388e3c' });
+            } catch (e) {
+                console.error("JSXGraph initialization failed: ", e);
+            }
+        });
+        
+        function testTabFunctionality() {
+            console.log('Testing tab functionality...');
+            
+            // Check if all lesson panels exist
+            for (let i = 1; i <= 5; i++) {
+                const panel = document.getElementById(`lesson${i}`);
+                if (panel) {
+                    console.log(`✓ Lesson panel ${i} found`);
+                } else {
+                    console.error(`✗ Lesson panel ${i} NOT found`);
+                }
+            }
+            
+            // Check if all tab buttons exist
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            console.log(`Found ${tabButtons.length} tab buttons`);
+            
+            tabButtons.forEach((btn, index) => {
+                console.log(`Tab button ${index + 1}: ${btn.textContent}`);
+            });
+            
+            // Test tab switching
+            console.log('Testing tab switching...');
+            for (let i = 1; i <= 5; i++) {
+                try {
+                    showLesson(i);
+                    console.log(`✓ Tab ${i} switched successfully`);
+                } catch (e) {
+                    console.error(`✗ Tab ${i} failed:`, e);
+                }
+            }
+            
+            // Reset to first tab
+            showLesson(1);
+        }
+    </script>
+</body>
+</html>

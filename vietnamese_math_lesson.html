@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<!--
+Math Worksheet HTML
+Generated: 2025-08-26 18:49:55
+Grade 4: Problem Solving + soccer + Advanced + Soccer Math Adventure
+Math Topic: Problem Solving
+Sports Context: soccer
+Difficulty Level: Advanced
+-->
+
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚽ Ngân Sách Trang Bị và Chi Phí Đội Bóng - Cuộc Phiêu Lưu Toán Học Bóng Đá</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.6.1/distrib/jsxgraphcore.js"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            padding: 1rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .lesson-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 1rem;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .elementary-header {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;
+            font-size: 2.5em;
+            color: #e74c3c;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .elementary-problem {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaa7 100%);
+            border: 3px solid #fd79a8;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .elementary-emoji {
+            font-size: 1.5em;
+            margin: 0 0.5rem;
+            vertical-align: middle;
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+        }
+
+        .elementary-star {
+            color: #fdcb6e;
+            font-size: 1.8em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            margin: 0 0.2rem;
+        }
+
+        .theory-section {
+            border-left-color: #1976d2;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%);
+        }
+
+        .practice-section {
+            border-left-color: #388e3c;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f1f8f1 100%);
+        }
+
+        .problem-section {
+            border-left-color: #7b1fa2;
+            background: linear-gradient(135deg, #f3e5f5 0%, #faf5ff 100%);
+        }
+
+        .review-section {
+            border-left-color: #f57c00;
+            background: linear-gradient(135deg, #fff3e0 0%, #fff8f0 100%);
+        }
+
+        .step-box {
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .vocab-item {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f1f8f1 100%);
+            border-left: 4px solid #388e3c;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+        }
+
+        .math-block {
+            display: block;
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%);
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1.3em;
+            color: #2c3e50;
+            font-family: 'Times New Roman', serif;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            max-width: 100%;
+            overflow: auto;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .answer-input {
+            width: 100%;
+            font-size: 16px;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .check-btn {
+            width: 100%;
+            min-height: 44px;
+            padding: 12px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            max-width: 100%;
+            box-sizing: border-box;
+            margin: 0.5rem 0;
+        }
+
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(116, 185, 255, 0.4);
+        }
+
+        .feedback {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .correct {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        .example-box, .challenge-box, .elementary-problem {
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%);
+            border: 3px solid #1976d2;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #faf5ff 100%);
+            border: 3px solid #7b1fa2;
+        }
+
+        .solution {
+            display: none;
+            background: #e8f5e8;
+            border: 2px solid #388e3c;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .show-solution-btn {
+            background: #388e3c;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0.5rem 0;
+            font-size: 14px;
+        }
+
+        .show-solution-btn:hover {
+            background: #2e7d32;
+        }
+
+        .jxgbox {
+            border: 2px solid #2c3e50;
+            background: white;
+            margin: 1rem auto;
+            max-width: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+            position: relative;
+            border-radius: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #e74c3c;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem 0;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #34495e;
+            margin: 1rem 0;
+        }
+
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            color: #2c3e50;
+        }
+
+        .strategy-list {
+            background: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tab-navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: 2px solid #74b9ff;
+            background: white;
+            color: #2c3e50; /* IMPROVED: Darker color for better contrast */
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: #74b9ff;
+            color: #ffffff;
+        }
+
+        .tab-btn:hover {
+            background: #0984e3;
+            color: #ffffff;
+        }
+
+        .lesson-panel {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .lesson-panel.active {
+            display: block !important;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .lesson-panel:not(.active) {
+            display: none !important;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .bounce {
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding: 10px;
+            }
+            h1 { font-size: 2em; }
+        }
+    </style>
+    
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\(', '\)']],
+                displayMath: [['\[', '\]']]
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="elementary-header">⚽ Ngân Sách Trang Bị và Chi Phí Đội Bóng ⚽<br>Một Cuộc Phiêu Lưu Toán Học Bóng Đá! 🌈</h1>
+
+        <div class="tab-navigation">
+            <button class="tab-btn active" onclick="showLesson(1)">📚 Mục Tiêu</button>
+            <button class="tab-btn" onclick="showLesson(2)">🎯 Từ Vựng</button>
+            <button class="tab-btn" onclick="showLesson(3)">📖 Ví Dụ</button>
+            <button class="tab-btn" onclick="showLesson(4)">🚀 Luyện Tập</button>
+            <button class="tab-btn" onclick="showLesson(5)">🏆 Thử Thách</button>
+        </div>
+        
+        <div id="tab-status" style="text-align: center; margin: 10px 0; padding: 10px; background: #e8f5e8; border-radius: 8px; font-weight: bold; color: #2c3e50;">
+            📚 Đang xem: Mục Tiêu (Bài 1)
+        </div>
+
+        <div id="lesson1" class="lesson-panel active">
+            <div class="content-section theory-section">
+                <h2>📚 Mục Tiêu Học Tập</h2>
+                <div class="elementary-problem">
+                    <p>Sau khi hoàn thành bài học này, em sẽ có thể:</p>
+                    <ul>
+                        <li><span class="elementary-star">⭐</span> Nhân các số có nhiều chữ số để tính tổng chi phí</li>
+                        <li><span class="elementary-star">⭐</span> Cộng và trừ các số tiền có phần thập phân</li>
+                        <li><span class="elementary-star">⭐</span> Giải các bài toán đố nhiều bước liên quan đến ngân sách</li>
+                        <li><span class="elementary-star">⭐</span> So sánh chi phí và đưa ra quyết định về ngân sách</li>
+                        <li><span class="elementary-star">⭐</span> Làm việc với phần trăm và giảm giá đơn giản (Thử thách Nâng cao!)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-section theory-section">
+                <h2>🌟 Câu Chuyện Bắt Đầu...</h2>
+                <div class="example-box">
+                    <p>Gặp gỡ Diego! <span class="elementary-emoji">⚽</span> Cậu ấy đang giúp Huấn luyện viên Maria lập kế hoạch ngân sách cho đội bóng, giống như các chuyên gia tại FC Barcelona! Em có biết rằng FC Barcelona chi hơn 50 triệu đô la mỗi năm cho trang thiết bị và đồ dùng của cầu thủ không? Các nguyên tắc toán học giúp các đội chuyên nghiệp cũng chính là những nguyên tắc giúp đội của Diego quản lý tiền bạc một cách khôn ngoan!</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="lesson2" class="lesson-panel">
+            <div class="content-section theory-section">
+                <h2>🎯 Từ Vựng Chính</h2>
+                <div class="vocab-section">
+                    <div class="vocab-item">
+                        <strong>Ngân sách (Budget)</strong>: <span class="elementary-emoji">💰</span> Số tiền có sẵn để chi tiêu
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Tổng chi phí (Total Cost)</strong>: <span class="elementary-emoji">🧮</span> Số tiền cuối cùng sau khi cộng tất cả các khoản chi
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Đơn giá (Unit Price)</strong>: <span class="elementary-emoji">🏷️</span> Chi phí của một món hàng
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Giảm giá (Discount)</strong>: <span class="elementary-emoji">💸</span> Sự giảm trừ trên giá bán
+                    </div>
+                    <div class="vocab-item">
+                        <strong>Số dư (Surplus)</strong>: <span class="elementary-emoji">📈</span> Số tiền còn lại sau khi trừ đi các chi phí
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lesson3" class="lesson-panel">
+            <div class="content-section practice-section">
+                <h2>📖 Ví Dụ Hướng Dẫn</h2>
+                
+                <div class="example-box">
+                    <h3>Ví dụ 1: Toán Học Áo Đấu <span class="elementary-emoji">👕</span></h3>
+                    <p><em>Bối cảnh Lịch sử: Những chiếc áo đấu bóng đá đầu tiên được làm bằng cotton nặng vào những năm 1870!</em></p>
+                    
+                    <div class="step-box">
+                        <p>Diego cần tính chi phí mua áo đấu cho đội 15 cầu thủ của mình.</p>
+                        <ul>
+                            <li>Giá mỗi chiếc áo: $20</li>
+                            <li>Số lượng áo cần mua: 15</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-box">
+                        <p><strong>Giải pháp từng bước:</strong></p>
+                        <div class="math-block" role="math" aria-label="Tổng chi phí áo đấu bằng Số lượng áo nhân với Giá mỗi áo">
+                            \\[
+                            \text{Tổng Chi Phí Áo} = \text{Số Lượng Áo} \times \text{Giá Mỗi Áo}
+                            \\]
+                        </div>
+                        <div class="math-block" role="math" aria-label="Tổng chi phí áo đấu bằng 15 nhân 20 bằng 300">
+                            \\[
+                            \text{Tổng Chi Phí Áo} = 15 \times 20 = 300
+                            \\]
+                        </div>
+                        <p><strong>Đáp án: $300</strong> <span class="elementary-emoji">💵</span></p>
+                    </div>
+                </div>
+
+                <div class="example-box">
+                    <h3>Ví dụ 2: Phép Cộng Với Tất <span class="elementary-emoji">🧦</span></h3>
+                    <p><em>Bối cảnh Luật lệ: FIFA yêu cầu tất cả cầu thủ trong một đội phải mang tất giống nhau!</em></p>
+                    
+                    <div class="step-box">
+                        <p>Bây giờ Diego cộng thêm chi phí mua tất:</p>
+                        <ul>
+                            <li>Giá tất: $8 mỗi đôi</li>
+                            <li>Số lượng đôi cần mua: 15</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-box">
+                        <div class="math-block" role="math" aria-label="Tổng chi phí tất bằng 15 nhân 8 bằng 120">
+                            \\[
+                            \text{Tổng Chi Phí Tất} = 15 \times 8 = 120
+                            \\]
+                        </div>
+                        <p><strong>Chi phí đồng phục kết hợp:</strong></p>
+                        <div class="math-block" role="math" aria-label="Tổng chi phí đồng phục bằng Chi phí áo cộng Chi phí tất bằng 300 cộng 120 bằng 420">
+                            \\[
+                            \text{Tổng Chi Phí Đồng Phục} = \text{Chi Phí Áo} + \text{Chi Phí Tất} = 300 + 120 = 420
+                            \\]
+                        </div>
+                        <p><strong>Đáp án: $420</strong> <span class="elementary-emoji">🎯</span></p>
+                    </div>
+                    <div id="costChart" class="jxgbox" style="height: 300px; width: 100%;"></div>
+                </div>
+
+                <div class="example-box">
+                    <h3>Ví dụ 3: So Sánh Với Đội Chuyên Nghiệp <span class="elementary-emoji">🏆</span></h3>
+                    <p><em>Bối cảnh thực tế: Ngân sách trang thiết bị của Manchester United là 8 triệu đô la mỗi năm!</em></p>
+                    
+                    <div class="step-box">
+                        <p>Nếu Manchester United chi $8,000,000 cho trang thiết bị cho 25 cầu thủ, họ chi trung bình bao nhiêu cho mỗi cầu thủ?</p>
+                        <div class="math-block" role="math" aria-label="Chi phí mỗi cầu thủ bằng 8,000,000 chia cho 25 bằng 320,000">
+                            \\[
+                            \text{Chi Phí Mỗi Cầu Thủ} = \frac{8,000,000}{25} = 320,000
+                            \\]
+                        </div>
+                        <p><strong>Đáp án: $320,000 mỗi cầu thủ!</strong> <span class="elementary-emoji">😱</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lesson4" class="lesson-panel">
+            <div class="content-section problem-section">
+                <h2>🚀 Bài Tập Thực Hành Độc Lập</h2>
+
+                <div class="elementary-problem" data-problem-type="practice">
+                    <h3>Bài 1: Ngân Sách Cơ Bản <span class="elementary-star">⭐</span></h3>
+                    <p><em>Câu chuyện: Đội của Emma cần trang bị mới!</em></p>
+                    <p>Đội bóng của Emma có 12 cầu thủ. Họ cần:</p>
+                    <ul>
+                        <li>Bóng đá: $15 mỗi quả (cần 6 quả)</li>
+                        <li>Nón tập: $3 mỗi cái (cần 20 cái)</li>
+                    </ul>
+                    <p>Tính tổng chi phí cho bóng và nón tập.</p>
+                    
+                    <input type="number" id="answer1" class="answer-input" placeholder="Nhập câu trả lời của em (chỉ số đô la)" aria-label="Đáp án cho Bài 1">
+                    <button class="check-btn" onclick="checkAnswer('answer1', 150, 1)" aria-label="Kiểm tra đáp án cho Bài 1">Kiểm Tra <span class="elementary-emoji">✅</span></button>
+                    <div id="feedback1" class="feedback"></div>
+                    
+                    <button class="show-solution-btn" onclick="toggleSolution('solution1')">Xem Lời Giải</button>
+                    <div id="solution1" class="solution" style="display: none">
+                        <p><strong>Lời giải:</strong></p>
+                        <div class="math-block" role="math" aria-label="Lời giải cho Bài 1">
+                            \\[
+                            \begin{align*}
+                            \text{Bóng đá: } & 6 \times 15 = 90 \\
+                            \text{Nón tập: } & 20 \times 3 = 60 \\
+                            \hline
+                            \text{Tổng cộng: } & 90 + 60 = 150
+                            \end{align*}
+                            \\]
+                        </div>
+                        <p><strong>Đáp án: $150</strong> <span class="elementary-emoji">💰</span></p>
+                    </div>
+                </div>
+
+                <div class="elementary-problem" data-problem-type="practice">
+                    <h3>Bài 2: Thám Tử Giảm Giá <span class="elementary-star">⭐⭐</span></h3>
+                    <p><em>Bối cảnh Chiến lược: Các đội thường mua số lượng lớn để tiết kiệm tiền!</em></p>
+                    <p>Diego tìm thấy một cửa hàng thể thao có ưu đãi:</p>
+                    <ul>
+                        <li>Giá thông thường cho miếng bảo vệ ống đồng: $12 mỗi cái</li>
+                        <li>Giảm giá khi mua số lượng lớn: Mua 15 cái trở lên, giảm 20%</li>
+                        <li>Số lượng cầu thủ trong đội: 15</li>
+                    </ul>
+                    <p>Đội bóng tiết kiệm được bao nhiêu tiền với ưu đãi mua số lượng lớn?</p>
+                    
+                    <input type="number" id="answer2" class="answer-input" placeholder="Nhập số tiền tiết kiệm" aria-label="Đáp án cho Bài 2">
+                    <button class="check-btn" onclick="checkAnswer('answer2', 36, 2)" aria-label="Kiểm tra đáp án cho Bài 2">Kiểm Tra <span class="elementary-emoji">✅</span></button>
+                    <div id="feedback2" class="feedback"></div>
+                    
+                    <button class="show-solution-btn" onclick="toggleSolution('solution2')">Xem Lời Giải</button>
+                    <div id="solution2" class="solution" style="display: none">
+                        <p><strong>Lời giải:</strong></p>
+                        <div class="math-block" role="math" aria-label="Lời giải cho Bài 2">
+                             \\[
+                            \begin{align*}
+                            \text{Giá gốc: } & 15 \times 12 = 180 \\
+                            \text{Số tiền giảm: } & 180 \times 0.20 = 36 \\
+                            \text{Giá sau giảm: } & 180 - 36 = 144
+                            \end{align*}
+                            \\]
+                        </div>
+                        <p><strong>Tiết kiệm: $36</strong> <span class="elementary-emoji">💸</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="lesson5" class="lesson-panel">
+            <div class="content-section problem-section">
+                <h2>🏆 Bài Tập Thử Thách Cho Nhà Vô Địch Toán Học!</h2>
+
+                <div class="challenge-box" data-problem-type="practice">
+                    <h3>Thử thách 1: Nhà Tổ Chức Giải Đấu <span class="elementary-emoji">🎪</span></h3>
+                    <p><em>Ứng dụng thực tế nâng cao</em></p>
+                    <p>Em đang tổ chức một giải đấu nhỏ với 4 đội. Mỗi đội có 14 cầu thủ. Em cần mua:</p>
+                    <ul>
+                        <li>Áo đấu: $25 mỗi chiếc (1 chiếc/cầu thủ)</li>
+                        <li>Quần đùi: $18 mỗi chiếc (1 chiếc/cầu thủ)</li>
+                        <li>Bóng đá: $22 mỗi quả (5 quả/đội)</li>
+                    </ul>
+                    <p>Giải đấu có ngân sách $4,000. Giải đấu có thể mua thêm bao nhiêu quả bóng với số tiền còn lại?</p>
+                    
+                    <input type="number" id="answer4" class="answer-input" placeholder="Số quả bóng mua thêm" aria-label="Đáp án cho Thử thách 1">
+                    <button class="check-btn" onclick="checkAnswer('answer4', 52, 4)" aria-label="Kiểm tra đáp án cho Thử thách 1">Kiểm Tra <span class="elementary-emoji">✅</span></button>
+                    <div id="feedback4" class="feedback"></div>
+                    
+                    <button class="show-solution-btn" onclick="toggleSolution('solution4')">Xem Lời Giải</button>
+                    <div id="solution4" class="solution" style="display: none">
+                        <p><strong>Lời giải:</strong></p>
+                        <div class="math-block" role="math" aria-label="Lời giải cho Thử thách 1">
+                             \\[
+                            \begin{align*}
+                            \text{Tổng số cầu thủ: } & 4 \times 14 = 56 \\
+                            \text{Chi phí áo: } & 56 \times 25 = 1,400 \\
+                            \text{Chi phí quần: } & 56 \times 18 = 1,008 \\
+                            \text{Chi phí bóng: } & 4 \times 5 \times 22 = 440 \\
+                            \hline
+                            \text{Tổng chi phí: } & 1400 + 1008 + 440 = 2,848 \\
+                            \text{Số dư: } & 4000 - 2848 = 1,152 \\
+                            \text{Bóng mua thêm: } & 1152 \div 22 = 52.36...
+                            \end{align*}
+                            \\]
+                        </div>
+                        <p><strong>Họ có thể mua thêm 52 quả bóng</strong> <span class="elementary-star">⭐</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLesson = 1;
+        let progress = JSON.parse(localStorage.getItem('lessonProgress')) || {};
+
+        function showLesson(lessonNumber) {
+            try {
+                document.querySelectorAll('.lesson-panel').forEach(panel => panel.classList.remove('active'));
+                const selectedPanel = document.getElementById('lesson' + lessonNumber);
+                if (selectedPanel) selectedPanel.classList.add('active');
+                
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                const tabButtons = document.querySelectorAll('.tab-btn');
+                if (tabButtons[lessonNumber - 1]) tabButtons[lessonNumber - 1].classList.add('active');
+
+                currentLesson = lessonNumber;
+                progress.currentLesson = lessonNumber;
+                localStorage.setItem('lessonProgress', JSON.stringify(progress));
+                
+                const statusElement = document.getElementById('tab-status');
+                if (statusElement) {
+                    const activeTab = document.querySelector('.tab-btn.active');
+                    if (activeTab) statusElement.textContent = `📚 Đang xem: ${activeTab.textContent} (Bài ${lessonNumber})`;
+                }
+                
+                if (window.MathJax) MathJax.typesetPromise();
+            } catch (error) {
+                console.error(`Lỗi trong showLesson(${lessonNumber}):`, error);
+            }
+        }
+
+        function checkAnswer(inputId, correctAnswer, questionNumber) {
+            const inputElement = document.getElementById(inputId);
+            const userAnswer = parseFloat(inputElement.value);
+            const feedbackElement = document.getElementById('feedback' + questionNumber);
+            
+            if (isNaN(userAnswer)) {
+                feedbackElement.textContent = 'Vui lòng nhập một số hợp lệ! 🤔';
+                feedbackElement.className = 'feedback incorrect';
+                feedbackElement.style.display = 'block';
+                return;
+            }
+            
+            if (userAnswer === correctAnswer) {
+                feedbackElement.textContent = 'Xuất sắc! Em đã giải đúng! 🎉⚽';
+                feedbackElement.className = 'feedback correct bounce';
+                progress['question' + questionNumber] = true;
+                
+                setTimeout(() => {
+                    feedbackElement.classList.remove('bounce');
+                }, 600);
+            } else {
+                feedbackElement.textContent = 'Chưa đúng lắm. Kiểm tra lại các phép tính và thử lại nhé! 💪';
+                feedbackElement.className = 'feedback incorrect';
+            }
+            
+            feedbackElement.style.display = 'block';
+            localStorage.setItem('lessonProgress', JSON.stringify(progress));
+        }
+
+        function toggleSolution(solutionId) {
+            const solution = document.getElementById(solutionId);
+            const button = solution.previousElementSibling.previousElementSibling; // adjusted selector
+            
+            if (solution.style.display === 'none' || solution.style.display === '') {
+                solution.style.display = 'block';
+                button.textContent = 'Ẩn Lời Giải';
+            } else {
+                solution.style.display = 'none';
+                button.textContent = 'Xem Lời Giải';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedProgress = JSON.parse(localStorage.getItem('lessonProgress'));
+            if (savedProgress && savedProgress.currentLesson) {
+                showLesson(savedProgress.currentLesson);
+            } else {
+                showLesson(1);
+            }
+            
+            try {
+                JXG.Options.infobox.fontSize = 0;
+                const board = JXG.JSXGraph.initBoard('costChart', {
+                    boundingbox: [-1, 450, 4, -50],
+                    axis: true,
+                    grid: false,
+                    showCopyright: false,
+                    showNavigation: false,
+                    defaultAxes: {
+                        x: { name: 'Mục', ticks: { visible: false } },
+                        y: { name: 'Chi phí ($)', ticks: { majorHeight: 20 } }
+                    }
+                });
+                board.create('chart', [300], { chartStyle: 'bar', width: 0.6, labels: ['Áo đấu ($300)'], color: '#1976d2' });
+                board.create('chart', [120], { chartStyle: 'bar', width: 0.6, labels: ['Tất ($120)'], offset: [1.2, 0], color: '#f57c00' });
+                board.create('chart', [420], { chartStyle: 'bar', width: 0.6, labels: ['Tổng ($420)'], offset: [2.4, 0], color: '#388e3c' });
+            } catch (e) {
+                console.error("Khởi tạo JSXGraph thất bại: ", e);
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<!--
+Math Worksheet HTML
+Generated: 2025-09-02 09:58:34
+Grade 4: Ratios + soccer + Advanced + Soccer Ratios Adventure
+Math Topic: Ratios
+Sports Context: soccer
+Difficulty Level: Advanced
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚽ Soccer Time Zone Champions! ⚽</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%);
+            word-wrap: break-word;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        
+        .lesson-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 1rem;
+            overflow: hidden;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+            margin: 1rem 0;
+            padding: 1.5rem;
+            box-sizing: border-box;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+        
+        .theory-section {
+            border-left-color: #1976d2;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%);
+        }
+        
+        .practice-section {
+            border-left-color: #388e3c;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f1f8f1 100%);
+        }
+        
+        .problem-section {
+            border-left-color: #7b1fa2;
+            background: linear-gradient(135deg, #f3e5f5 0%, #faf5ff 100%);
+        }
+        
+        .review-section {
+            border-left-color: #f57c00;
+            background: linear-gradient(135deg, #fff3e0 0%, #fff8f0 100%);
+        }
+        
+        .elementary-header {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;
+            font-size: 2.5em;
+            color: #e74c3c;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .elementary-problem {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaa7 100%);
+            border: 3px solid #fd79a8;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+        
+        .elementary-emoji {
+            font-size: 1.5em;
+            margin: 0 0.5rem;
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+        }
+
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+            margin: 1rem 0;
+            font-weight: bold;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 100%;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: #ecf0f1;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 0;
+        }
+        
+        .nav-tab:hover {
+            background: #d5dbdb;
+        }
+        
+        .nav-tab.active {
+            background: #3498db;
+            color: #000000;
+        }
+        
+        .lesson-panel {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .lesson-panel.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .step-box {
+            background: white;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+        
+        .vocab-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #6c757d;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+        
+        .answer-input {
+            width: 200px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            margin: 10px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: #000000;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #ecf0f1;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60 0%, #2ecc71 100%);
+            border-radius: 15px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+        
+        #progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .answer-key {
+            display: none;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+        
+        .solution {
+            display: none;
+            background: #e8f5e8;
+            border: 2px solid #27ae60;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+        
+        @media (max-width: 767px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .answer-input, .submit-btn {
+                width: 100%;
+                margin-left: 0; margin-right: 0;
+            }
+            .nav-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lesson-container">
+            <h1 class="elementary-header">⚽ SOCCER TIME ZONE CHAMPIONS! ⚽<br>
+            <span class="elementary-emoji">🌍</span> Match Schedule and Time Zones - Grade 4 Advanced <span class="elementary-emoji">🌍</span></h1>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+                <div id="progress-text">0 of 10 problems submitted</div>
+            </div>
+            
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showLesson(1)">🎯 Learning Goals</button>
+                <button class="nav-tab" onclick="showLesson(2)">📚 Vocabulary</button>
+                <button class="nav-tab" onclick="showLesson(3)">🎪 Guided Examples</button>
+                <button class="nav-tab" onclick="showLesson(4)">🎯 Practice Problems</button>
+                <button class="nav-tab" onclick="showLesson(5)">🏆 Challenge Problems</button>
+                <button class="nav-tab" onclick="showLesson(6)">📝 Answer Key</button>
+            </div>
+            
+            <div id="lesson1" class="lesson-panel active">
+                <div class="content-section theory-section">
+                    <h2>🎯 Learning Objectives</h2>
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul style="font-size: 1.2em; line-height: 1.8;">
+                        <li><span class="elementary-emoji">⚽</span> Calculate match times across different time zones</li>
+                        <li><span class="elementary-emoji">🕒</span> Convert times between locations for soccer tournaments</li>
+                        <li><span class="elementary-emoji">⭐</span> Solve complex time zone problems like a championship scheduler!</li>
+                        <li><span class="elementary-emoji">🏆</span> Master time calculations for international soccer events</li>
+                    </ul>
+                    
+                    <div class="elementary-problem">
+                        <h3><span class="elementary-emoji">🏆</span> Historical Soccer Context</h3>
+                        <p>Did you know? The 2014 FIFA World Cup in Brazil was watched by over 1 billion people worldwide! <span class="elementary-emoji">🌟</span> Matches were scheduled at different times so fans in Europe, Asia, and the Americas could all watch. Some games started at 1:00 PM in Brazil but were shown at 6:00 PM in Germany - that's a 5-hour time difference!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="lesson2" class="lesson-panel">
+                <div class="content-section theory-section">
+                    <h2>📚 Key Vocabulary & Concepts</h2>
+                    <div class="vocab-section">
+                        <h3><span class="elementary-emoji">🌍</span> TIME ZONE</h3>
+                        <p>A region where all clocks show the same time</p>
+                        <ul>
+                            <li>Each time zone is usually 1 hour different from neighboring zones</li>
+                            <li>Moving EAST = times get LATER ➡️ (Add hours)</li>
+                            <li>Moving WEST = times get EARLIER ⬅️ (Subtract hours)</li>
+                            <li><strong>Pro Tip:</strong> Drawing a number line can help you visualize time zone jumps!</li>
+                        </ul>
+                    </div>
+                    <div class="vocab-section">
+                        <h3><span class="elementary-emoji">⚽</span> MATCH SCHEDULING</h3>
+                        <p>Planning when soccer games start in different locations</p>
+                    </div>
+                    <div class="vocab-section">
+                        <h3><span class="elementary-emoji">🕐</span> TIME CONVERSION</h3>
+                        <p>Changing a time from one zone to another</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="lesson3" class="lesson-panel">
+                <div class="content-section practice-section">
+                    <h2>🎪 GUIDED EXAMPLES</h2>
+                    <div class="elementary-problem">
+                        <h3>Example 1: Diego's World Cup Schedule <span class="elementary-emoji">🏆</span></h3>
+                        <p>Diego lives in New York and wants to watch a World Cup match happening in Brazil. The match starts at 3:00 PM in Brazil. Brazil is 1 hour ahead of New York. What time will Diego watch the match?</p>
+                        <div class="step-box">
+                            <h4><strong>Step-by-Step Solution:</strong></h4>
+                            <ol style="font-size: 1.1em; line-height: 1.8;">
+                                <li>Brazil time: 3:00 PM</li>
+                                <li>Brazil is 1 hour AHEAD of New York</li>
+                                <li>So New York is 1 hour BEHIND Brazil</li>
+                                <li>\( 3:00 \text{ PM} - 1 \text{ hour} = 2:00 \text{ PM} \)</li>
+                                <li><strong>Answer: Diego watches at 2:00 PM</strong> <span class="elementary-emoji">⚽</span></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="elementary-problem">
+                        <h3>Example 2: Champions League Double-Header <span class="elementary-emoji">🌟</span></h3>
+                        <p>Two Champions League matches are scheduled:</p>
+                        <ul><li>Match 1: 2:45 PM</li><li>Match 2: 5:00 PM</li></ul>
+                        <p>How much time is between the matches?</p>
+                        <div class="step-box">
+                            <h4><strong>Step-by-Step Solution:</strong></h4>
+                            <ol style="font-size: 1.1em; line-height: 1.8;">
+                                <li>End time: 5:00 PM</li>
+                                <li>Start time: 2:45 PM</li>
+                                <li>\( 5:00 \text{ PM} - 2:45 \text{ PM} \)</li>
+                                <li>To subtract, borrow an hour: \( 4:60 \text{ PM} - 2:45 \text{ PM} = 2:15 \)</li>
+                                <li><strong>Answer: 2 hours and 15 minutes between matches</strong> <span class="elementary-emoji">⚽</span></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="elementary-problem">
+                        <h3>Example 3: Maria's International Tournament <span class="elementary-emoji">🌍</span></h3>
+                        <p>Maria is organizing matches across 4 time zones:</p>
+                        <ul><li>London: 7:00 PM</li><li>Berlin (1 hour east): ?</li><li>Moscow (2 hours east of Berlin): ?</li><li>Tokyo (6 hours east of Moscow): ?</li></ul>
+                        <div class="step-box">
+                            <h4><strong>Step-by-Step Solution:</strong></h4>
+                            <ol style="font-size: 1.1em; line-height: 1.8;">
+                                <li>London: 7:00 PM (base time)</li>
+                                <li>Berlin: \( 7:00 \text{ PM} + 1 \text{ hour} = 8:00 \text{ PM} \)</li>
+                                <li>Moscow: \( 8:00 \text{ PM} + 2 \text{ hours} = 10:00 \text{ PM} \)</li>
+                                <li>Tokyo: \( 10:00 \text{ PM} + 6 \text{ hours} = 4:00 \text{ AM (next day)} \)</li>
+                            </ol>
+                            <p><strong>Answers:</strong> Berlin: 8:00 PM, Moscow: 10:00 PM, Tokyo: 4:00 AM <span class="elementary-emoji">🕐</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="lesson4" class="lesson-panel">
+                <div class="content-section problem-section">
+                    <h2>🎯 INDEPENDENT PRACTICE</h2>
+                    <h3>Level 1: Time Zone Basics <span class="elementary-emoji">⭐</span></h3>
+                    <div class="elementary-problem">
+                        <h4>Problem 1:</h4>
+                        <p>A soccer match in Chicago starts at 4:00 PM. Los Angeles is 2 hours behind Chicago. What time does the match start in Los Angeles?</p>
+                        <input type="text" class="answer-input" id="answer1" placeholder="Enter time (e.g., 2:00 PM)">
+                        <button class="submit-btn" onclick="submitAnswer('answer1')">Submit</button>
+                        <div class="solution"><p><strong>Answer:</strong> \( 4:00 \text{ PM} - 2 \text{ hours} = 2:00 \text{ PM} \) <span class="elementary-emoji">⚽</span></p></div>
+                    </div>
+                    <div class="elementary-problem">
+                        <h4>Problem 2:</h4>
+                        <p>The Premier League match ends at 6:30 PM in London. New York is 5 hours behind London. What time does the match end in New York?</p>
+                        <input type="text" class="answer-input" id="answer2" placeholder="Enter time (e.g., 1:30 PM)">
+                        <button class="submit-btn" onclick="submitAnswer('answer2')">Submit</button>
+                        <div class="solution"><p><strong>Answer:</strong> \( 6:30 \text{ PM} - 5 \text{ hours} = 1:30 \text{ PM} \) <span class="elementary-emoji">⚽</span></p></div>
+                    </div>
+                    <div class="elementary-problem">
+                        <h4>Problem 3:</h4>
+                        <p>Two youth soccer practices are scheduled 1 hour and 45 minutes apart. If the first practice starts at 3:15 PM, when does the second practice start?</p>
+                        <input type="text" class="answer-input" id="answer3" placeholder="Enter time (e.g., 5:00 PM)">
+                        <button class="submit-btn" onclick="submitAnswer('answer3')">Submit</button>
+                        <div class="solution"><p><strong>Answer:</strong> \( 3:15 \text{ PM} + 1 \text{ hour and } 45 \text{ minutes} = 5:00 \text{ PM} \) <span class="elementary-emoji">⚽</span></p></div>
+                    </div>
+                    <h3>Level 2: Multi-Zone Calculations <span class="elementary-emoji">⭐⭐</span></h3>
+                    <div class="elementary-problem">
+                        <h4>Problem 4:</h4>
+                        <p>A World Cup qualifier has these broadcast times:</p>
+                        <ul><li>Mexico City: 2:00 PM</li><li>New York: 4:00 PM</li><li>London: 9:00 PM</li></ul>
+                        <p>If the match lasts 2 hours, what time does it end in each city?</p>
+                        <input type="text" class="answer-input" id="answer4" placeholder="Mexico City, New York, London times">
+                        <button class="submit-btn" onclick="submitAnswer('answer4')">Submit</button>
+                        <div class="solution"><p><strong>Answer:</strong> Mexico City: 4:00 PM, New York: 6:00 PM, London: 11:00 PM <span class="elementary-emoji">⚽</span></p></div>
+                    </div>
+                    <div class="elementary-problem">
+                        <h4>Problem 5:</h4>
+                        <p>Diego's tournament schedule shows:</p>
+                        <ul><li>Match A: 1:30 PM - 3:15 PM</li><li>Match B: 4:00 PM - 5:45 PM</li><li>Match C: 7:15 PM - 9:00 PM</li></ul>
+                        <p>How much total break time is there between all matches?</p>
+                        <input type="text" class="answer-input" id="answer5" placeholder="Total break time">
+                        <button class="submit-btn" onclick="submitAnswer('answer5')">Submit</button>
+                        <div class="solution"><p><strong>Answer:</strong> Break 1 (3:15 to 4:00) is 45 mins. Break 2 (5:45 to 7:15) is 1 hr 30 mins (90 mins). Total: \( 45 + 90 = 135 \text{ minutes} \), or 2 hours and 15 minutes. <span class="elementary-emoji">⚽</span></p></div>
+                    </div>
+                    <div class="elementary-problem">
+                        <h4>Problem 6:</h4>
+                        <p>A Champions League match starts simultaneously in Madrid, Paris, and Rome at 9:00 PM. It's shown at 3:00 PM in New York, 12:00 PM in Los Angeles, and 5:00 AM (next day) in Tokyo. If the match lasts 1 hour 50 minutes, create a complete end-time schedule for all cities.</p>
+                        <input type="text" class="answer-input" id="answer6" placeholder="Enter all end times">
+                        <button class="submit-btn" onclick="submitAnswer('answer6')">Submit</button>
+                        <div class="solution"><p><strong>Answer:</strong> End times: Madrid 10:50 PM, Paris 10:50 PM, Rome 10:50 PM, New York 4:50 PM, Los Angeles 1:50 PM, Tokyo 6:50 AM (next day). <span class="elementary-emoji">⚽</span></p></div>
+                    </div>
+                    <div class="elementary-problem">
+                        <h4>Problem 7:</h4>
+                        <p>Elena is a soccer coach scheduling international friendlies. She needs to find a time that works for teams in: London (Available 2:00 PM - 6:00 PM), Berlin (Available 4:00 PM - 8:00 PM), and Moscow (Available 6:00 PM - 10:00 PM). Berlin is 1 hour ahead of London, and Moscow is 2 hours ahead of Berlin. What 2-hour window works for all three cities? Give the time in each city.</p>
+                        <input type="text" class="answer-input" id="answer7" placeholder="London, Berlin, Moscow times">
+                        <button class="submit-btn" onclick="submitAnswer('answer7')">Submit</button>
+                        <div class="solution"><p><strong>Answer:</strong> The 2-hour window is 4:00 PM-6:00 PM London time. This corresponds to 5:00 PM-7:00 PM in Berlin and 7:00 PM-9:00 PM in Moscow. <span class="elementary-emoji">⚽</span></p></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="lesson5" class="lesson-panel">
+                <div class="content-section problem-section">
+                    <h2>🏆 CHAMPIONSHIP CHALLENGE PROBLEMS</h2>
+                    <h3>Level 3: Advanced Tournament Scheduling <span class="elementary-emoji">⭐⭐⭐</span></h3>
+                    <div class="elementary-problem">
+                        <h4>Challenge 1 (Problem 8): The Trans-Atlantic Tryout <span class="elementary-emoji">✈️</span></h4>
+                        <p>A young player from Los Angeles (LA) is flying to a tryout in London. Her flight leaves LA at 8:00 PM on Friday. The flight is 10 hours and 30 minutes long. London is 8 hours ahead of LA. After landing, she has a 2-hour and 15-minute layover before taking a 1-hour taxi to the stadium. What day and time (in London time) will she arrive at the stadium?</p>
+                        <input type="text" class="answer-input" id="answer8" placeholder="Day and time in London">
+                        <button class="submit-btn" onclick="submitAnswer('answer8')">Submit</button>
+                        <div class="solution"><p><strong>Answer:</strong> She will arrive at 5:45 PM on Saturday in London.</p><p><strong>Steps:</strong> Flight lands at 6:30 AM Saturday (LA time). Convert to London time: 6:30 AM + 8 hours = 2:30 PM London time. Add layover and taxi: \( 2:30 \text{ PM} + 2h 15m + 1h = 5:45 \text{ PM} \). <span class="elementary-emoji">🏆</span></p></div>
+                    </div>
+                    <div class="elementary-problem">
+                        <h4>Challenge 2 (Problem 9): The Coaches' Conference Call <span class="elementary-emoji">💻</span></h4>
+                        <p>Three coaches need a conference call. They are in Tokyo (Available 8:00 AM to 12:00 PM), Berlin (Available 1:00 AM to 5:00 AM), and New York (Available 6:00 PM to 10:00 PM the previous day). Tokyo is 7 hours ahead of Berlin, and Berlin is 6 hours ahead of New York. What is the longest possible duration for their call, and during which time window (in Berlin time) can they all meet?</p>
+                        <input type="text" class="answer-input" id="answer9" placeholder="Duration and Berlin time window">
+                        <button class="submit-btn" onclick="submitAnswer('answer9')">Submit</button>
+                        <div class="solution"><p><strong>Answer:</strong> The longest call is 3 hours, between 1:00 AM and 4:00 AM Berlin time.</p><p><strong>Steps:</strong> Convert all windows to Berlin time. Tokyo (8 AM-12 PM) becomes 1 AM-5 AM Berlin time. New York (6 PM-10 PM previous day) becomes 12 AM-4 AM Berlin time. The common overlapping window for all three is 1:00 AM to 4:00 AM. <span class="elementary-emoji">🏆</span></p></div>
+                    </div>
+                    <div class="elementary-problem">
+                        <h4>Challenge 3 (Problem 10): The Round-Robin Relay <span class="elementary-emoji">🏅</span></h4>
+                        <p>A mini-tournament is held in Rio de Janeiro. The tournament starts at 9:00 AM in Rio. Each game lasts 1 hour and 30 minutes, with a 30-minute break between each game. There are 3 games in total. A fan in Los Angeles wants to know when the final whistle of the last game will blow in her local time. (Rio is 5 hours ahead of Los Angeles.)</p>
+                        <input type="text" class="answer-input" id="answer10" placeholder="Time in Los Angeles">
+                        <button class="submit-btn" onclick="submitAnswer('answer10')">Submit</button>
+                        <div class="solution"><p><strong>Answer:</strong> The final whistle will be at 9:30 AM in Los Angeles.</p><p><strong>Steps:</strong> Each game + break takes 2 hours. Game 1 (9:00-10:30), Game 2 (11:00-12:30), Game 3 (1:00-2:30). The last game ends at 2:30 PM Rio time. Convert to LA time: \( 2:30 \text{ PM} - 5 \text{ hours} = 9:30 \text{ AM} \). <span class="elementary-emoji">🏆</span></p></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="lesson6" class="lesson-panel">
+                <div class="content-section review-section">
+                    <h2>📝 ANSWER KEY</h2>
+                    <div class="answer-key" id="answer-key">
+                        <h3>Independent Practice Solutions:</h3>
+                        <div class="step-box"><h4>Problem 1:</h4><p>\( 4:00 \text{ PM} - 2 \text{ hours} = 2:00 \text{ PM} \) <span class="elementary-emoji">⚽</span></p></div>
+                        <div class="step-box"><h4>Problem 2:</h4><p>\( 6:30 \text{ PM} - 5 \text{ hours} = 1:30 \text{ PM} \) <span class="elementary-emoji">⚽</span></p></div>
+                        <div class="step-box"><h4>Problem 3:</h4><p>\( 3:15 \text{ PM} + 1 \text{ hour and } 45 \text{ minutes} = 5:00 \text{ PM} \) <span class="elementary-emoji">⚽</span></p></div>
+                        <div class="step-box"><h4>Problem 4:</h4><p>Mexico City: 4:00 PM, New York: 6:00 PM, London: 11:00 PM <span class="elementary-emoji">⚽</span></p></div>
+                        <div class="step-box"><h4>Problem 5:</h4><p>Break 1 (3:15 to 4:00) is 45 mins. Break 2 (5:45 to 7:15) is 1 hr 30 mins (90 mins). Total: \( 45 + 90 = 135 \text{ minutes} \), or 2 hours and 15 minutes. <span class="elementary-emoji">⚽</span></p></div>
+                        <div class="step-box"><h4>Problem 6:</h4><p>End times: Madrid 10:50 PM, Paris 10:50 PM, Rome 10:50 PM, New York 4:50 PM, Los Angeles 1:50 PM, Tokyo 6:50 AM (next day). <span class="elementary-emoji">⚽</span></p></div>
+                        <div class="step-box"><h4>Problem 7:</h4><p>The 2-hour window is 4:00 PM-6:00 PM London = 5:00 PM-7:00 PM Berlin = 7:00 PM-9:00 PM Moscow. <span class="elementary-emoji">⚽</span></p></div>
+                        <h3>Challenge Solutions:</h3>
+                        <div class="step-box"><h4>Challenge 1 (Problem 8):</h4><p>She will arrive at 5:45 PM on Saturday in London. <strong>Steps:</strong> Flight lands at 6:30 AM Saturday (LA time). Convert to London time: 6:30 AM + 8 hours = 2:30 PM London time. Add layover and taxi: \( 2:30 \text{ PM} + 2h 15m + 1h = 5:45 \text{ PM} \). <span class="elementary-emoji">🏆</span></p></div>
+                        <div class="step-box"><h4>Challenge 2 (Problem 9):</h4><p>The longest call is 3 hours, between 1:00 AM and 4:00 AM Berlin time. <strong>Steps:</strong> Convert all windows to Berlin time. Tokyo (8 AM-12 PM) becomes 1 AM-5 AM Berlin time. New York (6 PM-10 PM previous day) becomes 12 AM-4 AM Berlin time. The common overlapping window is 1:00 AM to 4:00 AM. <span class="elementary-emoji">🏆</span></p></div>
+                        <div class="step-box"><h4>Challenge 3 (Problem 10):</h4><p>The final whistle will be at 9:30 AM in Los Angeles. <strong>Steps:</strong> Each game + break takes 2 hours. The last game ends at 2:30 PM Rio time. Convert to LA time: \( 2:30 \text{ PM} - 5 \text{ hours} = 9:30 \text{ AM} \). <span class="elementary-emoji">🏆</span></p></div>
+                    </div>
+                    <button id="show-answer-key" onclick="showAnswerKey()" style="display: none;" class="submit-btn">Show Answer Key</button>
+                </div>
+                <div class="content-section review-section">
+                    <h2>🌟 SUMMARY & REVIEW</h2>
+                    <div class="elementary-problem">
+                        <h3><span class="elementary-emoji">🎉</span> <strong>Congratulations, Time Zone Champion!</strong> <span class="elementary-emoji">🎉</span></h3>
+                        <p>You've mastered:</p>
+                        <ul style="font-size: 1.2em; line-height: 1.8;">
+                            <li><span class="elementary-emoji">⚽</span> Converting times between different zones</li>
+                            <li><span class="elementary-emoji">🕒</span> Calculating match schedules for global audiences</li>
+                            <li><span class="elementary-emoji">🌍</span> Understanding how soccer tournaments work across continents</li>
+                            <li><span class="elementary-emoji">🏆</span> Solving complex time zone problems like a professional scheduler</li>
+                        </ul>
+                        <h4><strong>Remember the Golden Rules:</strong></h4>
+                        <ul style="font-size: 1.1em; line-height: 1.8;">
+                            <li>Moving EAST ➡️ = Add hours (times get later)</li>
+                            <li>Moving WEST ⬅️ = Subtract hours (times get earlier)</li>
+                            <li>Always double-check AM/PM and date changes!</li>
+                        </ul>
+                        <p><span class="elementary-emoji">⚽</span> <strong>Fun Fact:</strong> The most-watched soccer match in history (2014 World Cup Final) was broadcast across 24 different time zones simultaneously! <span class="elementary-emoji">⚽</span></p>
+                        <div style="text-align: center; margin: 2rem 0;">
+                            <h2><span class="elementary-emoji">🏆</span> <strong>ACHIEVEMENT UNLOCKED: SOCCER TIME ZONE MASTER!</strong> <span class="elementary-emoji">🏆</span></h2>
+                            <p style="font-size: 1.3em;"><em>You're now ready to schedule matches for the next World Cup!</em> <span class="elementary-emoji">⚽🌍⭐</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let submittedAnswers = new Set();
+        const totalProblems = 10;
+        
+        function showLesson(lessonNumber) {
+            document.querySelectorAll('.lesson-panel').forEach(lesson => lesson.style.display = 'none');
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            
+            const selectedLesson = document.getElementById('lesson' + lessonNumber);
+            const selectedTab = document.querySelector(`[onclick="showLesson(${lessonNumber})"]`);
+            
+            if (selectedLesson && selectedTab) {
+                selectedLesson.style.display = 'block';
+                selectedTab.classList.add('active');
+            }
+            localStorage.setItem('currentLesson', lessonNumber);
+        }
+        
+        function submitAnswer(answerId) {
+            const answerInput = document.getElementById(answerId);
+            if (answerInput.value.trim() === '') {
+                alert('Please enter an answer before submitting!');
+                return;
+            }
+            
+            submittedAnswers.add(answerId);
+            answerInput.disabled = true;
+            const button = answerInput.nextElementSibling;
+            button.disabled = true;
+            button.textContent = 'Submitted ✓';
+            button.style.background = '#27ae60';
+            
+            localStorage.setItem('submitted_' + answerId, answerInput.value);
+            localStorage.setItem('submittedAnswers', JSON.stringify([...submittedAnswers]));
+            
+            updateProgressDisplay();
+            
+            const solutionDiv = button.nextElementSibling;
+            if (solutionDiv && solutionDiv.classList.contains('solution')) {
+                solutionDiv.style.display = 'block';
+            }
+            checkSubmissionStatus();
+        }
+        
+        function updateProgressDisplay() {
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            const percentage = (submittedAnswers.size / totalProblems) * 100;
+            progressFill.style.width = percentage + '%';
+            progressText.textContent = `${submittedAnswers.size} of ${totalProblems} problems submitted`;
+        }
+        
+        function checkSubmissionStatus() {
+            if (submittedAnswers.size >= totalProblems) {
+                const answerKeyButton = document.getElementById('show-answer-key');
+                if (answerKeyButton) answerKeyButton.style.display = 'inline-block';
+            }
+        }
+        
+        function showAnswerKey() {
+            const answerKey = document.getElementById('answer-key');
+            if (answerKey) answerKey.style.display = 'block';
+            const button = document.getElementById('show-answer-key');
+            if (button) button.style.display = 'none';
+        }
+        
+        function loadProgress() {
+            const savedSubmitted = localStorage.getItem('submittedAnswers');
+            if (savedSubmitted) {
+                submittedAnswers = new Set(JSON.parse(savedSubmitted));
+                submittedAnswers.forEach(answerId => {
+                    const answerInput = document.getElementById(answerId);
+                    if (answerInput) {
+                        answerInput.value = localStorage.getItem('submitted_' + answerId) || '';
+                        answerInput.disabled = true;
+                        const button = answerInput.nextElementSibling;
+                        if (button) {
+                            button.disabled = true;
+                            button.textContent = 'Submitted ✓';
+                            button.style.background = '#27ae60';
+                            const solutionDiv = button.nextElementSibling;
+                            if (solutionDiv) solutionDiv.style.display = 'block';
+                        }
+                    }
+                });
+                updateProgressDisplay();
+                checkSubmissionStatus();
+            }
+            const savedLesson = localStorage.getItem('currentLesson');
+            if (savedLesson) {
+                showLesson(parseInt(savedLesson));
+            } else {
+                showLesson(1);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', loadProgress);
+    </script>
+</body>
+</html>
