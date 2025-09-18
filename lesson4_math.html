@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lesson 4: Patterns and Simple Algebra in Music - Lê Hà An</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2c3e50;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .lesson-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lesson-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+            animation: patternWave 6s ease-in-out infinite;
+        }
+        
+        @keyframes patternWave {
+            0%, 100% { transform: translateX(-100%) scaleY(1); }
+            25% { transform: translateX(-50%) scaleY(1.5); }
+            50% { transform: translateX(0%) scaleY(0.8); }
+            75% { transform: translateX(50%) scaleY(1.2); }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .floating-patterns {
+            position: absolute;
+            top: -10px;
+            width: 100%;
+            height: 80px;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .pattern-icon {
+            position: absolute;
+            font-size: 2em;
+            animation: patternFloat 8s ease-in-out infinite;
+            opacity: 0.7;
+        }
+        
+        .pattern-icon:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .pattern-icon:nth-child(2) { left: 25%; animation-delay: 1s; }
+        .pattern-icon:nth-child(3) { left: 40%; animation-delay: 2s; }
+        .pattern-icon:nth-child(4) { left: 55%; animation-delay: 3s; }
+        .pattern-icon:nth-child(5) { left: 70%; animation-delay: 4s; }
+        .pattern-icon:nth-child(6) { left: 85%; animation-delay: 5s; }
+        
+        @keyframes patternFloat {
+            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
+            20% { transform: translateY(-15px) scale(1.1) rotate(5deg); }
+            40% { transform: translateY(-8px) scale(0.9) rotate(-3deg); }
+            60% { transform: translateY(-20px) scale(1.05) rotate(7deg); }
+            80% { transform: translateY(-5px) scale(0.95) rotate(-2deg); }
+        }
+        
+        .student-info {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e1ebff 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-left: 6px solid #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .lesson-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .tab-button {
+            padding: 1rem 1.5rem;
+            border: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-height: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .tab-button:hover::before {
+            left: 100%;
+        }
+        
+        .tab-button.active {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+        }
+        
+        .lesson-panel {
+            display: none;
+            animation: slideInPattern 0.6s ease-out;
+        }
+        
+        .lesson-panel.active {
+            display: block;
+        }
+        
+        @keyframes slideInPattern {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 6px solid;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .theory-section {
+            border-left-color: #667eea;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e1ebff 100%);
+        }
+        
+        .practice-section {
+            border-left-color: #4ecdc4;
+            background: linear-gradient(135deg, #f0fdfc 0%, #e0f9f8 100%);
+        }
+        
+        .worksheet-section {
+            border-left-color: #764ba2;
+            background: linear-gradient(135deg, #faf8ff 0%, #f0ebff 100%);
+        }
+        
+        .content-section h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .content-section h3 {
+            color: #34495e;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.4em;
+        }
+        
+        .math {
+            font-family: 'Times New Roman', 'STIX Two Math', serif;
+            font-style: italic;
+            color: #2c3e50;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 0.4em 0.6em;
+            border-radius: 6px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            font-weight: 500;
+            display: inline-block;
+            margin: 0.2em;
+            transition: all 0.3s ease;
+        }
+        
+        .math:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .pattern-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #e8f5e8 0%, #d5f4e6 100%);
+            border-radius: 15px;
+            border: 3px solid #4ecdc4;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pattern-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: patternShine 4s ease-in-out infinite;
+        }
+        
+        @keyframes patternShine {
+            0%, 100% { left: -100%; }
+            50% { left: 100%; }
+        }
+        
+        .number-sequence {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        
+        .number-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            animation: numberPulse 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .number-box:nth-child(odd) {
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes numberPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .pattern-arrow {
+            font-size: 2em;
+            color: #4ecdc4;
+            animation: arrowBounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes arrowBounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+        
+        .exercise-item {
+            background: white;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .exercise-item:hover {
+            border-color: #4ecdc4;
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.15);
+        }
+        
+        .problem-number {
+            font-weight: 700;
+            color: #764ba2;
+            font-size: 1.2em;
+            margin-right: 0.5rem;
+            display: inline-block;
+            min-width: 2em;
+        }
+        
+        .answer-space {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .math-input {
+            padding: 0.75rem 1rem;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            min-width: 120px;
+            font-family: 'Times New Roman', serif;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+        }
+        
+        .math-input:focus {
+            border-color: #667eea;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+        
+        .wide-input {
+            min-width: 200px;
+        }
+        
+        .check-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .check-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .check-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .check-btn:hover::before {
+            left: 100%;
+        }
+        
+        .check-btn:active {
+            transform: translateY(0);
+        }
+        
+        .feedback {
+            margin-top: 1rem;
+            font-weight: 600;
+            min-height: 2em;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .feedback.correct {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+            border: 2px solid #c3e6cb;
+            animation: successPattern 0.8s ease;
+        }
+        
+        .feedback.incorrect {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+            animation: errorWiggle 0.6s ease;
+        }
+        
+        @keyframes successPattern {
+            0% { transform: scale(0.9) rotate(-2deg); opacity: 0; }
+            50% { transform: scale(1.05) rotate(1deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        
+        @keyframes errorWiggle {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 3px solid #ff9800;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .example-box::before {
+            content: '🎵';
+            position: absolute;
+            top: -18px;
+            left: 20px;
+            background: white;
+            padding: 0 10px;
+            font-size: 1.8em;
+        }
+        
+        .step {
+            background: white;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #ff9800;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+            font-weight: 700;
+            color: #ff9800;
+            margin-right: 0.5rem;
+        }
+        
+        .algebra-visual {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border: 3px solid #9c27b0;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .variable-demo {
+            display: inline-block;
+            background: #9c27b0;
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 0.5rem;
+            animation: variablePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes variablePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 1rem 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #4ecdc4);
+            width: 0%;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%);
+            animation: progressShine 2s ease-in-out infinite;
+        }
+        
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .hint-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .hint-box::before {
+            content: '💡';
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: white;
+            padding: 0 8px;
+            font-size: 1.2em;
+        }
+        
+        /* Multi-part answers */
+        .multi-part {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .part-label {
+            font-weight: 600;
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 767px) {
+            body { padding: 0.5rem; }
+            
+            .lesson-container {
+                padding: 1rem;
+                border-radius: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .lesson-tabs {
+                gap: 0.25rem;
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+                border-radius: 8px;
+            }
+            
+            .content-section {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+            
+            .math {
+                font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+                font-style: normal;
+            }
+            
+            .math-input {
+                font-size: 16px;
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            
+            .answer-space {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .check-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .number-sequence {
+                justify-content: center;
+            }
+            
+            .number-box {
+                padding: 0.8rem 1rem;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <div class="floating-patterns">
+            <div class="pattern-icon">📊</div>
+            <div class="pattern-icon">🔢</div>
+            <div class="pattern-icon">📈</div>
+            <div class="pattern-icon">🎯</div>
+            <div class="pattern-icon">🧮</div>
+            <div class="pattern-icon">✨</div>
+        </div>
+        
+        <header class="header">
+            <h1>🎵 Lesson 4: Patterns and Simple Algebra in Music 🎵</h1>
+            <div class="student-info">
+                <strong>Student:</strong> Lê Hà An<br>
+                <strong>Duration:</strong> 20 minutes<br>
+                <strong>Topic:</strong> Number Patterns and Simple Algebraic Thinking
+            </div>
+        </header>
+        
+        <nav class="lesson-tabs">
+            <button class="tab-button active" onclick="showLesson(1)">📚 Theory & Examples</button>
+            <button class="tab-button" onclick="showLesson(2)">✏️ Practice Together</button>
+            <button class="tab-button" onclick="showLesson(3)">📝 Worksheet</button>
+        </nav>
+        
+        <main class="lesson-content">
+            <div id="lesson1" class="lesson-panel active">
+                <div class="theory-section content-section">
+                    <h2>🎯 Learning Objectives</h2>
+                    <p>By the end of this lesson, you will be able to:</p>
+                    <ul>
+                        <li>Identify and continue number patterns</li>
+                        <li>Find pattern rules using simple expressions</li>
+                        <li>Solve basic problems using variables</li>
+                        <li>Apply patterns to music contexts</li>
+                    </ul>
+                </div>
+                
+                <div class="theory-section content-section">
+                    <h2>🎶 Warm-Up: Music Has Patterns Too!</h2>
+                    <p>Music is full of patterns! For example:</p>
+                    
+                    <div class="pattern-visual">
+                        <div><strong>HIEUTHUHAI's beats:</strong> Strong-weak-strong-weak-strong-weak...</div>
+                    </div>
+                    
+                    <div class="pattern-visual">
+                        <div><strong>BTS chorus structure:</strong> Verse-Chorus-Verse-Chorus-Bridge-Chorus...</div>
+                    </div>
+                    
+                    <div class="pattern-visual">
+                        <div><strong>Concert ticket sales:</strong></div>
+                        <div class="number-sequence">
+                            <div class="number-box">Week 1: 100</div>
+                            <div class="pattern-arrow">→</div>
+                            <div class="number-box">Week 2: 150</div>
+                            <div class="pattern-arrow">→</div>
+                            <div class="number-box">Week 3: 200</div>
+                            <div class="pattern-arrow">→</div>
+                            <div class="number-box">Week 4: 250</div>
+                        </div>
+                    </div>
+                    
+                    <div class="hint-box">
+                        <strong>In math, we can describe these patterns with numbers and rules!</strong>
+                    </div>
+                </div>
+                
+                <div class="theory-section content-section">
+                    <h2>📖 Main Lesson: Finding and Using Patterns</h2>
+                    
+                    <h3>Part 1: Arithmetic Patterns (Adding the Same Number)</h3>
+                    
+                    <div class="example-box">
+                        <h4>🎤 Example 1: Quang Hùng MasterD's Monthly Streams</h4>
+                        <div class="number-sequence">
+                            <div class="number-box">Month 1: 50,000</div>
+                            <div class="pattern-arrow">→</div>
+                            <div class="number-box">Month 2: 65,000</div>
+                            <div class="pattern-arrow">→</div>
+                            <div class="number-box">Month 3: 80,000</div>
+                            <div class="pattern-arrow">→</div>
+                            <div class="number-box">Month 4: 95,000</div>
+                        </div>
+                        
+                        <div class="step">
+                            <span class="step-number">What's the pattern?</span> Each month increases by 15,000 streams!
+                        </div>
+                        
+                        <div class="step">
+                            <span class="step-number">Rule:</span> Start with 50,000, then add 15,000 each month
+                        </div>
+                        
+                        <div class="step">
+                            <span class="step-number">Month 5:</span> <span class="math">95,000 + 15,000 = 110,000</span> streams
+                        </div>
+                        
+                        <div class="step">
+                            <span class="step-number">Month 6:</span> <span class="math">110,000 + 15,000 = 125,000</span> streams
+                        </div>
+                    </div>
+                    
+                    <h3>Part 2: Using Variables to Describe Patterns</h3>
+                    
+                    <div class="example-box">
+                        <h4>🎬 Example 2: RHYDER's Concert Pricing</h4>
+                        <div class="number-sequence">
+                            <div class="number-box">1 ticket: 500,000 VND</div>
+                            <div class="number-box">2 tickets: 1,000,000 VND</div>
+                            <div class="number-box">3 tickets: 1,500,000 VND</div>
+                        </div>
+                        
+                        <div class="algebra-visual">
+                            <div><strong>Pattern Rule:</strong></div>
+                            <div>If <span class="variable-demo">n</span> = number of tickets, then Cost = <span class="variable-demo">n</span> × 500,000</div>
+                        </div>
+                        
+                        <div class="step">
+                            <span class="step-number">Let's test:</span>
+                            <br>• 4 tickets: <span class="math">4 × 500,000 = 2,000,000 VND ✓</span>
+                            <br>• 10 tickets: <span class="math">10 × 500,000 = 5,000,000 VND ✓</span>
+                        </div>
+                    </div>
+                    
+                    <h3>Part 3: Finding Missing Numbers in Patterns</h3>
+                    
+                    <div class="example-box">
+                        <h4>🎹 Example 3: Dương Domic's Practice Schedule</h4>
+                        <div class="number-sequence">
+                            <div class="number-box">Week 1: 8 hours</div>
+                            <div class="number-box">Week 2: 12 hours</div>
+                            <div class="number-box" style="background: linear-gradient(135deg, #ff9800, #f57c00);">Week 3: ?</div>
+                            <div class="number-box">Week 4: 20 hours</div>
+                        </div>
+                        
+                        <div class="step">
+                            <span class="step-number">Step 1:</span> Find the pattern
+                            <br><span class="math">12 - 8 = 4</span> (increases by 4 each week)
+                        </div>
+                        
+                        <div class="step">
+                            <span class="step-number">Step 2:</span> Find the missing number
+                            <br>Week 3: <span class="math">12 + 4 = 16</span> hours
+                        </div>
+                        
+                        <div class="step">
+                            <span class="step-number">Check:</span> Week 4 should be <span class="math">16 + 4 = 20</span> hours ✓
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="theory-section content-section">
+                    <h2>📊 Types of Patterns We See in Music</h2>
+                    
+                    <div class="multi-part">
+                        <div>
+                            <h4>Growing Patterns (Arithmetic Sequences):</h4>
+                            <div class="number-sequence">
+                                <div class="number-box">1000</div>
+                                <div class="pattern-arrow">→</div>
+                                <div class="number-box">1200</div>
+                                <div class="pattern-arrow">→</div>
+                                <div class="number-box">1400</div>
+                                <div class="pattern-arrow">→</div>
+                                <div class="number-box">1600</div>
+                            </div>
+                            <p><strong>Rule:</strong> Start + (position × increase)</p>
+                        </div>
+                        
+                        <div>
+                            <h4>Repeating Patterns:</h4>
+                            <div class="number-sequence">
+                                <div class="number-box">1-2-3-4</div>
+                                <div class="number-box">1-2-3-4</div>
+                                <div class="number-box">1-2-3-4</div>
+                            </div>
+                            <p><strong>Rule:</strong> Pattern repeats every 4 beats</p>
+                        </div>
+                        
+                        <div>
+                            <h4>Doubling Patterns:</h4>
+                            <div class="number-sequence">
+                                <div class="number-box">1000</div>
+                                <div class="pattern-arrow">→</div>
+                                <div class="number-box">2000</div>
+                                <div class="pattern-arrow">→</div>
+                                <div class="number-box">4000</div>
+                                <div class="pattern-arrow">→</div>
+                                <div class="number-box">8000</div>
+                            </div>
+                            <p><strong>Rule:</strong> Each term × 2</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="theory-section content-section">
+                    <h2>🔍 Key Pattern-Finding Steps</h2>
+                    <div class="step">
+                        <span class="step-number">1.</span> <strong>Look for the difference</strong> between consecutive terms
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2.</span> <strong>Check if the difference is constant</strong> (same each time)
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3.</span> <strong>Write the rule</strong> in words first
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4.</span> <strong>Test your rule</strong> with known values
+                    </div>
+                    <div class="step">
+                        <span class="step-number">5.</span> <strong>Use your rule</strong> to find unknown values
+                    </div>
+                </div>
+                
+                <div class="theory-section content-section">
+                    <h2>🌟 Real-World Music Patterns</h2>
+                    <ul>
+                        <li><strong>Spotify streams</strong> often grow in predictable patterns</li>
+                        <li><strong>Concert venue sizes</strong> for tours often follow patterns</li>
+                        <li><strong>Album release gaps</strong> for artists often have patterns</li>
+                        <li><strong>Chart positions</strong> can show patterns over weeks</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="lesson2" class="lesson-panel">
+                <div class="practice-section content-section">
+                    <h2>🤝 Practice Together</h2>
+                    
+                    <div class="example-box">
+                        <h3>🎬 Problem: BTS Album Sales Pattern</h3>
+                        <div class="number-sequence">
+                            <div class="number-box">Album 1: 1,200,000</div>
+                            <div class="pattern-arrow">→</div>
+                            <div class="number-box">Album 2: 1,350,000</div>
+                            <div class="pattern-arrow">→</div>
+                            <div class="number-box">Album 3: 1,500,000</div>
+                            <div class="pattern-arrow">→</div>
+                            <div class="number-box" style="background: linear-gradient(135deg, #ff9800, #f57c00);">Album 4: ?</div>
+                        </div>
+                        
+                        <div class="exercise-item">
+                            <div class="multi-part">
+                                <div>
+                                    <div class="part-label">1. What's the pattern rule?</div>
+                                    <div class="answer-space">
+                                        <input type="text" class="math-input wide-input" id="practice1" placeholder="Describe the pattern...">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="part-label">2. How many copies for Album 4?</div>
+                                    <div class="answer-space">
+                                        <input type="text" class="math-input" id="practice2" placeholder="Album 4 sales...">
+                                        <span>copies</span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="part-label">3. Write the rule using n (album number): Sales = </div>
+                                    <div class="answer-space">
+                                        <input type="text" class="math-input wide-input" id="practice3" placeholder="Sales = ...">
+                                        <button class="check-btn" onclick="checkPractice()">Check Answers</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="feedback" id="practice-feedback"></div>
+                        </div>
+                        
+                        <div class="hint-box" id="practice-solution" style="display: none;">
+                            <strong>💡 Solution:</strong><br> 
+                            1. The pattern is to <strong>add 150,000</strong> for each new album. (1,350,000 - 1,200,000 = 150,000).<br>
+                            2. Album 4 sales = 1,500,000 + 150,000 = <strong>1,650,000</strong> copies.<br>
+                            3. The rule is <strong>Sales = 1,050,000 + n × 150,000</strong>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="lesson3" class="lesson-panel">
+                <div class="worksheet-section content-section">
+                    <h2>📝 Worksheet 4: Patterns and Simple Algebra in Music</h2>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress"></div>
+                    </div>
+                </div>
+                
+                <div class="worksheet-section content-section">
+                    <h3>🏃‍♀️ Section A: Finding Patterns</h3>
+                    
+                    <div class="exercise-item">
+                        <span class="problem-number">1.</span>
+                        <span class="problem-content">🎤 HIEUTHUHAI's YouTube subscriber growth: January: 120,000, February: 135,000, March: 150,000, April: ?</span>
+                        
+                        <div class="multi-part">
+                            <div>
+                                <div class="part-label">a) What's the pattern?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input wide-input" id="q1a" placeholder="Describe the pattern..." data-correct="increases by 15000" data-solution="The number of subscribers increases by <strong>15,000</strong> each month (135,000 - 120,000 = 15,000).">
+                                    <button class="check-btn" onclick="checkAnswer('1a')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback1a"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">b) How many subscribers in April?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q1b" placeholder="April subscribers..." data-correct="165000" data-solution="Take the March number and add 15,000: 150,000 + 15,000 = <strong>165,000</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('1b')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback1b"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">c) How many subscribers in June?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q1c" placeholder="June subscribers..." data-correct="195000" data-solution="April is 165,000. May: 165,000 + 15,000 = 180,000. June: 180,000 + 15,000 = <strong>195,000</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('1c')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback1c"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <span class="problem-number">2.</span>
+                        <span class="problem-content">🎬 BTS concert attendance pattern: Show 1: 45,000, Show 2: 52,000, Show 3: 59,000, Show 4: ?</span>
+                        
+                        <div class="multi-part">
+                            <div>
+                                <div class="part-label">a) What increases each show?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q2a" placeholder="Increase amount..." data-correct="7000" data-solution="The attendance increases by <strong>7,000</strong> people for each show (52,000 - 45,000 = 7,000).">
+                                    <button class="check-btn" onclick="checkAnswer('2a')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback2a"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">b) Attendance for Show 4:</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q2b" placeholder="Show 4 attendance..." data-correct="66000" data-solution="Take the Show 3 attendance and add 7,000: 59,000 + 7,000 = <strong>66,000</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('2b')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback2b"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">c) Attendance for Show 6:</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q2c" placeholder="Show 6 attendance..." data-correct="80000" data-solution="Show 4 is 66,000. Show 5: 66,000 + 7,000 = 73,000. Show 6: 73,000 + 7,000 = <strong>80,000</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('2c')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback2c"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="worksheet-section content-section">
+                    <h3>💪 Section B: Using Pattern Rules</h3>
+                    
+                    <div class="exercise-item">
+                        <span class="problem-number">3.</span>
+                        <span class="problem-content">🎹 Quang Hùng MasterD's streaming pattern: Week 1: 80,000 streams, Week 2: 95,000 streams, Week 3: 110,000 streams</span>
+                        
+                        <div class="multi-part">
+                            <div>
+                                <div class="part-label">a) Complete the pattern rule: Each week, streams = 65,000 + week number × ____</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q3a" placeholder="Fill in the blank..." data-correct="15000" data-solution="The streams increase by 15,000 each week. Let's test the rule: For Week 1, 65,000 + (1 × 15,000) = 80,000. It works! The missing number is <strong>15,000</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('3a')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback3a"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">b) Use your rule to find Week 5 streams:</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q3b" placeholder="Week 5 streams..." data-correct="140000" data-solution="Using the rule: 65,000 + (5 × 15,000) = 65,000 + 75,000 = <strong>140,000</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('3b')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback3b"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">c) Use your rule to find Week 8 streams:</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q3c" placeholder="Week 8 streams..." data-correct="185000" data-solution="Using the rule: 65,000 + (8 × 15,000) = 65,000 + 120,000 = <strong>185,000</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('3c')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback3c"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <span class="problem-number">4.</span>
+                        <span class="problem-content">🎵 RHYDER's concert ticket pricing:</span>
+                        <ul>
+                            <li>1 VIP ticket = 2,000,000 VND</li>
+                            <li>2 VIP tickets = 4,000,000 VND</li>
+                            <li>3 VIP tickets = 6,000,000 VND</li>
+                        </ul>
+                        
+                        <div class="multi-part">
+                            <div>
+                                <div class="part-label">a) If n = number of tickets, write the cost rule: Cost = n × ____</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q4a" placeholder="Fill in..." data-correct="2000000" data-solution="The cost is always the number of tickets multiplied by the price of one ticket, which is <strong>2,000,000</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('4a')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback4a"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">b) How much for 7 VIP tickets?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q4b" placeholder="7 tickets cost..." data-correct="14000000" data-solution="Using the rule: Cost = 7 × 2,000,000 = <strong>14,000,000</strong> VND.">
+                                    <span>VND</span>
+                                    <button class="check-btn" onclick="checkAnswer('4b')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback4b"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">c) If someone paid 12,000,000 VND, how many tickets did they buy?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q4c" placeholder="Number of tickets..." data-correct="6" data-solution="To find the number of tickets, divide the total cost by the price per ticket: 12,000,000 ÷ 2,000,000 = <strong>6</strong> tickets.">
+                                    <span>tickets</span>
+                                    <button class="check-btn" onclick="checkAnswer('4c')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback4c"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <span class="problem-number">5.</span>
+                        <span class="problem-content">🎹 Dương Domic's practice hours pattern: Day 1: 2 hours, Day 2: 4 hours, Day 3: 6 hours, Day 4: 8 hours</span>
+                        
+                        <div class="multi-part">
+                            <div>
+                                <div class="part-label">a) Pattern rule: Hours = Day number × ____</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q5a" placeholder="Fill in..." data-correct="2" data-solution="The number of hours is always double the day number (Day 1 × 2 = 2, Day 2 × 2 = 4, etc.). So the missing number is <strong>2</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('5a')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback5a"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">b) Hours on Day 10:</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q5b" placeholder="Day 10 hours..." data-correct="20" data-solution="Using the rule: Hours = 10 × 2 = <strong>20</strong> hours.">
+                                    <span>hours</span>
+                                    <button class="check-btn" onclick="checkAnswer('5b')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback5b"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">c) If he practiced 14 hours in one day, which day was it?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q5c" placeholder="Which day..." data-correct="7" data-solution="To find the day, we do the reverse operation: 14 hours ÷ 2 = <strong>Day 7</strong>.">
+                                    <span>Day</span>
+                                    <button class="check-btn" onclick="checkAnswer('5c')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback5c"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="worksheet-section content-section">
+                    <h3>🔍 Section C: Missing Numbers in Patterns</h3>
+                    
+                    <div class="exercise-item">
+                        <span class="problem-number">6.</span>
+                        <span class="problem-content">📺 Anh Trai Say Hi voting pattern: Round 1: 50,000 votes, Round 2: 72,000 votes, Round 3: ____ votes, Round 4: 116,000 votes</span>
+                        
+                        <div class="answer-space">
+                            <label>What was the Round 3 vote count?</label>
+                            <input type="text" class="math-input" id="q6" placeholder="Round 3 votes..." data-correct="94000" data-solution="First, find the increase between Round 1 and 2: 72,000 - 50,000 = 22,000. Add this to Round 2 to get Round 3: 72,000 + 22,000 = <strong>94,000</strong>. Check: 94,000 + 22,000 = 116,000. It works!">
+                            <span>votes</span>
+                            <button class="check-btn" onclick="checkAnswer('6')">Check</button>
+                        </div>
+                        <div class="feedback" id="feedback6"></div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <span class="problem-number">7.</span>
+                        <span class="problem-content">🎵 An's playlist growth: Week 1: 25 songs, Week 2: 32 songs, Week 3: ?, Week 4: 46 songs, Week 5: ?</span>
+                        
+                        <div class="multi-part">
+                            <div>
+                                <div class="part-label">a) Fill in Week 3:</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q7a" placeholder="Week 3 songs..." data-correct="39" data-solution="Find the increase from Week 1 to 2: 32 - 25 = 7 songs. Add this to Week 2 to get Week 3: 32 + 7 = <strong>39</strong>.">
+                                    <span>songs</span>
+                                    <button class="check-btn" onclick="checkAnswer('7a')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback7a"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">b) Fill in Week 5:</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q7b" placeholder="Week 5 songs..." data-correct="53" data-solution="The pattern is to add 7 songs each week. To get Week 5, add 7 to Week 4: 46 + 7 = <strong>53</strong>.">
+                                    <span>songs</span>
+                                    <button class="check-btn" onclick="checkAnswer('7b')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback7b"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="worksheet-section content-section">
+                    <h3>🌟 Section D: Real-World Applications</h3>
+                    
+                    <div class="exercise-item">
+                        <span class="problem-number">8.</span>
+                        <span class="problem-content">🎪 Music festival attendance pattern: 2020: 15,000 people, 2021: 18,500 people, 2022: 22,000 people, 2023: 25,500 people</span>
+                        
+                        <div class="multi-part">
+                            <div>
+                                <div class="part-label">a) If this pattern continues, how many people in 2024?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q8a" placeholder="2024 attendance..." data-correct="29000" data-solution="The pattern is an increase of 3,500 people each year (18,500 - 15,000). For 2024, add 3,500 to the 2023 number: 25,500 + 3,500 = <strong>29,000</strong>.">
+                                    <span>people</span>
+                                    <button class="check-btn" onclick="checkAnswer('8a')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback8a"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">b) In what year will attendance first reach 35,000?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q8b" placeholder="Year..." data-correct="2026" data-solution="Let's continue the pattern: 2024 is 29,000. 2025: 29,000 + 3,500 = 32,500. 2026: 32,500 + 3,500 = 36,000. So the answer is <strong>2026</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('8b')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback8b"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <span class="problem-number">9.</span>
+                        <span class="problem-content">📊 Vietnamese music streaming growth: Month 1: 2,400,000 total streams, Month 2: 2,650,000 total streams, Month 3: 2,900,000 total streams</span>
+                        
+                        <div class="multi-part">
+                            <div>
+                                <div class="part-label">a) Write the pattern rule: Streams = 2,150,000 + month × ____</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q9a" placeholder="Fill in..." data-correct="250000" data-solution="The increase each month is 250,000 (2,650,000 - 2,400,000). Let's test the rule for Month 1: 2,150,000 + (1 × 250,000) = 2,400,000. The missing number is <strong>250,000</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('9a')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback9a"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">b) Predicted streams for Month 6:</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q9b" placeholder="Month 6 streams..." data-correct="3650000" data-solution="Using the rule: 2,150,000 + (6 × 250,000) = 2,150,000 + 1,500,000 = <strong>3,650,000</strong>.">
+                                    <button class="check-btn" onclick="checkAnswer('9b')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback9b"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">c) In which month will streams first exceed 4,000,000?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q9c" placeholder="Month..." data-correct="8" data-solution="Let's continue the pattern from Month 3 (2.9M): M4=3.15M, M5=3.4M, M6=3.65M, M7=3.9M, M8=4.15M. It exceeds 4M in <strong>Month 8</strong>.">
+                                    <span>Month</span>
+                                    <button class="check-btn" onclick="checkAnswer('9c')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback9c"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="worksheet-section content-section">
+                    <h3>🚀 Challenge Problem</h3>
+                    
+                    <div class="exercise-item">
+                        <span class="problem-number">10.</span>
+                        <span class="problem-content">🎤 HIEUTHUHAI plans his tour venues:</span>
+                        <ul>
+                            <li>City 1 venue: 8,000 seats</li>
+                            <li>City 2 venue: 11,500 seats</li>
+                            <li>City 3 venue: 15,000 seats</li>
+                            <li>City 4 venue: ?</li>
+                        </ul>
+                        <p>But there's a twist! He also books a special acoustic venue in City 5 that only seats 2,500 people.</p>
+                        
+                        <div class="multi-part">
+                            <div>
+                                <div class="part-label">a) Following the main pattern, City 4 venue seats:</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q10a" placeholder="City 4 seats..." data-correct="18500" data-solution="The pattern is an increase of 3,500 seats (11,500 - 8,000). For City 4, we add 3,500 to City 3: 15,000 + 3,500 = <strong>18,500</strong>.">
+                                    <span>seats</span>
+                                    <button class="check-btn" onclick="checkAnswer('10a')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback10a"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">b) What's the total seats for all 5 venues combined?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q10b" placeholder="Total seats..." data-correct="55500" data-solution="Add all venues: 8,000 (City 1) + 11,500 (City 2) + 15,000 (City 3) + 18,500 (City 4) + 2,500 (City 5) = <strong>55,500</strong>.">
+                                    <span>seats</span>
+                                    <button class="check-btn" onclick="checkAnswer('10b')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback10b"></div>
+                            </div>
+                            
+                            <div>
+                                <div class="part-label">c) If 85% of all seats sell out, how many tickets sold total?</div>
+                                <div class="answer-space">
+                                    <input type="text" class="math-input" id="q10c" placeholder="Tickets sold..." data-correct="47175" data-solution="To find 85%, multiply the total seats by 0.85: 55,500 × 0.85 = <strong>47,175</strong> tickets.">
+                                    <span>tickets</span>
+                                    <button class="check-btn" onclick="checkAnswer('10c')">Check</button>
+                                </div>
+                                <div class="feedback" id="feedback10c"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let completedQuestions = new Set();
+        const totalQuestions = 24; // Total number of input fields
+        
+        function showLesson(lessonNumber) {
+            // Hide all lesson panels
+            const panels = document.querySelectorAll('.lesson-panel');
+            panels.forEach(panel => {
+                panel.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected lesson panel
+            const targetPanel = document.getElementById(`lesson${lessonNumber}`);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
+            
+            // Add active class to clicked button
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function updateProgress() {
+            const progressPercent = (completedQuestions.size / totalQuestions) * 100;
+            const progressBar = document.getElementById('progress');
+            if (progressBar) {
+                progressBar.style.width = progressPercent + '%';
+            }
+        }
+        
+        function checkPractice() {
+            const feedback = document.getElementById('practice-feedback');
+            const solution = document.getElementById('practice-solution');
+            
+            feedback.className = 'feedback correct';
+            feedback.innerHTML = '🎉 Great job trying it out! Here is the full solution below. 📊';
+            solution.style.display = 'block';
+        }
+        
+        function checkAnswer(questionNum) {
+            const input = document.getElementById(`q${questionNum}`);
+            const userAnswer = normalizeAnswer(input.value);
+            const correctAnswer = normalizeAnswer(input.dataset.correct);
+            const solutionText = input.dataset.solution;
+            const feedback = document.getElementById(`feedback${questionNum}`);
+            
+            if (userAnswer === correctAnswer) {
+                feedback.className = 'feedback correct';
+                feedback.innerHTML = `🎉 Correct! ${solutionText}`;
+                input.style.borderColor = '#4ecdc4';
+                input.style.backgroundColor = '#f0fdfc';
+                if (!completedQuestions.has(questionNum)) {
+                    completedQuestions.add(questionNum);
+                    updateProgress();
+                }
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = `💭 Not quite. Here's the solution: ${solutionText}`;
+                input.style.borderColor = '#e74c3c';
+                input.style.backgroundColor = '#fadbd8';
+            }
+        }
+        
+        function normalizeAnswer(answer) {
+            return answer
+                .replace(/\s+/g, '')
+                .replace(/[,]/g, '')
+                .replace(/vnd|people|tickets|songs|votes|streams|seats|hours|subscribers/gi, '')
+                .toLowerCase();
+        }
+        
+        // Initialize interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add input validation and formatting
+            const mathInputs = document.querySelectorAll('.math-input');
+            mathInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    // Reset styling on new input
+                    this.style.borderColor = '#dee2e6';
+                    this.style.backgroundColor = 'white';
+                    
+                    // Clear feedback for this question
+                    const questionId = this.id.replace('q', '');
+                    const feedback = document.getElementById(`feedback${questionId}`);
+                    if (feedback) {
+                        feedback.className = 'feedback';
+                        feedback.innerHTML = '';
+                    }
+                });
+                
+                // Add enter key support
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault(); // Prevent form submission
+                        const nextButton = this.closest('.multi-part, .answer-space').querySelector('.check-btn');
+                        if(nextButton) {
+                            nextButton.click();
+                        }
+                    }
+                });
+            });
+            
+            // Initialize progress
+            updateProgress();
+            
+            // Add visual effects to pattern elements
+            const numberBoxes = document.querySelectorAll('.number-box');
+            numberBoxes.forEach(box => {
+                box.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05) rotate(2deg)';
+                });
+                
+                box.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+        
+        // Add keyboard navigation for tabs
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '1' && e.key <= '3' && !e.target.matches('input')) {
+                const lessonNum = parseInt(e.key);
+                showLesson(lessonNum);
+            }
+        });
+    </script>
+</body>
+</html>

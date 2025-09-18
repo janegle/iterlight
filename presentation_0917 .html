@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IterLight | Đồng Hành Cùng Nhà Vô Địch Tương Lai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e3a8a;
+            --text-color: #334155;
+            --bg-color: #f8fafc;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .presentation-container {
+            display: flex;
+            height: 100%;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            border-radius: 6px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background-color: #f1f5f9;
+        }
+
+        .sidebar-nav a.active {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            height: 100vh;
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 4rem 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+         .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .slide h1, .slide h2 {
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .slide h1 { font-size: 2.8em; }
+        .slide h2 { font-size: 2.2em; border-left: 4px solid var(--primary-color); padding-left: 1rem; }
+        .slide p, .slide li { font-size: 1.1em; line-height: 1.8; color: var(--text-color); max-width: 900px; }
+        .slide ul { list-style-position: inside; padding-left: 1rem; }
+        .slide li { margin-bottom: 1rem; }
+        
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+        .founder-card { text-align: center; }
+        .founder-card .placeholder-img {
+            width: 150px; height: 150px; border-radius: 50%; background-color: #e2e8f0;
+            margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;
+            font-size: 0.9em; color: #94a3b8; border: 3px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .founder-card .founder-img {
+            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+            margin: 0 auto 1rem; border: 3px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: block;
+        }        .founder-card h3 { color: var(--primary-color); font-size: 1.4em; margin-bottom: 0.5rem; }
+        .founder-card p { font-size: 1em; line-height: 1.6; max-width: 400px; margin: 0 auto; }
+        .quote {
+            text-align: center; font-style: italic; margin-top: 2rem;
+            padding: 1.5rem; background: #f1f5f9; border-left: 4px solid var(--primary-color);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .market-card { padding: 1.5rem; background: white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .market-card h3 { color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem; }
+        .market-card .stat { font-size: 2.5em; font-weight: 700; color: var(--secondary-color); margin: 0.5rem 0; }
+        
+        .differentiator-grid { display: flex; flex-direction: column; gap: 3rem; }
+        
+        .placeholder-box {
+            height: 65vh; width: 100%; background: #e2e8f0; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2em; color: #94a3b8; font-weight: 600; text-align: center;
+            border: 2px dashed #cbd5e1;
+        }
+        
+        .worksheet-iframe {
+            width: 100%; height: 85vh; border: none; border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: white;
+        }
+        
+        /* Tabbed Interface Styles */
+        .worksheet-tabs {
+            margin-top: 2rem;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            font-size: 0.9em;
+        }
+        
+        .tab-button:hover {
+            background: #e2e8f0;
+        }
+        
+        .tab-button.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .tab-content {
+            background: white;
+            border-radius: 0 8px 8px 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .tab-panel {
+            display: none;
+        }
+        
+        .tab-panel.active {
+            display: block;
+        }
+        
+        .tab-iframe {
+            width: 100%;
+            height: 70vh;
+            border: none;
+        }
+        
+        .worksheet-slider {
+            position: relative;
+            height: 65vh;
+            width: 100%;
+        }
+        .worksheet-slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; transition: opacity 0.4s ease-in-out;
+            visibility: hidden;
+        }
+        .worksheet-slide.active { opacity: 1; visibility: visible; }
+        .slider-nav { position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); display: flex; gap: 1rem; }
+        .slider-nav button { background: white; border: 1px solid #ccc; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2em; }
+        .slider-nav button:hover { background-color: #f1f5f9; }
+
+        .coach-grid { display: flex; flex-direction: column; gap: 3rem; }
+        .phone-screenshots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 2rem auto 0;
+        }
+        .phone-placeholder {
+            height: 40vh; width: 100%; background: #e2e8f0; border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9em; color: #94a3b8; border: 2px dashed #cbd5e1;
+        }
+        .phone-screenshot {
+            width: 100%; max-width: 280px; height: auto; border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .signals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .signal-card { text-align: center; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .signal-card .stat { font-size: 3em; font-weight: 700; color: var(--primary-color); }
+        .testimonials { background: #f1f5f9; padding: 2rem; border-radius: 8px; }
+        .testimonial { font-style: italic; border-left: 3px solid var(--primary-color); padding-left: 1rem; margin-bottom: 1rem; }
+        
+        .toggle-menu {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1001;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                z-index: 1000;
+                transform: translateX(-100%);
+                box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                width: 100%;
+            }
+            .toggle-menu {
+                display: flex;
+            }
+            .slide { padding: 6rem 5% 4rem; }
+            .differentiator-grid, .coach-grid { grid-template-columns: 1fr; }
+            .placeholder-box, .worksheet-slider, .phone-placeholder { height: 50vh; margin-top: 1.5rem; }
+            .tab-iframe { height: 60vh; }
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 2.2em; }
+            .slide h2 { font-size: 1.8em; }
+            .tab-buttons { flex-direction: column; }
+            .tab-button { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">IterLight</div>
+            <ul class="sidebar-nav" id="sidebar-nav">
+                <li><a href="#slide-1" class="active">Giới thiệu</a></li>
+                <li><a href="#slide-2">Thị trường</a></li>
+                <li><a href="#slide-3">Giải pháp</a></li>
+                <li><a href="#slide-4">Khác biệt #1</a></li>
+                <li><a href="#slide-5">Khác biệt #2</a></li>
+                <li><a href="#slide-6">Khác biệt #3</a></li>
+                <li><a href="#slide-7">Tín hiệu</a></li>
+                <li><a href="#slide-8">Tương lai</a></li>
+            </ul>
+        </aside>
+
+        <button class="toggle-menu" id="toggle-menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <main class="main-content" id="main-content">
+            
+            <section class="slide" id="slide-1">
+                <div class="slide-content">
+                    <h1>Từ Phố Wall và University of Chicago đến IterLight</h1>
+                    <div class="founders-grid">
+                        <div class="founder-card">
+                            <img src="jane.jpg" alt="Jane Giang Lê" class="founder-img">
+                            <h3>Jane Giang Lê - Đồng sáng lập & CEO</h3>
+                            <p>7 năm kinh nghiệm Giám đốc Phân tích Dữ liệu và Phó Giám Đốc Tuyển Sinh, University of Chicago. Cựu sinh viên London School of Economics & University of Chicago.</p>
+                        </div>
+                        <div class="founder-card">
+                            <img src="sam.jpeg" alt="Sam Trí Hùng Nguyễn" class="founder-img">
+                            <h3>Sam Trí Hùng Nguyễn - Đồng sáng lập & CTO</h3>
+                            <p>10+ năm kinh nghiệm tài chính cấp cao với các quỹ hedge fund. Cựu sinh viên Stanford (Thạc sĩ Thống Kê). Chuyên gia xây dựng hệ thống quản lý dữ liệu lớn.</p>
+                        </div>
+                    </div>
+                    <p class="quote">"Chúng tôi thành lập IterLight nhằm giúp các em xây dựng nền tảng vững chắc và tìm được niềm yêu thích thật sự với việc học."</p>
+                </div>
+            </section>
+    
+            <section class="slide" id="slide-2">
+                <div class="slide-content">
+                    <h2>Thị trường 2 tỷ USD đang chờ đợi giải pháp đúng</h2>
+                    <div class="market-grid">
+                        <div class="market-card">
+                            <h3>📈 Cơ hội khổng lồ</h3>
+                            <p class="stat">200,000+</p><p>học sinh Việt Nam thi SAT/IELTS mỗi năm (tăng trưởng 25% hàng năm).</p>
+                            <p class="stat">$2 tỷ USD</p><p>là quy mô thị trường dự kiến vào năm 2027.</p>
+                        </div>
+                        <div class="market-card">
+                            <h3>❌ Kết quả không như mong đợi</h3>
+                            <p class="stat">73%</p><p>học sinh chỉ đạt điểm trung bình.</p>
+                            <p><strong>Vấn đề:</strong> Áp lực cao, hiệu quả thấp, học vẹt thay vì hiểu sâu.</p>
+                        </div>
+                    </div>
+                     <p class="quote"><strong>Nguyên nhân cốt lõi:</strong> Hầu hết giải pháp hiện tại đều là "speed coaching", tập trung vào mẹo và thủ thuật. Đây chính là khoảng trống thị trường mà chúng tôi muốn lấp đầy.</p>
+                </div>
+            </section>
+    
+            <section class="slide" id="slide-3">
+                 <div class="slide-content">
+                    <h2>IterLight: Biến đam mê thành động lực học tập</h2>
+                    <p>IterLight là nền tảng công nghệ ứng dụng AI để cá nhân hoá lộ trình học tập cho trẻ từ lớp 1 đến 12, đồng thời hỗ trợ luyện thi IELTS, SAT, AP. IterLight biến học tập từ gánh nặng thành đam mê.</p>
+                    <h3>Triết lý cốt lõi:</h3>
+                    <p class="quote">"Thành công bền vững đến từ việc xây dựng nền tảng tư duy từ sớm, không phải học vẹt phút chót."</p>
+                    <ul>
+                        <li><strong>Hiện tại:</strong> Phát triển chương trình học toán tiếng Anh qua bóng đá, bóng rổ, âm nhạc, múa.</li>
+                        <li><strong>Thời gian tới:</strong> Mở rộng ra chương trình tiếng Anh.</li>
+                    </ul>
+                </div>
+            </section>
+    
+            <section class="slide" id="slide-4">
+                <div class="slide-content differentiator-grid">
+                    <div>
+                        <h2>Khác biệt #1: Cân bằng hoàn hảo giữa ngôn ngữ và nội dung</h2>
+                        <p><strong>Vấn đề phổ biến:</strong></p>
+                        <ul>
+                            <li>❌ Toán quá dễ → Học sinh chán, không phát triển tư duy.</li>
+                            <li>❌ Tiếng Anh quá khó → Học sinh nản, không hiểu bài.</li>
+                        </ul>
+                        <p><strong>Giải pháp IterLight:</strong></p>
+                         <ul>
+                            <li>✅ Toán đủ thách thức, phù hợp mọi trình độ.</li>
+                            <li>✅ Tiếng Anh phù hợp với học sinh Việt Nam nhờ phương pháp song ngữ.</li>
+                        </ul>
+                    </div>
+                    <iframe src="grade_12_algebra_basketball_advanced_lesson_2.html" class="worksheet-iframe"></iframe>
+                </div>
+            </section>
+            
+            <section class="slide" id="slide-5">
+                 <div class="slide-content differentiator-grid">
+                    <div>
+                        <h2>Khác biệt #2: Biến Ronaldo thành thầy giáo toán</h2>
+                        <p>Chúng tôi kết nối học tập với đam mê của học sinh, chuyển từ 'phải học' thành 'muốn học' thông qua những câu chuyện sinh động và hấp dẫn.</p>
+                    </div>
+                    <div class="worksheet-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="showTab('tab1')">⚽ Soccer</button>
+                            <button class="tab-button" onclick="showTab('tab2')">🎵 Music</button>
+                            <button class="tab-button" onclick="showTab('tab3')">💃 Dance</button>
+                        </div>
+                        <div class="tab-content">
+                            <div id="tab1" class="tab-panel active">
+                                <iframe src="grade_4_measurement_soccer_advanced.html" class="tab-iframe"></iframe>
+                            </div>
+                            <div id="tab2" class="tab-panel">
+                                <iframe src="lesson4_math.html" class="tab-iframe"></iframe>
+                            </div>
+                            <div id="tab3" class="tab-panel">
+                                <iframe src="grade_12_algebra_music-dance_advanced_lesson_2.html" class="tab-iframe"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <section class="slide" id="slide-6">
+                <div class="slide-content coach-grid">
+                    <div>
+                        <h2>Khác biệt #3: AI Coach dạy tư duy</h2>
+                        <p><strong>Cách tiếp cận truyền thống:</strong></p>
+                        <ul>
+                            <li>❌ Học thuộc công thức, dùng đường tắt.</li>
+                            <li>❌ Phản hồi chỉ là "đúng" hoặc "sai".</li>
+                        </ul>
+                         <p><strong>Giáo viên AI của IterLight:</strong></p>
+                        <ul>
+                            <li>✅ Dạy cách tiếp cận bài toán một cách sáng tạo.</li>
+                            <li>✅ Giải thích "tại sao" đằng sau mỗi lời giải.</li>
+                            <li>✅ Xây dựng tự tin thông qua việc hiểu sâu.</li>
+                        </ul>
+                        <p class="quote"><strong>Kết quả:</strong> Học sinh tự tin đối mặt với mọi bài toán mới và phát triển tư duy phản biện suốt đời.</p>
+                    </div>
+                    <div class="phone-screenshots">
+                        <img src="1.png" alt="Phone Screenshot 1" class="phone-screenshot">
+                        <img src="2.png" alt="Phone Screenshot 2" class="phone-screenshot">
+                        <img src="3.png" alt="Phone Screenshot 3" class="phone-screenshot">
+                        <img src="4.png" alt="Phone Screenshot 4" class="phone-screenshot">
+                    </div>
+                </div>
+            </section>
+    
+            <section class="slide" id="slide-7">
+                <div class="slide-content">
+                    <h2>Tín hiệu thị trường: Phụ huynh đã sẵn sàng</h2>
+                    <div class="signals-grid">
+                        <div class="signal-card">
+                            <div class="stat">1000+</div>
+                            <p>Người đăng ký nhận bản tin (tăng trưởng 100% tự nhiên)</p>
+                        </div>
+                        <div class="signal-card">
+                            <div class="stat">95%</div>
+                            <p>Phụ huynh đánh giá con tiến bộ rõ rệt</p>
+                        </div>
+                        <div class="signal-card">
+                            <div class="stat">100%</div>
+                            <p>Tỉ lệ giữ chân sau khoá học thử 3 tháng</p>
+                        </div>
+                    </div>
+                    <div class="testimonials">
+                        <h3>Chia sẻ của phụ huynh:</h3>
+                        <p class="testimonial">"Con học toán cũng ổn nhưng chưa xuất sắc, cũng do như cô nói chưa vận dụng được vào thực tế. Con chơi được nhiều môn thể thao, thích bóng đá nhất và thần tượng Ronaldo cô ạ."</p>
+                        <p class="testimonial">"Hôm nay em đọc bài về cách học toán của chồng chị, và em bị cuốn hút bởi cách học đó... Em xin được đăng ký nhận tài liệu từ chị để đồng hành cùng con ạ."</p>
+                    </div>
+                </div>
+            </section>
+    
+            <section class="slide" id="slide-8">
+                <div class="slide-content">
+                    <h2>Cùng nhau xây dựng tương lai</h2>
+                    <ul>
+                        <li>Chúng tôi vô cùng trân trọng di sản của quý vị trong việc nuôi dưỡng tài năng Việt Nam thông qua các sự kiện uy tín như "Kỳ thi tin học trẻ toàn quốc."</li>
+                        <li><strong>Sứ mệnh chung:</strong> Khai phá tiềm năng tối đa của mỗi học sinh Việt Nam.</li>
+                        <li><strong>Bước tiếp theo:</strong> Chúng tôi rất mong muốn được sắp xếp một buổi demo cụ thể cho sản phẩm bằng những ví dụ thực tế.</li>
+                        <li style="font-weight: 600;">Chúng tôi mong được thảo luận về cách chúng ta có thể hợp tác trong tương lai.</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebarNav = document.getElementById('sidebar-nav');
+        const mainContent = document.getElementById('main-content');
+        const slides = document.querySelectorAll('.slide');
+        const toggleMenu = document.getElementById('toggle-menu');
+        const sidebar = document.getElementById('sidebar');
+
+        // --- Slide Intersection Observer for active link highlighting ---
+        const observerOptions = {
+            root: mainContent,
+            rootMargin: '0px',
+            threshold: 0.51
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    const activeLink = sidebarNav.querySelector(`a[href="#${id}"]`);
+                    
+                    sidebarNav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        slides.forEach(slide => {
+            observer.observe(slide);
+        });
+        
+        // --- Sidebar Navigation Click to Scroll ---
+        sidebarNav.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href');
+                const targetSlide = document.querySelector(targetId);
+                if (targetSlide) {
+                     mainContent.scrollTo({
+                        top: targetSlide.offsetTop - mainContent.offsetTop,
+                        behavior: 'smooth'
+                     });
+                }
+                if(window.innerWidth <= 1024) {
+                    sidebar.classList.remove('open');
+                }
+            }
+        });
+
+        // --- Mobile Menu Toggle ---
+        toggleMenu.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+        
+        mainContent.addEventListener('click', () => {
+            if (window.innerWidth <= 1024 && sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+    });
+
+    // --- Tab Functionality ---
+    function showTab(tabId) {
+        // Hide all tab panels
+        const panels = document.querySelectorAll('.tab-panel');
+        panels.forEach(panel => panel.classList.remove('active'));
+        
+        // Remove active class from all buttons
+        const buttons = document.querySelectorAll('.tab-button');
+        buttons.forEach(button => button.classList.remove('active'));
+        
+        // Show selected panel
+        document.getElementById(tabId).classList.add('active');
+        
+        // Add active class to clicked button
+        event.target.classList.add('active');
+    }
+</script>
+</body>
+</html>

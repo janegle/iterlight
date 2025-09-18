@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<!--
+Math Worksheet HTML
+Generated: 2025-09-10 00:28:42
+Grade 12: Algebra + music-dance + Advanced + Music-Dance Problem Solver
+Math Topic: Algebra
+Sports Context: music-dance
+Difficulty Level: Advanced
+-->
+
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Vectors: The Choreographer's Vision - Grade 12 Advanced Math</title>
+ <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+ <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.6.1/distrib/jsxgraphcore.js"></script>
+ <style>
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ max-width: 100%;
+ overflow-wrap: break-word;
+ }
+
+ body {
+ font-family: 'Times New Roman', serif;
+ line-height: 1.6;
+ color: #2c3e50;
+ background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+ overflow-x: hidden;
+ word-wrap: break-word;
+ }
+
+ .container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 20px;
+ overflow: hidden;
+ box-sizing: border-box;
+ }
+
+ .lesson-container {
+ width: 100%;
+ max-width: 1200px;
+ padding: 1rem;
+ overflow: hidden;
+ box-sizing: border-box;
+ }
+
+ .high-header {
+ font-family: 'Times New Roman', serif;
+ font-size: 2em;
+ color: #2c3e50;
+ text-align: center;
+ margin: 1rem 0;
+ border-bottom: 3px solid #1976d2;
+ padding-bottom: 0.5rem;
+ }
+
+ .content-section {
+ background: white;
+ border-radius: 8px;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+ border-left: 5px solid;
+ padding: 2rem;
+ margin: 1.5rem 0;
+ max-width: 100%;
+ overflow: hidden;
+ box-sizing: border-box;
+ word-wrap: break-word;
+ }
+
+ .theory-section {
+ border-left-color: #1976d2;
+ background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%);
+ }
+
+ .practice-section {
+ border-left-color: #388e3c;
+ background: linear-gradient(135deg, #e8f5e8 0%, #f1f8f1 100%);
+ }
+
+ .problem-section {
+ border-left-color: #7b1fa2;
+ background: linear-gradient(135deg, #f3e5f5 0%, #faf5ff 100%);
+ }
+
+ .review-section {
+ border-left-color: #f57c00;
+ background: linear-gradient(135deg, #fff3e0 0%, #fff8f0 100%);
+ }
+
+ .high-problem {
+ background: white;
+ border: 1px solid #dee2e6;
+ border-radius: 5px;
+ padding: 1.5rem;
+ margin: 1rem 0;
+ box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ }
+
+ .problem-container {
+ max-width: 100%;
+ overflow: hidden;
+ box-sizing: border-box;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 20px;
+ }
+
+ .step-box {
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ background: #f8f9fa;
+ border: 1px solid #dee2e6;
+ border-radius: 5px;
+ padding: 1rem;
+ margin: 0.5rem 0;
+ }
+
+ .vocab-section {
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ background: linear-gradient(135deg, #fff3e0 0%, #fff8f0 100%);
+ border: 2px solid #f57c00;
+ border-radius: 10px;
+ padding: 1.5rem;
+ margin: 1rem 0;
+ }
+
+ .math-block {
+ display: block;
+ text-align: center;
+ margin: 1.5rem 0;
+ padding: 1.5rem;
+ background: linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%);
+ border: 2px solid #e9ecef;
+ border-radius: 10px;
+ font-size: 1.3em;
+ color: #2c3e50;
+ font-family: 'Times New Roman', serif;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ }
+
+ .math {
+ font-family: 'Times New Roman', serif;
+ font-style: normal;
+ font-size: 1.1em;
+ font-weight: 500;
+ line-height: 1.4;
+ padding: 0.5em 0.7em;
+ background: #f8f9fa;
+ color: #2c3e50;
+ border: 1px solid #dee2e6;
+ border-radius: 6px;
+ max-width: 100%;
+ word-break: break-word;
+ box-sizing: border-box;
+ }
+
+ .nav-tabs {
+ display: flex;
+ flex-wrap: wrap;
+ border-bottom: 2px solid #1976d2;
+ margin-bottom: 2rem;
+ gap: 0.5rem;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .nav-tab {
+ padding: 1rem 1.5rem;
+ background: #f8f9fa;
+ color: #2c3e50;
+ border: 1px solid #dee2e6;
+ border-bottom: none;
+ border-radius: 5px 5px 0 0;
+ cursor: pointer;
+ font-weight: bold;
+ transition: all 0.3s ease;
+ flex: 1;
+ text-align: center;
+ min-width: 120px;
+ max-width: 200px;
+ box-sizing: border-box;
+ }
+
+ .nav-tab.active {
+ background: #1976d2;
+ color: #000000;
+ border-color: #1976d2;
+ }
+
+ .nav-tab:hover {
+ background: #e3f2fd;
+ transform: translateY(-2px);
+ }
+
+ .lesson-panel {
+ display: none;
+ max-width: 100%;
+ overflow: hidden;
+ box-sizing: border-box;
+ }
+
+ .lesson-panel.active {
+ display: block;
+ }
+
+ .jxgbox {
+ width: 100%;
+ height: 400px;
+ border: 2px solid #2c3e50;
+ background: white;
+ margin: 1rem 0;
+ max-width: 100%;
+ overflow: hidden;
+ box-sizing: border-box;
+ }
+
+ .answer-input {
+ width: 100%;
+ padding: 0.8rem;
+ font-size: 16px;
+ border: 2px solid #dee2e6;
+ border-radius: 5px;
+ margin: 0.5rem 0;
+ box-sizing: border-box;
+ max-width: 100%;
+ }
+
+ .answer-input:focus {
+ border-color: #1976d2;
+ outline: none;
+ box-shadow: 0 0 5px rgba(25, 118, 210, 0.3);
+ }
+
+ .submit-btn {
+ background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+ color: #000000;
+ border: none;
+ padding: 12px 24px;
+ font-size: 16px;
+ border-radius: 5px;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ margin: 0.5rem;
+ min-height: 44px;
+ min-width: 100px;
+ box-sizing: border-box;
+ }
+
+ .submit-btn:hover {
+ background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+ transform: translateY(-2px);
+ box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+ }
+
+ .progress-bar {
+ width: 100%;
+ height: 20px;
+ background: #e9ecef;
+ border-radius: 10px;
+ margin: 1rem 0;
+ overflow: hidden;
+ position: relative;
+ max-width: 100%;
+ box-sizing: border-box;
+ }
+
+ .progress-fill {
+ height: 100%;
+ background: linear-gradient(90deg, #388e3c 0%, #4caf50 100%);
+ border-radius: 10px;
+ transition: width 0.3s ease;
+ width: 0%;
+ }
+
+ #progress-text {
+ text-align: center;
+ margin: 0.5rem 0;
+ font-weight: bold;
+ color: #2c3e50;
+ }
+
+ #show-answer-key {
+ background: linear-gradient(135deg, #f57c00 0%, #ef6c00 100%);
+ color: #000000;
+ border: none;
+ padding: 12px 24px;
+ font-size: 16px;
+ border-radius: 5px;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ margin: 1rem 0;
+ display: none;
+ min-height: 44px;
+ box-sizing: border-box;
+ }
+
+ #show-answer-key:hover {
+ background: linear-gradient(135deg, #ef6c00 0%, #d84315 100%);
+ transform: translateY(-2px);
+ box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+ }
+
+ .answer-key {
+ background: linear-gradient(135deg, #fff3e0 0%, #fff8f0 100%);
+ border: 2px solid #f57c00;
+ border-radius: 10px;
+ padding: 1.5rem;
+ margin: 1rem 0;
+ display: none;
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ }
+
+ .solution {
+ display: none;
+ background: linear-gradient(135deg, #e8f5e8 0%, #f1f8f1 100%);
+ border: 2px solid #388e3c;
+ border-radius: 5px;
+ padding: 1rem;
+ margin: 1rem 0;
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ box-sizing: border-box;
+ }
+
+ .icon {
+ font-size: 1.2em;
+ margin-right: 0.5rem;
+ }
+
+ .stage-emoji {
+ font-size: 1.5em;
+ margin: 0 0.3rem;
+ }
+
+ @media (max-width: 768px) {
+ .container {
+ padding: 15px;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .high-header {
+ font-size: 1.8em;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .jxgbox {
+ height: 280px;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .problem-container {
+ flex-direction: column;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .step-box {
+ max-width: 100%;
+ overflow: hidden;
+ word-wrap: break-word;
+ }
+
+ .nav-tab {
+ min-width: 100px;
+ padding: 0.8rem 1rem;
+ }
+ }
+
+ @media (max-width: 480px) {
+ .container {
+ padding: 10px;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .high-header {
+ font-size: 1.6em;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .jxgbox {
+ height: 220px;
+ max-width: 100%;
+ overflow: hidden;
+ }
+
+ .nav-tabs {
+ flex-direction: column;
+ }
+
+ .nav-tab {
+ width: 100%;
+ max-width: 100%;
+ }
+ }
+
+ .emoji-dance {
+ animation: bounce 2s infinite;
+ }
+
+ @keyframes bounce {
+ 0%, 20%, 50%, 80%, 100% {
+ transform: translateY(0);
+ }
+ 40% {
+ transform: translateY(-10px);
+ }
+ 60% {
+ transform: translateY(-5px);
+ }
+ }
+
+ .vector-arrow {
+ color: #1976d2;
+ font-weight: bold;
+ font-size: 1.2em;
+ }
+ </style>
+</head>
+<body>
+ <div class="container">
+ <h1 class="high-header">🎭 Vectors: The Choreographer's Vision 🎪</h1>
+ 
+ <div class="nav-tabs">
+ <div class="nav-tab active" onclick="showLesson(1)">📚 Theory & Examples</div>
+ <div class="nav-tab" onclick="showLesson(2)">🏃‍♀️ Practice Problems</div>
+ <div class="nav-tab" onclick="showLesson(3)">🏆 Challenge Problems</div>
+ <div class="nav-tab" onclick="showLesson(4)">📊 Review & Summary</div>
+ </div>
+
+ <div class="progress-bar">
+ <div class="progress-fill" id="progress-fill"></div>
+ </div>
+ <div id="progress-text">0 of 8 problems submitted</div>
+
+ <div id="lesson1" class="lesson-panel active">
+ <div class="content-section theory-section">
+ <h2>🎭 Introduction</h2>
+ <p>In the world of professional dance and theater, choreography is more than just steps; it's a science of motion. On complex modern stages, which can rotate, elevate, and transform, a dancer's movement is a carefully calculated path. Imagine a choreographer, Maya, designing a pivotal scene for a new musical. A solo dancer must glide across a rotating stage <span class="stage-emoji">🔄</span>, yet to the audience, they must appear to walk in a perfectly straight line, as if defying the stage's motion. This illusion is not magic—it's mathematics <span class="icon">✨</span>.</p>
+ 
+ <p>This worksheet explores the power of vectors to describe and control motion in dynamic environments. We will delve into the principles of relative velocity and vector arithmetic to solve the very problem Maya faces: determining the precise path a dancer must take to create a specific visual effect for the audience.</p>
+ </div>
+
+ <div class="content-section theory-section">
+ <h2>🎯 Learning Objectives</h2>
+ <p>By the end of this lesson, you will be able to:</p>
+ <ul>
+ <li>📏 Define and represent vectors in component form, and determine their magnitude and direction.</li>
+ <li>➕ Add and subtract vectors algebraically and graphically to solve problems.</li>
+ <li>🔄 Understand and apply the concept of relative velocity in a two-dimensional system.</li>
+ <li>🎪 Model the motion of an object on a rotating frame of reference.</li>
+ <li>🎯 Solve complex, multi-step problems involving vector equations to achieve a desired outcome.</li>
+ </ul>
+ </div>
+
+ <div class="vocab-section">
+ <h2>📖 Vocabulary and Key Concepts</h2>
+ <div class="step-box">
+ <strong>🔢 Vector:</strong> A quantity possessing both magnitude and direction. It can be represented as <span class="math" role="math">\( \vec{v} = \langle v_x, v_y \
+angle \)</span> in component form.
+ </div>
+ <div class="step-box">
+ <strong>📊 Scalar:</strong> A quantity possessing only magnitude (e.g., speed, distance, time).
+ </div>
+ <div class="step-box">
+ <strong>📏 Magnitude:</strong> The length or size of a vector. For <span class="math" role="math">\( \vec{v} = \langle v_x, v_y \
+angle \)</span>, the magnitude is <span class="math" role="math">\( \|\vec{v}\| = \sqrt{v_x^2 + v_y^2} \)</span>.
+ </div>
+ <div class="step-box">
+ <strong>🔄 Relative Velocity:</strong> The velocity of an object with respect to a particular frame of reference. The core equation for this lesson is:
+ <div class="math-block">
+ \[ \vec{v}_{A/C} = \vec{v}_{A/B} + \vec{v}_{B/C} \]
+ </div>
+ Where:
+ <ul>
+ <li><span class="math" role="math">\( \vec{v}_{A/C} \)</span> is the velocity of object A relative to frame C (e.g., Dancer relative to Audience).</li>
+ <li><span class="math" role="math">\( \vec{v}_{A/B} \)</span> is the velocity of object A relative to frame B (e.g., Dancer relative to Stage).</li>
+ <li><span class="math" role="math">\( \vec{v}_{B/C} \)</span> is the velocity of frame B relative to frame C (e.g., Stage relative to Audience).</li>
+ </ul>
+ </div>
+ <div class="step-box">
+ <strong>⭕ Angular Velocity (ω):</strong> The rate of rotation, typically measured in radians per second.
+ </div>
+ <div class="step-box">
+ <strong>➡️ Tangential Velocity (\(\vec{v}_t\)):</strong> The linear velocity of a point on a rotating object. Its magnitude is <span class="math" role="math">\( v_t = r\omega \)</span>, where <span class="math" role="math">r</span> is the distance from the center of rotation. Its direction is always tangent to the circular path.
+ </div>
+ </div>
+
+ <div class="content-section practice-section">
+ <h2>📝 Guided Examples</h2>
+ 
+ <div class="high-problem">
+ <h3>🎯 Critical Thinking Example 1: The Basic "Eight-Count"</h3>
+ <p>A young dancer, Leo <span class="emoji-dance">💃</span>, is practicing a simple combination. His choreographer tells him to move from the center of the stage, which we'll define as the origin <span class="math" role="math">(0,0)</span>, to a mark at position <span class="math" role="math">(4, 3)</span> meters. He must complete this movement in exactly 4 seconds (a standard "eight-count" in music). What is Leo's required constant velocity vector? Analyze how changes in time or position would affect the model.</p>
+ 
+ <div id="diagram1" class="jxgbox"></div>
+ 
+ <div class="step-box">
+ <strong>Solution:</strong>
+ <p><strong>1. Identify the displacement vector.</strong> The displacement, <span class="math" role="math">\( \Delta\vec{p} \)</span>, is the change in position from the start point to the end point.</p>
+ <div class="math-block">
+ \[ \Delta\vec{p} = \langle 4 - 0, 3 - 0 \
+angle = \langle 4, 3 \
+angle \text{ meters} \]
+ </div>
+
+ <p><strong>2. Use the velocity formula.</strong> Velocity is displacement divided by time.</p>
+ <div class="math-block">
+ \[ \vec{v} = \frac{\Delta\vec{p}}{\Delta t} = \frac{\langle 4, 3 \
+angle}{4} = \langle 1, 0.75 \
+angle \text{ m/s} \]
+ </div>
+
+ <p><strong>3. Conclusion and Analysis:</strong> Leo must maintain <span class="math" role="math">\( \langle 1, 0.75 \
+angle \)</span> m/s. If time increases, velocity decreases proportionally; justify why this models real choreography constraints.</p>
+ </div>
+ </div>
+
+ <div class="high-problem">
+ <h3>🏆 Competitive Math Example 2: The "Hamilton" Turntable</h3>
+ <p>The musical "Hamilton" <span class="stage-emoji">🎭</span> uses a turntable with radius 7 meters rotating counter-clockwise at <span class="math" role="math">\( \omega = \frac{\pi}{12} \)</span> rad/s. A dancer at <span class="math" role="math">(0, 7)</span> stands still on the stage. Find the dancer's velocity relative to the audience. (AMC-style: Compute exact vector.)</p>
+ 
+ <div id="diagram2" class="jxgbox"></div>
+ 
+ <div class="step-box">
+ <strong>Solution:</strong>
+ <p><strong>1.</strong> Magnitude: <span class="math" role="math">\( v_t = 7 \times \frac{\pi}{12} = \frac{7\pi}{12} \)</span> m/s.</p>
+ <p><strong>2.</strong> Direction: At <span class="math" role="math">(0,7)</span>, <span class="math" role="math">\( \vec{v}_{S/A} = \langle -\frac{7\pi}{12}, 0 \
+angle \)</span> m/s.</p>
+ <p><strong>3.</strong> Prove why the direction is negative x using vector perpendicularity.</p>
+ </div>
+ </div>
+
+ <div class="high-problem">
+ <h3>🎪 Example 3: Maya's Choreographic Challenge</h3>
+ <p>Maya wants a dancer <span class="emoji-dance">🕺</span> to appear to glide from <span class="math" role="math">(-6, 2)</span> to <span class="math" role="math">(6, 2)</span> in 8 seconds on a stage of radius 5 m rotating at <span class="math" role="math">\( \omega = \frac{\pi}{16} \)</span> rad/s. At <span class="math" role="math">(3, 4)</span>, find <span class="math" role="math">\( \vec{v}_{D/S} \)</span>.</p>
+ 
+ <div id="diagram3" class="jxgbox"></div>
+ 
+ <div class="step-box">
+ <strong>Solution:</strong>
+ <p><strong>1.</strong> <span class="math" role="math">\( \vec{v}_{D/A} = \langle 1.5, 0 \
+angle \)</span> m/s.</p>
+ <p><strong>2.</strong> <span class="math" role="math">\( \vec{v}_{S/A} = \langle -\frac{\pi}{4}, \frac{3\pi}{16} \
+angle \)</span> m/s.</p>
+ <p><strong>3.</strong> <span class="math" role="math">\( \vec{v}_{D/S} = \langle 1.5 + \frac{\pi}{4}, -\frac{3\pi}{16} \
+angle \)</span> m/s.</p>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div id="lesson2" class="lesson-panel">
+ <div class="content-section problem-section">
+ <h2>🏃‍♀️ Independent Practice Problems</h2>
+ <p><em>Instructions: Use the principles from the guided examples to solve the following problems. Assume all stages are centered at the origin unless stated otherwise.</em></p>
+
+ <div class="high-problem" data-problem-type="practice" data-role="student">
+ <h3>🎯 Critical Thinking Problem 1 (Intermediate)</h3>
+ <p>A dancer <span class="emoji-dance">💃</span> on a stage rotating counter-clockwise at <span class="math" role="math">\( \omega = 0.5 \)</span> rad/s at <span class="math" role="math">\( \langle -5, 0 \
+angle \)</span> walks with <span class="math" role="math">\( \vec{v}_{D/S} = \langle 1, 1 \
+angle \)</span> m/s. Find <span class="math" role="math">\( \vec{v}_{D/A} \)</span> and analyze how this affects choreography planning with budget constraints on stage speed.</p>
+ 
+ <div id="diagram4" class="jxgbox"></div>
+ 
+ <input type="text" class="answer-input" id="answer1" placeholder="Enter your vector answer (e.g., ⟨1, 2.5⟩)">
+ <button class="submit-btn" onclick="submitAnswer(1)">Submit</button>
+ 
+ <div class="solution" id="solution1" data-visible="false" style="display: none">
+ <strong>Solution:</strong>
+ <p><span class="math" role="math">\( \vec{v}_{S/A} = \langle 0, -2.5 \
+angle \)</span>; <span class="math" role="math">\( \vec{v}_{D/A} = \langle 1, -1.5 \
+angle \)</span> m/s. Analysis: Slower stages reduce costs but limit illusions.</p>
+ </div>
+ </div>
+
+ <div class="high-problem" data-problem-type="practice" data-role="student">
+ <h3>🏆 Competitive Math Problem 2 (Intermediate)</h3>
+ <p>Choreographer wants <span class="math" role="math">\( \vec{v}_{D/A} = \langle 0, -2 \
+angle \)</span> m/s on clockwise stage at <span class="math" role="math">\( \omega = \frac{\pi}{10} \)</span> rad/s at <span class="math" role="math">(6, 0)</span>. Find exact <span class="math" role="math">\( \vec{v}_{D/S} \)</span>. (Hint: Clockwise tangential vector <span class="math" role="math">\( \langle y, -x \
+angle \)</span>.)</p>
+ 
+ <div id="diagram5" class="jxgbox"></div>
+ 
+ <input type="text" class="answer-input" id="answer2" placeholder="Enter exact vector answer">
+ <button class="submit-btn" onclick="submitAnswer(2)">Submit</button>
+ 
+ <div class="solution" id="solution2" data-visible="false" style="display: none">
+ <strong>Solution:</strong>
+ <p><span class="math" role="math">\( \vec{v}_{S/A} = \langle 0, -\frac{3\pi}{5} \
+angle \)</span>; <span class="math" role="math">\( \vec{v}_{D/S} = \langle 0, \frac{3\pi}{5} - 2 \
+angle \)</span> m/s.</p>
+ </div>
+ </div>
+
+ <div class="high-problem" data-problem-type="practice" data-role="student">
+ <h3>🎯 Critical Thinking Problem 3 (Advanced Intermediate)</h3>
+ <p>Priya <span class="emoji-dance">💃</span>: <span class="math" role="math">\( \langle -1, 3 \
+angle \)</span> m/s; Quinn <span class="emoji-dance">🕺</span>: <span class="math" role="math">\( \langle 2, 1 \
+angle \)</span> m/s. Find <span class="math" role="math">\( \vec{v}_{P/Q} \)</span>, magnitude, direction, and justify its use in lift timing optimization.</p>
+ 
+ <div id="diagram6" class="jxgbox"></div>
+ 
+ <input type="text" class="answer-input" id="answer3" placeholder="Enter relative velocity vector">
+ <button class="submit-btn" onclick="submitAnswer(3)">Submit</button>
+ 
+ <div class="solution" id="solution3" data-visible="false" style="display: none">
+ <strong>Solution:</strong>
+ <p><span class="math" role="math">\( \vec{v}_{P/Q} = \langle -3, 2 \
+angle \)</span>; speed <span class="math" role="math">\( \sqrt{13} \)</span>; angle ≈ 146.3°. Justification: Optimizes safe lift timing.</p>
+ </div>
+ </div>
+
+ <div class="high-problem" data-problem-type="practice" data-role="student">
+ <h3>🏆 Competitive Math Problem 4 (Advanced Intermediate)</h3>
+ <p>On a rotating stage with <span class="math" role="math">\( \omega = \frac{\pi}{6} \)</span> rad/s, two dancers start at opposite ends of a diameter (radius 8m). If they both move toward the center at 2 m/s relative to the stage, find their velocities relative to the audience when they are 4m from center.</p>
+ 
+ <div id="diagram7" class="jxgbox"></div>
+ 
+ <input type="text" class="answer-input" id="answer4" placeholder="Enter both velocity vectors">
+ <button class="submit-btn" onclick="submitAnswer(4)">Submit</button>
+ 
+ <div class="solution" id="solution4" data-visible="false" style="display: none">
+ <strong>Solution:</strong>
+ <p>At 4m from center, tangential speeds are <span class="math" role="math">\( 4 \times \frac{\pi}{6} = \frac{2\pi}{3} \)</span> m/s. Combined with radial motion gives complex velocity vectors.</p>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div id="lesson3" class="lesson-panel">
+ <div class="content-section problem-section">
+ <h2>🏆 Challenge Problems (Advanced)</h2>
+
+ <div class="high-problem" data-problem-type="practice" data-role="student">
+ <h3>🎯 Critical Thinking Problem 5</h3>
+ <p>Maya wants dancer to appear still at <span class="math" role="math">(7, 0)</span> for 5 s on stage radius 7 m, <span class="math" role="math">\( \omega = \frac{\pi}{8} \)</span> rad/s.</p>
+ <p><strong>a)</strong> Find <span class="math" role="math">\( \vec{v}_{D/S}(t) = \langle 7\omega\sin(\omega t), -7\omega\cos(\omega t) \
+angle \)</span>.</p>
+ <p><strong>b)</strong> Max speed <span class="math" role="math">\( 7\omega \approx 2.75 \)</span> m/s; discuss physical feasibility and model extensions.</p>
+ 
+ <div id="diagram8" class="jxgbox"></div>
+ 
+ <textarea class="answer-input" id="answer5" placeholder="Enter detailed solution for parts a and b" rows="4"></textarea>
+ <button class="submit-btn" onclick="submitAnswer(5)">Submit</button>
+ 
+ <div class="solution" id="solution5" data-visible="false" style="display: none">
+ <strong>Solution:</strong>
+ <p><strong>a)</strong> As above.</p>
+ <p><strong>b)</strong> Constant speed 2.75 m/s; feasible but demanding direction changes.</p>
+ </div>
+ </div>
+
+ <div class="high-problem" data-problem-type="practice" data-role="student">
+ <h3>🏆 Competitive Math Problem 6</h3>
+ <p>Elara <span class="emoji-dance">💃</span> at <span class="math" role="math">(-10,1)</span>, <span class="math" role="math">\( \vec{v}_E = \langle 2, 0.5 \
+angle \)</span>; Finn <span class="emoji-dance">🕺</span> at <span class="math" role="math">(8,-2)</span>, speed 2.5 m/s intercepts minimally.</p>
+ <p><strong>a)</strong> <span class="math" role="math">\( v_x^2 + v_y^2 = 6.25 \)</span>.</p>
+ <p><strong>b)</strong> Positions equal: <span class="math" role="math">\( \langle -10+2t, 1+0.5t \
+angle = \langle 8 + t v_x, -2 + t v_y \
+angle \)</span>.</p>
+ <p><strong>c)</strong> Solve quadratic: <span class="math" role="math">\( t \approx 4.29 \)</span> s; prove minimality.</p>
+ 
+ <div id="diagram9" class="jxgbox"></div>
+ 
+ <textarea class="answer-input" id="answer6" placeholder="Enter complete solution with proof of minimality" rows="5"></textarea>
+ <button class="submit-btn" onclick="submitAnswer(6)">Submit</button>
+ 
+ <div class="solution" id="solution6" data-visible="false" style="display: none">
+ <strong>Solution:</strong>
+ <p><strong>a)</strong> As above.</p>
+ <p><strong>b)</strong> As above.</p>
+ <p><strong>c)</strong> Quadratic yields t ≈ 4.29 s; minimality via positive root.</p>
+ </div>
+ </div>
+
+ <div class="high-problem" data-problem-type="practice" data-role="student">
+ <h3>🎯 Critical Thinking Problem 7</h3>
+ <p>Design a choreographed sequence where three dancers on a rotating stage (radius 10m, <span class="math" role="math">\( \omega = \frac{\pi}{12} \)</span> rad/s) create the illusion of dancing in perfect formation while actually following complex paths. Analyze the mathematical constraints and provide specific velocity vectors for each dancer at key moments.</p>
+ 
+ <textarea class="answer-input" id="answer7" placeholder="Enter your choreographic design with mathematical analysis" rows="6"></textarea>
+ <button class="submit-btn" onclick="submitAnswer(7)">Submit</button>
+ 
+ <div class="solution" id="solution7" data-visible="false" style="display: none">
+ <strong>Solution:</strong>
+ <p>Multiple valid approaches possible. Key elements: relative positioning, synchronized motion vectors, stage rotation compensation.</p>
+ </div>
+ </div>
+
+ <div class="high-problem" data-problem-type="practice" data-role="student">
+ <h3>🏆 Competitive Math Problem 8</h3>
+ <p>A dancer performs on a stage that rotates with variable angular velocity <span class="math" role="math">\( \omega(t) = \frac{\pi}{6}\cos(\frac{\pi t}{4}) \)</span> rad/s. If the dancer maintains constant speed 3 m/s relative to the audience while moving in a straight line from <span class="math" role="math">(-8, 0)</span> to <span class="math" role="math">(8, 0)</span>, find the magnitude of acceleration relative to the stage at <span class="math" role="math">t = 2</span> seconds.</p>
+ 
+ <textarea class="answer-input" id="answer8" placeholder="Enter detailed solution with acceleration calculation" rows="4"></textarea>
+ <button class="submit-btn" onclick="submitAnswer(8)">Submit</button>
+ 
+ <div class="solution" id="solution8" data-visible="false" style="display: none">
+ <strong>Solution:</strong>
+ <p>Complex calculation involving variable angular velocity, constant audience-relative speed, and position-dependent stage velocity. Acceleration magnitude approximately 2.1 m/s².</p>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div id="lesson4" class="lesson-panel">
+ <div class="content-section review-section">
+ <h2>📊 Summary and Review</h2>
+ <p>Today we explored how vectors are essential tools for describing motion, especially in complex scenarios like dance on a moving stage <span class="stage-emoji">🎭</span>. We learned that the observed motion of an object depends on the frame of reference of the observer. By breaking down motion into components and using the relative velocity equation, <span class="math" role="math">\( \vec{v}_{A/C} = \vec{v}_{A/B} + \vec{v}_{B/C} \)</span>, we can solve for unknown velocities and create precise, intended movements. The choreographer's vision is realized not just through artistry, but through a deep, intuitive understanding of the physics of motion <span class="vector-arrow">⟶</span>.</p>
+
+ <div class="step-box">
+ <h3>🔑 Key Takeaways</h3>
+ <ul>
+ <li><strong>Vectors have both magnitude and direction</strong> - essential for describing motion in 2D</li>
+ <li><strong>Relative velocity equation</strong> - the foundation for analyzing motion in multiple reference frames</li>
+ <li><strong>Tangential velocity on rotating objects</strong> - perpendicular to radius, magnitude = rω</li>
+ <li><strong>Real-world applications</strong> - from stage choreography to spacecraft navigation</li>
+ <li><strong>Mathematical modeling</strong> - translating physical situations into mathematical expressions</li>
+ </ul>
+ </div>
+
+ <div class="answer-key" id="answer-key">
+ <h3>📋 Complete Solutions</h3>
+ 
+ <div class="step-box">
+ <h4>Independent Practice Problems - Solutions</h4>
+ 
+ <p><strong>Critical Thinking Problem 1</strong></p>
+ <p><span class="math" role="math">\( \vec{v}_{S/A} = \langle 0, -2.5 \
+angle \)</span>; <span class="math" role="math">\( \vec{v}_{D/A} = \langle 1, -1.5 \
+angle \)</span> m/s. Analysis: Slower stages reduce costs but limit illusions.</p>
+ 
+ <p><strong>Competitive Math Problem 2</strong></p>
+ <p><span class="math" role="math">\( \vec{v}_{S/A} = \langle 0, -\frac{3\pi}{5} \
+angle \)</span>; <span class="math" role="math">\( \vec{v}_{D/S} = \langle 0, \frac{3\pi}{5} - 2 \
+angle \)</span> m/s.</p>
+ 
+ <p><strong>Critical Thinking Problem 3</strong></p>
+ <p><span class="math" role="math">\( \vec{v}_{P/Q} = \langle -3, 2 \
+angle \)</span>; speed <span class="math" role="math">\( \sqrt{13} \)</span>; angle ≈ 146.3°. Justification: Optimizes safe lift timing.</p>
+ </div>
+ 
+ <div class="step-box">
+ <h4>Challenge Problems - Solutions</h4>
+ 
+ <p><strong>Critical Thinking Problem 5</strong></p>
+ <p><strong>a)</strong> As above.</p>
+ <p><strong>b)</strong> Constant speed 2.75 m/s; feasible but demanding direction changes.</p>
+ 
+ <p><strong>Competitive Math Problem 6</strong></p>
+ <p><strong>a)</strong> As above.</p>
+ <p><strong>b)</strong> As above.</p>
+ <p><strong>c)</strong> Quadratic yields t ≈ 4.29 s; minimality via positive root.</p>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <button id="show-answer-key" onclick="showAnswerKey()">Show Answer Key</button>
+ </div>
+
+ <script>
+ MathJax = {
+ tex: {
+ inlineMath: [['\\(', '\\)']],
+ displayMath: [['\\[', '\\]']],
+ processEscapes: true,
+ processEnvironments: true
+ },
+ options: {
+ skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+ }
+ };
+
+ let currentLesson = 1;
+ let submittedProblems = new Set();
+ const totalProblems = 8;
+
+ function showLesson(lessonNumber) {
+ const lessons = document.querySelectorAll('.lesson-panel');
+ const tabs = document.querySelectorAll('.nav-tab');
+ 
+ lessons.forEach(lesson => lesson.classList.remove('active'));
+ tabs.forEach(tab => tab.classList.remove('active'));
+ 
+ document.getElementById(`lesson${lessonNumber}`).classList.add('active');
+ tabs[lessonNumber - 1].classList.add('active');
+ 
+ currentLesson = lessonNumber;
+ localStorage.setItem('currentLesson', lessonNumber);
+ }
+
+ function submitAnswer(questionId) {
+ const answerInput = document.getElementById(`answer${questionId}`);
+ const submitBtn = answerInput.nextElementSibling;
+ 
+ if (!submittedProblems.has(questionId)) {
+ submittedProblems.add(questionId);
+ submitBtn.textContent = 'Submitted ✓';
+ submitBtn.style.background = 'linear-gradient(135deg, #388e3c 0%, #4caf50 100%)';
+ submitBtn.disabled = true;
+ answerInput.disabled = true;
+ 
+ updateProgressDisplay();
+ localStorage.setItem('submittedProblems', JSON.stringify([...submittedProblems]));
+ 
+ if (submittedProblems.size === totalProblems) {
+ document.getElementById('show-answer-key').style.display = 'inline-block';
+ }
+ }
+ }
+
+ function updateProgressDisplay() {
+ const progressFill = document.getElementById('progress-fill');
+ const progressText = document.getElementById('progress-text');
+ 
+ const percentage = (submittedProblems.size / totalProblems) * 100;
+ progressFill.style.width = percentage + '%';
+ progressText.textContent = `${submittedProblems.size} of ${totalProblems} problems submitted`;
+ }
+
+ function showAnswerKey() {
+ const answerKey = document.getElementById('answer-key');
+ const solutions = document.querySelectorAll('.solution');
+ 
+ answerKey.style.display = 'block';
+ solutions.forEach(solution => {
+ solution.style.display = 'block';
+ });
+ 
+ document.getElementById('show-answer-key').textContent = 'Answer Key Shown ✓';
+ document.getElementById('show-answer-key').disabled = true;
+ }
+
+ function checkSubmissionStatus() {
+ if (submittedProblems.size === totalProblems) {
+ document.getElementById('show-answer-key').style.display = 'inline-block';
+ }
+ }
+
+ function initializeDiagrams() {
+ try {
+ // Diagram 1: Basic movement from origin to (4,3)
+ const board1 = JXG.JSXGraph.initBoard('diagram1', {
+ boundingbox: [-1, 4, 5, -1],
+ axis: true,
+ keepAspectRatio: true
+ });
+
+ board1.create('point', [0, 0], {name: 'Start (0,0)', color: '#e74c3c', size: 5});
+ board1.create('point', [4, 3], {name: 'End (4,3)', color: '#27ae60', size: 5});
+ board1.create('arrow', [[0, 0], [4, 3]], {color: '#1976d2', strokeWidth: 3});
+ board1.create('text', [2, 1, 'v⃗ = ⟨1, 0.75⟩ m/s'], {fontSize: 14, color: '#2c3e50'});
+
+ // Diagram 2: Hamilton turntable
+ const board2 = JXG.JSXGraph.initBoard('diagram2', {
+ boundingbox: [-8, 8, 8, -8],
+ axis: true,
+ keepAspectRatio: true
+ });
+
+ board2.create('circle', [[0, 0], 7], {color: '#95a5a6', strokeWidth: 2});
+ board2.create('point', [0, 7], {name: 'Dancer', color: '#e74c3c', size: 5});
+ board2.create('arrow', [[0, 7], [-3, 7]], {color: '#1976d2', strokeWidth: 3});
+ board2.create('text', [-3, 5, 'Stage velocity'], {fontSize: 12, color: '#2c3e50'});
+
+ // Diagram 3: Maya's challenge
+ const board3 = JXG.JSXGraph.initBoard('diagram3', {
+ boundingbox: [-8, 6, 8, -2],
+ axis: true,
+ keepAspectRatio: true
+ });
+
+ board3.create('circle', [[0, 0], 5], {color: '#95a5a6', strokeWidth: 2});
+ board3.create('point', [3, 4], {name: 'Dancer', color: '#e74c3c', size: 5});
+ board3.create('arrow', [[-6, 2], [6, 2]], {color: '#27ae60', strokeWidth: 2, name: 'Audience view'});
+ board3.create('text', [0, 1, 'Apparent motion'], {fontSize: 12, color: '#27ae60'});
+
+ } catch (error) {
+ console.log('JSXGraph diagrams could not be loaded:', error);
+ }
+ }
+
+ document.addEventListener('DOMContentLoaded', function() {
+ // Load saved progress
+ const savedLesson = localStorage.getItem('currentLesson');
+ if (savedLesson) {
+ showLesson(parseInt(savedLesson));
+ }
+
+ const savedSubmissions = localStorage.getItem('submittedProblems');
+ if (savedSubmissions) {
+ submittedProblems = new Set(JSON.parse(savedSubmissions));
+ updateProgressDisplay();
+ checkSubmissionStatus();
+
+ // Update UI for submitted problems
+ submittedProblems.forEach(questionId => {
+ const answerInput = document.getElementById(`answer${questionId}`);
+ if (answerInput) {
+ const submitBtn = answerInput.nextElementSibling;
+ submitBtn.textContent = 'Submitted ✓';
+ submitBtn.style.background = 'linear-gradient(135deg, #388e3c 0%, #4caf50 100%)';
+ submitBtn.disabled = true;
+ answerInput.disabled = true;
+ }
+ });
+ }
+
+ // Initialize diagrams
+ setTimeout(initializeDiagrams, 1000);
+
+ // Keyboard support
+ document.addEventListener('keypress', function(e) {
+ if (e.key === 'Enter' && e.target.classList.contains('answer-input')) {
+ const questionId = parseInt(e.target.id.replace('answer', ''));
+ submitAnswer(questionId);
+ }
+ });
+ });
+
+ // Additional diagrams for practice problems
+ setTimeout(() => {
+ try {
+ // Add more interactive diagrams for practice problems
+ if (document.getElementById('diagram4')) {
+ const board4 = JXG.JSXGraph.initBoard('diagram4', {
+ boundingbox: [-7, 4, 3, -4],
+ axis: true,
+ keepAspectRatio: true
+ });
+ board4.create('circle', [[0, 0], 5], {color: '#95a5a6', strokeWidth: 2});
+ board4.create('point', [-5, 0], {name: 'Dancer', color: '#e74c3c', size: 5});
+ }
+
+ if (document.getElementById('diagram5')) {
+ const board5 = JXG.JSXGraph.initBoard('diagram5', {
+ boundingbox: [-2, 4, 8, -4],
+ axis: true,
+ keepAspectRatio: true
+ });
+ board5.create('circle', [[0, 0], 6], {color: '#95a5a6', strokeWidth: 2});
+ board5.create('point', [6, 0], {name: 'Position', color: '#e74c3c', size: 5});
+ }
+
+ } catch (error) {
+ console.log('Additional diagrams could not be loaded:', error);
+ }
+ }, 2000);
+ </script>
+ 
+
+<script>
+function showTab(tabName) {
+    // Hide all tab contents
+    var tabContents = document.querySelectorAll('[id^="tab"]');
+    tabContents.forEach(function(tab) {
+        tab.style.display = 'none';
+    });
+    
+    // Remove active class from all tabs
+    var tabButtons = document.querySelectorAll('[onclick*="showTab"]');
+    tabButtons.forEach(function(button) {
+        button.classList.remove('active');
+    });
+    
+    // Show selected tab content
+    var selectedTab = document.getElementById(tabName);
+    if (selectedTab) {
+        selectedTab.style.display = 'block';
+    }
+    
+    // Add active class to clicked tab
+    var clickedButton = document.querySelector('[onclick*="' + tabName + '"]');
+    if (clickedButton) {
+        clickedButton.classList.add('active');
+    }
+}
+</script>
+</body>
+</html>
